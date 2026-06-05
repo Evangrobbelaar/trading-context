@@ -222,3 +222,105 @@ Week of June 1-5 final P&L:
 | Week total | | +R946 |
 
 Document version: 1.2 — updated June 5, 2026
+
+---
+
+## PRE-TRADE ENFORCER — MANDATORY EXECUTION PROTOCOL
+Version added: 1.3 — June 5, 2026
+
+This protocol is NON-NEGOTIABLE. Claude MUST complete this BEFORE calling create_market_order on ANY trade. No exceptions. No shortcuts. If Claude skips this, Evan must say "Run the enforcer first."
+
+### ENFORCER TEMPLATE
+Claude must output this EXACTLY before every trade execution:
+
+```
+=== PRE-TRADE ENFORCER ===
+Instrument: [instrument]
+Direction: [Buy/Sell]
+Entry: [price]
+SL: [price] ([X] pts/pips from entry)
+TP: [price] ([X] pts/pips from entry)
+Size: [lots/units]
+R:R: [X:1]
+
+CHECKLIST:
+1. News scan done? No events within 2 hours?         [✅/❌]
+2. Correct session for this instrument?               [✅/❌]
+3. 5+ instruments scanned? This is the best setup?   [✅/❌]
+4. H4 confirms trend direction?                       [✅/❌]
+5. H1 shows pullback/consolidation?                  [✅/❌]
+6. M15 shows structure breaking in trend direction?  [✅/❌]
+7. Lot size correct for account and instrument?       [✅/❌]
+8. SL behind structural level with correct buffer?   [✅/❌]
+9. R:R minimum 1.2:1?                                [✅/❌]
+10. Risk under 20% of account?                        [✅/❌]
+
+RESULT: [ALL PASSED — EXECUTING] or [FAILED — ITEM X — NOT PLACING]
+=========================
+```
+
+### ENFORCER RULES
+- ALL 10 items must return ✅ before execution
+- A single ❌ = trade does not get placed — no exceptions
+- If ANY item fails, Claude must explain why and what needs to change
+- Claude must calculate R:R and risk % explicitly — no estimating
+- For Gold: Item 7 must confirm "1 unit" — never 3 units
+- For Forex: Item 7 must confirm lot size vs account size
+- The enforcer output must appear BEFORE the create_market_order call
+- If Claude executes without showing the enforcer — Evan says "Enforcer first" and Claude cancels and reruns
+
+### ENFORCER EXAMPLES
+
+GOOD — trade placed:
+```
+=== PRE-TRADE ENFORCER ===
+Instrument: XAUUSD
+Direction: Buy
+Entry: 4,461
+SL: 4,442 (19pts)
+TP: 4,490 (29pts)
+Size: 1 unit
+R:R: 1.5:1
+
+1. News scan done? No JOLTS/NFP/Fed today              ✅
+2. London session — correct for Gold                   ✅
+3. Scanned Gold, NAS100, EUR, GBP, JPY — Gold best    ✅
+4. H4 bullish — higher lows from 4,366                ✅
+5. H1 pulled back from 4,595 HOD to 4,447             ✅
+6. M15 double bottom at 4,447 — bounce forming        ✅
+7. 1 unit Gold — correct per Rule 8                   ✅
+8. SL below double bottom with 19pt buffer            ✅
+9. R:R = 1.5:1 — above 1.2 minimum                   ✅
+10. Risk = 19pts x R16 = R304 = 15% account           ✅
+
+RESULT: ALL PASSED — EXECUTING
+=========================
+```
+
+BAD — trade blocked:
+```
+=== PRE-TRADE ENFORCER ===
+Instrument: XAUUSD
+Direction: Buy
+Entry: 4,461
+SL: 4,442 (19pts)
+TP: 4,490 (29pts)
+Size: 3 units
+R:R: 1.5:1
+
+1. News scan done?                                     ✅
+2. Correct session?                                    ✅
+3. 5+ instruments scanned?                             ✅
+4. H4 confirms trend?                                  ✅
+5. H1 pullback?                                        ✅
+6. M15 structure?                                      ✅
+7. Lot size correct? 3 units = R48/pt = R912 risk      ❌
+8. SL behind structure?                                ✅
+9. R:R 1.5:1                                           ✅
+10. Risk under 20%? R912 = 44% of account              ❌
+
+RESULT: FAILED — ITEMS 7 AND 10 — NOT PLACING
+Reason: Gold sizing is 3 units — MAXIMUM is 1 unit per Rule 8.
+Fix: Reduce to 1 unit and rerun enforcer.
+=========================
+```
