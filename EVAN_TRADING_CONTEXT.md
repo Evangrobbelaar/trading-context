@@ -197,3 +197,28 @@ Document version: 1.1
 GitHub: https://github.com/Evangrobbelaar/trading-context
 Raw URL: https://raw.githubusercontent.com/Evangrobbelaar/trading-context/main/EVAN_TRADING_CONTEXT.md
 Update method: Claude uses bash git commands to commit changes directly to GitHub.
+
+---
+
+## UPDATE — June 5, 2026 (post-NFP)
+
+NFP Result: 172,000 jobs added vs 85,000 forecast — massive beat.
+Gold reaction: Crashed from 4,481 to 4,314 — a 167pt drop.
+USD surged ~30pts on Dollar Index.
+
+No trades placed post-NFP — correct decision. Rule 12 compression never formed.
+Gold continued lower all afternoon with no bounce structure.
+
+Key lesson: After a massive NFP beat, Gold can fall 150+ pts without a clean bounce setup.
+Do not try to catch the falling knife on strong NFP days. Wait for Monday reset.
+
+Week of June 1-5 final P&L:
+| Date | Trade | Result |
+|---|---|---|
+| 1 Jun 2026 | XAUUSD Sell | +R594 |
+| 1 Jun 2026 | XAUUSD Buy | +R205 |
+| 2 Jun 2026 | XAUUSD Buy | +R147 |
+| 5 Jun 2026 | No trades post-NFP | R0 |
+| Week total | | +R946 |
+
+Document version: 1.2 — updated June 5, 2026
