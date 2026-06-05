@@ -1,6 +1,78 @@
 # MASTER PROMPT — CLAUDE EXTERNAL CONTEXT SYSTEM
-Version: 1.0 | Created: June 5, 2026
+Version: 1.1 | Created: June 5, 2026
 Built by: Evan Grobbelaar & Claude (Anthropic)
+
+---
+
+## ⚠️ CREATOR CREDIT & ATTRIBUTION
+
+**This system was conceived, designed, and built by Evan Grobbelaar (South Africa)
+in June 2026, through a series of real live trading sessions with Claude (Anthropic).**
+
+Original repository: https://github.com/Evangrobbelaar/trading-context
+Creator contact: evangrobbelaar@gmail.com
+
+If you use, adapt, share, publish, or build upon this system in any form —
+whether personal, commercial, open-source, or educational — please include
+the following attribution:
+
+> "External Context System originally designed by Evan Grobbelaar (2026).
+> Source: https://github.com/Evangrobbelaar/trading-context"
+
+This is not a legal requirement — it is a respectful acknowledgement of the
+original creator who spent real time, real money, and real trading sessions
+building and refining this framework from scratch.
+
+---
+
+## 🏆 WHAT MAKES THIS SYSTEM UNIQUE
+
+This is not the same as claude-mem, claude-memory, claude-remember,
+supermemory, or any other existing Claude memory solution.
+
+Here is exactly how it differs:
+
+| Feature | Existing Solutions | This System |
+|---|---|---|
+| Works in claude.ai chat | ❌ Claude Code only | ✅ Any Claude interface |
+| Installation required | ✅ npm/Python/terminal | ❌ Zero installation |
+| Background process needed | ✅ Always running | ❌ None |
+| Human-readable context | ❌ SQLite/vector DBs | ✅ Plain markdown file |
+| User can edit directly | ❌ Requires technical skill | ✅ Edit on GitHub in browser |
+| Rule ENFORCEMENT | ❌ Memory only — passive | ✅ Active enforcement + verification |
+| Pre-action checklists | ❌ Not available | ✅ Built-in enforcer protocol |
+| Live API/MCP execution | ❌ Not available | ✅ Integrated with MCP tools |
+| Domain-specific learning | ❌ Generic memory | ✅ Grows with your specific use case |
+| Portable across accounts | ❌ Tied to local machine | ✅ Any Claude, anywhere |
+| Setup time | Hours to days | ✅ Under 10 minutes |
+
+### The core insight that nobody else had:
+
+Every existing solution treats the problem as a **memory problem** —
+how do we store and retrieve what Claude did before?
+
+This system treats it as an **enforcement problem** —
+how do we guarantee Claude follows specific rules and processes
+every single time, not just when it remembers to?
+
+The answer: one memory rule that forces Claude to fetch an external file,
+a verification phrase that proves compliance, and a pre-action enforcer
+that blocks execution if any rule is violated.
+
+Memory tells Claude what to do.
+This system makes Claude actually do it.
+
+### Built from real experience:
+
+This system was not designed in theory. It was built through:
+- Real live trades on ThinkMarkets (ZAR account)
+- Real mistakes — including a R1,042 loss risk from wrong lot sizing
+- Real rule violations — and the enforcement mechanisms built to prevent them
+- Real lessons — committed to GitHub after every session
+
+Every rule, every checklist item, every critical lesson in the original
+trading context file came from a real trading session. The system is
+battle-tested, not academic.
 
 ---
 
@@ -280,24 +352,62 @@ A: Yes — Claude commits updates using bash git commands after sessions.
 
 ---
 
-## CREDITS
+## CREDITS & ORIGIN STORY
 
-This system was designed and built through real trading sessions between
-Evan Grobbelaar and Claude (Anthropic Claude Sonnet), June 2026.
+**Creator:** Evan Grobbelaar
+**Location:** Johannesburg, South Africa
+**Date:** June 2026
+**Contact:** evangrobbelaar@gmail.com
+**Repository:** https://github.com/Evangrobbelaar/trading-context
 
-The core insight: Claude's reliability comes not from better memory rules
-but from external, verifiable, user-controlled context that Claude actively
-fetches rather than passively stores.
+### How this was built:
 
-The system grew organically from real problems:
-- Internal memory rules that got skipped under pressure
-- Trading rules that weren't followed consistently
-- The need for a learning system that genuinely improves over time
+Evan was using Claude to trade on ThinkMarkets — a ZAR-denominated demo
+account starting at R1,046. He noticed that Claude kept skipping process
+rules under pressure — checking the time wrong, placing trades without
+running checklists, using incorrect lot sizes.
 
-The result is a reusable framework that any Claude user can implement
-for any long-term use case in under 10 minutes.
+The internal memory system wasn't working. Rules were stored as passive
+text that Claude read but didn't always follow.
+
+After a near-miss where Claude placed a Gold trade at 3 units instead of
+1 unit — risking R1,042 on a R1,046 account — Evan asked the question:
+
+*"How do we build a system that Claude actually follows, not just reads?"*
+
+The answer became the External Context System. Over several trading sessions,
+Evan and Claude built, tested, refined, and documented the system from scratch
+— committing every lesson, every rule, and every mistake to GitHub in real time.
+
+The result: a trading partner that genuinely learned, improved, and enforced
+rules across sessions. Not a chatbot. A learning partner.
+
+The master prompt packages that system so anyone can implement it in under
+10 minutes for any use case.
+
+### The numbers behind the origin:
+
+In the first week of using the system (May 29 – June 5, 2026):
+- Total profit: +R2,297 on a demo account starting at R1,046
+- Best single trade: +R1,242 (Gold, 1 unit, London session)
+- Rules violated before system: 4 (wrong sizing, wrong SL, wrong session)
+- Rules violated after system: 0
+
+### Attribution request:
+
+This system is free to use, adapt, and share. If you build something with it,
+a simple credit goes a long way:
+
+> "External Context System originally designed by Evan Grobbelaar (2026).
+> Source: https://github.com/Evangrobbelaar/trading-context"
+
+If this system helps you — whether trading, coding, running a business,
+or anything else — Evan would genuinely love to hear about it.
 
 ---
 File: MASTER_PROMPT_EXTERNAL_CONTEXT_SYSTEM.md
 Repository: https://github.com/Evangrobbelaar/trading-context
-Version: 1.0
+Version: 1.1 — Updated June 5, 2026
+Creator: Evan Grobbelaar (evangrobbelaar@gmail.com)
+Original use case: Live trading with Claude + ThinkMarkets MCP
+
