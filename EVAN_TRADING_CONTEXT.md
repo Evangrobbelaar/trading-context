@@ -352,3 +352,92 @@ Week plan:
 - Live account: R65.89 — too small to trade. Fund to R1,000 minimum before any live trades.
 
 Document version: 1.3 — updated June 8, 2026
+
+---
+
+## LONG-TERM SWING POSITIONS — DO NOT CLOSE WITHOUT PROTOCOL
+
+### ⚠️ MANDATORY LOCK RULE
+Any position tagged [SWING] below MUST NOT be closed without:
+1. Evan explicitly saying "close the swing position" OR "close [symbol] long-term"
+2. Claude reading this section aloud in full as a recap before executing close
+3. Evan confirming after hearing the recap
+
+If Claude is in any other conversation and sees these positions open — DO NOT CLOSE. Say: "This appears to be a tagged SWING position. Please review EVAN_TRADING_CONTEXT.md before closing."
+
+This rule overrides all other close/cleanup actions. No exceptions.
+
+---
+
+### [SWING] NVIDIA — DEMO #41810679
+Status: OPEN (placed June 8, 2026)
+Symbol: NVIDIA
+Direction: Long (Buy)
+Account: Demo #41810679 ONLY
+Entry: ~$208.23
+Stop Loss: $195.00
+TP1: $250.00 (conservative — partial close here, trail remainder)
+TP2: $284.00 (analyst consensus target)
+Size: 0.1 lots
+Timeframe: 2–4 weeks
+Risk: R24 (0.9% of demo) — negligible to intraday sessions
+
+Thesis:
+- NVIDIA acquiring entire AI inference stack: Groq ($20B), CentML, SchedMD, Illumex
+- Free cash flow $96.5B fiscal 2026. M&A accelerating.
+- Blackwell → Vera Rubin hardware transition = next upcycle
+- 40+ analyst consensus: $303.96 target = ~45% upside from entry
+- 95% YoY revenue growth expected
+- Current price ~$208 = pullback entry from highs — optimal window
+- Strong Buy rating: 57% Strong Buy, 41% Buy, 1 Sell across Wall Street
+
+Management rule: At TP1 ($250) — close 50% of position, trail SL to $215 on remainder.
+At TP2 ($284) — close remaining 50%.
+Only close early if: thesis breaks (NVIDIA loses major contract, regulatory block on acquisitions, or broad AI sector collapse).
+
+
+### [SWING] INTEL — DEMO #41810679
+Status: PENDING PLACEMENT (researched June 8, 2026)
+Symbol: INTEL
+Direction: Long (Buy)
+Account: Demo #41810679 ONLY
+Entry: ~$99.21
+Stop Loss: $88.00
+TP1: $115.00
+TP2: $130.00
+Size: 0.1 lots
+Timeframe: 2–4 weeks
+Risk: R20 (0.7% of demo) — negligible
+
+Thesis:
+- Intel stock has tripled in 2026 (from $17.67 low to $99+) under CEO Lip-Bu Tan turnaround
+- NVIDIA invested $5B in Intel (December 2025) — strategic validation
+- AI Data Center segment +22% YoY, Intel Foundry +16%
+- 18A chip yields improving 7% per month, ahead of year-end target
+- 200 design wins on Panther Lake
+- Citi target $130, Benchmark $140, KeyBanc $110
+- Still below most analyst targets despite the run
+
+Management rule: At TP1 ($115) — close 50%, trail SL to $100 on remainder. At TP2 ($130) — close all.
+
+### [SWING] AMD — DEMO #41810679
+Status: PENDING PLACEMENT (researched June 8, 2026)
+Symbol: AMD
+Direction: Long (Buy)
+Account: Demo #41810679 ONLY
+Entry: ~$476.48
+Stop Loss: $455.00
+TP1: $520.00
+TP2: $560.00
+Size: 0.1 lots
+Timeframe: 2–4 weeks
+Risk: R39 (1.4% of demo) — acceptable
+
+Thesis:
+- Primary NVIDIA competitor in AI accelerators
+- MI300X GPU adoption accelerating in data centers
+- Benefits from same AI capex wave as NVIDIA
+- Strong Buy consensus
+
+Management rule: At TP1 ($520) — close 50%, trail SL to $470. At TP2 ($560) — close all.
+
