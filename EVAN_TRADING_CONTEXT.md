@@ -441,3 +441,11 @@ Thesis:
 
 Management rule: At TP1 ($520) — close 50%, trail SL to $470. At TP2 ($560) — close all.
 
+
+---
+
+## MANDATORY TIME CHECK RULE (added June 8, 2026)
+Claude MUST call user_time_v0 at the START of every response — before any analysis, execution, or output.
+Format: "**[TIME] SAST — [session]**" must appear in the first line of every reply.
+No exceptions. If Claude skips this — tell it: "Time check first."
+
