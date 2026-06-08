@@ -190,7 +190,15 @@ Week of June 1-5, 2026 (complete):
 - Fri Jun 5: NFP 2:30pm SAST — no trades before 4:30pm
 
 Week of June 8-12, 2026:
-- To be updated Monday June 8 at session open
+- Tue Jun 10: US CPI (May) 14:30 SAST — 🔴 CRITICAL — NO trades before 16:30 SAST
+- Tue Jun 10: US PPI 14:30 SAST — 🔴 HIGH IMPACT
+- Thu Jun 12: US Initial Jobless Claims 14:30 SAST — medium
+- Fri Jun 13: Michigan Consumer Sentiment 16:00 SAST — medium
+- Note: FOMC Jun 16-17 (next week) — watch rate hike language
+- Gold bias: Bearish (strong NFP, rate hike bets). CPI cool = bounce. CPI hot = continuation short.
+- Key level: 4,319 yearly open support. Break below = target 4,195.
+
+Week of June 8-12, 2026 (Monday update committed by Claude — June 8, 2026):
 
 ---
 Document version: 1.1
@@ -324,3 +332,23 @@ Reason: Gold sizing is 3 units — MAXIMUM is 1 unit per Rule 8.
 Fix: Reduce to 1 unit and rerun enforcer.
 =========================
 ```
+
+
+---
+
+## UPDATE — June 8, 2026 (Monday Weekly Update)
+
+Monday open context:
+- Gold closed Friday at ~4,366 (NFP crash: 4,481 → 4,314, partial weekend recovery)
+- Weekend XAUUSD247 range: 4,290–4,320, spread 4.06pts (8x normal)
+- Yearly open support: 4,319 — critical level this week
+- No trades placed over the weekend — correct (spread + no structure)
+
+Week plan:
+- Monday: Watch London open 9am SAST. Wait for M15 compression at 4,319 support or break below it.
+  - Scenario A (above 4,319 holds): Long with SL below 4,300, TP 4,370 (~2.5:1)
+  - Scenario B (breaks below 4,319): Short on pullback, SL above 4,340, TP 4,270 (~2.5:1)
+- Tuesday: NO TRADES before 16:30 SAST (CPI at 14:30 SAST)
+- Live account: R65.89 — too small to trade. Fund to R1,000 minimum before any live trades.
+
+Document version: 1.3 — updated June 8, 2026
