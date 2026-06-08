@@ -565,3 +565,6 @@ No exceptions. If Claude skips this — tell it: "Time check first."
 - NVIDIA swing: hold, no action needed for weeks
 
 Document version: 1.4 — updated June 8, 2026 17:53 SAST — for Evan to curate
+
+
+<!-- Claude ECS middleware test — written via proxy -->
