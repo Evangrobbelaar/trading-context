@@ -472,3 +472,96 @@ No exceptions. If Claude skips this — tell it: "Time check first."
 
 ### Monday June 8 net: -R102 demo intraday | NVIDIA swing open
 
+
+---
+
+## JUNE 8 2026 — FULL DAY RECAP (for Evan to curate)
+
+### End-of-day account status
+- Demo #41810679 balance: R2,622.13 | Equity R2,681 | Started day at ~R2,676
+- Live #43019560 balance: R41.73 | Started day at R47.16 | Net -R5.43
+- Demo GBPUSD Short x2 still open (see below)
+- Demo NVIDIA [SWING] still open
+
+### Open positions end of day
+1. GBPUSD Short #1 (demo) — entry 1.33609 | SL breakeven | TP 1.33100 | 0.03L | +R60 floating | FREE TRADE
+2. GBPUSD Short #2 (demo) — entry 1.33469 | SL 1.33609 | TP 1.33100 | 0.03L | flat
+3. NVIDIA Long [SWING] — entry $208.48 | SL $195 | TP1 $250 | TP2 $284 | 0.1L | see lock protocol
+
+### Full trade log June 8
+| Time SAST | Instrument | Dir | Account | Entry | Exit | Result |
+|---|---|---|---|---|---|---|
+| 11:10 | USDJPY | Buy | Live | 160.275 | 160.10 SL | -R19 |
+| 11:15 | GBPUSD | Sell | Demo | 1.33243 | 1.33400 manual | -R83 |
+| 11:50 | NVIDIA | Buy | Demo | 208.48 | OPEN swing | — |
+| 15:32 | GBPUSD | Sell | Demo | 1.33609 | OPEN | +R60 float |
+| 15:53 | XAUUSD | Sell | Demo | 4332.81 | 4323 SL trail | +R179 |
+| 15:53 | EURUSD | Sell | Demo | 1.15444 | 1.15444 BE close | +R55 |
+| 15:53 | GBPUSD | Sell | Demo | 1.33469 | OPEN | flat |
+| 16:52 | GBPUSD | Sell | Live | 1.33532 | 1.33428 manual | +R14.52 |
+| 16:53 | GBPUSD | Sell | Live | 1.33418 | 1.33485 SL | -R11.70 |
+| 17:11 | EURUSD | Sell | Live | 1.15421 | 1.15470 SL | -R8.25 |
+| 17:20 | EURUSD | Sell | Demo | 1.15446 | 1.15430 cut | +R17 |
+| 17:20 | XAUUSD | Sell | Demo | 4330.17 | 4341.88 cut | -R211 |
+| 17:53 | NVIDIA | Buy | Demo | 208.48 | OPEN swing | — |
+
+---
+
+## JUNE 8 — LEARNINGS FOR EVAN TO CURATE
+
+### SESSION MECHANICS — what worked
+- SL trail to breakeven rule saved multiple positions from turning losses
+- Cutting GBPUSD at -R83 (Rule 5) saved R57 vs waiting for SL
+- Gold first trade: entry 4332, SL trailed to 4323 — locked R179 automatically
+- EURUSD cut early when SL distance was only 7p — avoided potential -R95 loss
+- Multi-instrument USD shorts (GBP + EUR + Gold) all fired together on same thesis = valid approach
+- NY open is the best session — most of the day's profit came after 15:30 SAST
+
+### SESSION MECHANICS — what didn't work
+- Re-entering a trade immediately after manual close at tight SL = stop hunt risk (GBPUSD live trade 2)
+- Taking 3 live trades in quick succession on a R47 account = account drawn down to R41.73
+- Gold re-entry (second XAUUSD short) entered at wrong time — bounced hard against us, -R211
+- EURUSD 0.06L double down — aggressive sizing caught a bounce, required early exit
+- Post-NFP Monday pairs (JPY especially) have 1.5-2x normal retracement volatility — wider SLs needed
+
+### LIVE ACCOUNT INSIGHTS
+- R47 is too small to trade safely — any SL under 20 pips risks 40%+ of account
+- Tight SLs (4-7 pips) get stopped by spread noise and stop hunts
+- Three live trades all lost or barely broke even — need minimum R300-500 deposit
+- GBPUSD at 0.01L with 6-7p SL = structural problem, not bad trading
+- One trade that worked (manual close +R14.52) worked because we managed it manually not via SL
+
+### INSTRUMENT INSIGHTS
+- XAUUSD (Gold): R18.20/pt at 0.01 lots. Highly profitable when right but punishing when wrong. Need 20pt+ SL minimum.
+- GBPUSD: R5.46/pip at 0.03L. Most consistent performer today — two separate setups both worked directionally.
+- EURUSD: R5.46/pip at 0.03L. Similar to GBP, same USD thesis. More volatile during NY session — watch HOD/LOD carefully.
+- USDJPY: Post-NFP USD spike faded Monday — wrong entry timing, not wrong thesis.
+- NVIDIA (shares): R1.82/dollar at 0.1L. Swing only — too slow for intraday. NY session noise ±$2.
+- TM_VOLATILITY_50 (synthetic): Could not place orders — likely account permissions issue. Revisit.
+- UK shares (LLOYDS etc): P&L too small at 0.01L (R0.23/pt) — not viable for small account.
+
+### STRATEGY INSIGHTS
+- USD strength theme post-NFP is a multi-day thesis — GBP and EUR shorts work on this
+- Mean reversion: Gold oscillated 4268-4353 all day. Selling HOD rejections is valid.
+- Double-down works IF sizing is controlled AND entry is at clear S/R — aggressive sizing on bounces dangerous
+- Swing positions (NVIDIA) should be completely separate from intraday — different timeframe, different rules
+- INTEL thesis still valid but entered downtrend — wait for H1 base to form before swing entry (~$95-$97 or recovery above $102)
+
+### RULES TO CONSIDER (for Evan to decide)
+- [ ] Add post-NFP rule: widen SL by 50% on all pairs for first 2 London sessions after NFP
+- [ ] Add re-entry rule: minimum 15 min cooldown after manual close before re-entering same instrument same direction
+- [ ] Add live account rule: maximum 1 live trade per session until balance exceeds R300
+- [ ] Add double-down rule: maximum 0.06L total on any single instrument during double-down
+- [ ] Consider adding: mandatory 25% progress before SL trail (currently doing this informally)
+- [ ] Consider adding: CPI/FOMC rule — no new positions within 48hrs of high-impact event (currently 24hr)
+- [ ] Live account deposit target: R300 minimum, R500 ideal before next trading session
+
+### WHAT TO DO TOMORROW
+- Check GBPUSD positions on wake-up — if price near 1.33100 TP, prepare to close
+- INTEL: watch for base formation at $95-$97 or H1 recovery above $102 for swing entry
+- Update news calendar for week: CPI Wednesday 14:30 SAST is the big one
+- Consider GBPUSD add position: if both hit TP tomorrow = +R403 on demo
+- Live account: assess deposit before trading. Do not trade live at R41.73 with tight SLs again.
+- NVIDIA swing: hold, no action needed for weeks
+
+Document version: 1.4 — updated June 8, 2026 17:53 SAST — for Evan to curate
