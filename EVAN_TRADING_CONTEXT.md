@@ -449,3 +449,26 @@ Claude MUST call user_time_v0 at the START of every response — before any anal
 Format: "**[TIME] SAST — [session]**" must appear in the first line of every reply.
 No exceptions. If Claude skips this — tell it: "Time check first."
 
+
+---
+
+## UPDATE — June 8, 2026 (Monday Session Trades)
+
+### Trades placed and closed today:
+
+| Time | Trade | Entry | Exit | Result | Notes |
+|---|---|---|---|---|---|
+| 11:10 SAST | USDJPY Buy (live) | 160.275 | 160.10 SL | -R19 | SL too tight post-NFP, Monday retracement |
+| 11:15 SAST | GBPUSD Sell (demo) | 1.33243 | 1.33400 manual close | -R83 | Structure reversed — M15 flipped bullish, closed before SL |
+| 11:50 SAST | NVIDIA Buy (demo) | 208.48 | OPEN | — | Swing position [SWING] — see lock protocol |
+
+### Lessons learned today:
+- Post-NFP pairs (especially JPY) need wider SLs on Monday — retracement volatility is 1.5-2x normal
+- GBPUSD short thesis was valid (USD strength) but London session saw GBP recover — check if news catalyst drove reversal before next GBP short
+- Cutting at -R83 vs waiting for -R140 SL = correct Rule 5 application. Saved R57.
+- Demo session P&L today: -R83 (GBPUSD) | NVIDIA open
+- Live session P&L today: -R19 (USDJPY)
+- Live account balance: R47.16
+
+### Monday June 8 net: -R102 demo intraday | NVIDIA swing open
+
