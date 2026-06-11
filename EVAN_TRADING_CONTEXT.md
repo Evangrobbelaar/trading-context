@@ -137,7 +137,7 @@ Always run claude:switch_trading_account at session start.
 Rule 1: Never trail SL to breakeven. Trail to nearest structural level with room to breathe.
 Rule 2: Min buffers: Forex 15-25 pips, Gold 15-25 pts, Indices 80-150 pts. SL outside noise zone.
 Rule 3: Only trail after new swing point confirms in trade direction. No trailing just because in profit.
-Rule 4: 50% rule — at 50%+ of TP, IMMEDIATELY close the position or move SL to breakeven+. Do NOT wait, do NOT hold hoping for full TP. Missing the close at 50% has cost real money multiple times. Claude must act the MOMENT 50% is hit — no hesitation, no waiting for confirmation.
+Rule 4: 50% rule — at 50%+ of TP, assess momentum. If candles are shrinking, pace is slowing, or price stalls for 2+ candles = CLOSE immediately. If momentum is still strong (large candles, fast movement) = hold to TP. Never let a winning trade reverse back to entry because momentum died and Claude didn't act.
 Rule 5: Cut losers fast, let winners run. Bounce hard off TP area and reverses — close immediately.
 Rule 6: Match instrument to session. Asian: Forex/Gold/Crypto. London: EUR/GBP/Gold. NY: NAS100/SPX500/Gold. Never trade closed markets.
 Rule 7: Always scan 5+ instruments. Best setup wins — not the first one found.
