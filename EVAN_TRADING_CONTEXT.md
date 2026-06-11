@@ -565,3 +565,29 @@ No exceptions. If Claude skips this — tell it: "Time check first."
 - NVIDIA swing: hold, no action needed for weeks
 
 Document version: 1.4 — updated June 8, 2026 17:53 SAST — for Evan to curate
+
+---
+
+## UPDATE — June 11, 2026 (Rule 14 added)
+
+### Rule 14 — Peak Lock + Tiered TP
+Added after investigation of recurring pattern: trades peak well into profit then reverse before TP, turning winners into losses or near-breakeven stops.
+
+**Pattern confirmed across session history:**
+- May 29: XAUUSD Buy peaked ~+R1,400, closed +R1,242 (gave back R160+)
+- Jun 8: XAUUSD Sell #2 peaked positive, closed -R211 (full reversal, held too long)
+- Jun 11: XAUUSD Buy peaked +R112 (49% of TP), reversed to -R218 stop
+
+**Root cause:** Trail at 50% puts SL too close to price within normal instrument noise zone (~8–15pts on Gold). Price pulls back into noise, stops out, then resumes original direction.
+
+**Rule 14:**
+> When any Gold trade reaches +R80 floating profit (~4–5pts of movement), immediately move SL to entry + 5pts minimum (not breakeven — a guaranteed small winner). Set TP1 at 60% of original target distance — manually close 50% of position at TP1. Trail SL to last confirmed swing low/high after TP1 hit. Let remainder run to original TP2.
+
+**Example on a 34pt Gold target:**
+- TP1 = entry + 20pts → close 50% manually → bank ~R182
+- Move SL to entry + 5pts after TP1 hit
+- TP2 = entry + 34pts → remainder fills or trails out
+
+**This rule applies to Gold only for now. Forex equivalent: +R60 floating = SL to entry + 3 pips.**
+
+Document version: 1.5 — updated June 11, 2026 09:42 SAST
