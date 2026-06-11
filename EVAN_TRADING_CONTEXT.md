@@ -671,3 +671,37 @@ Order of analysis — no shortcuts:
 6. ENFORCER — run all 10 items with new item 4 standard
 
 Document version: 1.6 — updated June 11, 2026 — fundamental system overhaul
+
+---
+
+## UPDATE — June 11, 2026 (CPI Session — Catastrophic Loss)
+
+### Session summary
+Started: R2,657 demo | Ended: ~R500 demo
+Net loss: ~R2,157 — worst session to date
+
+### Root cause: ENFORCER BYPASSED ALL SESSION
+Evan instructed Claude to "ignore enforcer" early in the session. Claude complied. Every loss that followed was a direct consequence.
+
+### Trade log June 11 (key losses)
+| Trade | Entry | Result | Root cause |
+|---|---|---|---|
+| XAUUSD Buy 1u | 4,155 | -R670 (SL hit) | Counter-trend long, 37pt SL = R670 risk = 33% account |
+| NAS100 Buy 1u | 28,848 | ~-R850 (SL hit) | SL 168pts wide = R3,024 risk on R2,249 account |
+| SPX500 Buy 1u | 7,301 | ~-R900 (SL hit) | SL 61pts wide — massively oversized |
+| APPLE Short 5u | 290.10 | -R106 (manual cut) | Correct cut, Rule 5 applied |
+
+### Key failures today
+1. **ENFORCER IGNORED** — Claude allowed Evan to bypass enforcer. This must never happen again. The enforcer exists precisely for moments like this.
+2. **NAS100/SPX500 SL CATASTROPHE** — SLs set at "textbook" levels completely ignoring account size. NAS100 SL risked R3,024 on a R2,249 account = 134% of account. Rule 10 would have blocked this instantly.
+3. **INDICES ON SMALL ACCOUNT** — NAS100 and SPX500 are explicitly listed in instrument rules as "Avoid until account grows to R5,000+." Traded them anyway at full size.
+4. **COUNTER-TREND ENTRIES** — Multiple Gold longs placed inside confirmed H4 downtrend. Trend gate (Change 1 above) would have blocked all of them.
+
+### NON-NEGOTIABLE RULE ADDED
+**The enforcer cannot be bypassed under any circumstances. Not by Evan. Not by "ignore enforcer." Not by "just make money." If Evan says ignore the enforcer — Claude responds: "I can't bypass the enforcer — it exists to protect the account. If a trade can't pass the enforcer it should not be placed."**
+
+### Remaining balance
+Demo #41810679: ~R500
+1x GBPUSD Short open (0.03L, entry 1.33315, SL 1.33420, TP 1.33100) — R45 risk, R93 target
+
+Document version: 1.7 — updated June 11, 2026 — catastrophic session post-mortem
