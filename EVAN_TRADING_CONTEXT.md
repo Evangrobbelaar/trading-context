@@ -591,3 +591,83 @@ Added after investigation of recurring pattern: trades peak well into profit the
 **This rule applies to Gold only for now. Forex equivalent: +R60 floating = SL to entry + 3 pips.**
 
 Document version: 1.5 — updated June 11, 2026 09:42 SAST
+
+---
+
+## FUNDAMENTAL SYSTEM UPDATE — June 11, 2026
+
+### ROOT CAUSE INVESTIGATION FINDINGS
+
+Full investigation conducted across all chat histories and closed trade data.
+
+**The winning period (May 29 – Jun 5): +R2,297**
+- Every trade was WITH the H4 trend
+- Gold H4 was bullish throughout — longs worked every time
+- Small forex losses cut fast, winners let run
+- Zero rule violations
+
+**The losing period (Jun 8 – Jun 11): ~-R800+ closed losses**
+Four root causes identified:
+
+1. TREND BLINDNESS — After NFP crash, Gold H4 flipped to clear downtrend (lower highs, lower lows: 4,481→4,344→4,258→4,147→4,023). System kept placing counter-trend longs on "bounces." Every single recent Gold loss was a long inside a downtrend.
+
+2. ENFORCER ITEM 4 BEING GAMED — "H4 confirms trend?" was being answered ✅ when price bounced 20pts off a low. A bounce inside a downtrend is NOT H4 confirmation. Real H4 confirmation = confirmed higher low + break of prior H4 swing high (for longs). This standard was never met on recent Gold longs.
+
+3. OVERSIZED SL — XAUUSD Buy @ 4,155, SL @ 4,118 = 37pt stop = R673 risk = 33% of account. Should have been blocked by enforcer item 10. Was not. Biggest single loss.
+
+4. NO MID-TRADE STRUCTURE MONITORING — Zero mechanism to detect when a trade peaks and reverses in real time. Only signal was floating P&L on ping — too late.
+
+---
+
+### CHANGE 1 — HARD TREND GATE (NEW — MANDATORY)
+
+Before ANY entry Claude must explicitly state:
+- H4 trend: [sequence of last 3 swing highs/lows]
+- Trade direction vs H4 trend: [WITH / AGAINST]
+- If AGAINST H4 trend → AUTOMATIC BLOCK. No exceptions. No bounces.
+
+Counter-trend entry only permitted when H4 has printed:
+- For longs: confirmed higher low + price has broken prior H4 swing high
+- For shorts: confirmed lower high + price has broken prior H4 swing low
+
+### CHANGE 2 — ENFORCER ITEM 4 REWRITE (MANDATORY)
+
+OLD: "H4 confirms trend direction?"
+NEW: "H4 shows confirmed swing structure in trade direction? Longs: higher low formed + prior H4 swing high broken. Shorts: lower high formed + prior H4 swing low broken."
+
+A bounce inside a trend does NOT pass this check. Ever.
+
+### CHANGE 3 — MID-TRADE STRUCTURE MONITOR (MANDATORY ON EVERY PING)
+
+On every ping Claude must:
+1. Pull last 10 M5 candles for each open trade
+2. State whether M5 is making higher highs (bullish) or lower highs (bearish) since entry
+3. If M5 structure has reversed against trade AND P&L is positive → flag Rule 13 manual close
+4. If M5 structure has reversed against trade AND P&L is negative → flag Rule 5 cut
+
+### CHANGE 4 — MANDATORY PING RESPONSE FORMAT
+
+Every ping response must follow this exact structure:
+
+[TIME SAST] — [SESSION]
+
+For each open trade:
+TREND: H4 [Bull/Bear] — last swing at [price]
+M5 STRUCTURE: [Higher highs / Lower highs / Compression] since entry
+P&L: [amount] | [X]% to TP | Floor: [locked amount if trailed]
+ACTION: [Hold / Trail per Rule X / Close — Rule 13 / Watch]
+
+TOTAL FLOATING: [amount]
+NEXT TRIGGER: [what price/event changes the action]
+
+### CHANGE 5 — ANALYSIS SEQUENCE (MANDATORY BEFORE EVERY TRADE)
+
+Order of analysis — no shortcuts:
+1. NEWS — any high impact events within 2 hours? What is the macro bias?
+2. H4 TREND — what is the dominant trend on H4? Last 3 swing points?
+3. TREND GATE — is this trade WITH the H4 trend? If no → blocked.
+4. H1 STRUCTURE — is there a valid pullback/consolidation to enter from?
+5. M15 TRIGGER — has structure broken in the trade direction on M15?
+6. ENFORCER — run all 10 items with new item 4 standard
+
+Document version: 1.6 — updated June 11, 2026 — fundamental system overhaul
