@@ -34,72 +34,57 @@ jobs:
       - name: Install Expo CLI
         run: npm install -g expo-cli @expo/cli
 
-      - name: Patch expo-modules-core for Gradle 8.x (components.release)
+      - name: Patch ExpoModulesCorePlugin for Gradle 8.x compatibility
         run: |
           python3 - <<'PYEOF'
-import glob, re
-
-files = glob.glob('node_modules/expo-modules-core/android/ExpoModulesCorePlugin.gradle')
-if not files:
-    print("ExpoModulesCorePlugin.gradle not found - skipping patch")
-else:
-    path = files[0]
-    print(f"Patching: {path}")
-    with open(path) as f:
-        content = f.read()
-    # Show lines containing 'components'
-    for i, line in enumerate(content.split('\n'), 1):
-        if 'components' in line:
-            print(f"  line {i}: {line}")
-    # Fix: replace direct components.release access with safe findByName
-    patched = re.sub(
-        r'\bfrom\s+components\.release\b',
-        'def __rc = components.findByName("release"); if (__rc) { from __rc }',
-        content
-    )
-    if patched != content:
-        with open(path, 'w') as f:
-            f.write(patched)
-        print("Patched: wrapped components.release in findByName guard")
-    else:
-        print("No direct components.release found - checking for other patterns")
-        # Also try without word boundary for edge cases
-        patched2 = content.replace(
-            'from components.release',
-            'def __rc = components.findByName("release"); if (__rc) { from __rc }'
-        )
-        if patched2 != content:
-            with open(path, 'w') as f:
-                f.write(patched2)
-            print("Patched via string replace")
-        else:
-            print("No patch applied - file may already be compatible")
-PYEOF
+          import glob, re
+          files = glob.glob('node_modules/expo-modules-core/android/ExpoModulesCorePlugin.gradle')
+          if not files:
+              print("ExpoModulesCorePlugin.gradle not found - skipping")
+          else:
+              path = files[0]
+              print(f"Patching: {path}")
+              with open(path) as f:
+                  content = f.read()
+              for i, line in enumerate(content.split('\n'), 1):
+                  if 'components' in line:
+                      print(f"  line {i}: {line}")
+              replacement = 'def __rc = components.findByName("release"); if (__rc) { from __rc }'
+              patched = re.sub(r'\bfrom\s+components\.release\b', replacement, content)
+              if patched == content:
+                  patched = content.replace('from components.release', replacement)
+              if patched != content:
+                  with open(path, 'w') as f:
+                      f.write(patched)
+                  print("Patched successfully")
+              else:
+                  print("No components.release found - no patch needed")
+          PYEOF
 
       - name: Create placeholder assets (valid PNG via Python)
         run: |
           mkdir -p assets
           python3 - <<'PYEOF'
-import struct, zlib
+          import struct, zlib
 
-def make_png(w=1, h=1, r=0, g=100, b=50):
-    def chunk(tag, data):
-        c = zlib.crc32(tag + data) & 0xffffffff
-        return struct.pack('>I', len(data)) + tag + data + struct.pack('>I', c)
-    ihdr = struct.pack('>IIBBBBB', w, h, 8, 2, 0, 0, 0)
-    raw = b'\x00' + bytes([r, g, b]) * w
-    idat = zlib.compress(raw * h)
-    return (b'\x89PNG\r\n\x1a\n' +
-            chunk(b'IHDR', ihdr) +
-            chunk(b'IDAT', idat) +
-            chunk(b'IEND', b''))
+          def make_png(w=1, h=1, r=0, g=100, b=50):
+              def chunk(tag, data):
+                  c = zlib.crc32(tag + data) & 0xffffffff
+                  return struct.pack('>I', len(data)) + tag + data + struct.pack('>I', c)
+              ihdr = struct.pack('>IIBBBBB', w, h, 8, 2, 0, 0, 0)
+              raw = b'\x00' + bytes([r, g, b]) * w
+              idat = zlib.compress(raw * h)
+              return (b'\x89PNG\r\n\x1a\n' +
+                      chunk(b'IHDR', ihdr) +
+                      chunk(b'IDAT', idat) +
+                      chunk(b'IEND', b''))
 
-png = make_png()
-for name in ['icon.png', 'splash.png', 'adaptive-icon.png', 'favicon.png']:
-    with open(f'assets/{name}', 'wb') as f:
-        f.write(png)
-    print(f'Created assets/{name}')
-PYEOF
+          png = make_png()
+          for name in ['icon.png', 'splash.png', 'adaptive-icon.png', 'favicon.png']:
+              with open(f'assets/{name}', 'wb') as f:
+                  f.write(png)
+              print(f'Created assets/{name}')
+          PYEOF
           ls -la assets/
 
       - name: Prebuild Android project
@@ -118,52 +103,46 @@ PYEOF
           cat android/settings.gradle
           echo ""
           python3 - <<'PYEOF'
-import subprocess, sys
-
-result = subprocess.run(
-    ['node', '--print',
-     "require('path').dirname(require.resolve('expo-modules-core/package.json')) + '/android'"],
-    capture_output=True, text=True
-)
-if result.returncode != 0:
-    print(f"ERROR resolving expo-modules-core: {result.stderr}")
-    sys.exit(1)
-
-expo_core = result.stdout.strip()
-print(f"expo-modules-core/android: {expo_core}")
-
-with open('android/settings.gradle') as f:
-    content = f.read()
-
-include_line = f'  includeBuild("{expo_core}")'
-
-if expo_core in content:
-    print("expo-modules-core already present in settings.gradle - no patch needed")
-elif 'pluginManagement {' in content:
-    content = content.replace('pluginManagement {', f'pluginManagement {{\n{include_line}', 1)
-    with open('android/settings.gradle', 'w') as f:
-        f.write(content)
-    print("Patched: added expo-modules-core to existing pluginManagement block")
-else:
-    pm = (
-        'pluginManagement {\n'
-        + include_line + '\n'
-        + '  repositories {\n'
-        + '    google()\n'
-        + '    mavenCentral()\n'
-        + '    gradlePluginPortal()\n'
-        + '  }\n'
-        + '}\n'
-    )
-    content = pm + content
-    with open('android/settings.gradle', 'w') as f:
-        f.write(content)
-    print("Patched: prepended new pluginManagement block")
-
-print("=== android/settings.gradle (after patch) ===")
-with open('android/settings.gradle') as f:
-    print(f.read())
-PYEOF
+          import subprocess, sys
+          result = subprocess.run(
+              ['node', '--print',
+               "require('path').dirname(require.resolve('expo-modules-core/package.json')) + '/android'"],
+              capture_output=True, text=True
+          )
+          if result.returncode != 0:
+              print(f"ERROR: {result.stderr}")
+              sys.exit(1)
+          expo_core = result.stdout.strip()
+          print(f"expo-modules-core/android: {expo_core}")
+          with open('android/settings.gradle') as f:
+              content = f.read()
+          include_line = f'  includeBuild("{expo_core}")'
+          if expo_core in content:
+              print("Already present - no patch needed")
+          elif 'pluginManagement {' in content:
+              content = content.replace('pluginManagement {', f'pluginManagement {{\n{include_line}', 1)
+              with open('android/settings.gradle', 'w') as f:
+                  f.write(content)
+              print("Patched: added to existing pluginManagement block")
+          else:
+              pm = (
+                  'pluginManagement {\n'
+                  + include_line + '\n'
+                  + '  repositories {\n'
+                  + '    google()\n'
+                  + '    mavenCentral()\n'
+                  + '    gradlePluginPortal()\n'
+                  + '  }\n'
+                  + '}\n'
+              )
+              content = pm + content
+              with open('android/settings.gradle', 'w') as f:
+                  f.write(content)
+              print("Patched: prepended new pluginManagement block")
+          print("=== android/settings.gradle (after patch) ===")
+          with open('android/settings.gradle') as f:
+              print(f.read())
+          PYEOF
 
       - name: Make gradlew executable
         run: chmod +x android/gradlew
@@ -178,11 +157,11 @@ PYEOF
 
       - name: Find and copy APK
         run: |
-          echo "=== All APK files found ==="
+          echo "=== All APK files ==="
           find android -name "*.apk" -type f
           APK=$(find android -name "app-debug.apk" | head -1)
           if [ -z "$APK" ]; then
-            echo "ERROR: No app-debug.apk found - build likely failed"
+            echo "ERROR: No app-debug.apk found"
             exit 1
           fi
           echo "APK: $APK"
