@@ -61,6 +61,64 @@ jobs:
                   print("No components.release found - no patch needed")
           PYEOF
 
+      - name: Patch expo-modules-core android settings.gradle for AGP resolution
+        run: |
+          python3 - <<'PYEOF'
+          import os, sys
+
+          base = 'node_modules/expo-modules-core/android'
+          print(f"Contents of {base}/:")
+          if os.path.exists(base):
+              for item in sorted(os.listdir(base)):
+                  print(f"  {item}")
+          else:
+              print("  Directory not found - skipping")
+              sys.exit(0)
+
+          settings_path = f'{base}/settings.gradle'
+          pm_block = (
+              'pluginManagement {\n'
+              '  repositories {\n'
+              '    google()\n'
+              '    mavenCentral()\n'
+              '    gradlePluginPortal()\n'
+              '  }\n'
+              '}\n'
+          )
+
+          if os.path.exists(settings_path):
+              with open(settings_path) as f:
+                  content = f.read()
+              print(f"\nCurrent expo-modules-core/android/settings.gradle:")
+              print(content)
+              if 'pluginManagement' not in content:
+                  content = pm_block + content
+                  with open(settings_path, 'w') as f:
+                      f.write(content)
+                  print("Patched: prepended pluginManagement block")
+              elif 'google()' not in content:
+                  content = content.replace(
+                      'repositories {',
+                      'repositories {\n    google()\n    mavenCentral()\n    gradlePluginPortal()',
+                      1
+                  )
+                  with open(settings_path, 'w') as f:
+                      f.write(content)
+                  print("Patched: added google() to repositories")
+              else:
+                  print("No patch needed - already has pluginManagement with google()")
+          else:
+              print(f"\nNo settings.gradle at {settings_path} - creating one")
+              with open(settings_path, 'w') as f:
+                  f.write(pm_block)
+              print("Created settings.gradle with pluginManagement block")
+
+          print("\nFinal expo-modules-core/android/settings.gradle:")
+          if os.path.exists(settings_path):
+              with open(settings_path) as f:
+                  print(f.read())
+          PYEOF
+
       - name: Create placeholder assets (valid PNG via Python)
         run: |
           mkdir -p assets
@@ -150,7 +208,8 @@ jobs:
       - name: Build Debug APK
         run: |
           cd android
-          ./gradlew assembleDebug --no-daemon 2>&1 | tail -200
+          set -o pipefail
+          ./gradlew assembleDebug --no-daemon --stacktrace 2>&1 | tail -500
         env:
           JAVA_TOOL_OPTIONS: "-Xmx4g"
           GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.jvmargs=-Xmx4g"
