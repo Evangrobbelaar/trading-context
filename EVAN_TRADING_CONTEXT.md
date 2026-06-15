@@ -705,3 +705,38 @@ Demo #41810679: ~R500
 1x GBPUSD Short open (0.03L, entry 1.33315, SL 1.33420, TP 1.33100) — R45 risk, R93 target
 
 Document version: 1.7 — updated June 11, 2026 — catastrophic session post-mortem
+
+---
+
+## SESSION ARCHIVE — June 15, 2026 (Monday — London + NY Pre-Session)
+
+### Account status
+Demo #41810679: R352.85 balance | Open: GBPUSD Short (109672855) entry 1.34362, SL 1.34610, TP 1.34000, +R22 floating
+
+### Session summary
+- Full 40-command scan (20 prices + 20 H1 histories) completed twice — 09:00 and 13:13 SAST
+- EURUSD Short 0.03L — entered 1.16016, closed -R55 (moved against during blackout)
+- GBPUSD Short 0.02L — entered 1.34362, still open +R22
+- XAGUSD Long 0.01L — entered 70.254, closed +R3 (momentum died pre-blackout)
+- GBPUSD Short 0.02L — entered 1.34301, closed -R4 (momentum dead)
+- Net session so far: -R56 before GBP trade closes
+
+### Key lessons reinforced today
+1. **Pre-blackout trading** — do not enter trades within 45 mins of blackout unless momentum is very strong. Pre-blackout chop cost -R8 in two small trades.
+2. **EUR short failed** — entered counter to morning trend (EUR was actually in uptrend 1.1599→1.1622 before reversal). Lesson: check if current price is near HOD/LOD before shorting.
+3. **GBP short working** — entered correctly on consistent H1 lower highs.
+4. **Sizing discipline holding** — all trades R47-R93 risk on R338-R352 account. No enforcer violations today.
+
+### Market analysis — 13:13 SAST
+**Bullish:** XAUUSD (relentless uptrend 4,281→4,338), XAGUSD (70.00→70.84), EURJPY, NAS100, SPX500, US30
+**Bearish:** GBPUSD, GBPJPY, UK100, GER40, BRENT, AUDUSD, USDCHF
+**Dead/Skip:** EURUSD (ranging), USDJPY (flat), WTI (choppy), NGAS, BTC, ETH
+
+### Next session notes
+- XAUUSD: DO NOT SHORT. Clear H1 uptrend all day. Only long setups.
+- Account recovery target: R500 minimum before indices can be considered
+- Best instruments at current balance: EURUSD, GBPUSD, XAGUSD (micro), USDCHF (micro)
+- Enforcer must be loaded and passed before EVERY trade — no exceptions
+
+### Context version
+v1.8 — June 15, 2026 — session archive added
