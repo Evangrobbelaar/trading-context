@@ -129,17 +129,28 @@ jobs:
               print(f"Not found: {path}")
           else:
               with open(path) as f:
-                  content = f.read()
+                  original = f.read()
               print("=== expo-modules-core/android/build.gradle (first 40 lines, BEFORE patch) ===")
-              for i, line in enumerate(content.split('\n')[:40], 1):
+              for i, line in enumerate(original.split('\n')[:40], 1):
                   print(f"  {i}: {line}")
 
-              changed = False
-
-              # 1. Add buildscript block with AGP + Kotlin if not already present
-              if 'com.android.tools.build:gradle' not in content:
-                  agp_block = (
+              if 'com.android.tools.build:gradle' in original:
+                  print("AGP already present - skip patch")
+                  content = original
+              else:
+                  # buildscript {} MUST be first in a Gradle build file.
+                  # Put SDK versions inside buildscript { ext { } } - the standard RN pattern.
+                  # This makes rootProject.ext.compileSdkVersion available to the android {} block.
+                  prefix = (
                       'buildscript {\n'
+                      '    ext {\n'
+                      '        compileSdkVersion = 34\n'
+                      '        buildToolsVersion = "34.0.0"\n'
+                      '        minSdkVersion = 23\n'
+                      '        targetSdkVersion = 34\n'
+                      '        kotlinVersion = "1.8.0"\n'
+                      '        ndkVersion = "25.1.8937393"\n'
+                      '    }\n'
                       '    repositories {\n'
                       '        google()\n'
                       '        mavenCentral()\n'
@@ -150,35 +161,12 @@ jobs:
                       '    }\n'
                       '}\n\n'
                   )
-                  content = agp_block + content
-                  changed = True
-                  print("Added: buildscript block with AGP 8.1.0 + Kotlin 1.8.0")
-              else:
-                  print("AGP already present in buildscript")
-
-              # 2. Add ext block with SDK versions so safeExtGet / rootProject.ext works
-              if 'compileSdkVersion =' not in content and 'compileSdkVersion=' not in content:
-                  ext_block = (
-                      'ext {\n'
-                      '    compileSdkVersion = 34\n'
-                      '    buildToolsVersion = "34.0.0"\n'
-                      '    minSdkVersion = 23\n'
-                      '    targetSdkVersion = 34\n'
-                      '    kotlinVersion = "1.8.0"\n'
-                      '    ndkVersion = "25.1.8937393"\n'
-                      '}\n\n'
-                  )
-                  content = ext_block + content
-                  changed = True
-                  print("Added: ext block with compileSdkVersion=34 and other SDK properties")
-              else:
-                  print("compileSdkVersion already set in ext - no ext patch needed")
-
-              if changed:
+                  content = prefix + original
                   with open(path, 'w') as f:
                       f.write(content)
+                  print("Patched: prepended buildscript {ext{SDK versions}, AGP 8.1.0, Kotlin 1.8.0}")
 
-              print("=== expo-modules-core/android/build.gradle (first 60 lines, AFTER patch) ===")
+              print("\n=== expo-modules-core/android/build.gradle (first 60 lines, AFTER patch) ===")
               for i, line in enumerate(content.split('\n')[:60], 1):
                   print(f"  {i}: {line}")
           PYEOF
