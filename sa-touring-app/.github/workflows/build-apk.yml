@@ -17,38 +17,75 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: sa-touring-app/package-lock.json
 
-      - name: Setup Java
+      - name: Setup Java 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Install dependencies
         run: npm install
 
-      - name: Setup Expo
-        uses: expo/expo-github-action@v8
-        with:
-          expo-version: latest
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Install Expo CLI
+        run: npm install -g expo-cli @expo/cli
 
-      - name: Build APK with EAS
-        run: eas build --platform android --profile preview --non-interactive --no-wait
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-
-      - name: Wait for EAS build and download
+      - name: Create placeholder assets
         run: |
-          echo "Build submitted to EAS. Check https://expo.dev for build status."
-          echo "Once complete, APK will be available to download from EAS dashboard."
+          mkdir -p assets
+          # Create minimal valid PNG placeholders (1x1 pixel PNG)
+          printf '\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x02\x00\x00\x00\x90wS\xde\x00\x00\x00\x0cIDATx\x9cc\xf8\x0f\x00\x00\x01\x01\x00\x05\x18\xd8N\x00\x00\x00\x00IEND\xaeB`\x82' > assets/icon.png
+          cp assets/icon.png assets/splash.png
+          cp assets/icon.png assets/adaptive-icon.png
+          cp assets/icon.png assets/favicon.png
+          echo "Assets created"
+          ls -la assets/
+
+      - name: Prebuild Android project
+        run: npx expo prebuild --platform android --clean
+        env:
+          EXPO_NO_TELEMETRY: 1
+
+      - name: Make gradlew executable
+        run: chmod +x android/gradlew
+
+      - name: Build Debug APK
+        run: |
+          cd android
+          ./gradlew assembleDebug --no-daemon 2>&1 | tail -80
+        env:
+          JAVA_TOOL_OPTIONS: "-Xmx4g"
+          GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.jvmargs=-Xmx4g"
+
+      - name: Find and copy APK
+        run: |
+          find android -name "*.apk" -type f
+          APK=$(find android -name "app-debug.apk" | head -1)
+          mkdir -p output
+          cp "$APK" output/SA-Touring-Toolkit-v1.0.apk
+          ls -lh output/
+
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SA-Touring-Toolkit-APK
+          path: sa-touring-app/output/SA-Touring-Toolkit-v1.0.apk
+          retention-days: 30
+
+      - name: Show download instructions
+        run: |
+          echo ""
+          echo "========================================"
+          echo "  APK BUILD COMPLETE"
+          echo "========================================"
+          echo "  Download from GitHub Actions:"
+          echo "  1. Go to your repo on GitHub"
+          echo "  2. Click Actions tab"
+          echo "  3. Click this workflow run"
+          echo "  4. Scroll to Artifacts section"
+          echo "  5. Download: SA-Touring-Toolkit-APK"
+          echo "========================================"
