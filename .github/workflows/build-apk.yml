@@ -34,21 +34,41 @@ jobs:
       - name: Install Expo CLI
         run: npm install -g expo-cli @expo/cli
 
-      - name: Create placeholder assets
+      - name: Create placeholder assets (valid PNG via Python)
         run: |
           mkdir -p assets
-          # Create minimal valid PNG placeholders (1x1 pixel PNG)
-          printf '\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x02\x00\x00\x00\x90wS\xde\x00\x00\x00\x0cIDATx\x9cc\xf8\x0f\x00\x00\x01\x01\x00\x05\x18\xd8N\x00\x00\x00\x00IEND\xaeB`\x82' > assets/icon.png
-          cp assets/icon.png assets/splash.png
-          cp assets/icon.png assets/adaptive-icon.png
-          cp assets/icon.png assets/favicon.png
-          echo "Assets created"
+          python3 - <<'PYEOF'
+          import struct, zlib
+
+          def make_png(w=1, h=1, r=0, g=100, b=50):
+              def chunk(tag, data):
+                  c = zlib.crc32(tag + data) & 0xffffffff
+                  return struct.pack('>I', len(data)) + tag + data + struct.pack('>I', c)
+              ihdr = struct.pack('>IIBBBBB', w, h, 8, 2, 0, 0, 0)
+              raw = b'\x00' + bytes([r, g, b]) * w
+              idat = zlib.compress(raw * h)
+              return (b'\x89PNG\r\n\x1a\n' +
+                      chunk(b'IHDR', ihdr) +
+                      chunk(b'IDAT', idat) +
+                      chunk(b'IEND', b''))
+
+          png = make_png()
+          for name in ['icon.png', 'splash.png', 'adaptive-icon.png', 'favicon.png']:
+              with open(f'assets/{name}', 'wb') as f:
+                  f.write(png)
+              print(f'Created assets/{name}')
+          PYEOF
           ls -la assets/
 
       - name: Prebuild Android project
-        run: npx expo prebuild --platform android --clean
+        run: npx expo prebuild --platform android --clean --no-install
         env:
           EXPO_NO_TELEMETRY: 1
+          CI: 1
+
+      - name: Show prebuild output
+        if: always()
+        run: ls -la android/ 2>/dev/null || echo "No android dir"
 
       - name: Make gradlew executable
         run: chmod +x android/gradlew
@@ -56,7 +76,7 @@ jobs:
       - name: Build Debug APK
         run: |
           cd android
-          ./gradlew assembleDebug --no-daemon 2>&1 | tail -80
+          ./gradlew assembleDebug --no-daemon 2>&1 | tail -100
         env:
           JAVA_TOOL_OPTIONS: "-Xmx4g"
           GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.jvmargs=-Xmx4g"
@@ -76,16 +96,10 @@ jobs:
           path: sa-touring-app/output/SA-Touring-Toolkit-v1.0.apk
           retention-days: 30
 
-      - name: Show download instructions
+      - name: Done
         run: |
-          echo ""
           echo "========================================"
           echo "  APK BUILD COMPLETE"
-          echo "========================================"
           echo "  Download from GitHub Actions:"
-          echo "  1. Go to your repo on GitHub"
-          echo "  2. Click Actions tab"
-          echo "  3. Click this workflow run"
-          echo "  4. Scroll to Artifacts section"
-          echo "  5. Download: SA-Touring-Toolkit-APK"
+          echo "  Repo → Actions tab → this run → Artifacts"
           echo "========================================"
