@@ -119,7 +119,7 @@ jobs:
                   print(f.read())
           PYEOF
 
-      - name: Patch expo-modules-core android build.gradle - add AGP buildscript + ext
+      - name: Patch expo-modules-core android build.gradle - add AGP buildscript + direct android config
         run: |
           python3 - <<'PYEOF'
           import os
@@ -138,22 +138,16 @@ jobs:
                   print("AGP already present - skip patch")
                   content = original
               else:
-                  # buildscript {} MUST be first in a Gradle build file.
-                  # Put SDK versions inside buildscript { ext { } } - the standard RN pattern.
-                  # This makes rootProject.ext.compileSdkVersion available to the android {} block.
+                  # In Gradle 8.x, buildscript.ext is SEPARATE from project.ext.
+                  # safeExtGet reads rootProject.ext, so we must use a top-level ext {} block
+                  # (outside buildscript) to set properties visible via rootProject.ext.has().
                   # NOTE: do NOT add kotlinVersion to ext - expo-modules-core/android/build.gradle
-                  # defines a local def kotlinVersion() function. If we add kotlinVersion as an
-                  # ext property, Gradle's methodMissing intercepts kotlinVersion() calls and
-                  # tries to invoke the String as a method, causing "No signature of method" error.
+                  # defines a local def kotlinVersion() function; adding it as ext causes
+                  # "No signature of method" errors when Gradle tries to invoke the String.
+                  # We ALSO append a direct android {} block as a belt-and-suspenders override
+                  # to guarantee compileSdkVersion is always set regardless of safeExtGet.
                   prefix = (
                       'buildscript {\n'
-                      '    ext {\n'
-                      '        compileSdkVersion = 34\n'
-                      '        buildToolsVersion = "34.0.0"\n'
-                      '        minSdkVersion = 23\n'
-                      '        targetSdkVersion = 34\n'
-                      '        ndkVersion = "25.1.8937393"\n'
-                      '    }\n'
                       '    repositories {\n'
                       '        google()\n'
                       '        mavenCentral()\n'
@@ -163,11 +157,31 @@ jobs:
                       '        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0")\n'
                       '    }\n'
                       '}\n\n'
+                      'ext {\n'
+                      '    compileSdkVersion = 34\n'
+                      '    buildToolsVersion = "34.0.0"\n'
+                      '    minSdkVersion = 23\n'
+                      '    targetSdkVersion = 34\n'
+                      '    ndkVersion = "25.1.8937393"\n'
+                      '}\n\n'
                   )
-                  content = prefix + original
+                  # Append a direct android block at the end so compileSdkVersion is always set,
+                  # regardless of whether safeExtGet resolves it from ext or not.
+                  suffix = (
+                      '\n// Direct android config override for composite build context\n'
+                      'android {\n'
+                      '    compileSdkVersion 34\n'
+                      '    buildToolsVersion "34.0.0"\n'
+                      '    defaultConfig {\n'
+                      '        minSdkVersion 23\n'
+                      '        targetSdkVersion 34\n'
+                      '    }\n'
+                      '}\n'
+                  )
+                  content = prefix + original + suffix
                   with open(path, 'w') as f:
                       f.write(content)
-                  print("Patched: prepended buildscript {ext{SDK versions without kotlinVersion}, AGP 8.1.0, Kotlin 1.8.0}")
+                  print("Patched: top-level ext + buildscript AGP classpath + appended android{} override")
 
               print("\n=== expo-modules-core/android/build.gradle (first 60 lines, AFTER patch) ===")
               for i, line in enumerate(content.split('\n')[:60], 1):
@@ -264,21 +278,23 @@ jobs:
         run: |
           mkdir -p ~/.gradle/init.d
           cat > ~/.gradle/init.d/expo-sdk-versions.init.gradle << 'INITEOF'
-          allprojects {
-              if (!ext.has('compileSdkVersion')) {
-                  ext.compileSdkVersion = 34
+          // beforeProject fires before each project's build script is applied,
+          // covering ALL projects in ALL builds including composite/included builds.
+          gradle.beforeProject { project ->
+              if (!project.ext.has('compileSdkVersion')) {
+                  project.ext.compileSdkVersion = 34
               }
-              if (!ext.has('buildToolsVersion')) {
-                  ext.buildToolsVersion = '34.0.0'
+              if (!project.ext.has('buildToolsVersion')) {
+                  project.ext.buildToolsVersion = '34.0.0'
               }
-              if (!ext.has('minSdkVersion')) {
-                  ext.minSdkVersion = 23
+              if (!project.ext.has('minSdkVersion')) {
+                  project.ext.minSdkVersion = 23
               }
-              if (!ext.has('targetSdkVersion')) {
-                  ext.targetSdkVersion = 34
+              if (!project.ext.has('targetSdkVersion')) {
+                  project.ext.targetSdkVersion = 34
               }
-              if (!ext.has('ndkVersion')) {
-                  ext.ndkVersion = '25.1.8937393'
+              if (!project.ext.has('ndkVersion')) {
+                  project.ext.ndkVersion = '25.1.8937393'
               }
           }
           INITEOF
@@ -318,8 +334,11 @@ jobs:
       - name: Diagnostic - show key build files
         if: always()
         run: |
-          echo "=== expo-modules-core/android/build.gradle (first 60 lines) ==="
-          head -60 node_modules/expo-modules-core/android/build.gradle 2>/dev/null || echo "NOT FOUND"
+          echo "=== expo-modules-core/android/build.gradle (first 30 lines) ==="
+          head -30 node_modules/expo-modules-core/android/build.gradle 2>/dev/null || echo "NOT FOUND"
+          echo ""
+          echo "=== expo-modules-core/android/build.gradle (last 20 lines) ==="
+          tail -20 node_modules/expo-modules-core/android/build.gradle 2>/dev/null || echo "NOT FOUND"
           echo ""
           echo "=== expo-modules-core/android/settings.gradle ==="
           cat node_modules/expo-modules-core/android/settings.gradle 2>/dev/null || echo "NOT FOUND"
