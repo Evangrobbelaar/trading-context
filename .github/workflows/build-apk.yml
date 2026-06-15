@@ -119,6 +119,41 @@ jobs:
                   print(f.read())
           PYEOF
 
+      - name: Patch expo-modules-core android build.gradle - add AGP buildscript
+        run: |
+          python3 - <<'PYEOF'
+          import os
+
+          path = 'node_modules/expo-modules-core/android/build.gradle'
+          if not os.path.exists(path):
+              print(f"Not found: {path}")
+          else:
+              with open(path) as f:
+                  content = f.read()
+              print("First 20 lines of expo-modules-core/android/build.gradle:")
+              for i, line in enumerate(content.split('\n')[:20], 1):
+                  print(f"  {i}: {line}")
+
+              if 'com.android.tools.build:gradle' in content:
+                  print("AGP already present in buildscript - no patch needed")
+              else:
+                  agp_block = (
+                      'buildscript {\n'
+                      '    repositories {\n'
+                      '        google()\n'
+                      '        mavenCentral()\n'
+                      '    }\n'
+                      '    dependencies {\n'
+                      '        classpath("com.android.tools.build:gradle:8.1.0")\n'
+                      '    }\n'
+                      '}\n'
+                  )
+                  content = agp_block + content
+                  with open(path, 'w') as f:
+                      f.write(content)
+                  print("Patched: prepended buildscript with AGP 8.1.0 classpath")
+          PYEOF
+
       - name: Create placeholder assets (valid PNG via Python)
         run: |
           mkdir -p assets
