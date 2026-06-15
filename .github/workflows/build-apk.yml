@@ -141,6 +141,10 @@ jobs:
                   # buildscript {} MUST be first in a Gradle build file.
                   # Put SDK versions inside buildscript { ext { } } - the standard RN pattern.
                   # This makes rootProject.ext.compileSdkVersion available to the android {} block.
+                  # NOTE: do NOT add kotlinVersion to ext - expo-modules-core/android/build.gradle
+                  # defines a local def kotlinVersion() function. If we add kotlinVersion as an
+                  # ext property, Gradle's methodMissing intercepts kotlinVersion() calls and
+                  # tries to invoke the String as a method, causing "No signature of method" error.
                   prefix = (
                       'buildscript {\n'
                       '    ext {\n'
@@ -148,7 +152,6 @@ jobs:
                       '        buildToolsVersion = "34.0.0"\n'
                       '        minSdkVersion = 23\n'
                       '        targetSdkVersion = 34\n'
-                      '        kotlinVersion = "1.8.0"\n'
                       '        ndkVersion = "25.1.8937393"\n'
                       '    }\n'
                       '    repositories {\n'
@@ -164,7 +167,7 @@ jobs:
                   content = prefix + original
                   with open(path, 'w') as f:
                       f.write(content)
-                  print("Patched: prepended buildscript {ext{SDK versions}, AGP 8.1.0, Kotlin 1.8.0}")
+                  print("Patched: prepended buildscript {ext{SDK versions without kotlinVersion}, AGP 8.1.0, Kotlin 1.8.0}")
 
               print("\n=== expo-modules-core/android/build.gradle (first 60 lines, AFTER patch) ===")
               for i, line in enumerate(content.split('\n')[:60], 1):
