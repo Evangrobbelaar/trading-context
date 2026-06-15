@@ -260,6 +260,31 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x android/gradlew
 
+      - name: Create Gradle init script - set Android SDK versions for all builds
+        run: |
+          mkdir -p ~/.gradle/init.d
+          cat > ~/.gradle/init.d/expo-sdk-versions.init.gradle << 'INITEOF'
+          allprojects {
+              if (!ext.has('compileSdkVersion')) {
+                  ext.compileSdkVersion = 34
+              }
+              if (!ext.has('buildToolsVersion')) {
+                  ext.buildToolsVersion = '34.0.0'
+              }
+              if (!ext.has('minSdkVersion')) {
+                  ext.minSdkVersion = 23
+              }
+              if (!ext.has('targetSdkVersion')) {
+                  ext.targetSdkVersion = 34
+              }
+              if (!ext.has('ndkVersion')) {
+                  ext.ndkVersion = '25.1.8937393'
+              }
+          }
+          INITEOF
+          echo "Created init script:"
+          cat ~/.gradle/init.d/expo-sdk-versions.init.gradle
+
       - name: Build Debug APK
         run: |
           cd android
@@ -289,6 +314,18 @@ jobs:
           name: SA-Touring-Toolkit-APK
           path: sa-touring-app/output/SA-Touring-Toolkit-v1.0.apk
           retention-days: 30
+
+      - name: Diagnostic - show key build files
+        if: always()
+        run: |
+          echo "=== expo-modules-core/android/build.gradle (first 60 lines) ==="
+          head -60 node_modules/expo-modules-core/android/build.gradle 2>/dev/null || echo "NOT FOUND"
+          echo ""
+          echo "=== expo-modules-core/android/settings.gradle ==="
+          cat node_modules/expo-modules-core/android/settings.gradle 2>/dev/null || echo "NOT FOUND"
+          echo ""
+          echo "=== android/build.gradle (root, first 40 lines) ==="
+          head -40 android/build.gradle 2>/dev/null || echo "NOT FOUND"
 
       - name: Done
         run: |
