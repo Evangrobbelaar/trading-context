@@ -822,3 +822,39 @@ Best results came from 1–2 high-quality trades per session, not quantity.
 Max 2 trades per session. If both hit, session ends. Wait for next session.
 
 Document version: 2.0 — June 22, 2026 — R5,000 account, dual-session schedule, R10k goal
+
+---
+
+## SESSION ARCHIVE — June 22, 2026 (NY Test Session, 18:30–19:45 SAST)
+
+### Account: Demo #41829612 | Start: R5,000 | End: R5,000 | P&L: R0
+
+### Purpose
+System test — first live run on new R5,000 account. Test parameters: max loss R50, target R150, max 12 ticks, end by 19:30 SAST.
+
+### What happened
+Two setups identified and tracked. Neither trigger fired. No trades placed.
+
+| Setup | H4 | H1 | M15 Trigger | Outcome |
+|---|---|---|---|---|
+| GBPUSD Long | ✅ Bullish breakout above 1.32358 | ✅ Pullback to 1.32375 | ❌ 1.32463 never broken | No trade — watching |
+| EURUSD Short | ✅ 4 lower H4 closes | ✅ Lower highs | ❌ 1.14175 never broken | No trade — watching |
+
+### Key observations
+- GBPUSD compressed 1.32391–1.32465 for 90+ minutes in NY session. This is classic pre-breakout compression on top of a confirmed H4 breakout. Setup is STILL LIVE for tomorrow London session.
+- EURUSD bounced at 1.14249 (26 pips above the 1.14175 trigger). Short setup still developing — 4 lower H4 closes intact. Watch 1.14175 break on London open.
+- XAUUSD H4 ambiguous (H1 lower highs conflicting with tentative H4 bull structure). Correctly skipped.
+
+### System performance
+The loop worked exactly as designed:
+- Identified 2 valid H4 setups
+- Waited for M15 triggers (did not chase)
+- Applied test budget discipline (0.01L sizing planned to keep risk under R50)
+- Stopped cleanly on time condition
+- No money lost, no rules broken
+
+### Setups to carry into tomorrow's London session
+1. **GBPUSD Long** — Watch for break above 1.32463 or pullback to 1.32350. SL below 1.32250 (15+ pip buffer). TP 1.32727. Size 0.01L for first London test.
+2. **EURUSD Short** — Watch for break below 1.14175. SL above 1.14350. Target 1.13900–1.14000. Size 0.01L.
+
+Document version: 2.1 — June 22, 2026 — first test session archived
