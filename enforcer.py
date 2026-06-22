@@ -119,29 +119,32 @@ INSTRUMENT_RULES: dict = {
         "max_sl": 25,
         "unit": "pips",
     },
-    # Indices — blocked until account reaches balance threshold
+    # Indices — blocked until R8,000 (raised from R5,000 — account IS at R5k now but
+    # indices need comfortable headroom. At R5k a 100pt NAS100 SL is still R130 per 0.01L
+    # which is manageable, but we have no historical edge on indices yet. Build edge on
+    # Gold/Forex first, unlock indices when balance proves the system works at R8,000+)
     "NAS100": {
-        "blocked_below_balance": 5000.0,
+        "blocked_below_balance": 8000.0,
         "min_sl": 80,
         "max_sl": 150,
         "unit": "pts",
-        "note": "Blocked below R5,000. June 11: NAS100 SL = R3,024 risk on R2,249 account.",
+        "note": "Blocked below R8,000. June 11: NAS100 SL = R3,024 risk on R2,249 account. Build Gold/Forex edge first.",
     },
     "SPX500": {
-        "blocked_below_balance": 5000.0,
+        "blocked_below_balance": 8000.0,
         "min_sl": 80,
         "max_sl": 150,
         "unit": "pts",
-        "note": "Blocked below R5,000. Same risk profile as NAS100.",
+        "note": "Blocked below R8,000. Same risk profile as NAS100.",
     },
     "US30": {
-        "blocked_below_balance": 5000.0,
+        "blocked_below_balance": 8000.0,
         "min_sl": 80,
         "max_sl": 150,
         "unit": "pts",
     },
     "UK100": {
-        "blocked_below_balance": 5000.0,
+        "blocked_below_balance": 8000.0,
         "min_sl": 80,
         "max_sl": 150,
         "unit": "pts",

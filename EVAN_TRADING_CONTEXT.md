@@ -769,3 +769,56 @@ trend gate, the non-negotiable enforcer rule) into a scheduled process
 instead of one only triggered by a bad session.
 
 Document version: 1.9 — June 22, 2026 — Claude Code native loop added
+
+---
+
+## STRATEGIC UPGRADE — June 22, 2026 (v2.0 — R5,000 account, dual-session schedule)
+
+### New active account
+Demo #41829612 | R5,000 balance | ZAR | Clean slate
+Previous demo (#41810679) retired — balance fell to R66.41 after inactivity and prior losses.
+This is now the PRIMARY demo account for all loop sessions.
+
+### Goal
+R5,000 → R10,000 (double the account)
+Timeline estimate: 3–4 weeks at 2 sessions/day, 5 days/week
+Method: disciplined XAUUSD + Forex sessions with H4 trend gate and enforcer enforced
+
+### New sizing power at R5,000
+| Instrument | Size | SL | Risk | % of account |
+|---|---|---|---|---|
+| XAUUSD | 1 unit | 25pt | R400 | 8% ✓ |
+| GBPUSD | 0.03L | 20pip | R109 | 2.2% ✓ |
+| EURUSD | 0.03L | 20pip | R109 | 2.2% ✓ |
+| XAGUSD | 0.01L | 20pip | ~R36 | 0.7% ✓ |
+Max 2 open trades simultaneously until balance reaches R7,500.
+Do NOT increase lot sizes until R8,000+ confirmed.
+
+### Session schedule (the only times the loop runs)
+| Session | SAST | UTC | Cron (UTC) | Duration |
+|---|---|---|---|---|
+| London open | 09:00–12:00 | 07:00–10:00 | `0 7 * * 1-5` | 3 hours |
+| London/NY overlap | 15:00–18:00 | 13:00–16:00 | `0 13 * * 1-5` | 3 hours |
+
+Do NOT run during: Asian (00:00–07:00), quiet period (12:00–15:00), overnight, weekends.
+"Should I leave it running 24/7?" — No. See LOOP_SETUP.md for full explanation.
+
+### Timing analysis from all historical sessions
+Evidence from May 29 – June 22:
+- All 5 winning Gold trades: London or London/NY overlap session
+- Jun 8 context note: "NY open is the best session — most profit came after 15:30 SAST"
+- Jun 15: Best setups identified at 09:00 and confirmed during London/NY overlap
+- Asian session: zero profitable trades recorded. Never attempted again.
+- Quiet period (12:00–15:00): dead volume, no clean setups found in any session
+
+### R:R targets updated for R5,000 account
+- XAUUSD: target minimum 1.5:1 (was 1.2:1 minimum — raise bar now that account can absorb proper SLs)
+- Forex: minimum 1.3:1
+- Preferred: 2:1+ setups only. At R5,000 we can afford to be selective.
+
+### Rule added: maximum 2 trades per session
+Historical data shows overtrading on active days (Jun 8: 13 trades, net negative).
+Best results came from 1–2 high-quality trades per session, not quantity.
+Max 2 trades per session. If both hit, session ends. Wait for next session.
+
+Document version: 2.0 — June 22, 2026 — R5,000 account, dual-session schedule, R10k goal
