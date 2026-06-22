@@ -156,12 +156,89 @@ INSTRUMENT_RULES: dict = {
         "unit": "pts",
         "note": "Overnight: wide spread, no liquidity — avoid.",
     },
+    # Additional forex
+    "NZDUSD": {
+        "max_lots": 0.03,
+        "min_sl": 15,
+        "max_sl": 25,
+        "unit": "pips",
+    },
+    "USDCAD": {
+        "max_lots": 0.03,
+        "min_sl": 15,
+        "max_sl": 25,
+        "unit": "pips",
+    },
+    "EURGBP": {
+        "max_lots": 0.03,
+        "min_sl": 15,
+        "max_sl": 25,
+        "unit": "pips",
+    },
+    "AUDJPY": {
+        "max_lots": 0.03,
+        "min_sl": 15,
+        "max_sl": 25,
+        "unit": "pips",
+    },
+    "GBPAUD": {
+        "max_lots": 0.03,
+        "min_sl": 15,
+        "max_sl": 30,
+        "unit": "pips",
+        "note": "Wide spread instrument. 30pip max SL allowed for structure.",
+    },
+    # Commodities
+    "BRENT": {
+        "max_lots": 0.03,
+        "min_sl": 30,
+        "max_sl": 80,
+        "unit": "pts",
+        "note": "Oil CFD. Wide SL needed — gap risk around OPEC/geopolitical news.",
+    },
+    # Platinum
+    "XPTUSD": {
+        "max_lots": 0.03,
+        "min_sl": 15,
+        "max_sl": 40,
+        "unit": "pts",
+    },
     # Swing stocks — separate rules, use --swing flag
     # These bypass intraday SL buffer rules but still check risk % and R:R
     "NVIDIA": {"swing_only": True, "note": "Swing only. 0.1L. TP1 $250, TP2 $284."},
     "INTEL": {"swing_only": True, "note": "Swing only. 0.1L. Entry ~$95-$97 base."},
     "AMD": {"swing_only": True, "note": "Swing only. 0.1L. TP1 $520, TP2 $560."},
     "APPLE": {"swing_only": True, "note": "Swing only if traded."},
+    "MICROSOFT": {"swing_only": True, "note": "Swing only. News catalyst required."},
+    "META": {"swing_only": True, "note": "Swing only. Earnings and AI news driven."},
+    "AMAZON": {"swing_only": True, "note": "Swing only. Cloud/earnings catalyst."},
+    "TAIWANSEMI": {"swing_only": True, "note": "Swing only. AI chip demand driven."},
+    # Defense stocks — swing only, war/contract catalyst required
+    "LOCKHEED": {
+        "swing_only": True,
+        "note": "Swing only. War escalation or defense contract catalyst required.",
+    },
+    "NORTHROP": {
+        "swing_only": True,
+        "note": "Swing only. War escalation or defense contract catalyst required.",
+    },
+    "BOEING": {
+        "swing_only": True,
+        "note": "Swing only. Dual catalyst: defense contracts AND commercial aviation.",
+    },
+    # Energy stocks — swing only, oil/geopolitical catalyst
+    "EXXON": {"swing_only": True, "note": "Swing only. Oil price and earnings driven."},
+    "CHEVRON": {
+        "swing_only": True,
+        "note": "Swing only. Oil price and earnings driven.",
+    },
+    "BP": {"swing_only": True, "note": "Swing only. UK-listed, GBP + oil exposure."},
+    # Financial stocks — swing only, Fed/macro catalyst
+    "JPMORGAN": {
+        "swing_only": True,
+        "note": "Swing only. Fed rate decision and earnings.",
+    },
+    "GOLDMAN": {"swing_only": True, "note": "Swing only. M&A cycle and Fed policy."},
 }
 
 # Permanently banned — no exceptions, no account size makes these acceptable

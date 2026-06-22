@@ -858,3 +858,63 @@ The loop worked exactly as designed:
 2. **EURUSD Short** — Watch for break below 1.14175. SL above 1.14350. Target 1.13900–1.14000. Size 0.01L.
 
 Document version: 2.1 — June 22, 2026 — first test session archived
+
+---
+
+## STRATEGIC UPGRADE — June 22, 2026 (v3.0 — News trading, all markets, master scan)
+
+### What changed in v3.0
+The system now trades ALL available ThinkMarkets markets, not just Gold and major Forex.
+Live news analysis is integrated into every hourly master scan.
+The watchlist is rebuilt every hour based on news + technical scoring.
+
+### New instruments added (v3.0)
+| Category | Instruments | Condition to trade |
+|---|---|---|
+| Defense stocks | LOCKHEED, NORTHROP, BOEING | war_escalation or defense_contract_win catalyst required |
+| Energy stocks | EXXON, CHEVRON, BP | oil_supply_shock or earnings catalyst required |
+| Financial stocks | JPMORGAN, GOLDMAN | Fed rate decision or earnings catalyst |
+| Tech stocks | NVIDIA, AMD, APPLE, MICROSOFT, META, AMAZON, TAIWANSEMI | ai_breakthrough or tech_earnings catalyst |
+| Commodities | BRENT | oil_supply_shock or geopolitical event |
+| Additional forex | NZDUSD, USDCAD, EURGBP, AUDJPY, GBPAUD | H4 trend + session fit |
+| All stocks | swing-only | use --swing flag on enforcer, hold days not hours |
+
+### News trading rules (v3.0)
+1. DO NOT trade INTO scheduled high-impact events (CPI, NFP, Fed decision). Wait for M15 settlement.
+2. On breaking news (missile strike, ceasefire announcement): wait for the spike to exhaust, then trade M15 structure.
+3. News direction must ALIGN with H4 trend direction. Counter-trend news setups are STILL BLOCKED.
+4. News boost in scoring: +3 points. Without technical alignment, news alone is not a trade.
+5. Conflicting news signals (instrument appears on both LONG and SHORT lists): no trade — remove from watchlist.
+
+### Loop architecture v3.0 (dual-mode)
+Every session loop alternates between two modes:
+- MASTER SCAN (tick 1, tick 13, tick 25 = every hour): web_search news → news_scanner.py → score all instruments → watchlist.json top 10
+- MONITORING (ticks 2-12, 14-24): watchlist price check → M15 trigger check → enforcer → order
+
+### News-to-instrument map (key relationships to remember)
+| Event | Key instruments to trade |
+|---|---|
+| War escalation | LONG XAUUSD, SHORT EURUSD |
+| Ceasefire | SHORT XAUUSD, LONG EURUSD, NAS100 |
+| Missile strike | LONG XAUUSD (wait for spike to settle), LONG BRENT |
+| CPI hot | SHORT XAUUSD, LONG USDJPY |
+| CPI cool | LONG XAUUSD, SHORT USDJPY |
+| Fed hawkish | SHORT XAUUSD, LONG USDJPY |
+| Fed dovish | LONG XAUUSD, SHORT USDJPY, LONG NAS100 |
+| Oil supply shock | LONG BRENT, EXXON |
+| AI breakthrough | LONG NVIDIA, NAS100 |
+
+### Files added in v3.0
+- master_scan.py → watchlist.json (139-instrument universe, scoring, top-10 output)
+- news_scanner.py → news_impact.json (live news events, long/short instrument lists)
+
+### Geopolitical trading framework (born June 2026)
+Wars and geopolitical events create tradeable correlations:
+- Gold is the primary war safe haven. Every major escalation = Gold bid.
+- Defense stocks (LOCKHEED/NORTHROP/BOEING) correlate with war escalation duration.
+- EUR is structurally pressured when European conflict risk is elevated.
+- Oil (BRENT) moves on Middle East escalation and OPEC supply risk.
+- These correlations hold only while the event is the primary market narrative.
+- When a narrative changes (ceasefire, peace deal), reverse immediately.
+
+Document version: 3.0 — June 22, 2026 — news trading, master scan, all markets

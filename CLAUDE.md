@@ -1,112 +1,175 @@
 # TRADING SESSION — CLAUDE CODE BOOTSTRAP
-Version: 2.1 | Updated: June 22, 2026
-Goal: R5,000 → R10,000 on demo #41829612
+Version: 3.0 | Updated: June 22, 2026
 
 ## MANDATORY FIRST ACTION
 Read `EVAN_TRADING_CONTEXT.md` fully before any other output.
 Then respond ONLY with:
 "Context loaded v[X.X] — [SAST time] — [session] — [N] open positions — ready."
 
----
-
-## ACCOUNTS
-| Account | Type | Balance | Status |
-|---|---|---|---|
-| #41829612 | DEMO ZAR | R5,000 | **PRIMARY — use this** |
-| #41810679 | DEMO ZAR | R66 | Retired |
-| #43019560 | LIVE ZAR | ~R65 | Never touch without explicit instruction |
-
-**Default account every session: demo #41829612**
-Switch command at session start: `claude:switch_trading_account` → `41829612`
-Never touch live #43019560 unless Evan says "use live account" explicitly this session.
+If you skipped this and the user sees no confirmation phrase: stop, read the file, output the phrase.
 
 ---
 
 ## MCP CONNECTION
 - Tool prefix: `mcp__claude_ai_claude__` (ThinkTrader MCP)
-- MCP drops after inactivity — use ToolSearch to reload tools if calls fail
-- Always switch to #41829612 at session start before any other call
+- MCP drops after inactivity — reconnect with `mcp__claude_ai_claude__reconnect_connection` if tools fail
+- At session start: `mcp__claude_ai_claude__switch_trading_account` → demo #41829612
+- Never touch live #43019560 unless Evan explicitly says "use live account" this session
 
 ---
 
 ## MASTER RULE
-Make money and stay profitable. R5,000 → R10,000 is the goal.
-Every decision is judged against this. Patience beats overtrading every time.
-A blocked trade that would have lost = WIN. A skipped checklist = SYSTEM FAILURE.
+Make money and stay profitable. Every decision is judged against this.
+A blocked trade that would have lost is a WIN for the system.
+A skipped checklist item that causes a loss is a SYSTEM FAILURE.
 
 ---
 
-## ACTIVE TRADING SESSIONS (loop only runs during these)
-| Session | SAST | Best instruments |
-|---|---|---|
-| London open | 09:00–12:00 | GBPUSD, EURUSD, XAUUSD |
-| London/NY overlap | 15:00–18:00 | XAUUSD, GBPUSD, EURUSD ← BEST |
+## v3.0 LOOP ARCHITECTURE — TWO MODES
 
-Do NOT place trades during: Asian (00:00–07:00), quiet (12:00–15:00), NY-only (18:00–22:00 unless already in a trade), weekends.
+### MASTER SCAN MODE (Tick 1, then every 12th tick = every hour on 5-min ticks)
+Full broad scan: all instruments, live news, rescore everything, rebuild watchlist.
+
+### MONITORING MODE (Ticks 2-12, then cycles)
+Focused scan: watchlist instruments + open positions only. Faster, lower API usage.
 
 ---
 
-## TICK PROTOCOL (runs every loop iteration)
+## TICK PROTOCOL
 
-### STEP 1 — TIME & ACCOUNT (every tick, no exceptions)
-1. `mcp__claude_ai_claude__get_symbol_price` on XAUUSD → determine SAST time from UTC timestamp
-2. `mcp__claude_ai_claude__get_account_info` → confirm balance is R5,000-range, account #41829612
-3. `mcp__claude_ai_claude__get_open_positions` → list open positions and floating P&L
-4. Confirm session (London 09:00-12:00 or London/NY 15:00-18:00). If neither → log tick as off-session and skip to Step 5.
+### ALL TICKS — STEP 1: TIME, ACCOUNT, POSITIONS
 
-### STEP 2 — OPEN POSITION MONITOR (if any positions open)
+1. Get SAST time from `mcp__claude_ai_claude__get_symbol_price` on XAUUSD — NEVER ask Evan
+2. `mcp__claude_ai_claude__get_account_info` — confirm balance, confirm account is #41829612
+3. `mcp__claude_ai_claude__get_open_positions` — list open positions and floating P&L
+4. Determine session:
+   - Asian: 00:00-07:00 SAST (off — no trading)
+   - London: 09:00-12:00 SAST
+   - London/NY overlap: 15:00-18:00 SAST (BEST session)
+   - NY: 18:00-22:00 SAST (monitor only if in trade)
+   - Off-hours: 22:00-09:00 SAST (STOP LOOP)
+
+---
+
+### ALL TICKS — STEP 2: OPEN POSITION MONITOR (if any positions open)
+
 For each open position:
-- `mcp__claude_ai_claude__get_symbol_history` → last 10 M5 candles
-- `mcp__claude_ai_claude__get_symbol_history` → last 6 H4 candles
-- Output mandatory CHANGE 4 format:
+- `mcp__claude_ai_claude__get_symbol_history` — last 10 M5 candles
+- `mcp__claude_ai_claude__get_symbol_history` — last 6 H4 candles
+- Output CHANGE 4 format:
 
 ```
 [HH:MM SAST] — [SESSION]
 INSTRUMENT: [symbol] [direction]
-TREND: H4 [Bull/Bear] — swing sequence: [H/L1] → [H/L2] → [H/L3]
+TREND: H4 [Bull/Bear] — last swing at [price] | [higher lows/lower highs sequence]
 M5 STRUCTURE: [Higher highs / Lower highs / Compression] since entry
 P&L: R[amount] | [X]% to TP | Floor: R[locked if SL trailed]
-ACTION: [Hold / Trail to [price] per Rule X / Close — Rule 13 / Watch]
+ACTION: [Hold / Trail to [price] per Rule X / Close — Rule 13 momentum / Watch]
 NEXT TRIGGER: [specific price or event that changes the action]
 ```
 
 Apply rules automatically:
-- Rule 4: 50% TP + shrinking candles → close
-- Rule 13: 60%+ TP + stalling at S/R → close, bank profit
+- Rule 4: 50%+ TP with shrinking candles → close
+- Rule 13: 60%+ TP stalling at S/R → close
 - Rule 14: Gold +R80 floating → SL to entry+5, plan TP1 at 60%
-- Change 3: M5 reversed + positive P&L → flag Rule 13
-- Change 3: M5 reversed + negative P&L → flag Rule 5 cut
+- Change 3 (M5 reversed + positive P&L) → flag Rule 13
+- Change 3 (M5 reversed + negative P&L) → flag Rule 5 cut
 
-### STEP 3 — MARKET SCAN (only if <2 trades open and session is active)
-Max 2 trades open simultaneously. If 2 already open, skip Step 3 entirely.
+---
 
-Scan order — best setup wins, not first found:
-1. `mcp__claude_ai_claude__get_symbol_price` for: XAUUSD, EURUSD, GBPUSD, USDJPY, XAGUSD
-2. `mcp__claude_ai_claude__get_symbol_history` H4 for each (6 candles)
-3. `mcp__claude_ai_claude__get_symbol_history` H1 for top candidates (12 candles)
-4. Run CHANGE 5 analysis sequence:
-   a. NEWS — web_search high-impact events within 2 hours SAST
-   b. H4 TREND — state last 3 swing highs/lows explicitly
-   c. TREND GATE — WITH H4 trend? If AGAINST → BLOCKED. No exceptions.
-   d. H1 STRUCTURE — valid pullback/consolidation to enter from?
-   e. M15 TRIGGER — structure broken in trade direction on M15?
-   f. ENFORCER — run enforcer.py (Step 4)
+### MASTER SCAN TICKS — STEP 3: NEWS SCAN
 
-H4 confirmation standard (CHANGE 2):
-- Longs: confirmed higher low formed AND prior H4 swing high broken
-- Shorts: confirmed lower high formed AND prior H4 swing low broken
-- A bounce INSIDE a trend does NOT pass. Ever.
+```bash
+python3 news_scanner.py clear
+```
 
-Preferred R:R targets (updated for R5,000 account):
-- XAUUSD: minimum 1.5:1, target 2:1+
-- Forex: minimum 1.3:1, target 2:1+
-Be selective. At R5,000 we can wait for high-quality setups.
+Run web_search for: "breaking financial news today", "war escalation news today", "Fed news today", "major economic events today", "oil supply news today"
 
-### STEP 4 — ENFORCER (mandatory before any trade)
-Compute exactly from real prices:
-- risk_amount = sl_distance × value per unit (Gold: ×R16, Forex 0.03L: ×R5.46)
-- reward_amount = tp_distance × value per unit
-- sl_distance = |entry − SL| in pts (Gold) or pips (Forex)
+Categorize headlines into NEWS_IMPACT_MAP keys:
+- war_escalation / peace_talks / ceasefire / missile_strike
+- cpi_hot / cpi_cool / nfp_beat / nfp_miss / fed_hawkish / fed_dovish
+- oil_supply_shock / tech_earnings_beat / tech_earnings_miss
+- defense_contract_win / ai_breakthrough / risk_off_generic / risk_on_generic
+- sanctions_announced / central_bank_rate_hike
+
+Check if any high-impact event fires within 2 hours (CPI, NFP, Fed decision, central bank rate).
+
+```bash
+python3 news_scanner.py set \
+  --events "war_escalation,risk_off_generic" \
+  --headlines "Russia strikes Ukraine infrastructure | Israel-Gaza ceasefire talks stall" \
+  --high_impact_2h  # only add this flag if a scheduled event fires within 2 hours
+```
+
+```bash
+python3 news_scanner.py read
+```
+
+**HIGH-IMPACT EVENT WITHIN 2 HOURS → DO NOT ENTER NEW TRADES. Wait for print + M15 settlement.**
+
+---
+
+### MASTER SCAN TICKS — STEP 4: FULL INSTRUMENT SCAN
+
+```bash
+python3 master_scan.py clear
+```
+
+Scan in priority order — skip categories with no active news relevance:
+1. XAUUSD, XAGUSD, BRENT (commodities — always scan)
+2. EURUSD, GBPUSD, USDJPY, USDCHF, AUDUSD (major forex — always scan)
+3. NAS100, SPX500 (indices — blocked below R8,000 but scan for awareness)
+4. LOCKHEED, NORTHROP, BOEING (defense — only if war_escalation active)
+5. NVIDIA, AMD, MICROSOFT (tech — only if ai_breakthrough or tech_earnings active)
+6. EXXON, CHEVRON, BP (energy — only if oil_supply_shock active)
+
+For each instrument:
+- `mcp__claude_ai_claude__get_symbol_price` → current price
+- `mcp__claude_ai_claude__get_symbol_history` H4 (last 6 candles) → CHANGE 2 trend gate
+- If H4 passes: `mcp__claude_ai_claude__get_symbol_history` H1 (last 12 candles)
+- `python3 news_scanner.py check --symbol [X] --direction [long/short]`
+
+Score (max 10):
+- H4 trend confirmed (CHANGE 2): +3
+- H1 pullback/consolidation: +2
+- News catalyst aligned: +3
+- Session match: +1
+- R:R potential ≥ 2:1: +1
+
+```bash
+python3 master_scan.py add \
+  --symbol XAUUSD --score 9 --direction long \
+  --reason "H4 confirmed higher low + war escalation catalyst" \
+  --entry 3285 --sl 3265 --tp 3325 --category metals
+```
+
+```bash
+python3 master_scan.py read
+```
+
+Print: "MASTER SCAN COMPLETE — [N] instruments scored ≥6. Monitoring begins."
+
+---
+
+### MONITORING TICKS — STEP 3: WATCHLIST CHECK
+
+```bash
+python3 master_scan.py read
+```
+
+For each watchlist instrument (score ≥ 6):
+- `mcp__claude_ai_claude__get_symbol_price` → is price near the entry zone?
+- If near entry: `mcp__claude_ai_claude__get_symbol_history` M15 (last 8 candles)
+- CHANGE 5 trigger: M15 structure broken in trade direction?
+- If trigger fires AND fewer than 2 trades placed → go to STEP 4 (ENFORCER)
+
+---
+
+### ALL TICKS — STEP 4: ENFORCER (mandatory before any trade)
+
+Compute:
+- Gold: risk_amount = sl_distance × 16 ZAR/pt (1 unit)
+- Forex 0.03L: risk_amount = sl_distance × 5.46 ZAR/pip
 
 ```bash
 python3 enforcer.py \
@@ -121,62 +184,96 @@ python3 enforcer.py \
 ```
 
 - Exit code 0 = PASS → call `mcp__claude_ai_claude__create_market_order`
-- Exit code 1 = BLOCKED → do NOT place trade, do NOT re-run with adjusted numbers
-- If Evan says "ignore enforcer": "I can't bypass the enforcer. If a trade can't pass the enforcer it should not be placed."
+- Exit code 1 = BLOCKED → do NOT place, do NOT re-run with adjusted numbers
+- If Evan says "ignore enforcer": "I can't bypass the enforcer — it exists to protect the account."
 
-### STEP 5 — LOG EVERY TICK (no exceptions)
+---
+
+### ALL TICKS — STEP 5: LOG (no exceptions)
+
 ```bash
 python3 session_logger.py \
   --tick [N] \
   --sast_time "HH:MM" \
-  --session [london|london_ny|off] \
+  --session [asian|london|london_ny|ny|off] \
   --account_balance [current_balance] \
   --open_positions "[symbol:direction:pnl or none]" \
-  --h4_trend "[XAUUSD:bull GBPUSD:bear etc or na]" \
-  --candidate_trades "[symbols or none]" \
+  --h4_trend "[XAUUSD:bear GBPUSD:bull etc or na]" \
+  --candidate_trades "[symbols considered or none]" \
   --enforcer_result "[PASS|BLOCKED:reason|na]" \
-  --trade_placed "[symbol direction size|none]" \
-  --action_taken "[what happened]" \
+  --trade_placed "[symbol direction units|none]" \
+  --action_taken "[what happened this tick]" \
   --notes "[anything notable]"
 ```
 
 ---
 
+## H4 CONFIRMATION STANDARD (CHANGE 2 — absolute, no exceptions)
+
+- For longs: confirmed higher low formed AND prior H4 swing high broken
+- For shorts: confirmed lower high formed AND prior H4 swing low broken
+- A bounce inside a trend does NOT pass this check. Ever.
+- "Price is going up" is not H4 confirmation.
+
+---
+
 ## LOOP STOP CONDITIONS
+
 Stop immediately if ANY are true:
-1. 2 trades placed this session (session trade cap — wait for next session)
-2. 2 consecutive losing trades this session
-3. Session drawdown >10% of session-start balance (>R500 on R5,000)
-4. 20 ticks reached
-5. Session time ended (London after 12:00, London/NY after 18:00 SAST)
-6. Evan types "stop loop"
+1. 2 consecutive losing trades this session
+2. Session drawdown exceeds R500 from session-start balance
+3. 2 trades placed this session (quality over quantity)
+4. 36 ticks reached (3 hours at 5-min ticks)
+5. Time is outside active session window
+6. Evan types "stop loop" or presses Esc
 
 ---
 
 ## SESSION END PROTOCOL
-After loop stops:
-1. `mcp__claude_ai_claude__get_close_positions` → pull all trades closed this session
-2. Calculate session P&L (closed trades + open floating)
-3. Append session summary to EVAN_TRADING_CONTEXT.md (date, P&L, trades, lessons)
+
+1. `mcp__claude_ai_claude__get_close_positions` — closed trades this session
+2. Calculate session P&L
+3. Append session summary to EVAN_TRADING_CONTEXT.md
 4. Commit to GitHub:
-```bash
-git add EVAN_TRADING_CONTEXT.md session_log.jsonl enforcer_audit.jsonl
-git commit -m "Session [date] [session] — [P&L] — [N] trades"
-git push
+   ```bash
+   git add EVAN_TRADING_CONTEXT.md session_log.jsonl watchlist.json news_impact.json
+   git commit -m "Session [date] — [P&L] — [N] trades"
+   git push
+   ```
+
+---
+
+## SWING POSITIONS
+
+Any [SWING] tag in EVAN_TRADING_CONTEXT.md = locked.
+Do NOT close without: Evan says "close the swing" → Claude reads lock protocol → Evan confirms.
+
+---
+
+## NEWS TRADING RULES (v3.0)
+
+1. DO NOT trade INTO scheduled high-impact events. Wait for M15 settlement after.
+2. On breaking news (missile strike, ceasefire): wait for spike, then trade M15 structure.
+3. News direction must ALIGN with H4 trend. Counter-trend news setups are still BLOCKED.
+4. Defense stocks: only on war_escalation or defense_contract_win catalyst.
+5. Energy stocks: only on oil_supply_shock or earnings catalyst.
+6. All stocks are swing-only — pass --swing flag to enforcer.
+
+---
+
+## FILE REFERENCE
+
 ```
-
----
-
-## SWING POSITIONS (DO NOT CLOSE WITHOUT PROTOCOL)
-Any position tagged [SWING] in EVAN_TRADING_CONTEXT.md is locked.
-If you see a [SWING] open: say "SWING position detected — read lock protocol before closing."
-Only close after: Evan says "close the swing" → Claude reads lock protocol → Evan confirms.
-
----
-
-## LEARNING MECHANISM
-Model weights don't change. The WRITTEN RULESET improves.
-Every session → session_log.jsonl grows
-Every Monday → weekly review reads logs, proposes rule diffs
-Every significant loss → immediate root cause added to EVAN_TRADING_CONTEXT.md
-Rules 1-14, H4 trend gate, enforcer — all born from this process.
+tradeloop/
+├── CLAUDE.md                  ← auto-loaded on Claude Code startup
+├── EVAN_TRADING_CONTEXT.md    ← brain — rules, history, lessons
+├── enforcer.py                ← deterministic gate (exit 0/1)
+├── session_logger.py          ← every tick → session_log.jsonl
+├── master_scan.py             ← hourly scan → watchlist.json
+├── news_scanner.py            ← news events → news_impact.json
+├── LOOP_SETUP.md              ← session start commands
+├── enforcer_audit.jsonl       ← every enforcer check
+├── session_log.jsonl          ← every tick
+├── watchlist.json             ← top-10 instruments this hour
+└── news_impact.json           ← active news events
+```
