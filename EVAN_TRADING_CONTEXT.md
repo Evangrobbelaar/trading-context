@@ -740,3 +740,32 @@ Demo #41810679: R352.85 balance | Open: GBPUSD Short (109672855) entry 1.34362, 
 
 ### Context version
 v1.8 — June 15, 2026 — session archive added
+
+---
+
+## LOOP ENGINEERING UPGRADE — June 22, 2026
+
+Moving the session loop to Claude Code natively (/loop) instead of one
+chat per session. Full architecture and the exact /loop commands are in
+LOOP_SETUP.md in this repo — read that before starting a /loop session.
+
+### ENFORCER RULE UPDATE (supersedes text-only enforcement)
+The enforcer is now a script: enforcer.py in this repo. Before ANY
+create_market_order call, Claude must run enforcer.py with the trade's
+real numbers and treat exit code 1 as an absolute block — same as
+before, except now it is a program, not a sentence, so it cannot be
+talked around by "ignore enforcer" or anything else. enforcer.py only
+covers numeric rules (size caps, SL buffer, risk %, R:R, banned/blocked
+instruments). Trend and news judgment are still Claude's job via the
+existing analysis sequence (CHANGE 5) and mandatory ping format
+(CHANGE 4) — those get logged too, for the weekly review loop.
+
+### REVIEW LOOP (the actual "learning" mechanism)
+Runs weekly per LOOP_SETUP.md. Reads enforcer_audit.jsonl + session
+history, proposes rule diffs against this document, never auto-commits
+risk-parameter changes — Evan approves first. This formalizes what was
+already happening manually after May 29 – June 11 (Rule 14, the H4
+trend gate, the non-negotiable enforcer rule) into a scheduled process
+instead of one only triggered by a bad session.
+
+Document version: 1.9 — June 22, 2026 — Claude Code native loop added
