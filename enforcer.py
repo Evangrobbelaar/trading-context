@@ -191,10 +191,10 @@ INSTRUMENT_RULES: dict = {
     # Commodities
     "BRENT": {
         "max_lots": 0.03,
-        "min_sl": 30,
-        "max_sl": 80,
-        "unit": "pts",
-        "note": "Oil CFD. Wide SL needed — gap risk around OPEC/geopolitical news.",
+        "min_sl": 100,
+        "max_sl": 5000,
+        "unit": "pips",
+        "note": "Oil CFD. 1 pip=$0.001/barrel. RoundLot=100. 0.03L=3 barrels=R0.0546/pip. Min SL=$0.10, max SL=$5.00. Wide SL needed for gap risk.",
     },
     # Platinum
     "XPTUSD": {
