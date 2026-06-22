@@ -1,4 +1,4 @@
-# LOOP SETUP v3.0 — News Trading + Master Scan Architecture
+# FINAL LOOP SETUP FOR CLAUDE MODELS — v3.1
 Updated: June 22, 2026 | Account: Demo #41829612 | Goal: R5,000 → R10,000
 
 ---
@@ -16,13 +16,13 @@ Updated: June 22, 2026 | Account: Demo #41829612 | Goal: R5,000 → R10,000
 
 ---
 
-## v3.0 LOOP ARCHITECTURE
+## v3.1 LOOP ARCHITECTURE
 
 Each session loop runs in two alternating modes:
 
 **MASTER SCAN (Tick 1, tick 13, tick 25 ...)** — runs every hour:
-- web_search for breaking news → news_scanner.py
-- Scan all 139 instruments → master_scan.py scores → watchlist.json (top 10)
+- web_search for breaking news → news_scanner.py set → news_impact.json
+- Scan all instruments → master_scan.py scores → watchlist.json (top 10)
 - Print: "MASTER SCAN COMPLETE — [N] instruments. Monitoring begins."
 
 **MONITORING (Ticks 2-12, 14-24 ...)** — runs every 5 minutes:
@@ -60,8 +60,8 @@ TICK MODE: If tick number is 1 or divisible by 12 → MASTER SCAN MODE. Otherwis
 
 MASTER SCAN MODE steps:
 1. switch_trading_account to #41829612. Get SAST time from XAUUSD price. Get account info + open positions.
-2. python3 news_scanner.py clear. Then web_search "breaking financial news today" + "war news today" + "economic events today". Categorize into event keys (war_escalation/peace_talks/ceasefire/missile_strike/cpi_hot/cpi_cool/nfp_beat/nfp_miss/fed_hawkish/fed_dovish/oil_supply_shock/tech_earnings_beat/tech_earnings_miss/defense_contract_win/ai_breakthrough/risk_off_generic/risk_on_generic). Run: python3 news_scanner.py set --events "[keys]" --headlines "[summary]" and add --high_impact_2h if major scheduled event within 2 hours. If high_impact_2h: skip new trades this tick.
-3. python3 master_scan.py clear. Scan XAUUSD/XAGUSD/BRENT/EURUSD/GBPUSD/USDJPY/USDCHF/AUDUSD first (always). Then defense stocks only if war_escalation active. Then tech stocks only if ai_breakthrough or tech_earnings active. For each: get H4 history (6 candles) → CHANGE 2 trend gate → if passes get H1 (12 candles) → check news_scanner.py check → score → python3 master_scan.py add. Run: python3 master_scan.py read.
+2. python3 news_scanner.py clear. Then web_search "breaking financial news today" + "war news today" + "economic events today" + "Fed news today" + "oil supply news today". Categorize headlines into event keys: war_escalation / peace_talks / ceasefire / missile_strike / sanctions_announced / cpi_hot / cpi_cool / nfp_beat / nfp_miss / fed_hawkish / fed_dovish / oil_supply_shock / tech_earnings_beat / tech_earnings_miss / defense_contract_win / ai_breakthrough / risk_off_generic / risk_on_generic / central_bank_rate_hike / inflation_data_uk_eu. Run: python3 news_scanner.py set --events "[keys]" --headlines "[headline1|headline2]" and add --high_impact_2h if a scheduled high-impact event (CPI, NFP, Fed decision, central bank rate) fires within 2 hours. Then: python3 news_scanner.py read. If high_impact_2h active: DO NOT enter new trades this tick — wait for M15 settlement after print.
+3. python3 master_scan.py clear. Scan XAUUSD/XAGUSD/BRENT/EURUSD/GBPUSD/USDJPY/USDCHF/AUDUSD first (always). Then NAS100/SPX500 for awareness (blocked below R8,000). Then defense stocks (LOCKHEED/NORTHROP/BOEING) only if war_escalation or defense_contract_win active. Then tech stocks (NVIDIA/AMD/MICROSOFT) only if ai_breakthrough or tech_earnings active. Then energy stocks (EXXON/CHEVRON/BP) only if oil_supply_shock active. For each: get H4 history (6 candles) → CHANGE 2 trend gate → if passes get H1 (12 candles) → python3 news_scanner.py check --symbol [X] --direction [long/short] (exit 0 = catalyst, exit 1 = neutral, exit 2 = CONFLICT — skip direction) → score → python3 master_scan.py add. Run: python3 master_scan.py read.
 4. If open positions: get last 10 M5 + last 6 H4 candles per position → output CHANGE 4 format → apply rules 4/13/14/Change3.
 5. python3 session_logger.py [all args].
 
@@ -69,7 +69,7 @@ MONITORING MODE steps:
 1. switch_trading_account to #41829612. Get SAST time + account info + open positions.
 2. If open positions: get last 10 M5 + 6 H4 → CHANGE 4 format → apply rules.
 3. python3 master_scan.py read. For top 5 instruments (score ≥ 6): get current price → if near entry get M15 (8 candles) → check CHANGE 5 trigger.
-4. If trigger fires AND fewer than 2 trades placed this session AND no high_impact_2h active: run enforcer.py with exact risk_amount/reward_amount/sl_distance. Exit code 0 → create_market_order. Exit code 1 → BLOCKED, do not retry.
+4. If trigger fires AND fewer than 2 trades placed this session AND no high_impact_2h active: run python3 news_scanner.py volatility --symbol [X] (print warning if high-vol, but do not block). Then run enforcer.py with exact risk_amount/reward_amount/sl_distance. Exit code 0 → create_market_order. Exit code 1 → BLOCKED, do not retry.
 5. python3 session_logger.py [all args].
 
 STOP CONDITIONS: 2 trades placed OR 2 consecutive losses OR R500 drawdown OR after 12:00 SAST OR 36 ticks.
@@ -87,8 +87,8 @@ TICK MODE: If tick number is 1 or divisible by 12 → MASTER SCAN MODE. Otherwis
 
 MASTER SCAN MODE steps:
 1. switch_trading_account to #41829612. Get SAST time from XAUUSD price. Get account info + open positions.
-2. python3 news_scanner.py clear. Then web_search "breaking financial news today" + "war news today" + "economic events today". Categorize into event keys (war_escalation/peace_talks/ceasefire/missile_strike/cpi_hot/cpi_cool/nfp_beat/nfp_miss/fed_hawkish/fed_dovish/oil_supply_shock/tech_earnings_beat/tech_earnings_miss/defense_contract_win/ai_breakthrough/risk_off_generic/risk_on_generic). Run: python3 news_scanner.py set --events "[keys]" --headlines "[summary]" and add --high_impact_2h if major scheduled event within 2 hours. If high_impact_2h: skip new trades this tick.
-3. python3 master_scan.py clear. Scan XAUUSD/XAGUSD/BRENT/EURUSD/GBPUSD/USDJPY/USDCHF/AUDUSD first (always). Then defense stocks only if war_escalation active. Then tech stocks only if ai_breakthrough or tech_earnings active. For each: get H4 history (6 candles) → CHANGE 2 trend gate → if passes get H1 (12 candles) → check news_scanner.py check → score → python3 master_scan.py add. Run: python3 master_scan.py read.
+2. python3 news_scanner.py clear. Then web_search "breaking financial news today" + "war news today" + "economic events today" + "Fed news today" + "oil supply news today". Categorize headlines into event keys: war_escalation / peace_talks / ceasefire / missile_strike / sanctions_announced / cpi_hot / cpi_cool / nfp_beat / nfp_miss / fed_hawkish / fed_dovish / oil_supply_shock / tech_earnings_beat / tech_earnings_miss / defense_contract_win / ai_breakthrough / risk_off_generic / risk_on_generic / central_bank_rate_hike / inflation_data_uk_eu. Run: python3 news_scanner.py set --events "[keys]" --headlines "[headline1|headline2]" and add --high_impact_2h if a scheduled high-impact event (CPI, NFP, Fed decision, central bank rate) fires within 2 hours. Then: python3 news_scanner.py read. If high_impact_2h active: DO NOT enter new trades this tick — wait for M15 settlement after print.
+3. python3 master_scan.py clear. Scan XAUUSD/XAGUSD/BRENT/EURUSD/GBPUSD/USDJPY/USDCHF/AUDUSD first (always). Then NAS100/SPX500 for awareness (blocked below R8,000). Then defense stocks (LOCKHEED/NORTHROP/BOEING) only if war_escalation or defense_contract_win active. Then tech stocks (NVIDIA/AMD/MICROSOFT) only if ai_breakthrough or tech_earnings active. Then energy stocks (EXXON/CHEVRON/BP) only if oil_supply_shock active. For each: get H4 history (6 candles) → CHANGE 2 trend gate → if passes get H1 (12 candles) → python3 news_scanner.py check --symbol [X] --direction [long/short] (exit 0 = catalyst, exit 1 = neutral, exit 2 = CONFLICT — skip direction) → score → python3 master_scan.py add. Run: python3 master_scan.py read.
 4. If open positions: get last 10 M5 + last 6 H4 candles per position → output CHANGE 4 format → apply rules 4/13/14/Change3.
 5. python3 session_logger.py [all args].
 
@@ -96,7 +96,7 @@ MONITORING MODE steps:
 1. switch_trading_account to #41829612. Get SAST time + account info + open positions.
 2. If open positions: get last 10 M5 + 6 H4 → CHANGE 4 format → apply rules.
 3. python3 master_scan.py read. For top 5 instruments (score ≥ 6): get current price → if near entry get M15 (8 candles) → check CHANGE 5 trigger.
-4. If trigger fires AND fewer than 2 trades placed this session AND no high_impact_2h active: run enforcer.py with exact risk_amount/reward_amount/sl_distance. Exit code 0 → create_market_order. Exit code 1 → BLOCKED, do not retry.
+4. If trigger fires AND fewer than 2 trades placed this session AND no high_impact_2h active: run python3 news_scanner.py volatility --symbol [X] (print warning if high-vol, but do not block). Then run enforcer.py with exact risk_amount/reward_amount/sl_distance. Exit code 0 → create_market_order. Exit code 1 → BLOCKED, do not retry.
 5. python3 session_logger.py [all args].
 
 STOP CONDITIONS: 2 trades placed OR 2 consecutive losses OR R500 drawdown OR after 18:00 SAST OR 36 ticks.
@@ -146,17 +146,53 @@ Max risk per trade: R1,000 (20%). Max simultaneous trades: 2.
 
 | News event | Go long | Go short |
 |---|---|---|
-| war_escalation | XAUUSD, XAGUSD, LOCKHEED, NORTHROP | EURUSD, GBPUSD, NAS100 |
-| ceasefire | EURUSD, GBPUSD, NAS100 | XAUUSD, LOCKHEED |
-| missile_strike | XAUUSD, BRENT | EURUSD, NAS100 |
-| cpi_hot | USDJPY, USDCHF | XAUUSD, EURUSD, NAS100 |
-| cpi_cool | XAUUSD, EURUSD, NAS100 | USDJPY |
-| fed_hawkish | USDJPY, USDCHF | XAUUSD, EURUSD, NAS100 |
-| fed_dovish | XAUUSD, EURUSD, NAS100 | USDJPY |
-| oil_supply_shock | BRENT, EXXON, CHEVRON | EURUSD |
-| ai_breakthrough | NVIDIA, AMD, NAS100 | — |
+| war_escalation | XAUUSD, XAGUSD, USDCHF, LOCKHEED, NORTHROP, BOEING | EURUSD, GBPUSD, EURJPY, NAS100, SPX500 |
+| peace_talks | EURUSD, GBPUSD, NAS100, SPX500, BRENT | XAUUSD, USDCHF |
+| ceasefire | EURUSD, GBPUSD, NAS100 | XAUUSD, LOCKHEED, NORTHROP |
+| missile_strike | XAUUSD, XAGUSD, USDCHF, LOCKHEED, BRENT | EURUSD, GBPUSD, NAS100 |
+| sanctions_announced | XAUUSD, BRENT, EXXON, CHEVRON | — |
+| cpi_hot | USDJPY, USDCHF, USDCAD | XAUUSD, EURUSD, GBPUSD, NAS100 |
+| cpi_cool | XAUUSD, EURUSD, GBPUSD, NAS100 | USDJPY, USDCAD |
+| nfp_beat | USDJPY, USDCAD, USDCHF | XAUUSD, EURUSD, GBPUSD |
+| nfp_miss | XAUUSD, EURUSD, GBPUSD | USDJPY, USDCAD |
+| fed_hawkish | USDJPY, USDCHF, USDCAD | XAUUSD, EURUSD, GBPUSD, NAS100 |
+| fed_dovish | XAUUSD, EURUSD, GBPUSD, NAS100 | USDJPY, USDCAD |
+| oil_supply_shock | BRENT, EXXON, CHEVRON, BP, USDCAD | EURUSD, GBPUSD, AUDUSD |
+| ai_breakthrough | NVIDIA, AMD, MICROSOFT, NAS100 | — |
+| tech_earnings_beat | NAS100 + reporting stock | — |
+| tech_earnings_miss | — | NAS100 + reporting stock |
+| defense_contract_win | LOCKHEED, NORTHROP, BOEING | — |
+| risk_off_generic | XAUUSD, USDCHF, USDJPY | EURUSD, GBPUSD, NAS100, AUDUSD |
+| risk_on_generic | EURUSD, GBPUSD, NAS100, AUDUSD | XAUUSD, USDCHF |
+| central_bank_rate_hike | hiking-currency pairs | inverse pairs |
+| inflation_data_uk_eu | map to cpi_hot/cpi_cool for GBP/EUR | — |
 
 Remember: news direction must ALIGN with H4 trend. Counter-trend news = still blocked.
+news_scanner.py check exit code 2 = CONFLICT = skip that direction entirely.
+
+---
+
+## NEWS SCANNER EXIT CODE REFERENCE
+
+| Exit code | Meaning | Action |
+|---|---|---|
+| 0 | CATALYST — news supports direction | +3 score, proceed |
+| 1 | NEUTRAL — no catalyst, not blocked | +0 score, proceed on technicals |
+| 2 | CONFLICT — news against direction | Skip this direction, do not trade |
+
+---
+
+## HIGH VOLATILITY ON NEWS (from news_scanner.py volatility)
+
+| Instrument | Warning |
+|---|---|
+| XAUUSD | Gold spikes 30-60pts in seconds on major news. DO NOT enter during spike. |
+| USDJPY | JPY gaps on BoJ surprise decisions. |
+| GBPUSD | Cable volatile on UK CPI/BOE decisions. |
+| NAS100 | Tech index spikes on Fed and earnings. |
+| BRENT | Oil gaps on OPEC and geopolitical supply news. |
+
+Run `python3 news_scanner.py volatility --symbol [X]` before each entry near a news event.
 
 ---
 
@@ -178,6 +214,14 @@ python3 enforcer.py --instrument NVIDIA --direction buy --lots 0.1 \
   --balance 5000 --account demo \
   --risk_amount [ZAR] --reward_amount [ZAR] --sl_distance [pts] --swing
 
+# News scanner commands
+python3 news_scanner.py set --events "war_escalation,fed_hawkish" --headlines "headline1|headline2"
+python3 news_scanner.py set --events "cpi_hot" --headlines "CPI beats at 4.2%" --high_impact_2h
+python3 news_scanner.py read
+python3 news_scanner.py check --symbol XAUUSD --direction long
+python3 news_scanner.py volatility --symbol XAUUSD
+python3 news_scanner.py events   # list all known event keys
+
 # Review logs
 python3 session_logger.py summary
 python3 master_scan.py read
@@ -198,10 +242,10 @@ python3 news_scanner.py read
 tradeloop/
 ├── CLAUDE.md                  ← auto-loaded on Claude Code startup
 ├── EVAN_TRADING_CONTEXT.md    ← brain — v3.0, grows every session
-├── enforcer.py                ← deterministic gate (v2.0 + new instruments)
+├── enforcer.py                ← deterministic gate (exit 0/1)
 ├── session_logger.py          ← tick logger → session_log.jsonl
 ├── master_scan.py             ← hourly full scan → watchlist.json
-├── news_scanner.py            ← news → news_impact.json
+├── news_scanner.py            ← news → news_impact.json (exit 0/1/2)
 ├── LOOP_SETUP.md              ← this file
 ├── enforcer_audit.jsonl       ← every enforcer check
 ├── session_log.jsonl          ← every tick
