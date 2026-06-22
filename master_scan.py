@@ -127,9 +127,9 @@ NEWS_IMPACT_MAP = {
         "notes": "War escalation = safe haven demand. Gold, CHF, JPY up. Risk assets down.",
     },
     "peace_talks": {
-        "long": ["EURUSD", "GBPUSD", "risk_indices", "BRENT"],
-        "short": ["XAUUSD", "USDCHF"],
-        "notes": "Peace progress = risk-on. Gold drops, risk assets rally.",
+        "long": ["EURUSD", "GBPUSD", "risk_indices"],
+        "short": ["XAUUSD", "USDCHF", "BRENT", "LOCKHEED", "NORTHROP"],
+        "notes": "Peace progress = risk-on. Gold and defense stocks drop. BRENT SHORT: ME peace = Strait of Hormuz reopens = more oil supply = lower price.",
     },
     "sanctions": {
         "long": ["XAUUSD", "BRENT"],

@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-06-22T18:33:08.252068+00:00",
+  "watchlist": [
+    {
+      "symbol": "GBPUSD",
+      "score": 7,
+      "direction": "long",
+      "reason": "H4 breakout above 1.32358 swing high confirmed, H1 tight consolidation 1.3239-1.3247 after 1.32727 peak. No news catalyst but no conflict. London session setup for tomorrow.",
+      "entry": 1.3244,
+      "sl": 1.3205,
+      "tp": 1.332,
+      "category": "forex_major",
+      "added_at": "2026-06-22T18:33:08.252068+00:00"
+    }
+  ],
+  "news_events": []
+}

@@ -42,9 +42,9 @@ NEWS_IMPACT_MAP: dict = {
         "urgency": "high",
     },
     "peace_talks": {
-        "long": ["EURUSD", "GBPUSD", "NAS100", "SPX500", "AUS200", "BRENT"],
-        "short": ["XAUUSD", "USDCHF"],
-        "notes": "Peace progress = risk-on. Gold drops, risk assets rally.",
+        "long": ["EURUSD", "GBPUSD", "NAS100", "SPX500", "AUS200"],
+        "short": ["XAUUSD", "USDCHF", "BRENT", "LOCKHEED", "NORTHROP"],
+        "notes": "Peace progress = risk-on. Gold and defense stocks drop, risk assets rally. BRENT SHORT: ME peace = Strait of Hormuz reopens = more supply = lower oil (confirmed June 22 2026: BRENT -1.7% on US-Iran deal).",
         "urgency": "medium",
     },
     "sanctions_announced": {
@@ -268,7 +268,7 @@ def main() -> None:
         print(f"Events: {valid}")
         print(f"LONG these instruments: {longs}")
         print(f"SHORT these instruments: {shorts}")
-        if args.high_impact_within_2h:
+        if args.high_impact_2h:
             print("⚠ HIGH-IMPACT EVENT WITHIN 2 HOURS — wait for structure after print")
         if invalid:
             print(f"Ignored unknown events: {invalid}")
