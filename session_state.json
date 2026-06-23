@@ -17,18 +17,20 @@
       "h1_resistance": 4133.0,
       "entry_zone_short": [4118, 4125],
       "change5_trigger": 4117.0,
-      "sl_short": 4135.0,
+      "sl_short": 4138.0,
+      "sl_distance_min_pts": 15,
       "tp_short": 4069.0,
-      "rr": 4.08,
+      "rr": 3.27,
       "pts_per_unit_zar": 16
     },
     "AUDUSD": {
       "h4_swing_high": 0.70049,
       "h4_swing_low": 0.69315,
       "entry_zone_short": [0.69340, 0.69420],
-      "sl_short": 0.69500,
+      "sl_short": 0.69530,
+      "sl_distance_min_pips": 15,
       "tp_short": 0.69000,
-      "rr": 3.17,
+      "rr": 2.53,
       "pips_per_03L_zar": 5.46
     },
     "EURUSD": {
