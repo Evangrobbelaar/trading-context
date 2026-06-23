@@ -1,5 +1,5 @@
 {
-  "updated_sast": "15:33",
+  "updated_sast": "15:38",
   "account_balance": 5010.41,
   "session_target_zar": 400,
   "h4_trends": {
@@ -69,16 +69,16 @@
       "symbol": "XAUUSD",
       "side": "short",
       "entry": 4109.65,
-      "sl": 4126.32,
+      "sl": 4120.26,
       "tp": 4069,
       "units": 1,
       "risk_zar": 267,
       "reward_zar": 650,
-      "note": "Managed by broker SL 4126.32. Stop condition active - no new entries."
+      "note": "SL trailed from 4126.32 to 4120.26 (M5 low 4105.26 + 15pt buffer). Price volatile."
     }
   ],
   "session_lows": {
-    "XAUUSD": 4090.89,
+    "XAUUSD": 4105.26,
     "AUDUSD": 0.6931
   },
   "trailing_sl_buffers": {
