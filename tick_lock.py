@@ -1,30 +1,30 @@
 import sys
 import os
 import time
+import argparse
 
-LOCK_FILE = "tick.lock"
 STALE_SECONDS = 600  # 10 minutes — if lock is older than this, it's a crashed tick
 
 
-def acquire():
-    if os.path.exists(LOCK_FILE):
-        age = time.time() - os.path.getmtime(LOCK_FILE)
+def acquire(lock_file):
+    if os.path.exists(lock_file):
+        age = time.time() - os.path.getmtime(lock_file)
         if age < STALE_SECONDS:
             print(f"LOCKED — previous tick still running ({int(age)}s old). Skipping.")
             sys.exit(1)
         else:
             print(f"STALE LOCK detected ({int(age)}s old) — clearing and acquiring.")
-            os.remove(LOCK_FILE)
+            os.remove(lock_file)
 
-    with open(LOCK_FILE, "w") as f:
+    with open(lock_file, "w") as f:
         f.write(str(os.getpid()))
     print("LOCK ACQUIRED")
     sys.exit(0)
 
 
-def release():
-    if os.path.exists(LOCK_FILE):
-        os.remove(LOCK_FILE)
+def release(lock_file):
+    if os.path.exists(lock_file):
+        os.remove(lock_file)
         print("LOCK RELEASED")
     else:
         print("LOCK RELEASE — file not found (already cleared)")
@@ -32,15 +32,14 @@ def release():
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python tick_lock.py [acquire|release]")
-        sys.exit(1)
+    parser = argparse.ArgumentParser(description="Tick lock manager")
+    parser.add_argument("command", choices=["acquire", "release"])
+    parser.add_argument(
+        "--lock-file", default="tick.lock", help="Lock file name (default: tick.lock)"
+    )
+    args = parser.parse_args()
 
-    cmd = sys.argv[1].lower()
-    if cmd == "acquire":
-        acquire()
-    elif cmd == "release":
-        release()
+    if args.command == "acquire":
+        acquire(args.lock_file)
     else:
-        print(f"Unknown command: {cmd}")
-        sys.exit(1)
+        release(args.lock_file)
