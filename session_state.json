@@ -1,5 +1,5 @@
 {
-  "updated_sast": "15:03",
+  "updated_sast": "15:13",
   "account_balance": 5037.62,
   "session_target_zar": 400,
   "h4_trends": {
@@ -61,6 +61,15 @@
       "change5": true,
       "entry_now": true,
       "note": "CHANGE5 triggered on 12:00 M15 bar. Bouncing 0.69310->0.69362. Entry on any bounce into 0.69340-0.69420."
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "short",
+      "score": 10,
+      "change2": true,
+      "change5": true,
+      "entry_now": true,
+      "note": "Re-entry: M15 13:00 UTC closed 4113.32 below 4117. Entry 4109.65. H4 bear intact."
     }
   ],
   "open_positions": [
@@ -74,6 +83,17 @@
       "lots": 0.03,
       "risk_zar": 97,
       "reward_zar": 192
+    },
+    {
+      "id": "109706950",
+      "symbol": "XAUUSD",
+      "side": "short",
+      "entry": 4109.65,
+      "sl": 4126.32,
+      "tp": 4069,
+      "units": 1,
+      "risk_zar": 267,
+      "reward_zar": 650
     }
   ],
   "session_lows": {
@@ -88,7 +108,7 @@
     "max_drawdown_zar": 500,
     "consecutive_losses": 1,
     "max_consecutive_losses": 2,
-    "trades_this_session": 1
+    "trades_this_session": 2
   },
   "news_events": [
     "fed_hawkish",
@@ -101,13 +121,5 @@
     "AUDUSD",
     "EURJPY"
   ],
-  "next_master_scan_tick": 39,
-  "last_closed_trade": {
-    "symbol": "XAUUSD",
-    "side": "short",
-    "entry": 4115.15,
-    "close_approx": 4120.46,
-    "loss_zar_approx": -89,
-    "reason": "Rule5_M5_reversed"
-  }
+  "next_master_scan_tick": 39
 }
