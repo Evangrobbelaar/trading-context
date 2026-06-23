@@ -107,11 +107,12 @@
       "h4_swing_high": 4198.44,
       "h4_lower_high": 4144.74,
       "h4_swing_low": 4090.89,
-      "current_price": 4111.99,
-      "note": "Drifted down 18pts overnight. Only 21pts above H4 swing low 4090.89. Watch at London open — if 4090 holds = bear continuation. If breaks = reassess."
+      "current_price": 4102.36,
+      "session_low_overnight": 4096.91,
+      "note": "CRITICAL LEVEL APPROACHING. Price 4102.36, overnight low 4096.91 = only 6pts above H4 swing low 4090.89. H4 bear structure intact (lower high 4144.74 confirmed, last H4 close 4111.78 above swing low). Watch at London open: if H4 closes below 4090.89 = new lower low, short entry shifts to 4090-4105 pullback zone. If 4090 holds and bounces = watch for lower high formation before re-entry."
     },
     "EURUSD": {
-      "current_price": 1.13797,
+      "current_price": 1.13807,
       "h4_swing_high": 1.14387,
       "h4_swing_low": 1.13753,
       "entry_zone_short": [1.14000, 1.14100],
@@ -119,7 +120,7 @@
       "tp_short": 1.13500
     },
     "GBPUSD": {
-      "current_price": 1.31991,
+      "current_price": 1.31999,
       "h4_swing_high": 1.32533,
       "h4_lower_high": 1.32215,
       "h4_swing_low": 1.31825,
