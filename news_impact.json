@@ -1,25 +1,33 @@
 {
-  "last_scan_utc": "2026-06-22T18:28:03.276079+00:00",
+  "last_scan_utc": "2026-06-23T06:59:00.242871+00:00",
   "active_events": [
+    "war_escalation",
+    "missile_strike",
     "peace_talks",
-    "fed_hawkish"
+    "oil_supply_shock",
+    "fed_hawkish",
+    "risk_off_generic"
   ],
   "instruments_long": [
-    "AUS200",
-    "BRENT",
-    "SPX500",
+    "BOEING",
+    "BP",
+    "CHEVRON",
+    "EXXON",
     "USDCAD",
-    "USDJPY"
+    "USDJPY",
+    "XAGUSD"
   ],
   "instruments_short": [
-    "XAUUSD"
+    "AUDUSD",
+    "EURJPY"
   ],
   "headlines": [
-    "US-Iran deal roadmap agreed, MOU signed June 17, 60-day window",
-    "VP Vance: good foundation for deal",
-    "Fed holds 3.50-3.75%, 9 officials see hike, PCE revised to 3.6%",
-    "Brent -1.7% on peace progress",
-    "Markets recovering from June 17 Fed selloff"
+    "Iran launches missile strike on Al Udeid Air Base Qatar",
+    "US-Iran peace negotiations underway in Switzerland",
+    "Washington grants Iran 60-day oil export license \u2014 supply surge expected",
+    "Gulf producers Kuwait ADNOC raising output \u2014 Hormuz traffic picking up",
+    "BofA expects 3 Fed hikes \u2014 inflation unambiguously worse",
+    "Alphabet worst day in a year on AI concerns"
   ],
   "high_impact_within_2h": false
 }
