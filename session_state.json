@@ -1,6 +1,6 @@
 {
-  "updated_sast": "15:13",
-  "account_balance": 5037.62,
+  "updated_sast": "15:18",
+  "account_balance": 5010.41,
   "session_target_zar": 400,
   "h4_trends": {
     "XAUUSD": "bear",
@@ -54,15 +54,6 @@
   },
   "active_setups": [
     {
-      "symbol": "AUDUSD",
-      "direction": "short",
-      "score": 9,
-      "change2": true,
-      "change5": true,
-      "entry_now": true,
-      "note": "CHANGE5 triggered on 12:00 M15 bar. Bouncing 0.69310->0.69362. Entry on any bounce into 0.69340-0.69420."
-    },
-    {
       "symbol": "XAUUSD",
       "direction": "short",
       "score": 10,
@@ -74,17 +65,6 @@
   ],
   "open_positions": [
     {
-      "id": "109706790",
-      "symbol": "AUDUSD",
-      "side": "short",
-      "entry": 0.69352,
-      "sl": 0.6953,
-      "tp": 0.69,
-      "lots": 0.03,
-      "risk_zar": 97,
-      "reward_zar": 192
-    },
-    {
       "id": "109706950",
       "symbol": "XAUUSD",
       "side": "short",
@@ -93,7 +73,8 @@
       "tp": 4069,
       "units": 1,
       "risk_zar": 267,
-      "reward_zar": 650
+      "reward_zar": 650,
+      "note": "Managed by broker SL 4126.32. Stop condition active - no new entries."
     }
   ],
   "session_lows": {
@@ -106,7 +87,7 @@
   },
   "stop_conditions": {
     "max_drawdown_zar": 500,
-    "consecutive_losses": 1,
+    "consecutive_losses": 2,
     "max_consecutive_losses": 2,
     "trades_this_session": 2
   },
@@ -121,5 +102,7 @@
     "AUDUSD",
     "EURJPY"
   ],
-  "next_master_scan_tick": 39
+  "next_master_scan_tick": 39,
+  "loop_stopped": true,
+  "loop_stop_reason": "2 consecutive losses: XAUUSD Rule5 -R80.94 + AUDUSD Rule5 -R27.21"
 }
