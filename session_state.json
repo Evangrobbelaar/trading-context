@@ -1,0 +1,83 @@
+{
+  "updated_sast": "14:18",
+  "account_balance": 5118.56,
+  "session_target_zar": 400,
+  "h4_trends": {
+    "XAUUSD": "bear",
+    "AUDUSD": "bear",
+    "EURUSD": "bear",
+    "GBPUSD": "bear",
+    "USDJPY": "choppy_skip",
+    "XAGUSD": "bear_news_blocked"
+  },
+  "key_levels": {
+    "XAUUSD": {
+      "h4_swing_high": 4198.44,
+      "h4_swing_low": 4090.89,
+      "h1_resistance": 4133.0,
+      "entry_zone_short": [4118, 4125],
+      "change5_trigger": 4117.0,
+      "sl_short": 4135.0,
+      "tp_short": 4069.0,
+      "rr": 4.08,
+      "pts_per_unit_zar": 16
+    },
+    "AUDUSD": {
+      "h4_swing_high": 0.70049,
+      "h4_swing_low": 0.69315,
+      "entry_zone_short": [0.69340, 0.69420],
+      "sl_short": 0.69500,
+      "tp_short": 0.69000,
+      "rr": 3.17,
+      "pips_per_03L_zar": 5.46
+    },
+    "EURUSD": {
+      "h4_swing_high": 1.14631,
+      "h4_swing_low": 1.13839,
+      "entry_zone_short": [1.14000, 1.14100],
+      "sl_short": 1.14220,
+      "tp_short": 1.13500,
+      "rr": 3.33,
+      "status": "watch_only_needs_pullback"
+    }
+  },
+  "active_setups": [
+    {
+      "symbol": "XAUUSD",
+      "direction": "short",
+      "score": 10,
+      "change2": true,
+      "change5": false,
+      "change5_price": 4117.0,
+      "entry_now": false,
+      "note": "H1 double rejection 4133. Watching for break below 4117."
+    },
+    {
+      "symbol": "AUDUSD",
+      "direction": "short",
+      "score": 9,
+      "change2": true,
+      "change5": true,
+      "entry_now": true,
+      "note": "CHANGE5 triggered on 12:00 M15 bar. Bouncing 0.69310->0.69362. Entry on any bounce into 0.69340-0.69420."
+    }
+  ],
+  "open_positions": [],
+  "session_lows": {
+    "XAUUSD": 4090.89,
+    "AUDUSD": 0.69310
+  },
+  "trailing_sl_buffers": {
+    "XAUUSD_pts": 15,
+    "AUDUSD_pips": 0.0015
+  },
+  "stop_conditions": {
+    "max_drawdown_zar": 500,
+    "consecutive_losses": 0,
+    "max_consecutive_losses": 2,
+    "trades_this_session": 0
+  },
+  "news_events": ["fed_hawkish", "war_escalation", "risk_off_generic", "peace_talks", "oil_supply_shock"],
+  "news_short_catalysts": ["AUDUSD", "EURJPY"],
+  "next_master_scan_tick": 24
+}
