@@ -1,72 +1,68 @@
 {
-  "updated_sast": "15:48",
+  "updated_sast": "17:35",
   "account_balance": 4835.12,
   "session_target_zar": 400,
   "h4_trends": {
     "XAUUSD": "bear",
-    "AUDUSD": "bear",
     "EURUSD": "bear",
     "GBPUSD": "bear",
-    "USDJPY": "choppy_skip",
-    "XAGUSD": "bear_news_blocked"
+    "AUDUSD": "bear"
   },
   "key_levels": {
     "XAUUSD": {
       "h4_swing_high": 4198.44,
+      "h4_lower_high": 4144.74,
       "h4_swing_low": 4090.89,
       "h1_resistance": 4133.0,
-      "entry_zone_short": [
-        4118,
-        4125
-      ],
-      "change5_trigger": 4117.0,
-      "sl_short": 4138.0,
-      "sl_distance_min_pts": 15,
-      "tp_short": 4069.0,
-      "rr": 3.27,
-      "pts_per_unit_zar": 16
-    },
-    "AUDUSD": {
-      "h4_swing_high": 0.70049,
-      "h4_swing_low": 0.69315,
-      "entry_zone_short": [
-        0.6934,
-        0.6942
-      ],
-      "sl_short": 0.6953,
-      "sl_distance_min_pips": 15,
-      "tp_short": 0.69,
-      "rr": 2.53,
-      "pips_per_03L_zar": 5.46
+      "entry_zone_short": [4126, 4135],
+      "sl_short": 4150,
+      "sl_distance_pts": 16,
+      "tp_short": 4090,
+      "rr": 2.72,
+      "pts_per_unit_zar": 16,
+      "note": "2x Rule5 cuts today — do NOT re-enter XAUUSD short this session"
     },
     "EURUSD": {
       "h4_swing_high": 1.14631,
-      "h4_swing_low": 1.13839,
-      "entry_zone_short": [
-        1.14,
-        1.141
-      ],
-      "sl_short": 1.1422,
-      "tp_short": 1.135,
+      "h4_lower_high": 1.13998,
+      "h4_swing_low": 1.13753,
+      "entry_zone_short": [1.14000, 1.14100],
+      "sl_short": 1.14200,
+      "tp_short": 1.13500,
       "rr": 3.33,
-      "status": "watch_only_needs_pullback"
+      "status": "wait_for_pullback — price at 1.13780, below entry zone — BEST setup for tomorrow London"
+    },
+    "GBPUSD": {
+      "h4_swing_high": 1.32727,
+      "h4_lower_high": 1.32215,
+      "h4_swing_low": 1.31845,
+      "entry_zone_short": [1.32100, 1.32200],
+      "sl_short": 1.32280,
+      "tp_short": 1.31400,
+      "rr": 2.5,
+      "status": "wait_for_pullback — price at 1.31871, at session low — BEST setup for tomorrow London"
+    },
+    "AUDUSD": {
+      "note": "2x Rule5 cuts today — do NOT re-enter AUDUSD short this session"
     }
   },
   "active_setups": [],
   "open_positions": [],
   "session_lows": {
-    "XAUUSD": 4105.26,
-    "AUDUSD": 0.6931
+    "XAUUSD": 4090.89,
+    "GBPUSD": 1.31845,
+    "EURUSD": 1.13753
   },
   "trailing_sl_buffers": {
     "XAUUSD_pts": 15,
-    "AUDUSD_pips": 0.0015
+    "forex_pips": 0.0015
   },
   "stop_conditions": {
     "max_drawdown_zar": 500,
-    "consecutive_losses": 3,
+    "consecutive_losses": 0,
     "max_consecutive_losses": 2,
-    "trades_this_session": 2
+    "max_open_positions": 4,
+    "trades_this_session": 0
   },
   "news_events": [
     "fed_hawkish",
@@ -75,11 +71,7 @@
     "peace_talks",
     "oil_supply_shock"
   ],
-  "news_short_catalysts": [
-    "AUDUSD",
-    "EURJPY"
-  ],
-  "next_master_scan_tick": 39,
-  "loop_stopped": true,
-  "loop_stop_reason": "All positions closed. Session ended."
+  "loop_stopped": false,
+  "loop_stop_reason": null,
+  "next_master_scan_tick": 1
 }
