@@ -1,12 +1,11 @@
 {
-  "last_scan_utc": "2026-06-23T06:59:00.242871+00:00",
+  "last_scan_utc": "2026-06-23T08:04:34.712126+00:00",
   "active_events": [
-    "war_escalation",
-    "missile_strike",
-    "peace_talks",
-    "oil_supply_shock",
     "fed_hawkish",
-    "risk_off_generic"
+    "war_escalation",
+    "risk_off_generic",
+    "peace_talks",
+    "oil_supply_shock"
   ],
   "instruments_long": [
     "BOEING",
@@ -22,12 +21,12 @@
     "EURJPY"
   ],
   "headlines": [
-    "Iran launches missile strike on Al Udeid Air Base Qatar",
-    "US-Iran peace negotiations underway in Switzerland",
-    "Washington grants Iran 60-day oil export license \u2014 supply surge expected",
-    "Gulf producers Kuwait ADNOC raising output \u2014 Hormuz traffic picking up",
-    "BofA expects 3 Fed hikes \u2014 inflation unambiguously worse",
-    "Alphabet worst day in a year on AI concerns"
+    "Gold falls 1.49pct as Fed hike expectations dominate",
+    "Fed holds June 17 but signals September hike \u2014 9/19 FOMC project increase",
+    "BofA expects 3 Fed hikes inflation raised to 3.6pct",
+    "Iran 60-day oil export license issued Hormuz shipping recovering",
+    "Middle East conflict global event Strait of Hormuz energy crisis",
+    "US PCE price index due this week"
   ],
   "high_impact_within_2h": false
 }

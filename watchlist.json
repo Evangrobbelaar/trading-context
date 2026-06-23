@@ -1,49 +1,38 @@
 {
-  "generated_at": "2026-06-23T07:03:51.658298+00:00",
+  "generated_at": "2026-06-23T08:08:44.329948+00:00",
   "watchlist": [
     {
       "symbol": "AUDUSD",
-      "score": 10,
+      "score": 9,
       "direction": "short",
-      "reason": "H4 CHANGE2 confirmed: lower high 0.69937 + prior swing low 0.69934 broken to 0.69491. H1 consistent lower highs/lows. News: oil_supply_shock+risk_off catalyst aligned",
-      "entry": 0.6953,
-      "sl": 0.697,
+      "reason": "H4 bearish lower highs confirmed, news ALIGNED (fed_hawkish+war_escalation SHORT catalyst), M5 perfect downtrend, IN POSITION",
+      "entry": 0.69592,
+      "sl": 0.69801,
       "tp": 0.6921,
       "category": "forex",
-      "added_at": "2026-06-23T07:03:51.185841+00:00"
-    },
-    {
-      "symbol": "EURUSD",
-      "score": 7,
-      "direction": "short",
-      "reason": "H4 CHANGE2: lower highs from 1.14631, prior swing low 1.14255 broken to 1.14185. H1 compression 1.14185-1.14315 at lows. News neutral.",
-      "entry": 1.14226,
-      "sl": 1.1435,
-      "tp": 1.139,
-      "category": "forex",
-      "added_at": "2026-06-23T07:03:51.344018+00:00"
-    },
-    {
-      "symbol": "GBPUSD",
-      "score": 7,
-      "direction": "long",
-      "reason": "H4 CHANGE2: higher low 1.32337, broke prior swing high 1.32471 to 1.32727. H1 pullback to 1.32338 after H4 breakout. News neutral.",
-      "entry": 1.3234,
-      "sl": 1.3215,
-      "tp": 1.3273,
-      "category": "forex",
-      "added_at": "2026-06-23T07:03:51.507612+00:00"
+      "added_at": "2026-06-23T08:08:44.049387+00:00"
     },
     {
       "symbol": "XAUUSD",
-      "score": 7,
+      "score": 9,
       "direction": "short",
-      "reason": "H4 CHANGE2: massive bearish bar (4198->4130). H1 bounce 4115->4137 = pullback entry. News neutral (not conflict). CAUTION: SL 35pt+ wide.",
-      "entry": 4121.0,
-      "sl": 4155.0,
+      "reason": "H4 CHANGE 2 confirmed (4198.44 lower high, 4130.73 swing low broken), news fed_hawkish gold bearish, M5 clean lower highs/lows, IN POSITION SL at entry+5",
+      "entry": 4105.02,
+      "sl": 4110.02,
       "tp": 4069.0,
       "category": "metals",
-      "added_at": "2026-06-23T07:03:51.658298+00:00"
+      "added_at": "2026-06-23T08:08:44.188315+00:00"
+    },
+    {
+      "symbol": "EURUSD",
+      "score": 6,
+      "direction": "short",
+      "reason": "H4 CHANGE 2 confirmed, H1 clean compression breakout, M15 CHANGE 5 triggered. WATCH ONLY: current 5 pips from day low, RR 0.84:1 with structural SL. Re-enter on pullback to 1.14180-1.14220",
+      "entry": 1.1418,
+      "sl": 1.144,
+      "tp": 1.137,
+      "category": "forex",
+      "added_at": "2026-06-23T08:08:44.329948+00:00"
     }
   ],
   "news_events": []
