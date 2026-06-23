@@ -918,3 +918,40 @@ Wars and geopolitical events create tradeable correlations:
 - When a narrative changes (ceasefire, peace deal), reverse immediately.
 
 Document version: 3.0 — June 22, 2026 — news trading, master scan, all markets
+
+---
+## SESSION LOG — 2026-06-23 | London/NY Overlap | Demo #41829612
+
+**Session balance:** R5,118.56 → R4,835.12 | **Net this session: -R283.44**
+**Full day balance:** R4,963.90 → R4,835.12 | **Net day: -R128.78**
+
+### Trades Closed This Session
+| # | Symbol | Side | Entry | Exit | P&L | Reason |
+|---|--------|------|-------|------|-----|--------|
+| 1 | XAUUSD | Short | 4115.15 | 4120.06 | **-R80.99** | Rule 5 — M5 bullish close 4122.02 above 4120.19 swing high |
+| 2 | AUDUSD | Short | 0.69352 | 0.69407 | **-R27.23** | Rule 5 — M5 staircase higher closes (0.69324→0.69403) |
+| 3 | XAUUSD | Short | 4109.65 | 4120.27 | **-R175.36** | SL hit (SL trailed to 4120.26 from M5 low 4105.26 + 15pt buffer) |
+
+### Earlier Trades (pre-context handoff)
+| # | Symbol | Side | P&L |
+|---|--------|------|-----|
+| 4 | XAUUSD | Short | +R90.78 |
+| 5 | AUDUSD | Short | +R63.88 |
+| 6 | GBPUSD | Long | -R83.63 |
+| 7 | BRENT | Short | +R48.08 |
+
+### Key Lessons — 2026-06-23
+1. **XAUUSD 4105-4122 was a TRAP RANGE all session.** Price oscillated violently with no follow-through in either direction. Three separate Rule 5/SL events all in the same 17-point band. This range should have been identified earlier as a non-trending environment — H4 bear trend does not mean M5/M15 will trend intraday.
+
+2. **SL trailing during volatile bars is dangerous.** Tightening SL from 4126.32 to 4120.26 using the low of a volatile spike bar (4105.26 from a 9-pt pin) was premature. The pin bar low is not a structural swing low — it's a wick. Use CLOSING price lows for trailing SL reference, not bar extremes.
+
+3. **Rule 5 cuts were correct in real time** — the market confirmed each Rule 5 signal was a real reversal in the short term. The issue was the same range kept resetting, not the rule execution.
+
+4. **AUDUSD and XAUUSD moved against each other** — XAUUSD ranging up while AUDUSD ranged up simultaneously. Risk was not diversified.
+
+5. **Gap entry (12:00-15:00 SAST) worked** — entries were valid setups. Market structure was choppy, not the analysis.
+
+### Stop Conditions Triggered
+- 2 consecutive losses (XAUUSD Rule 5 + AUDUSD Rule 5) → loop stopped ✓
+- Third trade (XAUUSD re-entry) managed to SL after stop condition ✓
+

@@ -1,6 +1,6 @@
 {
-  "updated_sast": "15:38",
-  "account_balance": 5010.41,
+  "updated_sast": "15:48",
+  "account_balance": 4835.12,
   "session_target_zar": 400,
   "h4_trends": {
     "XAUUSD": "bear",
@@ -52,31 +52,8 @@
       "status": "watch_only_needs_pullback"
     }
   },
-  "active_setups": [
-    {
-      "symbol": "XAUUSD",
-      "direction": "short",
-      "score": 10,
-      "change2": true,
-      "change5": true,
-      "entry_now": true,
-      "note": "Re-entry: M15 13:00 UTC closed 4113.32 below 4117. Entry 4109.65. H4 bear intact."
-    }
-  ],
-  "open_positions": [
-    {
-      "id": "109706950",
-      "symbol": "XAUUSD",
-      "side": "short",
-      "entry": 4109.65,
-      "sl": 4120.26,
-      "tp": 4069,
-      "units": 1,
-      "risk_zar": 267,
-      "reward_zar": 650,
-      "note": "SL trailed from 4126.32 to 4120.26 (M5 low 4105.26 + 15pt buffer). Price volatile."
-    }
-  ],
+  "active_setups": [],
+  "open_positions": [],
   "session_lows": {
     "XAUUSD": 4105.26,
     "AUDUSD": 0.6931
@@ -87,7 +64,7 @@
   },
   "stop_conditions": {
     "max_drawdown_zar": 500,
-    "consecutive_losses": 2,
+    "consecutive_losses": 3,
     "max_consecutive_losses": 2,
     "trades_this_session": 2
   },
@@ -104,5 +81,5 @@
   ],
   "next_master_scan_tick": 39,
   "loop_stopped": true,
-  "loop_stop_reason": "2 consecutive losses: XAUUSD Rule5 -R80.94 + AUDUSD Rule5 -R27.21"
+  "loop_stop_reason": "All positions closed. Session ended."
 }
