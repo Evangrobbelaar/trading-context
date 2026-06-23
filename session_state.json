@@ -15,7 +15,10 @@
       "h4_swing_high": 4198.44,
       "h4_swing_low": 4090.89,
       "h1_resistance": 4133.0,
-      "entry_zone_short": [4118, 4125],
+      "entry_zone_short": [
+        4118,
+        4125
+      ],
       "change5_trigger": 4117.0,
       "sl_short": 4138.0,
       "sl_distance_min_pts": 15,
@@ -26,34 +29,30 @@
     "AUDUSD": {
       "h4_swing_high": 0.70049,
       "h4_swing_low": 0.69315,
-      "entry_zone_short": [0.69340, 0.69420],
-      "sl_short": 0.69530,
+      "entry_zone_short": [
+        0.6934,
+        0.6942
+      ],
+      "sl_short": 0.6953,
       "sl_distance_min_pips": 15,
-      "tp_short": 0.69000,
+      "tp_short": 0.69,
       "rr": 2.53,
       "pips_per_03L_zar": 5.46
     },
     "EURUSD": {
       "h4_swing_high": 1.14631,
       "h4_swing_low": 1.13839,
-      "entry_zone_short": [1.14000, 1.14100],
-      "sl_short": 1.14220,
-      "tp_short": 1.13500,
+      "entry_zone_short": [
+        1.14,
+        1.141
+      ],
+      "sl_short": 1.1422,
+      "tp_short": 1.135,
       "rr": 3.33,
       "status": "watch_only_needs_pullback"
     }
   },
   "active_setups": [
-    {
-      "symbol": "XAUUSD",
-      "direction": "short",
-      "score": 10,
-      "change2": true,
-      "change5": false,
-      "change5_price": 4117.0,
-      "entry_now": false,
-      "note": "H1 double rejection 4133. Watching for break below 4117."
-    },
     {
       "symbol": "AUDUSD",
       "direction": "short",
@@ -65,12 +64,21 @@
     }
   ],
   "open_positions": [
-    {"id":"109706791","symbol":"XAUUSD","side":"short","entry":4115.15,"sl":4128.09,"tp":4069,"units":1,"risk_zar":207,"reward_zar":738},
-    {"id":"109706790","symbol":"AUDUSD","side":"short","entry":0.69352,"sl":0.6953,"tp":0.69,"lots":0.03,"risk_zar":97,"reward_zar":192}
+    {
+      "id": "109706790",
+      "symbol": "AUDUSD",
+      "side": "short",
+      "entry": 0.69352,
+      "sl": 0.6953,
+      "tp": 0.69,
+      "lots": 0.03,
+      "risk_zar": 97,
+      "reward_zar": 192
+    }
   ],
   "session_lows": {
     "XAUUSD": 4090.89,
-    "AUDUSD": 0.69310
+    "AUDUSD": 0.6931
   },
   "trailing_sl_buffers": {
     "XAUUSD_pts": 15,
@@ -78,11 +86,28 @@
   },
   "stop_conditions": {
     "max_drawdown_zar": 500,
-    "consecutive_losses": 0,
+    "consecutive_losses": 1,
     "max_consecutive_losses": 2,
-    "trades_this_session": 0
+    "trades_this_session": 1
   },
-  "news_events": ["fed_hawkish", "war_escalation", "risk_off_generic", "peace_talks", "oil_supply_shock"],
-  "news_short_catalysts": ["AUDUSD", "EURJPY"],
-  "next_master_scan_tick": 24
+  "news_events": [
+    "fed_hawkish",
+    "war_escalation",
+    "risk_off_generic",
+    "peace_talks",
+    "oil_supply_shock"
+  ],
+  "news_short_catalysts": [
+    "AUDUSD",
+    "EURJPY"
+  ],
+  "next_master_scan_tick": 24,
+  "last_closed_trade": {
+    "symbol": "XAUUSD",
+    "side": "short",
+    "entry": 4115.15,
+    "close_approx": 4120.46,
+    "loss_zar_approx": -89,
+    "reason": "Rule5_M5_reversed"
+  }
 }
