@@ -105,6 +105,49 @@ SESSION END: get_close_positions → calculate P&L → append summary to EVAN_TR
 
 ---
 
+## SCALP SESSION — London 09:00–12:00 or London/NY 15:00–18:00 SAST
+
+Scalp loop runs **parallel** to the swing loop. Uses `scalp.lock` (never `tick.lock`).
+State file: `c:\Users\evang\OneDrive\Desktop\scalp loop\scalp_state.json`
+
+### Pre-session setup (run once before typing "start scalp loop")
+```
+# 1. Fetch H1 candles for each instrument via MCP, write scalp_candles_temp.json
+# 2. python scalp_levels.py --symbol EURUSD --symbol GBPUSD --symbol XAUUSD --symbol USDJPY
+# 3. Check ../tradeloop/news_impact.json — no high_impact_2h block
+```
+
+### Start the scalp loop
+```
+start scalp loop
+```
+Claude runs 60-second ticks: acquire `scalp.lock` → check prices → `scalp_monitor.py` → if AT_LEVEL fetch M5 → enforcer → order → release lock → `ScheduleWakeup 60s`.
+
+### Scalp stop conditions (auto)
+- 2 consecutive scalp losses
+- 3 scalp trades placed this session
+- Session drawdown > R200
+- `high_impact_within_2h = true` in news_impact.json
+- Outside London 09:00–12:00 or London/NY 15:00–18:00 SAST
+
+### Scalp sizing
+| Instrument | Lots | SL | Risk ZAR | TP | Reward ZAR | R:R |
+|---|---|---|---|---|---|---|
+| EURUSD | 0.03L | 5pip | R27 | 10pip | R55 | 2:1 |
+| GBPUSD | 0.03L | 5pip | R27 | 10pip | R55 | 2:1 |
+| USDJPY | 0.03L | 5pip | R27 | 10pip | R55 | 2:1 |
+| XAUUSD | 0.5u | 6pt | R48 | 12pt | R96 | 2:1 |
+
+Min scalp risk: R27 | Max scalp risk: R100 per trade | Time stop: 20 minutes
+
+### Session end
+```
+python session_review.py   # includes scalp_log.jsonl analysis automatically
+python generate_dashboard.py  # SCALP STATUS card appears if scalp_state.json exists
+```
+
+---
+
 ## WEEKLY REVIEW (every Monday, paste before first session)
 
 ```

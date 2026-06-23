@@ -13,10 +13,11 @@ from collections import defaultdict
 from datetime import date
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+SCALP_DIR = os.path.normpath(os.path.join(BASE_DIR, "..", "scalp loop"))
 
 
-def load_jsonl(filename):
-    path = os.path.join(BASE_DIR, filename)
+def load_jsonl(filename, base=None):
+    path = os.path.join(base or BASE_DIR, filename)
     records = []
     try:
         with open(path, "r", encoding="utf-8") as f:
@@ -175,6 +176,40 @@ def generate_patterns(analysis):
     return {"patterns": patterns, "warnings": warnings, "observations": observations}
 
 
+def analyze_scalp_session(scalp_ticks):
+    """Summarize scalp log entries for the day."""
+    trades = [t for t in scalp_ticks if t.get("type") == "trade"]
+    tick_entries = [t for t in scalp_ticks if t.get("type") == "tick"]
+
+    wins = [t for t in trades if t.get("outcome") == "win"]
+    losses = [t for t in trades if t.get("outcome") == "loss"]
+    total = len(trades)
+    win_rate = round(len(wins) / total * 100) if total else 0
+
+    hold_times = [t.get("hold_minutes") for t in trades if t.get("hold_minutes")]
+    avg_hold = round(sum(hold_times) / len(hold_times), 1) if hold_times else None
+
+    pnl_by_inst = defaultdict(float)
+    for t in trades:
+        sym = t.get("symbol", "")
+        pnl_by_inst[sym] += t.get("pnl_zar", 0)
+
+    best = max(pnl_by_inst.items(), key=lambda x: x[1]) if pnl_by_inst else None
+    worst = min(pnl_by_inst.items(), key=lambda x: x[1]) if pnl_by_inst else None
+
+    return {
+        "total_trades": total,
+        "wins": len(wins),
+        "losses": len(losses),
+        "win_rate": win_rate,
+        "avg_hold_minutes": avg_hold,
+        "pnl_by_instrument": dict(pnl_by_inst),
+        "best_instrument": best,
+        "worst_instrument": worst,
+        "total_ticks": len(tick_entries),
+    }
+
+
 def main():
     today_str = date.today().isoformat()
     if len(sys.argv) > 1:
@@ -268,6 +303,46 @@ def main():
                     f"- {b.get('instrument')} {b.get('direction')} blocked: {reasons}\n"
                 )
             f.write("\n")
+
+    # Scalp review
+    all_scalp = load_jsonl("scalp_log.jsonl", base=SCALP_DIR)
+    scalp_today = filter_today(all_scalp, today_str)
+    if scalp_today:
+        scalp_analysis = analyze_scalp_session(scalp_today)
+        print(f"\n=== SCALP REVIEW — {today_str} ===")
+        print(
+            f"Trades: {scalp_analysis['total_trades']} | "
+            f"Win rate: {scalp_analysis['win_rate']}% | "
+            f"Avg hold: {scalp_analysis['avg_hold_minutes']}min"
+        )
+        if scalp_analysis["best_instrument"]:
+            sym, pnl = scalp_analysis["best_instrument"]
+            print(f"Best:  {sym} +R{pnl:.2f}")
+        if (
+            scalp_analysis["worst_instrument"]
+            and scalp_analysis["worst_instrument"] != scalp_analysis["best_instrument"]
+        ):
+            sym, pnl = scalp_analysis["worst_instrument"]
+            sign = "+" if pnl >= 0 else ""
+            print(f"Worst: {sym} {sign}R{pnl:.2f}")
+
+        with open(session_file, "a", encoding="utf-8") as f:
+            f.write("## Scalp Session\n\n")
+            f.write(
+                f"**Trades:** {scalp_analysis['total_trades']} | "
+                f"**Win rate:** {scalp_analysis['win_rate']}% | "
+                f"**Avg hold:** {scalp_analysis['avg_hold_minutes']}min\n\n"
+            )
+            if scalp_analysis["pnl_by_instrument"]:
+                f.write("**P&L by instrument:**\n\n")
+                for sym, pnl in sorted(
+                    scalp_analysis["pnl_by_instrument"].items(),
+                    key=lambda x: x[1],
+                    reverse=True,
+                ):
+                    sign = "+" if pnl >= 0 else ""
+                    f.write(f"- {sym}: {sign}R{pnl:.2f}\n")
+                f.write("\n")
 
     print(f"\nSession file → knowledge/sessions/{today_str}.md")
     print(

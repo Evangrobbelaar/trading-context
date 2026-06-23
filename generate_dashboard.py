@@ -11,12 +11,13 @@ import os
 from datetime import datetime, timezone
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+SCALP_DIR = os.path.normpath(os.path.join(BASE_DIR, "..", "scalp loop"))
 
 
-def load_json(filename):
-    path = os.path.join(BASE_DIR, filename)
+def load_json(filename, base=None):
+    path = os.path.join(base or BASE_DIR, filename)
     try:
-        with open(path, "r", encoding="utf-8") as f:
+        with open(path, "r", encoding="utf-8-sig") as f:
             return json.load(f)
     except Exception:
         return {}
@@ -63,6 +64,11 @@ def pnl_span(amount):
 def main():
     state = load_json("session_state.json")
     news = load_json("news_impact.json")
+    scalp = (
+        load_json("scalp_state.json", base=SCALP_DIR)
+        if os.path.exists(os.path.join(SCALP_DIR, "scalp_state.json"))
+        else None
+    )
     ticks = load_jsonl_tail("session_log.jsonl", 12)
     enforcer_log = load_jsonl_tail("enforcer_audit.jsonl", 20)
 
@@ -163,6 +169,57 @@ def main():
     else:
         news_html += '<span class="muted">No active events</span>'
 
+    # Scalp card (only rendered when scalp_state.json exists)
+    scalp_card_html = ""
+    if scalp:
+        s_active = scalp.get("scalp_active", False)
+        s_stopped = scalp.get("loop_stopped", False)
+        s_trades = scalp.get("trades_this_session", scalp.get("scalp_trades_today", 0))
+        s_max_trades = scalp.get("max_trades_per_session", 3)
+        s_consec = scalp.get("consecutive_losses", 0)
+        s_max_consec = scalp.get("max_consecutive_losses", 2)
+        s_pnl = scalp.get("session_pnl_zar", 0)
+        s_drawdown = scalp.get("max_drawdown_zar", 200)
+        s_stop_reason = scalp.get("loop_stop_reason") or scalp.get("stop_reason")
+        s_updated = scalp.get("updated_sast", "—")
+        s_positions = scalp.get("open_scalp_positions", [])
+        if s_stopped:
+            s_status_cls, s_status_txt = (
+                "stopped",
+                f"STOPPED — {s_stop_reason or 'manual'}",
+            )
+        elif s_active:
+            s_status_cls, s_status_txt = "running", "ACTIVE"
+        else:
+            s_status_cls, s_status_txt = "muted", "IDLE"
+        s_pnl_sign = "+" if s_pnl >= 0 else ""
+        s_pnl_cls = "profit" if s_pnl >= 0 else "loss"
+        s_dots = "".join(
+            f'<div class="dot {"red" if i < s_consec else "gray"}"></div>'
+            for i in range(s_max_consec)
+        )
+        s_pos_html = ""
+        for p in s_positions:
+            sym = p.get("symbol", "")
+            side = p.get("direction", "").upper()
+            entry = p.get("entry_price", "")
+            sl = p.get("sl", "")
+            tp = p.get("tp", "")
+            pnl_r = p.get("pnl_zar", None)
+            pnl_str = f" | {pnl_span(pnl_r)}" if pnl_r is not None else ""
+            s_pos_html += f"<div style='margin:2px 0'><b>{sym}</b> {side} @ {entry} SL:{sl} TP:{tp}{pnl_str}</div>"
+        scalp_card_html = f"""
+<div class="card" style="margin-bottom:12px;border-color:#58a6ff44">
+  <h3>Scalp Loop — {s_updated} SAST</h3>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px">
+    <div><div class="sub">Status</div><div class="{s_status_cls}" style="font-weight:bold">{s_status_txt}</div></div>
+    <div><div class="sub">Trades</div><div>{s_trades}/{s_max_trades}</div></div>
+    <div><div class="sub">Session P&amp;L</div><div class="{s_pnl_cls}">{s_pnl_sign}R{s_pnl:.2f}</div></div>
+    <div><div class="sub">Losses ({s_consec}/{s_max_consec})</div><div style="margin-top:4px">{s_dots}</div></div>
+  </div>
+  {('<div class="sub" style="margin-bottom:4px">Open positions:</div>' + s_pos_html) if s_pos_html else '<div class="muted" style="font-size:11px">No open scalp positions</div>'}
+</div>"""
+
     now_str = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
     html = f"""<!DOCTYPE html>
@@ -253,6 +310,8 @@ tr.highlight{{background:rgba(88,166,255,.07)}}
   <h3>H4 Trends</h3>
   <div style="margin-top:6px">{trend_grid}</div>
 </div>
+
+{scalp_card_html}
 
 <div class="card">
   <h3>Recent Ticks</h3>
