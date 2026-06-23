@@ -1,0 +1,35 @@
+{
+  "watchlist": [
+    {
+      "instrument": "XAUUSD",
+      "direction": "sell",
+      "score": 6,
+      "reason": "H4 bearish: LH 4215\u21924211\u21924198, broke 4130 swing low. M15 trigger fired (lower highs+lows). No H1 pullback yet \u2014 wait for bounce to 4125-4130.",
+      "entry_zone": 4125.0,
+      "sl": 4138.0,
+      "tp": 4085.0,
+      "added": "2026-06-23T06:55:36.483078+00:00"
+    },
+    {
+      "instrument": "XAGUSD",
+      "direction": "sell",
+      "score": 6,
+      "reason": "H4 bearish: LH 66.86\u219265.71\u219265.16, broke 62.72 swing low. Massive Asian session sell-off. No pullback yet.",
+      "entry_zone": 63.0,
+      "sl": 63.5,
+      "tp": 61.5,
+      "added": "2026-06-23T06:55:36.514741+00:00"
+    },
+    {
+      "instrument": "AUDUSD",
+      "direction": "sell",
+      "score": 7,
+      "reason": "Cleanest H4 bear trend: LH 0.7013\u21920.6994\u21920.6968, LL 0.6949. M15 trigger fired. Hawkish Fed + risk-off. Wait for bounce to 0.6962-0.6965 zone.",
+      "entry_zone": 0.6962,
+      "sl": 0.698,
+      "tp": 0.692,
+      "added": "2026-06-23T06:55:36.550623+00:00"
+    }
+  ],
+  "scan_time": "2026-06-23T06:55:36.448988+00:00"
+}
