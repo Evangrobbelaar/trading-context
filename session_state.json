@@ -64,7 +64,10 @@
       "note": "CHANGE5 triggered on 12:00 M15 bar. Bouncing 0.69310->0.69362. Entry on any bounce into 0.69340-0.69420."
     }
   ],
-  "open_positions": [],
+  "open_positions": [
+    {"id":"109706791","symbol":"XAUUSD","side":"short","entry":4115.15,"sl":4128.09,"tp":4069,"units":1,"risk_zar":207,"reward_zar":738},
+    {"id":"109706790","symbol":"AUDUSD","side":"short","entry":0.69352,"sl":0.6953,"tp":0.69,"lots":0.03,"risk_zar":97,"reward_zar":192}
+  ],
   "session_lows": {
     "XAUUSD": 4090.89,
     "AUDUSD": 0.69310
