@@ -1,5 +1,5 @@
 {
-  "updated_sast": "18:15",
+  "updated_sast": "overnight_monitor",
   "account_balance": 4835.12,
   "session_target_zar": 400,
   "h4_trends": {
@@ -107,11 +107,11 @@
       "h4_swing_high": 4198.44,
       "h4_lower_high": 4144.74,
       "h4_swing_low": 4090.89,
-      "current_price": 4130.02,
-      "note": "No re-entry short tonight — NY session only. Fresh scan at London open."
+      "current_price": 4111.99,
+      "note": "Drifted down 18pts overnight. Only 21pts above H4 swing low 4090.89. Watch at London open — if 4090 holds = bear continuation. If breaks = reassess."
     },
     "EURUSD": {
-      "current_price": 1.13792,
+      "current_price": 1.13797,
       "h4_swing_high": 1.14387,
       "h4_swing_low": 1.13753,
       "entry_zone_short": [1.14000, 1.14100],
@@ -119,13 +119,14 @@
       "tp_short": 1.13500
     },
     "GBPUSD": {
-      "current_price": 1.31885,
+      "current_price": 1.31991,
       "h4_swing_high": 1.32533,
       "h4_lower_high": 1.32215,
       "h4_swing_low": 1.31825,
       "entry_zone_short": [1.32100, 1.32200],
       "sl_short": 1.32280,
-      "tp_short": 1.31400
+      "tp_short": 1.31400,
+      "note": "Only 11 pips below entry zone 1.32100. London open push could trigger short immediately."
     },
     "AUDUSD": {
       "current_price": 0.69137,
