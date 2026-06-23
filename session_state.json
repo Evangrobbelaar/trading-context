@@ -1,61 +1,170 @@
 {
-  "updated_sast": "17:35",
+  "updated_sast": "18:15",
   "account_balance": 4835.12,
   "session_target_zar": 400,
   "h4_trends": {
     "XAUUSD": "bear",
+    "XAGUSD": "bear",
+    "BRENT": "bear",
     "EURUSD": "bear",
     "GBPUSD": "bear",
-    "AUDUSD": "bear"
+    "AUDUSD": "bear",
+    "NZDUSD": "bear",
+    "GBPJPY": "bear",
+    "USDJPY": "range_skip",
+    "USDCHF": "bull_choppy_skip",
+    "USDCAD": "bull_mild_skip"
+  },
+  "watchlist_tomorrow": [
+    {
+      "rank": 1,
+      "symbol": "EURUSD",
+      "direction": "short",
+      "score": 9,
+      "h4_confirmed": true,
+      "entry_zone": [1.14000, 1.14100],
+      "sl": 1.14220,
+      "sl_pips": 22,
+      "tp": 1.13500,
+      "rr": 3.33,
+      "risk_zar": 120,
+      "reward_zar": 400,
+      "trigger": "Pullback overnight to 1.14000-1.14100, then M15 lower high + CHANGE5 at London open",
+      "invalidation": "H4 close above 1.14387 (today's swing high)"
+    },
+    {
+      "rank": 2,
+      "symbol": "AUDUSD",
+      "direction": "short",
+      "score": 9,
+      "h4_confirmed": true,
+      "entry_zone": [0.6928, 0.6940],
+      "sl": 0.6953,
+      "sl_pips": 19,
+      "tp": 0.6880,
+      "rr": 2.84,
+      "risk_zar": 104,
+      "reward_zar": 295,
+      "trigger": "Overnight pullback to 0.6928-0.6940, then M15 lower high at London open",
+      "invalidation": "H4 close above 0.6950",
+      "note": "2x Rule5 cuts TODAY but NEW session tomorrow = rule resets"
+    },
+    {
+      "rank": 3,
+      "symbol": "GBPUSD",
+      "direction": "short",
+      "score": 8,
+      "h4_confirmed": true,
+      "entry_zone": [1.32100, 1.32200],
+      "sl": 1.32280,
+      "sl_pips": 18,
+      "tp": 1.31400,
+      "rr": 2.5,
+      "risk_zar": 98,
+      "reward_zar": 245,
+      "trigger": "Pullback overnight to 1.32100-1.32200, then M15 CHANGE5",
+      "invalidation": "H4 close above 1.32350"
+    },
+    {
+      "rank": 4,
+      "symbol": "NZDUSD",
+      "direction": "short",
+      "score": 8,
+      "h4_confirmed": true,
+      "entry_zone": [0.5678, 0.5690],
+      "sl": 0.5700,
+      "sl_pips": 20,
+      "tp": 0.5630,
+      "rr": 2.4,
+      "risk_zar": 109,
+      "reward_zar": 262,
+      "trigger": "Pullback to 0.5678-0.5690, M15 CHANGE5",
+      "invalidation": "H4 close above 0.5710",
+      "note": "Correlated with AUDUSD — do NOT take both simultaneously"
+    },
+    {
+      "rank": 5,
+      "symbol": "XAGUSD",
+      "direction": "short",
+      "score": 7,
+      "h4_confirmed": true,
+      "entry_zone": [62.500, 63.000],
+      "sl": 63.400,
+      "tp": 61.000,
+      "rr": 2.5,
+      "trigger": "Pullback to 62.50-63.00, M15 CHANGE5",
+      "invalidation": "H4 close above 63.300",
+      "note": "INVESTIGATE ZAR lot sizing before placing — not in standard enforcer"
+    }
+  ],
+  "skip_tonight": {
+    "reason": "NY session 18:00-22:00 SAST = monitor only, no new entries without open position",
+    "also_skip": ["NAS100", "SPX500", "US30"],
+    "skip_reason_indices": "Balance R4835 below R8000 minimum for indices"
   },
   "key_levels": {
     "XAUUSD": {
       "h4_swing_high": 4198.44,
       "h4_lower_high": 4144.74,
       "h4_swing_low": 4090.89,
-      "h1_resistance": 4133.0,
-      "entry_zone_short": [4126, 4135],
-      "sl_short": 4150,
-      "sl_distance_pts": 16,
-      "tp_short": 4090,
-      "rr": 2.72,
-      "pts_per_unit_zar": 16,
-      "note": "2x Rule5 cuts today — do NOT re-enter XAUUSD short this session"
+      "current_price": 4130.02,
+      "note": "No re-entry short tonight — NY session only. Fresh scan at London open."
     },
     "EURUSD": {
-      "h4_swing_high": 1.14631,
-      "h4_lower_high": 1.13998,
+      "current_price": 1.13792,
+      "h4_swing_high": 1.14387,
       "h4_swing_low": 1.13753,
       "entry_zone_short": [1.14000, 1.14100],
-      "sl_short": 1.14200,
-      "tp_short": 1.13500,
-      "rr": 3.33,
-      "status": "wait_for_pullback — price at 1.13780, below entry zone — BEST setup for tomorrow London"
+      "sl_short": 1.14220,
+      "tp_short": 1.13500
     },
     "GBPUSD": {
-      "h4_swing_high": 1.32727,
+      "current_price": 1.31885,
+      "h4_swing_high": 1.32533,
       "h4_lower_high": 1.32215,
-      "h4_swing_low": 1.31845,
+      "h4_swing_low": 1.31825,
       "entry_zone_short": [1.32100, 1.32200],
       "sl_short": 1.32280,
-      "tp_short": 1.31400,
-      "rr": 2.5,
-      "status": "wait_for_pullback — price at 1.31871, at session low — BEST setup for tomorrow London"
+      "tp_short": 1.31400
     },
     "AUDUSD": {
-      "note": "2x Rule5 cuts today — do NOT re-enter AUDUSD short this session"
+      "current_price": 0.69137,
+      "h4_swing_high": 0.70049,
+      "h4_lower_high": 0.69413,
+      "h4_swing_low": 0.69206,
+      "entry_zone_short": [0.6928, 0.6940],
+      "sl_short": 0.6953,
+      "tp_short": 0.6880
+    },
+    "NZDUSD": {
+      "current_price": 0.56671,
+      "h4_swing_high": 0.57187,
+      "h4_lower_high": 0.56810,
+      "h4_swing_low": 0.56665,
+      "entry_zone_short": [0.5678, 0.5690],
+      "sl_short": 0.5700,
+      "tp_short": 0.5630
+    },
+    "XAGUSD": {
+      "current_price": 61.876,
+      "h4_swing_high": 66.862,
+      "h4_lower_high": 62.470,
+      "h4_swing_low": 61.497,
+      "entry_zone_short": [62.500, 63.000],
+      "sl_short": 63.400,
+      "tp_short": 61.000,
+      "note": "Check lot sizing before trading"
+    },
+    "GBPJPY": {
+      "current_price": 213.076,
+      "h4_swing_high": 214.670,
+      "h4_lower_high": 214.205,
+      "h4_swing_low": 212.974,
+      "entry_zone_short": [213.400, 213.550],
+      "sl_short": 214.300,
+      "tp_short": 212.000,
+      "note": "Check JPY cross lot sizing before trading"
     }
-  },
-  "active_setups": [],
-  "open_positions": [],
-  "session_lows": {
-    "XAUUSD": 4090.89,
-    "GBPUSD": 1.31845,
-    "EURUSD": 1.13753
-  },
-  "trailing_sl_buffers": {
-    "XAUUSD_pts": 15,
-    "forex_pips": 0.0015
   },
   "stop_conditions": {
     "max_drawdown_zar": 500,
@@ -72,6 +181,5 @@
     "oil_supply_shock"
   ],
   "loop_stopped": false,
-  "loop_stop_reason": null,
-  "next_master_scan_tick": 1
+  "loop_stop_reason": null
 }
