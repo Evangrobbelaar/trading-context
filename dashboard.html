@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="30">
+<title>TradeLoop Dashboard</title>
+<style>
+:root {
+  --bg:#0d1117;--surface:#161b22;--border:#30363d;
+  --text:#e6edf3;--muted:#8b949e;
+  --profit:#3fb950;--loss:#f85149;--warn:#d29922;--info:#58a6ff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Courier New',monospace;font-size:13px;padding:16px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.grid2{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:12px}
+h3{font-size:10px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;letter-spacing:.5px}
+.big{font-size:26px;font-weight:bold;margin:4px 0}
+.sub{color:var(--muted);font-size:11px}
+.profit{color:var(--profit)}
+.loss{color:var(--loss)}
+.warn{color:var(--warn)}
+.muted{color:var(--muted)}
+.badge{padding:2px 7px;border-radius:3px;font-size:11px;font-weight:bold}
+.badge.bear{background:rgba(248,81,73,.18);color:#f85149}
+.badge.bull{background:rgba(63,185,80,.18);color:#3fb950}
+.badge.skip{background:rgba(139,148,158,.15);color:#8b949e}
+.running{color:var(--profit)}
+.stopped{color:var(--loss);font-weight:bold}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:4px 6px;font-size:10px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+td{padding:4px 6px;border-bottom:1px solid rgba(48,54,61,.4)}
+tr:last-child td{border-bottom:none}
+tr.highlight{background:rgba(88,166,255,.07)}
+.trend-cell{display:inline-block;margin:3px 6px}
+.news-tag{background:rgba(210,153,34,.2);color:#d29922;border-radius:3px;padding:2px 6px;margin:2px;font-size:11px;display:inline-block}
+.alert{background:rgba(248,81,73,.15);border:1px solid #f85149;color:#f85149;padding:6px 10px;border-radius:4px;margin-bottom:8px;font-weight:bold}
+.dot{width:13px;height:13px;border-radius:50%;display:inline-block;margin-right:4px}
+.dot.red{background:#f85149}
+.dot.gray{background:#30363d}
+.footer{text-align:right;color:var(--muted);font-size:10px;margin-top:12px}
+</style>
+</head>
+<body>
+
+<div class="grid">
+  <div class="card">
+    <h3>Account Balance</h3>
+    <div class="big">R4835.12</div>
+    <div class="sub">Demo #41829612 · last scan 18:15 SAST</div>
+    <div style="margin-top:6px"><span class="loss">R-175.29</span> session P&amp;L</div>
+  </div>
+  <div class="card">
+    <h3>Loop Status</h3>
+    <div class="big running">ACTIVE</div>
+    <div class="sub">Target: R400 · trades today: 0</div>
+  </div>
+  <div class="card">
+    <h3>Consecutive Losses</h3>
+    <div class="big muted">0/2</div>
+    <div style="margin-top:8px"><div class="dot gray"></div><div class="dot gray"></div></div>
+  </div>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h3>Watchlist — London Open</h3>
+    <table>
+      <tr><th>Symbol</th><th>Dir</th><th>Score</th><th>Entry</th><th>R:R</th><th>Risk</th></tr>
+      <tr><td><b>EURUSD</b></td><td><span class="loss">SHORT</span></td><td><span class="profit">9/10</span></td><td>1.14–1.141</td><td>3.33:1</td><td>R120</td></tr><tr><td><b>AUDUSD</b></td><td><span class="loss">SHORT</span></td><td><span class="profit">9/10</span></td><td>0.6928–0.694</td><td>2.84:1</td><td>R104</td></tr><tr><td><b>GBPUSD</b></td><td><span class="loss">SHORT</span></td><td><span class="profit">8/10</span></td><td>1.321–1.322</td><td>2.5:1</td><td>R98</td></tr><tr><td><b>NZDUSD</b></td><td><span class="loss">SHORT</span></td><td><span class="profit">8/10</span></td><td>0.5678–0.569</td><td>2.4:1</td><td>R109</td></tr><tr><td><b>XAGUSD</b></td><td><span class="loss">SHORT</span></td><td><span class="warn">7/10</span></td><td>62.5–63.0</td><td>2.5:1</td><td>R?</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>News</h3>
+    <span class="news-tag">fed_hawkish</span> <span class="news-tag">war_escalation</span> <span class="news-tag">risk_off_generic</span> <span class="news-tag">peace_talks</span> <span class="news-tag">oil_supply_shock</span>
+    <div style="margin-top:12px">
+      <h3>Enforcer (session)</h3>
+      <span class="profit">✓ 10 PASS</span>&nbsp;&nbsp;
+      <span class="loss">✗ 4 BLOCKED</span>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px">
+  <h3>H4 Trends</h3>
+  <div style="margin-top:6px"><div class='trend-cell'><b>XAUUSD</b> <span class="badge bear">↓ BEAR</span></div><div class='trend-cell'><b>XAGUSD</b> <span class="badge bear">↓ BEAR</span></div><div class='trend-cell'><b>BRENT</b> <span class="badge bear">↓ BEAR</span></div><div class='trend-cell'><b>EURUSD</b> <span class="badge bear">↓ BEAR</span></div><div class='trend-cell'><b>GBPUSD</b> <span class="badge bear">↓ BEAR</span></div><div class='trend-cell'><b>AUDUSD</b> <span class="badge bear">↓ BEAR</span></div><div class='trend-cell'><b>NZDUSD</b> <span class="badge bear">↓ BEAR</span></div><div class='trend-cell'><b>GBPJPY</b> <span class="badge bear">↓ BEAR</span></div><div class='trend-cell'><b>USDJPY</b> <span class="badge skip">— SKIP</span></div><div class='trend-cell'><b>USDCHF</b> <span class="badge skip">— SKIP</span></div><div class='trend-cell'><b>USDCAD</b> <span class="badge skip">— SKIP</span></div></div>
+</div>
+
+<div class="card">
+  <h3>Recent Ticks</h3>
+  <table>
+    <tr><th>#</th><th>SAST</th><th>Session</th><th>Trade</th><th>Enforcer</th><th>Action</th></tr>
+    <tr><td>#43</td><td>16:53</td><td>london_ny</td><td>none</td><td><span class="muted">na</span></td><td title='Session over. No positions. XAUUSD 4139.59 — 7.4pts from H4 lower high'>Session over. No positions. XAUUSD 4139.59 — 7.4pts from H4 lower high</td></tr><tr><td>#42</td><td>16:48</td><td>london_ny</td><td>none</td><td><span class="muted">na</span></td><td title='Session over. No positions. XAUUSD 4135.04 — consolidating above 4133.'>Session over. No positions. XAUUSD 4135.04 — consolidating above 4133.</td></tr><tr><td>#41</td><td>16:43</td><td>london_ny</td><td>none</td><td><span class="muted">na</span></td><td title='Session over. No positions. XAUUSD 4134.16 (slight pullback from 4137.'>Session over. No positions. XAUUSD 4134.16 (slight pullback from 4137.</td></tr><tr><td>#40</td><td>16:38</td><td>london_ny</td><td>none</td><td><span class="muted">na</span></td><td title='Session over. No positions. XAUUSD 4137.69 — broke above H1 resistance'>Session over. No positions. XAUUSD 4137.69 — broke above H1 resistance</td></tr><tr><td>#39</td><td>16:33</td><td>london_ny</td><td>none</td><td><span class="muted">na</span></td><td title='Session over. No positions. XAUUSD 4132.68 — now AT H1 resistance 4133'>Session over. No positions. XAUUSD 4132.68 — now AT H1 resistance 4133</td></tr><tr><td>#38</td><td>16:28</td><td>london_ny</td><td>none</td><td><span class="muted">na</span></td><td title='Session over. No positions. Loop stopped. XAUUSD bid 4127.36 — climbin'>Session over. No positions. Loop stopped. XAUUSD bid 4127.36 — climbin</td></tr><tr><td>#37</td><td>15:53</td><td>london_ny</td><td>none</td><td><span class="muted">na</span></td><td title='Session fully closed. No open positions. Loop stopped (3 consecutive l'>Session fully closed. No open positions. Loop stopped (3 consecutive l</td></tr><tr><td>#36</td><td>15:48</td><td>london_ny</td><td>none</td><td><span class="muted">na</span></td><td title='XAUUSD #109706950 SL HIT at 4120.27. P&L -R175.36. Balance 5010.41->48'>XAUUSD #109706950 SL HIT at 4120.27. P&L -R175.36. Balance 5010.41->48</td></tr><tr><td>#35</td><td>15:43</td><td>london_ny</td><td>none</td><td><span class="muted">na</span></td><td title='LOOP STOPPED. XAUUSD bid 4114.92 (pulled back from 4119 spike). P&L -R'>LOOP STOPPED. XAUUSD bid 4114.92 (pulled back from 4119 spike). P&L -R</td></tr><tr><td>#34</td><td>15:38</td><td>london_ny</td><td>none</td><td><span class="muted">na</span></td><td title='XAUUSD volatile: bid spiked 4107->4116. M5 15:25 bar: new low 4105.26 '>XAUUSD volatile: bid spiked 4107->4116. M5 15:25 bar: new low 4105.26 </td></tr>
+  </table>
+</div>
+
+<div class="footer">Generated 2026-06-23 22:17 UTC · auto-refresh 30s · TradeLoop v3.0</div>
+</body>
+</html>

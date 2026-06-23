@@ -73,7 +73,7 @@ MONITORING MODE steps:
 5. python3 session_logger.py [all args].
 
 STOP CONDITIONS: 2 trades placed OR 2 consecutive losses OR R500 drawdown OR after 12:00 SAST OR 36 ticks.
-SESSION END: get_close_positions → calculate P&L → append summary to EVAN_TRADING_CONTEXT.md → git add EVAN_TRADING_CONTEXT.md session_log.jsonl watchlist.json news_impact.json && git commit -m "Session [date] [P&L] [N] trades" && git push.
+SESSION END: get_close_positions → calculate P&L → append summary to EVAN_TRADING_CONTEXT.md → python session_review.py (copy any PATTERNS/WARNINGS to EVAN_TRADING_CONTEXT.md lessons) → python generate_dashboard.py → git add EVAN_TRADING_CONTEXT.md session_log.jsonl watchlist.json news_impact.json dashboard.html && git commit -m "Session [date] [P&L] [N] trades" && git push.
 ```
 
 ---
@@ -100,7 +100,7 @@ MONITORING MODE steps:
 5. python3 session_logger.py [all args].
 
 STOP CONDITIONS: 2 trades placed OR 2 consecutive losses OR R500 drawdown OR after 18:00 SAST OR 36 ticks.
-SESSION END: get_close_positions → calculate P&L → append summary to EVAN_TRADING_CONTEXT.md → git add EVAN_TRADING_CONTEXT.md session_log.jsonl watchlist.json news_impact.json && git commit -m "Session [date] [P&L] [N] trades" && git push.
+SESSION END: get_close_positions → calculate P&L → append summary to EVAN_TRADING_CONTEXT.md → python session_review.py (copy any PATTERNS/WARNINGS to EVAN_TRADING_CONTEXT.md lessons) → python generate_dashboard.py → git add EVAN_TRADING_CONTEXT.md session_log.jsonl watchlist.json news_impact.json dashboard.html && git commit -m "Session [date] [P&L] [N] trades" && git push.
 ```
 
 ---
@@ -246,9 +246,20 @@ tradeloop/
 ├── session_logger.py          ← tick logger → session_log.jsonl
 ├── master_scan.py             ← hourly full scan → watchlist.json
 ├── news_scanner.py            ← news → news_impact.json (exit 0/1/2)
+├── tick_lock.py               ← lock file manager (tick.lock / scalp.lock)
+├── session_start_hook.py      ← auto-injects context at every session open
+├── session_review.py          ← post-session pattern extractor
+├── generate_dashboard.py      ← live dashboard → dashboard.html
 ├── LOOP_SETUP.md              ← this file
 ├── enforcer_audit.jsonl       ← every enforcer check
 ├── session_log.jsonl          ← every tick
 ├── watchlist.json             ← top-10 instruments this hour
-└── news_impact.json           ← active news events
+├── news_impact.json           ← active news events
+├── session_state.json         ← H4 trends, key levels, loop state
+├── dashboard.html             ← open in browser for live view
+└── knowledge/
+    ├── RULES.md               ← all rules + CHANGES quick reference
+    ├── instruments/           ← XAUUSD.md, FOREX.md
+    ├── lessons/               ← range_trap.md, sl_trailing.md, enforcer_bypass.md
+    └── sessions/              ← YYYY-MM-DD.md (auto-written by session_review.py)
 ```

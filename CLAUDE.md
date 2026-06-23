@@ -25,6 +25,24 @@ A skipped checklist item that causes a loss is a SYSTEM FAILURE.
 
 ---
 
+## THINK BEFORE TRADING (Karpathy principles — mandatory before any entry)
+
+**1. State your H4 assumption explicitly before any trade.**
+Before calling enforcer.py, write: "H4 trend is [bear/bull] because [lower high at X / prior swing low Y broken]."
+If you cannot complete that sentence with price evidence, H4 is NOT confirmed. Do not proceed.
+
+**2. Use the minimum analysis needed, not the maximum.**
+6 H4 candles answers the trend question. 12 candles is rarely better. Don't pad analysis — every extra API call is latency and context budget. If 6 candles confirm the gate, move on.
+
+**3. Make surgical decisions, not sweeping ones.**
+Trailing a SL: move it to one specific price, cite one specific rule (Rule 14 / Rule 4 / CHANGE 3). Do not "tighten just in case." Do not use wick extremes — closing prices only.
+
+**4. Every tick has a success criterion. State it.**
+"This tick succeeds if: [price reaches entry zone / M15 lower high confirmed / position monitored with no Rule 5 signal]."
+A tick where nothing happened and nothing should have happened is a PASS, not a failure.
+
+---
+
 ## v3.0 LOOP ARCHITECTURE — TWO MODES
 
 ### MASTER SCAN MODE (Tick 1, then every 12th tick = every hour on 5-min ticks)
@@ -234,9 +252,18 @@ Stop immediately if ANY are true:
 1. `mcp__claude_ai_claude__get_close_positions` — closed trades this session
 2. Calculate session P&L
 3. Append session summary to EVAN_TRADING_CONTEXT.md
-4. Commit to GitHub:
+4. Run pattern extractor:
    ```bash
-   git add EVAN_TRADING_CONTEXT.md session_log.jsonl watchlist.json news_impact.json
+   python session_review.py
+   ```
+   Copy any new PATTERNS or WARNINGS into EVAN_TRADING_CONTEXT.md → Key Lessons section.
+5. Generate final dashboard:
+   ```bash
+   python generate_dashboard.py
+   ```
+6. Commit to GitHub:
+   ```bash
+   git add EVAN_TRADING_CONTEXT.md session_log.jsonl watchlist.json news_impact.json dashboard.html
    git commit -m "Session [date] — [P&L] — [N] trades"
    git push
    ```
@@ -271,9 +298,21 @@ tradeloop/
 ├── session_logger.py          ← every tick → session_log.jsonl
 ├── master_scan.py             ← hourly scan → watchlist.json
 ├── news_scanner.py            ← news events → news_impact.json
+├── tick_lock.py               ← lock file manager (tick.lock / scalp.lock)
+├── session_start_hook.py      ← SessionStart hook → injects context at session open
+├── session_review.py          ← post-session pattern extractor → knowledge/sessions/
+├── generate_dashboard.py      ← tick-end dashboard → dashboard.html
 ├── LOOP_SETUP.md              ← session start commands
+├── BUILD_SCALPING_SYSTEM.md   ← scalping system spec (to be built)
 ├── enforcer_audit.jsonl       ← every enforcer check
 ├── session_log.jsonl          ← every tick
 ├── watchlist.json             ← top-10 instruments this hour
-└── news_impact.json           ← active news events
+├── news_impact.json           ← active news events
+├── session_state.json         ← H4 trends, key levels, watchlist, loop state
+├── dashboard.html             ← live session dashboard (open in browser)
+└── knowledge/
+    ├── RULES.md               ← all rules + CHANGES in one reference doc
+    ├── instruments/           ← per-instrument profiles
+    ├── lessons/               ← named lessons (range_trap, sl_trailing, etc.)
+    └── sessions/              ← auto-written by session_review.py
 ```
