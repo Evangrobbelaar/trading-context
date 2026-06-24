@@ -1,5 +1,5 @@
 # TRADING SESSION — CLAUDE CODE BOOTSTRAP
-Version: 3.0 | Updated: June 22, 2026
+Version: 3.2 | Updated: June 24, 2026
 
 ## MANDATORY FIRST ACTION
 Read `EVAN_TRADING_CONTEXT.md` fully before any other output.
@@ -43,7 +43,17 @@ A tick where nothing happened and nothing should have happened is a PASS, not a 
 
 ---
 
-## v3.0 LOOP ARCHITECTURE — TWO MODES
+## v3.2 LOOP ARCHITECTURE — FIVE SESSIONS
+
+| Session | Time (SAST) | Strategy | Max trades |
+|---|---|---|---|
+| Asian | 01:00-07:00 | CHANGE 7 only (USDJPY/AUDUSD/NZDUSD/XAUUSD) | 1 |
+| London | 09:00-15:00 | CHANGE 7 + scalp | 2 + 3 scalp |
+| London/NY | 15:00-18:00 | CHANGE 7 + scalp (BEST) | 2 + 3 scalp |
+| NY | 18:00-22:00 | Monitor open positions only | 0 new |
+| Overnight | 22:00-01:00 | Position monitor every 30 min if trades open | 0 new |
+
+**Full loop commands in LOOP_SETUP.md.**
 
 ### MASTER SCAN MODE (Tick 1, then every 12th tick = every hour on 5-min ticks)
 Full broad scan: all instruments, live news, rescore everything, rebuild watchlist.
@@ -61,11 +71,12 @@ Focused scan: watchlist instruments + open positions only. Faster, lower API usa
 2. `mcp__claude_ai_claude__get_account_info` — confirm balance, confirm account is #41829612
 3. `mcp__claude_ai_claude__get_open_positions` — list open positions and floating P&L
 4. Determine session:
-   - Asian: 00:00-07:00 SAST (off — no trading)
-   - London: 09:00-12:00 SAST
-   - London/NY overlap: 15:00-18:00 SAST (BEST session)
-   - NY: 18:00-22:00 SAST (monitor only if in trade)
-   - Off-hours: 22:00-09:00 SAST (STOP LOOP)
+   - Asian: 01:00-07:00 SAST (CHANGE 7 only — USDJPY/AUDUSD/NZDUSD/XAUUSD — no scalp)
+   - Pre-London: 08:43 SAST — scalp_levels.py setup (1-time, not a loop)
+   - London: 09:00-15:00 SAST (CHANGE 7 + scalp)
+   - London/NY overlap: 15:00-18:00 SAST (CHANGE 7 + scalp — BEST session)
+   - NY: 18:00-22:00 SAST (monitor open positions only — no new trades)
+   - Off-hours: 22:00-01:00 SAST (STOP LOOP unless positions open → overnight monitor)
 
 ---
 
@@ -143,8 +154,10 @@ Scan in priority order — skip categories with no active news relevance:
 
 For each instrument:
 - `mcp__claude_ai_claude__get_symbol_price` → current price
-- `mcp__claude_ai_claude__get_symbol_history` H4 (last 6 candles) → CHANGE 2 trend gate
-- If H4 passes: `mcp__claude_ai_claude__get_symbol_history` H1 (last 12 candles)
+- `mcp__claude_ai_claude__get_symbol_history` H4: use `timeframeMinutes=240, limit=50` — NEVER `timeframe="H4"` (returns 0 bars)
+- `mcp__claude_ai_claude__get_symbol_history` M15: use `timeframeMinutes=15, limit=50` — same rule
+- H4 last 6 closes → CHANGE 2 trend gate
+- If H4 passes: `mcp__claude_ai_claude__get_symbol_history` H1 (timeframeMinutes=60, limit=12)
 - `python3 news_scanner.py check --symbol [X] --direction [long/short]`
 
 Score (max 10):
@@ -178,8 +191,26 @@ python3 master_scan.py read
 For each watchlist instrument (score ≥ 6):
 - `mcp__claude_ai_claude__get_symbol_price` → is price near the entry zone?
 - If near entry: `mcp__claude_ai_claude__get_symbol_history` M15 (last 8 candles)
-- CHANGE 5 trigger: M15 structure broken in trade direction?
+- CHANGE 7 trigger: run change7_scanner.py — exit 0 = signal, exit 1 = no signal
+- CHANGE 5 trigger: M15 lower high (short) or higher low (long) confirmed
 - If trigger fires AND fewer than 2 trades placed → go to STEP 4 (ENFORCER)
+
+### ALL TICKS — STEP 3b: SCALP CHECK (London and London/NY sessions only)
+
+For EURUSD, GBPUSD, XAUUSD, USDJPY — after getting current prices:
+```bash
+python3 scalp_monitor.py --symbol EURUSD --price [current]
+python3 scalp_monitor.py --symbol GBPUSD --price [current]
+python3 scalp_monitor.py --symbol XAUUSD --price [current]
+python3 scalp_monitor.py --symbol USDJPY --price [current]
+```
+
+- status=WATCHING or NEAR → nothing to do
+- status=AT_LEVEL → fetch last 5 M5 candles for that symbol → write `scalp_m5_temp.json` → re-run scalp_monitor.py
+- status=TRIGGERED → run scalp_enforcer.py → if exit 0: create_market_order + modify_position (SL/TP)
+- scalp_enforcer exit 1 = BLOCKED — do NOT retry with adjusted numbers
+
+**scalp_state.json must exist** (run scalp_levels.py at 08:43 before London loop starts)
 
 ---
 
@@ -263,7 +294,7 @@ Stop immediately if ANY are true:
    ```
 6. Commit to GitHub:
    ```bash
-   git add EVAN_TRADING_CONTEXT.md session_log.jsonl watchlist.json news_impact.json dashboard.html
+   git add EVAN_TRADING_CONTEXT.md session_log.jsonl watchlist.json news_impact.json dashboard.html scalp_log.jsonl scalp_state.json
    git commit -m "Session [date] — [P&L] — [N] trades"
    git push
    ```
@@ -292,27 +323,36 @@ Do NOT close without: Evan says "close the swing" → Claude reads lock protocol
 
 ```
 tradeloop/
-├── CLAUDE.md                  ← auto-loaded on Claude Code startup
-├── EVAN_TRADING_CONTEXT.md    ← brain — rules, history, lessons
-├── enforcer.py                ← deterministic gate (exit 0/1)
-├── session_logger.py          ← every tick → session_log.jsonl
-├── master_scan.py             ← hourly scan → watchlist.json
-├── news_scanner.py            ← news events → news_impact.json
-├── tick_lock.py               ← lock file manager (tick.lock / scalp.lock)
-├── session_start_hook.py      ← SessionStart hook → injects context at session open
-├── session_review.py          ← post-session pattern extractor → knowledge/sessions/
-├── generate_dashboard.py      ← tick-end dashboard → dashboard.html
-├── LOOP_SETUP.md              ← session start commands
-├── BUILD_SCALPING_SYSTEM.md   ← scalping system spec (to be built)
-├── enforcer_audit.jsonl       ← every enforcer check
-├── session_log.jsonl          ← every tick
-├── watchlist.json             ← top-10 instruments this hour
-├── news_impact.json           ← active news events
-├── session_state.json         ← H4 trends, key levels, watchlist, loop state
-├── dashboard.html             ← live session dashboard (open in browser)
+├── CLAUDE.md                     ← auto-loaded on Claude Code startup (v3.2)
+├── EVAN_TRADING_CONTEXT.md       ← brain — rules, history, lessons
+├── LOOP_SETUP.md                 ← all loop commands + session architecture
+├── SCALP_SETUP.md                ← scalp loop quick reference
+├── enforcer.py                   ← CHANGE 7 gate (exit 0/1)
+├── scalp_enforcer.py             ← scalp gate (exit 0/1)
+├── scalp_levels.py               ← pre-session H1 level calculator
+├── scalp_monitor.py              ← per-tick S/R level watcher
+├── scalp_logger.py               ← scalp tick/trade logger
+├── change7_scanner.py            ← CHANGE 7 + BOUNCE signal detector
+├── session_logger.py             ← main tick logger → session_log.jsonl
+├── master_scan.py                ← hourly scan → watchlist.json
+├── news_scanner.py               ← news → news_impact.json (exit 0/1/2)
+├── tick_lock.py                  ← lock file manager (tick.lock / scalp.lock)
+├── session_start_hook.py         ← SessionStart hook → injects context
+├── session_review.py             ← post-session pattern extractor
+├── generate_dashboard.py         ← live dashboard → dashboard.html
+├── enforcer_audit.jsonl          ← every CHANGE 7 enforcer check
+├── scalp_enforcer_audit.jsonl    ← every scalp enforcer check
+├── session_log.jsonl             ← every main tick
+├── scalp_log.jsonl               ← every scalp tick and trade
+├── scalp_state.json              ← scalp levels + session counters
+├── scalp_candles_temp.json       ← H1 OHLCV input for scalp_levels.py
+├── watchlist.json                ← top-10 instruments this hour
+├── news_impact.json              ← active news events
+├── session_state.json            ← H4 trends, key levels, loop state
+├── dashboard.html                ← live dashboard (open in browser)
 └── knowledge/
-    ├── RULES.md               ← all rules + CHANGES in one reference doc
-    ├── instruments/           ← per-instrument profiles
-    ├── lessons/               ← named lessons (range_trap, sl_trailing, etc.)
-    └── sessions/              ← auto-written by session_review.py
+    ├── RULES.md                  ← all rules + CHANGES in one reference doc
+    ├── instruments/              ← per-instrument profiles
+    ├── lessons/                  ← named lessons
+    └── sessions/                 ← auto-written by session_review.py
 ```

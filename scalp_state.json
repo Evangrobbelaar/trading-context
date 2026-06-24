@@ -1,0 +1,176 @@
+{
+  "updated_sast": "08:41",
+  "instruments": {
+    "XAUUSD": {
+      "current_price": 4088.99,
+      "h1_trend": "bear",
+      "levels": [
+        {
+          "price": 4110,
+          "type": "resistance",
+          "direction": "short",
+          "strength": 11,
+          "distance_pips": 21.0,
+          "sl": 4115.0,
+          "tp": 4100.0,
+          "rr": 2.0,
+          "status": "watching"
+        },
+        {
+          "price": 4115.07,
+          "type": "resistance",
+          "direction": "short",
+          "strength": 11,
+          "distance_pips": 26.1,
+          "sl": 4120.07,
+          "tp": 4105.07,
+          "rr": 2.0,
+          "status": "watching"
+        },
+        {
+          "price": 4100,
+          "type": "resistance",
+          "direction": "short",
+          "strength": 6,
+          "distance_pips": 11.0,
+          "sl": 4105.0,
+          "tp": 4090.0,
+          "rr": 2.0,
+          "status": "watching"
+        }
+      ]
+    },
+    "EURUSD": {
+      "current_price": 1.13653,
+      "h1_trend": "bear",
+      "levels": [
+        {
+          "price": 1.13831,
+          "type": "resistance",
+          "direction": "short",
+          "strength": 14,
+          "distance_pips": 17.8,
+          "sl": 1.13881,
+          "tp": 1.13731,
+          "rr": 2.0,
+          "status": "watching"
+        },
+        {
+          "price": 1.13753,
+          "type": "resistance",
+          "direction": "short",
+          "strength": 12,
+          "distance_pips": 10.0,
+          "sl": 1.13803,
+          "tp": 1.13653,
+          "rr": 2.0,
+          "status": "watching"
+        },
+        {
+          "price": 1.13608,
+          "type": "support",
+          "direction": "long",
+          "strength": 3,
+          "distance_pips": 4.5,
+          "sl": 1.13558,
+          "tp": 1.13708,
+          "rr": 2.0,
+          "status": "watching"
+        }
+      ]
+    },
+    "GBPUSD": {
+      "current_price": 1.31921,
+      "h1_trend": "bear",
+      "levels": [
+        {
+          "price": 1.32,
+          "type": "resistance",
+          "direction": "short",
+          "strength": 13,
+          "distance_pips": 7.9,
+          "sl": 1.3205,
+          "tp": 1.319,
+          "rr": 2.0,
+          "status": "watching"
+        },
+        {
+          "price": 1.32041,
+          "type": "resistance",
+          "direction": "short",
+          "strength": 12,
+          "distance_pips": 12.0,
+          "sl": 1.32091,
+          "tp": 1.31941,
+          "rr": 2.0,
+          "status": "watching"
+        },
+        {
+          "price": 1.31867,
+          "type": "support",
+          "direction": "long",
+          "strength": 7,
+          "distance_pips": 5.4,
+          "sl": 1.31817,
+          "tp": 1.31967,
+          "rr": 2.0,
+          "status": "watching"
+        }
+      ]
+    },
+    "USDJPY": {
+      "current_price": 161.664,
+      "h1_trend": "bull",
+      "levels": [
+        {
+          "price": 161.5,
+          "type": "support",
+          "direction": "long",
+          "strength": 14,
+          "distance_pips": 16.4,
+          "sl": 161.45,
+          "tp": 161.6,
+          "rr": 2.0,
+          "status": "watching"
+        },
+        {
+          "price": 161.498,
+          "type": "support",
+          "direction": "long",
+          "strength": 13,
+          "distance_pips": 16.6,
+          "sl": 161.448,
+          "tp": 161.598,
+          "rr": 2.0,
+          "status": "watching"
+        },
+        {
+          "price": 161.63,
+          "type": "support",
+          "direction": "long",
+          "strength": 10,
+          "distance_pips": 3.4,
+          "sl": 161.58,
+          "tp": 161.73,
+          "rr": 2.0,
+          "status": "watching"
+        }
+      ]
+    }
+  },
+  "scalp_trades_today": 0,
+  "consecutive_losses": 0,
+  "session_pnl_zar": 0,
+  "loop_active": false,
+  "loop_stopped": false,
+  "stop_reason": null,
+  "scalp_active": true,
+  "overnight_mode": false,
+  "max_drawdown_zar": 200,
+  "session_drawdown_limit": -200,
+  "trades_this_session": 0,
+  "max_trades_per_session": 3,
+  "max_consecutive_losses": 2,
+  "open_scalp_positions": [],
+  "loop_stop_reason": null
+}

@@ -1,149 +1,226 @@
-# FINAL LOOP SETUP FOR CLAUDE MODELS — v3.1
-Updated: June 22, 2026 | Account: Demo #41829612 | Goal: R5,000 → R10,000
+# LOOP SETUP — v3.2
+Updated: June 24, 2026 | Account: Demo #41829612 | Goal: R5,088 → R10,000
 
 ---
 
-## SHOULD YOU LEAVE IT RUNNING 24/7? NO.
+## WHEN TO RUN WHICH LOOP
 
-| Period | Evidence | Decision |
-|---|---|---|
-| Asian 00:00-07:00 SAST | Zero profitable trades across all sessions | Off |
-| London 09:00-12:00 SAST | Good setups, second-best session | Run |
-| Quiet 12:00-15:00 SAST | Low volume, no clean setups | Off |
-| London/NY 15:00-18:00 SAST | Best session — "most of the day's profit" Jun 8 | Run |
-| NY-only 18:00-22:00 SAST | Only useful if already in a trade | Off |
-| Weekend | Spreads 8x wider, no structure | Off |
-
----
-
-## v3.1 LOOP ARCHITECTURE
-
-Each session loop runs in two alternating modes:
-
-**MASTER SCAN (Tick 1, tick 13, tick 25 ...)** — runs every hour:
-- web_search for breaking news → news_scanner.py set → news_impact.json
-- Scan all instruments → master_scan.py scores → watchlist.json (top 10)
-- Print: "MASTER SCAN COMPLETE — [N] instruments. Monitoring begins."
-
-**MONITORING (Ticks 2-12, 14-24 ...)** — runs every 5 minutes:
-- Read watchlist.json → check prices on top-5 scored instruments
-- M15 trigger check on any near-entry setups
-- Position monitor if trades open
-- Enforcer + order if trigger fires
+| Period | Session | What runs | Decision |
+|---|---|---|---|
+| 00:00-01:00 SAST | Off | Overnight monitor if positions open | Optional |
+| 01:00-07:00 SAST | Asian | CHANGE 7 only — USDJPY/AUDUSD/NZDUSD/XAUUSD | Run (new v3.2) |
+| 07:00-09:00 SAST | Pre-London | Scalp levels setup at 08:43 | 1-time setup |
+| 09:00-15:00 SAST | London | CHANGE 7 + scalp integrated | Run |
+| 15:00-18:00 SAST | London/NY | CHANGE 7 + scalp integrated | Run (BEST) |
+| 18:00-22:00 SAST | NY | Position monitor only — no new trades | Run if open |
+| 22:00-01:00 SAST | Off | Overnight monitor if positions open | Optional |
 
 ---
 
-## DAILY ROUTINE
+## LOOP ARCHITECTURE — OVERVIEW
 
 ```
-08:45 SAST  → Open Claude Code in this directory
-             → Start LONDON SESSION (paste command below)
-             → Tick 1 = master scan + news
-             → Let it run until 12:00
-
-14:45 SAST  → Start LONDON/NY SESSION (paste command below)
-             → Tick 1 = master scan + news (watchlist rebuilt fresh)
-             → Best session — be available
-
-18:00 SAST  → Loop auto-stops
-             → Session summary committed to GitHub
+22:00 → Overnight monitor (every 30 min, only if positions open) → stops 09:00
+01:00 → Asian CHANGE 7 loop (5-min ticks) → stops 07:00
+08:43 → Pre-session: fetch H1 candles → scalp_levels.py (1-time, NOT a loop)
+09:02 → London: CHANGE 7 + scalp (5-min ticks) → stops 15:00
+14:47 → London/NY: CHANGE 7 + scalp (5-min ticks) → stops 18:00
+18:05 → NY monitor: position-only (5-min ticks) → stops 22:00
 ```
+
+**Three parallel strategies per active session:**
+1. **CHANGE 7** — run, big-run pullback-resumption, min 15pt (gold), TP=15pt, SL=6pt
+2. **Scalp** — S/R level rejection, 5pt SL, 10pt TP, 20-min time stop (London/London-NY only)
+3. **Position monitor** — Rule 4/13/14/Change3 on open trades (all ticks)
 
 ---
 
-## SESSION 1 — LONDON OPEN (paste at 08:45 SAST)
+## PRE-SESSION SCALP SETUP (run once at 08:43 SAST — not a loop)
+
+Type this prompt manually before starting the London loop:
 
 ```
-/loop 5m You are running trading tick [auto-increment starting at 1]. Master rule: make money and stay profitable. Account: demo #41829612.
-
-TICK MODE: If tick number is 1 or divisible by 12 → MASTER SCAN MODE. Otherwise → MONITORING MODE.
-
-MASTER SCAN MODE steps:
-1. switch_trading_account to #41829612. Get SAST time from XAUUSD price. Get account info + open positions.
-2. python3 news_scanner.py clear. Then web_search "breaking financial news today" + "war news today" + "economic events today" + "Fed news today" + "oil supply news today". Categorize headlines into event keys: war_escalation / peace_talks / ceasefire / missile_strike / sanctions_announced / cpi_hot / cpi_cool / nfp_beat / nfp_miss / fed_hawkish / fed_dovish / oil_supply_shock / tech_earnings_beat / tech_earnings_miss / defense_contract_win / ai_breakthrough / risk_off_generic / risk_on_generic / central_bank_rate_hike / inflation_data_uk_eu. Run: python3 news_scanner.py set --events "[keys]" --headlines "[headline1|headline2]" and add --high_impact_2h if a scheduled high-impact event (CPI, NFP, Fed decision, central bank rate) fires within 2 hours. Then: python3 news_scanner.py read. If high_impact_2h active: DO NOT enter new trades this tick — wait for M15 settlement after print.
-3. python3 master_scan.py clear. Scan XAUUSD/XAGUSD/BRENT/EURUSD/GBPUSD/USDJPY/USDCHF/AUDUSD first (always). Then NAS100/SPX500 for awareness (blocked below R8,000). Then defense stocks (LOCKHEED/NORTHROP/BOEING) only if war_escalation or defense_contract_win active. Then tech stocks (NVIDIA/AMD/MICROSOFT) only if ai_breakthrough or tech_earnings active. Then energy stocks (EXXON/CHEVRON/BP) only if oil_supply_shock active. For each: get H4 history (6 candles) → CHANGE 2 trend gate → if passes get H1 (12 candles) → python3 news_scanner.py check --symbol [X] --direction [long/short] (exit 0 = catalyst, exit 1 = neutral, exit 2 = CONFLICT — skip direction) → score → python3 master_scan.py add. Run: python3 master_scan.py read.
-4. If open positions: get last 10 M5 + last 6 H4 candles per position → output CHANGE 4 format → apply rules 4/13/14/Change3.
-5. python3 session_logger.py [all args].
-
-MONITORING MODE steps:
-1. switch_trading_account to #41829612. Get SAST time + account info + open positions.
-2. If open positions: get last 10 M5 + 6 H4 → CHANGE 4 format → apply rules.
-3. python3 master_scan.py read. For top 5 instruments (score ≥ 6): get current price → if near entry get M15 (8 candles) → check CHANGE 5 trigger.
-4. If trigger fires AND fewer than 2 trades placed this session AND no high_impact_2h active: run python3 news_scanner.py volatility --symbol [X] (print warning if high-vol, but do not block). Then run enforcer.py with exact risk_amount/reward_amount/sl_distance. Exit code 0 → create_market_order. Exit code 1 → BLOCKED, do not retry.
-5. python3 session_logger.py [all args].
-
-STOP CONDITIONS: 2 trades placed OR 2 consecutive losses OR R500 drawdown OR after 12:00 SAST OR 36 ticks.
-SESSION END: get_close_positions → calculate P&L → append summary to EVAN_TRADING_CONTEXT.md → python session_review.py (copy any PATTERNS/WARNINGS to EVAN_TRADING_CONTEXT.md lessons) → python generate_dashboard.py → git add EVAN_TRADING_CONTEXT.md session_log.jsonl watchlist.json news_impact.json dashboard.html && git commit -m "Session [date] [P&L] [N] trades" && git push.
+Pre-session scalp setup. Steps:
+1. switch_trading_account to #41829612
+2. Get H1 candles (24 bars) for EURUSD, GBPUSD, XAUUSD, USDJPY via get_symbol_history (timeframeMinutes=60, limit=24)
+3. Write scalp_candles_temp.json in this format:
+   {"EURUSD": {"current_price": X, "candles": [{"time":"...","open":X,"high":X,"low":X,"close":X},...]},"GBPUSD":{...},"XAUUSD":{...},"USDJPY":{...}}
+4. python scalp_levels.py --symbol EURUSD --symbol GBPUSD --symbol XAUUSD --symbol USDJPY
+5. Read news_impact.json — confirm high_impact_2h is false
+6. Print: "Scalp levels loaded. Key levels: [summarise each instrument's nearest level]"
 ```
 
 ---
 
-## SESSION 2 — LONDON/NY OVERLAP (paste at 14:45 SAST) — BEST SESSION
+## LOOP 1 — OVERNIGHT MONITOR (if positions open, 22:00-09:00 SAST)
+
+Only run if `open_positions` is not empty. Use ScheduleWakeup every 1800s (30 min).
 
 ```
-/loop 5m You are running trading tick [auto-increment starting at 1]. Master rule: make money and stay profitable. Account: demo #41829612.
-
-TICK MODE: If tick number is 1 or divisible by 12 → MASTER SCAN MODE. Otherwise → MONITORING MODE.
-
-MASTER SCAN MODE steps:
-1. switch_trading_account to #41829612. Get SAST time from XAUUSD price. Get account info + open positions.
-2. python3 news_scanner.py clear. Then web_search "breaking financial news today" + "war news today" + "economic events today" + "Fed news today" + "oil supply news today". Categorize headlines into event keys: war_escalation / peace_talks / ceasefire / missile_strike / sanctions_announced / cpi_hot / cpi_cool / nfp_beat / nfp_miss / fed_hawkish / fed_dovish / oil_supply_shock / tech_earnings_beat / tech_earnings_miss / defense_contract_win / ai_breakthrough / risk_off_generic / risk_on_generic / central_bank_rate_hike / inflation_data_uk_eu. Run: python3 news_scanner.py set --events "[keys]" --headlines "[headline1|headline2]" and add --high_impact_2h if a scheduled high-impact event (CPI, NFP, Fed decision, central bank rate) fires within 2 hours. Then: python3 news_scanner.py read. If high_impact_2h active: DO NOT enter new trades this tick — wait for M15 settlement after print.
-3. python3 master_scan.py clear. Scan XAUUSD/XAGUSD/BRENT/EURUSD/GBPUSD/USDJPY/USDCHF/AUDUSD first (always). Then NAS100/SPX500 for awareness (blocked below R8,000). Then defense stocks (LOCKHEED/NORTHROP/BOEING) only if war_escalation or defense_contract_win active. Then tech stocks (NVIDIA/AMD/MICROSOFT) only if ai_breakthrough or tech_earnings active. Then energy stocks (EXXON/CHEVRON/BP) only if oil_supply_shock active. For each: get H4 history (6 candles) → CHANGE 2 trend gate → if passes get H1 (12 candles) → python3 news_scanner.py check --symbol [X] --direction [long/short] (exit 0 = catalyst, exit 1 = neutral, exit 2 = CONFLICT — skip direction) → score → python3 master_scan.py add. Run: python3 master_scan.py read.
-4. If open positions: get last 10 M5 + last 6 H4 candles per position → output CHANGE 4 format → apply rules 4/13/14/Change3.
-5. python3 session_logger.py [all args].
-
-MONITORING MODE steps:
-1. switch_trading_account to #41829612. Get SAST time + account info + open positions.
-2. If open positions: get last 10 M5 + 6 H4 → CHANGE 4 format → apply rules.
-3. python3 master_scan.py read. For top 5 instruments (score ≥ 6): get current price → if near entry get M15 (8 candles) → check CHANGE 5 trigger.
-4. If trigger fires AND fewer than 2 trades placed this session AND no high_impact_2h active: run python3 news_scanner.py volatility --symbol [X] (print warning if high-vol, but do not block). Then run enforcer.py with exact risk_amount/reward_amount/sl_distance. Exit code 0 → create_market_order. Exit code 1 → BLOCKED, do not retry.
-5. python3 session_logger.py [all args].
-
-STOP CONDITIONS: 2 trades placed OR 2 consecutive losses OR R500 drawdown OR after 18:00 SAST OR 36 ticks.
-SESSION END: get_close_positions → calculate P&L → append summary to EVAN_TRADING_CONTEXT.md → python session_review.py (copy any PATTERNS/WARNINGS to EVAN_TRADING_CONTEXT.md lessons) → python generate_dashboard.py → git add EVAN_TRADING_CONTEXT.md session_log.jsonl watchlist.json news_impact.json dashboard.html && git commit -m "Session [date] [P&L] [N] trades" && git push.
+Overnight position monitor. Steps:
+1. switch_trading_account to #41829612. Get SAST time (XAUUSD price). Get account_info. Get open_positions.
+2. If no open positions: print "No open positions. Overnight monitor complete. No further checks needed." and STOP (do not ScheduleWakeup).
+3. For each open position: get_symbol_history (timeframeMinutes=15, limit=10) + get_symbol_history (timeframeMinutes=240, limit=50). Output CHANGE 4 format:
+   [HH:MM SAST] — OVERNIGHT
+   INSTRUMENT: [symbol] [direction]
+   TREND: H4 [Bull/Bear] — last swing at [price]
+   M5 STRUCTURE: [trend/compression/reversal]
+   P&L: R[amount] | [X]% to TP | Floor: R[locked]
+   ACTION: [Hold / Trail to [price] per Rule X / Watch]
+   NEXT TRIGGER: [specific price or event]
+4. Apply rules automatically: Rule 14 (+R80 floating → SL to entry+5), Rule 4 (50%+ TP shrinking candles → close), Rule 13 (60%+ TP stalling at S/R → close), Change 3 (M5 reversed + neg P&L → Rule 5 cut flag).
+5. python session_logger.py --tick [N] --sast_time "[HH:MM]" --session "off" --account_balance [balance] --open_positions "[symbol:dir:pnl]" --h4_trend "[symbol:direction]" --candidate_trades "none" --enforcer_result "na" --trade_placed "none" --action_taken "[what happened]" --notes "overnight monitor"
+6. ScheduleWakeup delaySeconds=1800 prompt="Overnight position monitor. Steps: [paste this full prompt]"
 ```
 
 ---
 
-## SCALP SESSION — London 09:00–12:00 or London/NY 15:00–18:00 SAST
+## LOOP 2 — ASIAN SESSION (01:00-07:00 SAST — CHANGE 7 only)
 
-Scalp loop runs **parallel** to the swing loop. Uses `scalp.lock` (never `tick.lock`).
-State file: `c:\Users\evang\OneDrive\Desktop\scalp loop\scalp_state.json`
+Instruments: USDJPY, AUDUSD, NZDUSD, XAUUSD (Asian-active pairs only)
+No scalp during Asian. Max 1 trade. CHANGE 7 H4 confirmation required.
 
-### Pre-session setup (run once before typing "start scalp loop")
 ```
-# 1. Fetch H1 candles for each instrument via MCP, write scalp_candles_temp.json
-# 2. python scalp_levels.py --symbol EURUSD --symbol GBPUSD --symbol XAUUSD --symbol USDJPY
-# 3. Check ../tradeloop/news_impact.json — no high_impact_2h block
+/loop 5m You are running Asian session trading tick [auto-increment from 1]. Account: demo #41829612. Asian session: 01:00-07:00 SAST. USDJPY/AUDUSD/NZDUSD/XAUUSD only. CHANGE 7 strategy — no scalp. Max 1 trade total this session.
+
+STEP 1 — TIME AND ACCOUNT:
+switch_trading_account to #41829612. Get SAST time from XAUUSD price. Get account_info. Get open_positions.
+If SAST time is before 01:00 or after 07:00: print "Outside Asian session — loop stop." Do not ScheduleWakeup.
+
+STEP 2 — POSITION MONITOR (if open):
+For each open position: get_symbol_history (timeframeMinutes=15, limit=10) + (timeframeMinutes=240, limit=50). Output CHANGE 4 format. Apply rules 4/13/14/Change3.
+
+STEP 3 — CHANGE 7 SCAN (Asian instruments only):
+For USDJPY, AUDUSD, NZDUSD, XAUUSD:
+  a. get_symbol_history (timeframeMinutes=240, limit=50) → H4 direction gate (CHANGE 2: last 3 closes, need 2 consecutive in same direction)
+  b. If H4 confirmed: get_symbol_history (timeframeMinutes=15, limit=50)
+  c. python change7_scanner.py --symbol [X] --direction [long/short] --candles-file [temp file]
+     (Write M15 bars to temp JSON first, then run scanner)
+  d. Exit 0 = signal found. Exit 1 = no signal. Exit 2 = skip.
+
+STEP 4 — ENFORCER (if signal and fewer than 1 trade placed this session):
+python enforcer.py --instrument [X] --direction [buy/sell] --units [1 for gold / --lots 0.03 for forex] --balance [balance] --account demo --risk_amount [ZAR] --reward_amount [ZAR] --sl_distance [pts]
+Exit 0 → create_market_order → modify_position (SL/TP). Exit 1 → BLOCKED, do not retry.
+
+STEP 5 — LOG:
+python session_logger.py --tick [N] --sast_time "[HH:MM]" --session "asian" --account_balance [balance] --open_positions "[pos or none]" --h4_trend "[trends]" --candidate_trades "[symbols or none]" --enforcer_result "[PASS|BLOCKED:reason|na]" --trade_placed "[symbol dir units|none]" --action_taken "[summary]" --notes "[notes]"
+
+STOP CONDITIONS: 1 trade placed OR 2 consecutive losses OR R300 drawdown OR after 07:00 SAST OR 36 ticks.
 ```
 
-### Start the scalp loop
-```
-start scalp loop
-```
-Claude runs 60-second ticks: acquire `scalp.lock` → check prices → `scalp_monitor.py` → if AT_LEVEL fetch M5 → enforcer → order → release lock → `ScheduleWakeup 60s`.
+---
 
-### Scalp stop conditions (auto)
-- 2 consecutive scalp losses
-- 3 scalp trades placed this session
-- Session drawdown > R200
-- `high_impact_within_2h = true` in news_impact.json
-- Outside London 09:00–12:00 or London/NY 15:00–18:00 SAST
+## LOOP 3 — LONDON SESSION (09:00-15:00 SAST — CHANGE 7 + scalp)
 
-### Scalp sizing
+Paste at 09:02 SAST (after scalp pre-session at 08:43).
+
+```
+/loop 5m You are running London session trading tick [auto-increment from 1]. Account: demo #41829612. London: 09:00-15:00 SAST. CHANGE 7 + scalp integrated. TICK MODE: Tick 1 or divisible by 12 → MASTER SCAN. Otherwise → MONITORING.
+
+MASTER SCAN STEPS (tick 1, 13, 25...):
+1. switch_trading_account #41829612. Get SAST time (XAUUSD price). Get account_info. Get open_positions.
+2. news_scanner.py clear. web_search "breaking financial news today" + "war news today" + "Fed news today" + "economic events today" + "oil supply news today". Categorise into keys: war_escalation/peace_talks/ceasefire/missile_strike/sanctions_announced/cpi_hot/cpi_cool/nfp_beat/nfp_miss/fed_hawkish/fed_dovish/oil_supply_shock/tech_earnings_beat/tech_earnings_miss/defense_contract_win/ai_breakthrough/risk_off_generic/risk_on_generic/central_bank_rate_hike/inflation_data_uk_eu. Run: python3 news_scanner.py set --events "[keys]" --headlines "[headline1|headline2]" (add --high_impact_2h if scheduled high-impact within 2h). Run: python3 news_scanner.py read. If high_impact_2h: do NOT enter new trades this tick.
+3. python3 master_scan.py clear. For XAUUSD/XAGUSD/BRENT/EURUSD/GBPUSD/USDJPY/USDCHF/AUDUSD (always): get H4 (timeframeMinutes=240, limit=50) → CHANGE 2 gate → if passes get H1 (timeframeMinutes=60, limit=12) → news_scanner.py check → score → master_scan.py add. Then NAS100/SPX500 (awareness, blocked <R8k). Then defense/tech/energy if relevant news active. Run: python3 master_scan.py read.
+4. Position monitor: get last 10 M5 + 6 H4 per position → CHANGE 4 format → apply rules 4/13/14/Change3.
+5. SCALP CHECK: python scalp_monitor.py --symbol EURUSD --price [current]. python scalp_monitor.py --symbol GBPUSD --price [current]. python scalp_monitor.py --symbol XAUUSD --price [current]. python scalp_monitor.py --symbol USDJPY --price [current]. If any status=AT_LEVEL: fetch 5 M5 candles → write scalp_m5_temp.json → re-run scalp_monitor.py. If status=TRIGGERED: go to scalp enforcer below.
+6. SCALP ENFORCER (if triggered): python scalp_enforcer.py --symbol [X] --direction [long/short] --lots [0.03 forex / 1 gold] --balance [balance] --sl_distance_pips [dist] --tp_distance_pips [dist] --account demo. Exit 0 → create_market_order → modify_position (SL/TP). Exit 1 → BLOCKED.
+7. python session_logger.py [all args].
+
+MONITORING STEPS (ticks 2-12, 14-24...):
+1. switch_trading_account #41829612. Get SAST time + account_info + open_positions.
+2. Position monitor: get 10 M5 + 6 H4 per open position → CHANGE 4 → apply rules.
+3. python3 master_scan.py read. For top 5 (score ≥6): get current price → if near entry get M15 (timeframeMinutes=15, limit=50) → check CHANGE 7 trigger (change7_scanner.py) or CHANGE 5 trigger.
+4. CHANGE 7 ENFORCER (if trigger, <2 trades placed, no high_impact_2h): python enforcer.py [all args]. Exit 0 → order. Exit 1 → BLOCKED.
+5. SCALP CHECK: scalp_monitor.py for EURUSD/GBPUSD/XAUUSD/USDJPY with current prices. If AT_LEVEL → M5 confirm → scalp_enforcer.py → order if PASS.
+6. python session_logger.py [all args].
+
+STOP CONDITIONS: 2 CHANGE 7 trades placed AND 3 scalp trades placed OR 2 consecutive losses (either system) OR R500 drawdown OR after 15:00 SAST OR 36 ticks.
+SESSION END: get_close_positions → P&L → append EVAN_TRADING_CONTEXT.md → python session_review.py → python generate_dashboard.py → git add EVAN_TRADING_CONTEXT.md session_log.jsonl watchlist.json news_impact.json dashboard.html scalp_log.jsonl scalp_state.json && git commit -m "Session [date] [P&L] [N] trades" && git push.
+```
+
+---
+
+## LOOP 4 — LONDON/NY OVERLAP (14:47 SAST — CHANGE 7 + scalp — BEST SESSION)
+
+Same prompt as Loop 3 but change stop condition time to 18:00 SAST:
+
+```
+/loop 5m [same as Loop 3 above — change "15:00 SAST" to "18:00 SAST" in STOP CONDITIONS]
+```
+
+---
+
+## LOOP 5 — NY SESSION MONITOR (18:05 SAST — positions only, no new trades)
+
+Only run if you have open positions from London/NY session.
+
+```
+/loop 5m You are running NY session position monitor tick [auto-increment]. Account: demo #41829612. NY session: 18:00-22:00 SAST — MONITOR ONLY, no new entries.
+
+STEP 1: switch_trading_account #41829612. Get SAST time. Get open_positions.
+If no open positions: print "No open positions — NY monitor done." Stop (no ScheduleWakeup).
+If SAST > 22:00: print "NY session ended — stopping." Stop.
+
+STEP 2 — POSITION MONITOR:
+For each position: get_symbol_history (timeframeMinutes=15, limit=10) + (timeframeMinutes=240, limit=50). Output CHANGE 4 format. Apply rules 4/13/14/Change3. DO NOT open new trades.
+
+STEP 3 — LOG:
+python session_logger.py [all args session="ny"].
+
+STOP CONDITIONS: No open positions OR 22:00 SAST OR 36 ticks.
+```
+
+---
+
+## SCALP SYSTEM — QUICK REFERENCE
+
+**Instruments:** EURUSD ✓ | GBPUSD ✓ | USDJPY ✓ | AUDUSD ✓ | XAUUSD ✓ (high-confidence only)
+**Never scalp:** GBPJPY | EURJPY | XAGUSD | NAS100 | SPX500 | US30
+
+**Sizing:**
 | Instrument | Lots | SL | Risk ZAR | TP | Reward ZAR | R:R |
 |---|---|---|---|---|---|---|
 | EURUSD | 0.03L | 5pip | R27 | 10pip | R55 | 2:1 |
-| GBPUSD | 0.03L | 5pip | R27 | 10pip | R55 | 2:1 |
-| USDJPY | 0.03L | 5pip | R27 | 10pip | R55 | 2:1 |
-| XAUUSD | 0.5u | 6pt | R48 | 12pt | R96 | 2:1 |
+| GBPUSD | 0.03L | 5pip | R35 | 10pip | R69 | 2:1 |
+| USDJPY | 0.03L | 5pip | R17 | 10pip | R34 | 2:1 |
+| XAUUSD | 1u | 5pt | R80 | 10pt | R160 | 2:1 |
 
-Min scalp risk: R27 | Max scalp risk: R100 per trade | Time stop: 20 minutes
+**Scalp stop conditions:** 3 trades placed OR 2 consecutive losses OR R200 drawdown OR news high_impact_2h OR outside session hours
 
-### Session end
-```
-python session_review.py   # includes scalp_log.jsonl analysis automatically
-python generate_dashboard.py  # SCALP STATUS card appears if scalp_state.json exists
+**Scalp SL rules:** NEVER on wick extremes — use closing price of M5 rejection candle ±buffer
+
+---
+
+## ASIAN SESSION — RATIONALE (new v3.2)
+
+Added because: USDJPY and commodity pairs (AUDUSD, NZDUSD) are most active 01:00-07:00 SAST. Prior "zero profitable trades" finding was from the OLD system (pre-CHANGE 7). CHANGE 7 requires confirmed H4 structure — Asian ranging instruments are skipped automatically by the H4 gate. Only instruments with clean H4 trend pass through.
+
+**Asian-specific rules:**
+- Scalp loop does NOT run (S/R level rejection needs volatility — Asian is too choppy)
+- XAUUSD scalp especially risky in Asian (tight range, spike risk on Middle East news)
+- CHANGE 7 max 1 trade (conservative — test first before raising)
+- Max drawdown R300 (tighter than London R500 — Asian has lower conviction setups)
+
+---
+
+## ENFORCER QUICK REFERENCE
+
+```bash
+# CHANGE 7 — Gold
+python enforcer.py --instrument XAUUSD --direction buy --units 1 \
+  --balance [bal] --account demo --risk_amount [sl_pts x 16] --reward_amount [tp_pts x 16] --sl_distance [pts] --change7
+
+# CHANGE 7 — Forex 0.03L
+python enforcer.py --instrument GBPUSD --direction sell --lots 0.03 \
+  --balance [bal] --account demo --risk_amount [sl_pips x 5.46] --reward_amount [tp_pips x 5.46] --sl_distance [pips]
+
+# Scalp — Gold
+python scalp_enforcer.py --symbol XAUUSD --direction short --lots 1 \
+  --balance [bal] --sl_distance_pips 5 --tp_distance_pips 10 --account demo
+
+# Scalp — Forex
+python scalp_enforcer.py --symbol EURUSD --direction short --lots 0.03 \
+  --balance [bal] --sl_distance_pips 5 --tp_distance_pips 10 --account demo
 ```
 
 ---
@@ -152,157 +229,58 @@ python generate_dashboard.py  # SCALP STATUS card appears if scalp_state.json ex
 
 ```
 Run the weekly trading review. Read EVAN_TRADING_CONTEXT.md fully first.
-Then read enforcer_audit.jsonl and session_log.jsonl — all entries since last Monday.
+Then read enforcer_audit.jsonl, scalp_enforcer_audit.jsonl, session_log.jsonl, scalp_log.jsonl — all entries since last Monday.
 
 Produce:
-1. ENFORCER AUDIT: Every BLOCKED trade — would it have won or lost based on subsequent price action?
-2. LOSS ANALYSIS: Every losing trade — H4 trend at entry, which rule was violated, root cause in one sentence.
-3. WIN ANALYSIS: Every winning trade — session, instrument, H4 direction, news catalyst, entry type.
-4. NEWS ACCURACY: Were news categorizations correct? Did the mapped direction match actual price reaction?
-5. PATTERN SUMMARY: Any repeating edge worth adding as a rule? Min 3 occurrences.
-6. PROGRESS: Current balance vs R5,000 start. % toward R10,000 goal.
-7. PROPOSED RULE CHANGES: Specific additions to EVAN_TRADING_CONTEXT.md as a diff.
+1. ENFORCER AUDIT: Every BLOCKED trade — would it have won or lost?
+2. LOSS ANALYSIS: Every loss — H4 trend at entry, which rule was violated, root cause.
+3. WIN ANALYSIS: Every win — session, instrument, strategy (CHANGE 7 vs scalp), catalyst.
+4. SCALP PERFORMANCE: Win rate, avg hold time, best/worst levels, time stop frequency.
+5. NEWS ACCURACY: Were categorisations correct? Did direction match price reaction?
+6. PATTERN SUMMARY: Repeating edges worth adding as a rule (min 3 occurrences).
+7. PROGRESS: Current balance vs R5,088 start. % toward R10,000 goal.
+8. PROPOSED RULE CHANGES: Specific diff to EVAN_TRADING_CONTEXT.md.
 
-DO NOT commit. Print the proposed diff and wait for Evan's approval.
-DO NOT auto-approve any change to risk sizing, lot limits, or R:R thresholds.
+DO NOT commit. Print proposed diff and wait for Evan's approval.
+DO NOT auto-approve changes to risk sizing, lot limits, or R:R thresholds.
 ```
-
----
-
-## R5,000 SIZING REFERENCE
-
-| Instrument | Size | Value/unit | 20pt/pip SL | % of R5,000 |
-|---|---|---|---|---|
-| XAUUSD | 1 unit | R16/pt | R320 | 6.4% |
-| GBPUSD | 0.03L | R5.46/pip | R109 | 2.2% |
-| EURUSD | 0.03L | R5.46/pip | R109 | 2.2% |
-| XAGUSD | 0.01L | ~R3.60/pip | R72 | 1.4% |
-| BRENT | 0.03L | ~R5/pt | R150 (30pt SL) | 3.0% |
-| NAS100 | BLOCKED | — | blocked <R8,000 | — |
-| Defense/Tech stocks | swing only | varies | enforcer checks | varies |
-
-Max risk per trade: R1,000 (20%). Max simultaneous trades: 2.
-
----
-
-## NEWS INSTRUMENT QUICK REFERENCE
-
-| News event | Go long | Go short |
-|---|---|---|
-| war_escalation | XAUUSD, XAGUSD, USDCHF, LOCKHEED, NORTHROP, BOEING | EURUSD, GBPUSD, EURJPY, NAS100, SPX500 |
-| peace_talks | EURUSD, GBPUSD, NAS100, SPX500, BRENT | XAUUSD, USDCHF |
-| ceasefire | EURUSD, GBPUSD, NAS100 | XAUUSD, LOCKHEED, NORTHROP |
-| missile_strike | XAUUSD, XAGUSD, USDCHF, LOCKHEED, BRENT | EURUSD, GBPUSD, NAS100 |
-| sanctions_announced | XAUUSD, BRENT, EXXON, CHEVRON | — |
-| cpi_hot | USDJPY, USDCHF, USDCAD | XAUUSD, EURUSD, GBPUSD, NAS100 |
-| cpi_cool | XAUUSD, EURUSD, GBPUSD, NAS100 | USDJPY, USDCAD |
-| nfp_beat | USDJPY, USDCAD, USDCHF | XAUUSD, EURUSD, GBPUSD |
-| nfp_miss | XAUUSD, EURUSD, GBPUSD | USDJPY, USDCAD |
-| fed_hawkish | USDJPY, USDCHF, USDCAD | XAUUSD, EURUSD, GBPUSD, NAS100 |
-| fed_dovish | XAUUSD, EURUSD, GBPUSD, NAS100 | USDJPY, USDCAD |
-| oil_supply_shock | BRENT, EXXON, CHEVRON, BP, USDCAD | EURUSD, GBPUSD, AUDUSD |
-| ai_breakthrough | NVIDIA, AMD, MICROSOFT, NAS100 | — |
-| tech_earnings_beat | NAS100 + reporting stock | — |
-| tech_earnings_miss | — | NAS100 + reporting stock |
-| defense_contract_win | LOCKHEED, NORTHROP, BOEING | — |
-| risk_off_generic | XAUUSD, USDCHF, USDJPY | EURUSD, GBPUSD, NAS100, AUDUSD |
-| risk_on_generic | EURUSD, GBPUSD, NAS100, AUDUSD | XAUUSD, USDCHF |
-| central_bank_rate_hike | hiking-currency pairs | inverse pairs |
-| inflation_data_uk_eu | map to cpi_hot/cpi_cool for GBP/EUR | — |
-
-Remember: news direction must ALIGN with H4 trend. Counter-trend news = still blocked.
-news_scanner.py check exit code 2 = CONFLICT = skip that direction entirely.
-
----
-
-## NEWS SCANNER EXIT CODE REFERENCE
-
-| Exit code | Meaning | Action |
-|---|---|---|
-| 0 | CATALYST — news supports direction | +3 score, proceed |
-| 1 | NEUTRAL — no catalyst, not blocked | +0 score, proceed on technicals |
-| 2 | CONFLICT — news against direction | Skip this direction, do not trade |
-
----
-
-## HIGH VOLATILITY ON NEWS (from news_scanner.py volatility)
-
-| Instrument | Warning |
-|---|---|
-| XAUUSD | Gold spikes 30-60pts in seconds on major news. DO NOT enter during spike. |
-| USDJPY | JPY gaps on BoJ surprise decisions. |
-| GBPUSD | Cable volatile on UK CPI/BOE decisions. |
-| NAS100 | Tech index spikes on Fed and earnings. |
-| BRENT | Oil gaps on OPEC and geopolitical supply news. |
-
-Run `python3 news_scanner.py volatility --symbol [X]` before each entry near a news event.
-
----
-
-## ENFORCER QUICK REFERENCE
-
-```bash
-# Gold (1 unit — max)
-python3 enforcer.py --instrument XAUUSD --direction buy --units 1 \
-  --balance 5000 --account demo \
-  --risk_amount [sl_pts x 16] --reward_amount [tp_pts x 16] --sl_distance [pts]
-
-# Forex
-python3 enforcer.py --instrument GBPUSD --direction sell --lots 0.03 \
-  --balance 5000 --account demo \
-  --risk_amount [sl_pips x 5.46] --reward_amount [tp_pips x 5.46] --sl_distance [pips]
-
-# Swing stock
-python3 enforcer.py --instrument NVIDIA --direction buy --lots 0.1 \
-  --balance 5000 --account demo \
-  --risk_amount [ZAR] --reward_amount [ZAR] --sl_distance [pts] --swing
-
-# News scanner commands
-python3 news_scanner.py set --events "war_escalation,fed_hawkish" --headlines "headline1|headline2"
-python3 news_scanner.py set --events "cpi_hot" --headlines "CPI beats at 4.2%" --high_impact_2h
-python3 news_scanner.py read
-python3 news_scanner.py check --symbol XAUUSD --direction long
-python3 news_scanner.py volatility --symbol XAUUSD
-python3 news_scanner.py events   # list all known event keys
-
-# Review logs
-python3 session_logger.py summary
-python3 master_scan.py read
-python3 news_scanner.py read
-```
-
----
-
-## STOP THE LOOP
-- Type: `stop loop`
-- Or press Esc
-- Or let session time condition trigger automatically
 
 ---
 
 ## FILE STRUCTURE
+
 ```
 tradeloop/
-├── CLAUDE.md                  ← auto-loaded on Claude Code startup
-├── EVAN_TRADING_CONTEXT.md    ← brain — v3.0, grows every session
-├── enforcer.py                ← deterministic gate (exit 0/1)
-├── session_logger.py          ← tick logger → session_log.jsonl
-├── master_scan.py             ← hourly full scan → watchlist.json
-├── news_scanner.py            ← news → news_impact.json (exit 0/1/2)
-├── tick_lock.py               ← lock file manager (tick.lock / scalp.lock)
-├── session_start_hook.py      ← auto-injects context at every session open
-├── session_review.py          ← post-session pattern extractor
-├── generate_dashboard.py      ← live dashboard → dashboard.html
-├── LOOP_SETUP.md              ← this file
-├── enforcer_audit.jsonl       ← every enforcer check
-├── session_log.jsonl          ← every tick
-├── watchlist.json             ← top-10 instruments this hour
-├── news_impact.json           ← active news events
-├── session_state.json         ← H4 trends, key levels, loop state
-├── dashboard.html             ← open in browser for live view
+├── CLAUDE.md                     ← auto-loaded on Claude Code startup
+├── EVAN_TRADING_CONTEXT.md       ← brain — rules, history, lessons
+├── LOOP_SETUP.md                 ← this file — all loop commands
+├── SCALP_SETUP.md                ← scalp loop reference
+├── enforcer.py                   ← CHANGE 7 gate (exit 0/1)
+├── scalp_enforcer.py             ← scalp gate (exit 0/1) ← NEW
+├── scalp_levels.py               ← pre-session H1 level calculator ← NEW
+├── scalp_monitor.py              ← per-tick S/R level watcher ← NEW
+├── scalp_logger.py               ← scalp tick/trade logger ← NEW
+├── change7_scanner.py            ← CHANGE 7 + BOUNCE signal detector
+├── session_logger.py             ← main tick logger → session_log.jsonl
+├── master_scan.py                ← hourly scan → watchlist.json
+├── news_scanner.py               ← news → news_impact.json
+├── tick_lock.py                  ← lock file manager (tick.lock / scalp.lock)
+├── session_start_hook.py         ← auto-injects context at session open
+├── session_review.py             ← post-session pattern extractor
+├── generate_dashboard.py         ← live dashboard → dashboard.html
+├── enforcer_audit.jsonl          ← every CHANGE 7 enforcer check
+├── scalp_enforcer_audit.jsonl    ← every scalp enforcer check ← NEW
+├── session_log.jsonl             ← every main tick
+├── scalp_log.jsonl               ← every scalp tick and trade ← NEW
+├── scalp_state.json              ← scalp loop state (levels, counters) ← NEW
+├── scalp_candles_temp.json       ← H1 OHLCV input for scalp_levels.py ← NEW
+├── watchlist.json                ← top-10 instruments this hour
+├── news_impact.json              ← active news events
+├── session_state.json            ← H4 trends, key levels, loop state
+├── dashboard.html                ← open in browser for live view
 └── knowledge/
-    ├── RULES.md               ← all rules + CHANGES quick reference
-    ├── instruments/           ← XAUUSD.md, FOREX.md
-    ├── lessons/               ← range_trap.md, sl_trailing.md, enforcer_bypass.md
-    └── sessions/              ← YYYY-MM-DD.md (auto-written by session_review.py)
+    ├── RULES.md                  ← all rules + CHANGES quick reference
+    ├── instruments/              ← per-instrument profiles
+    ├── lessons/                  ← named lessons
+    └── sessions/                 ← auto-written by session_review.py
 ```
