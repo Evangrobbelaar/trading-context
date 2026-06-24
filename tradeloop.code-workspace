@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../scalp loop/.claude"
+		},
+		{
+			"path": "../scalp loop/.ruff_cache"
+		},
+		{
+			"path": "../scalp loop/.vscode"
+		}
+	],
+	"settings": {
+		"explorer.sortOrder": "modified"
+	}
+}
