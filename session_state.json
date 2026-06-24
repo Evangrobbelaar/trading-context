@@ -220,8 +220,23 @@
     "peace_talks",
     "oil_supply_shock"
   ],
-  "loop_stopped": true,
-  "loop_stop_reason": "NY session 21:45 SAST no open positions — off-hours at 22:00",
+  "loop_stopped": false,
+  "loop_stop_reason": null,
+  "change7": {
+    "enabled": true,
+    "trades_today": 0,
+    "max_trades_per_session": 4,
+    "consecutive_sl": 0,
+    "max_consecutive_sl": 2,
+    "last_entry_bar": {},
+    "daily_drawdown_limit_zar": 1000,
+    "daily_drawdown_used_zar": 0,
+    "stopped": false,
+    "stop_reason": "",
+    "be_trail_at_pips": 7.5,
+    "tp2_trail_at_pips": 12.0,
+    "one_position_per_instrument": true
+  },
   "open_positions": [],
   "xauusd_change5_trigger": 4084.41,
   "xauusd_change5_peak": 4097.61

@@ -188,6 +188,28 @@ INSTRUMENT_RULES: dict = {
         "unit": "pips",
         "note": "Wide spread instrument. 30pip max SL allowed for structure.",
     },
+    # Cross pairs — added for CHANGE 7 multi-market scanning
+    "EURAUD": {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
+    "EURCHF": {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
+    "EURCAD": {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
+    "GBPCAD": {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
+    "GBPCHF": {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
+    "AUDCHF": {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
+    "AUDNZD": {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
+    "AUDCAD": {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
+    "NZDCAD": {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
+    "NZDCHF": {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
+    "AUDJPY": {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
+    "CADJPY": {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
+    "NZDJPY": {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
+    "CHFJPY": {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
+    "XAGUSD": {
+        "max_lots": 0.03,
+        "min_sl": 15,
+        "max_sl": 50,
+        "unit": "pips",
+        "note": "Silver CFD — verify ZAR/pip rate before sizing. ~R18.5/pip at 1 unit.",
+    },
     # Commodities
     "BRENT": {
         "max_lots": 0.03,
@@ -245,7 +267,9 @@ INSTRUMENT_RULES: dict = {
 BANNED_ALWAYS: set = {"WTI", "BTCUSD", "ETHUSD", "NGAS"}
 
 MAX_RISK_PCT: float = 0.20  # 20% of account per trade
-MIN_RR: float = 1.2  # minimum reward:risk ratio
+MIN_RR: float = 1.2  # minimum reward:risk ratio (standard)
+MIN_RR_C7: float = 2.5  # minimum R:R for CHANGE 7 mode (6pt SL, 15pt TP = 2.5x)
+MIN_SL_C7: float = 6.0  # minimum SL in CHANGE 7 mode (pts or pips)
 
 
 # ---------------------------------------------------------------------------
@@ -297,6 +321,12 @@ def main() -> None:
         "--swing",
         action="store_true",
         help="Flag as swing position — bypasses intraday SL buffer check",
+    )
+    p.add_argument(
+        "--mode",
+        default="standard",
+        choices=["standard", "change7"],
+        help="change7: allows 6pt/pip SL and requires 2.5 R:R (Big Run+Pullback strategy)",
     )
     args = p.parse_args()
 
@@ -360,10 +390,13 @@ def main() -> None:
 
         # SL buffer checks (skip for swing positions and unknown units/lots)
         if not args.swing and "min_sl" in rule:
-            if args.sl_distance < rule["min_sl"]:
+            # CHANGE 7 mode allows 6pt/pip SL — tight entry off pullback, not noise zone
+            effective_min_sl = MIN_SL_C7 if args.mode == "change7" else rule["min_sl"]
+            if args.sl_distance < effective_min_sl:
                 blocks.append(
                     f"{inst} SL too tight: {args.sl_distance} {rule['unit']} < "
-                    f"minimum {rule['min_sl']} {rule['unit']}. "
+                    f"minimum {effective_min_sl} {rule['unit']} "
+                    f"({'CHANGE7 mode' if args.mode == 'change7' else 'standard mode'}). "
                     "SL inside noise zone — will get stopped by spread/noise before move."
                 )
             if args.sl_distance > rule["max_sl"]:
@@ -385,9 +418,11 @@ def main() -> None:
 
     # --- R:R check ---
     rr = args.reward_amount / args.risk_amount if args.risk_amount > 0 else 0.0
-    if rr < MIN_RR:
+    min_rr_effective = MIN_RR_C7 if args.mode == "change7" else MIN_RR
+    if rr < min_rr_effective:
         blocks.append(
-            f"R:R {rr:.2f}:1 is below the {MIN_RR}:1 minimum. "
+            f"R:R {rr:.2f}:1 is below the {min_rr_effective}:1 minimum "
+            f"({'CHANGE7 mode' if args.mode == 'change7' else 'standard mode'}). "
             f"Either move TP further out or tighten SL (if structure allows)."
         )
 
@@ -397,6 +432,7 @@ def main() -> None:
         "instrument": inst,
         "direction": args.direction,
         "account": args.account,
+        "mode": args.mode,
         "balance_zar": args.balance,
         "units": args.units,
         "lots": args.lots,
