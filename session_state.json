@@ -1,5 +1,5 @@
 {
-  "updated_sast": "overnight_monitor",
+  "updated_sast": "09:24",
   "account_balance": 4835.12,
   "session_target_zar": 400,
   "h4_trends": {
@@ -22,10 +22,13 @@
       "direction": "short",
       "score": 9,
       "h4_confirmed": true,
-      "entry_zone": [1.14000, 1.14100],
-      "sl": 1.14220,
+      "entry_zone": [
+        1.14,
+        1.141
+      ],
+      "sl": 1.1422,
       "sl_pips": 22,
-      "tp": 1.13500,
+      "tp": 1.135,
       "rr": 3.33,
       "risk_zar": 120,
       "reward_zar": 400,
@@ -38,10 +41,13 @@
       "direction": "short",
       "score": 9,
       "h4_confirmed": true,
-      "entry_zone": [0.6928, 0.6940],
+      "entry_zone": [
+        0.6928,
+        0.694
+      ],
       "sl": 0.6953,
       "sl_pips": 19,
-      "tp": 0.6880,
+      "tp": 0.688,
       "rr": 2.84,
       "risk_zar": 104,
       "reward_zar": 295,
@@ -55,10 +61,13 @@
       "direction": "short",
       "score": 8,
       "h4_confirmed": true,
-      "entry_zone": [1.32100, 1.32200],
-      "sl": 1.32280,
+      "entry_zone": [
+        1.321,
+        1.322
+      ],
+      "sl": 1.3228,
       "sl_pips": 18,
-      "tp": 1.31400,
+      "tp": 1.314,
       "rr": 2.5,
       "risk_zar": 98,
       "reward_zar": 245,
@@ -71,16 +80,19 @@
       "direction": "short",
       "score": 8,
       "h4_confirmed": true,
-      "entry_zone": [0.5678, 0.5690],
-      "sl": 0.5700,
+      "entry_zone": [
+        0.5678,
+        0.569
+      ],
+      "sl": 0.57,
       "sl_pips": 20,
-      "tp": 0.5630,
+      "tp": 0.563,
       "rr": 2.4,
       "risk_zar": 109,
       "reward_zar": 262,
       "trigger": "Pullback to 0.5678-0.5690, M15 CHANGE5",
       "invalidation": "H4 close above 0.5710",
-      "note": "Correlated with AUDUSD — do NOT take both simultaneously"
+      "note": "Correlated with AUDUSD \u00e2\u20ac\u201d do NOT take both simultaneously"
     },
     {
       "rank": 5,
@@ -88,18 +100,25 @@
       "direction": "short",
       "score": 7,
       "h4_confirmed": true,
-      "entry_zone": [62.500, 63.000],
-      "sl": 63.400,
-      "tp": 61.000,
+      "entry_zone": [
+        62.5,
+        63.0
+      ],
+      "sl": 63.4,
+      "tp": 61.0,
       "rr": 2.5,
       "trigger": "Pullback to 62.50-63.00, M15 CHANGE5",
       "invalidation": "H4 close above 63.300",
-      "note": "INVESTIGATE ZAR lot sizing before placing — not in standard enforcer"
+      "note": "INVESTIGATE ZAR lot sizing before placing \u00e2\u20ac\u201d not in standard enforcer"
     }
   ],
   "skip_tonight": {
     "reason": "NY session 18:00-22:00 SAST = monitor only, no new entries without open position",
-    "also_skip": ["NAS100", "SPX500", "US30"],
+    "also_skip": [
+      "NAS100",
+      "SPX500",
+      "US30"
+    ],
     "skip_reason_indices": "Balance R4835 below R8000 minimum for indices"
   },
   "key_levels": {
@@ -115,18 +134,24 @@
       "current_price": 1.13807,
       "h4_swing_high": 1.14387,
       "h4_swing_low": 1.13753,
-      "entry_zone_short": [1.14000, 1.14100],
-      "sl_short": 1.14220,
-      "tp_short": 1.13500
+      "entry_zone_short": [
+        1.14,
+        1.141
+      ],
+      "sl_short": 1.1422,
+      "tp_short": 1.135
     },
     "GBPUSD": {
       "current_price": 1.31999,
       "h4_swing_high": 1.32533,
       "h4_lower_high": 1.32215,
       "h4_swing_low": 1.31825,
-      "entry_zone_short": [1.32100, 1.32200],
-      "sl_short": 1.32280,
-      "tp_short": 1.31400,
+      "entry_zone_short": [
+        1.321,
+        1.322
+      ],
+      "sl_short": 1.3228,
+      "tp_short": 1.314,
       "note": "Only 11 pips below entry zone 1.32100. London open push could trigger short immediately."
     },
     "AUDUSD": {
@@ -134,37 +159,49 @@
       "h4_swing_high": 0.70049,
       "h4_lower_high": 0.69413,
       "h4_swing_low": 0.69206,
-      "entry_zone_short": [0.6928, 0.6940],
+      "entry_zone_short": [
+        0.6928,
+        0.694
+      ],
       "sl_short": 0.6953,
-      "tp_short": 0.6880
+      "tp_short": 0.688
     },
     "NZDUSD": {
       "current_price": 0.56671,
       "h4_swing_high": 0.57187,
-      "h4_lower_high": 0.56810,
+      "h4_lower_high": 0.5681,
       "h4_swing_low": 0.56665,
-      "entry_zone_short": [0.5678, 0.5690],
-      "sl_short": 0.5700,
-      "tp_short": 0.5630
+      "entry_zone_short": [
+        0.5678,
+        0.569
+      ],
+      "sl_short": 0.57,
+      "tp_short": 0.563
     },
     "XAGUSD": {
       "current_price": 61.876,
       "h4_swing_high": 66.862,
-      "h4_lower_high": 62.470,
+      "h4_lower_high": 62.47,
       "h4_swing_low": 61.497,
-      "entry_zone_short": [62.500, 63.000],
-      "sl_short": 63.400,
-      "tp_short": 61.000,
+      "entry_zone_short": [
+        62.5,
+        63.0
+      ],
+      "sl_short": 63.4,
+      "tp_short": 61.0,
       "note": "Check lot sizing before trading"
     },
     "GBPJPY": {
       "current_price": 213.076,
-      "h4_swing_high": 214.670,
+      "h4_swing_high": 214.67,
       "h4_lower_high": 214.205,
       "h4_swing_low": 212.974,
-      "entry_zone_short": [213.400, 213.550],
-      "sl_short": 214.300,
-      "tp_short": 212.000,
+      "entry_zone_short": [
+        213.4,
+        213.55
+      ],
+      "sl_short": 214.3,
+      "tp_short": 212.0,
       "note": "Check JPY cross lot sizing before trading"
     }
   },
@@ -173,7 +210,7 @@
     "consecutive_losses": 0,
     "max_consecutive_losses": 2,
     "max_open_positions": 4,
-    "trades_this_session": 0
+    "trades_this_session": 3
   },
   "news_events": [
     "fed_hawkish",
@@ -183,5 +220,33 @@
     "oil_supply_shock"
   ],
   "loop_stopped": false,
-  "loop_stop_reason": null
+  "loop_stop_reason": null,
+  "open_positions": [
+    {
+      "symbol": "AUDUSD",
+      "direction": "short",
+      "entry": 0.69084,
+      "sl": 0.6924,
+      "tp": 0.688,
+      "order_id": "109711496"
+    },
+    {
+      "symbol": "EURJPY",
+      "direction": "short",
+      "entry": 183.655,
+      "sl": 183.88,
+      "tp": 183.09,
+      "order_id": "109711605"
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "short",
+      "entry": 4084.65,
+      "sl": 4100,
+      "tp": 4052,
+      "order_id": "109711685"
+    }
+  ],
+  "xauusd_change5_trigger": 4084.41,
+  "xauusd_change5_peak": 4097.61
 }
