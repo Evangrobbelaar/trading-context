@@ -1,6 +1,7 @@
 {
-  "updated_sast": "09:24",
-  "account_balance": 4835.12,
+  "updated_sast": "21:45",
+  "account_balance": 5088.56,
+  "loop_stopped_reason": "NY session 21:45 SAST — no open positions, approaching off-hours 22:00",
   "session_target_zar": 400,
   "h4_trends": {
     "XAUUSD": "bear",
@@ -207,10 +208,10 @@
   },
   "stop_conditions": {
     "max_drawdown_zar": 500,
-    "consecutive_losses": 0,
+    "consecutive_losses": 1,
     "max_consecutive_losses": 2,
     "max_open_positions": 4,
-    "trades_this_session": 3
+    "trades_this_session": 6
   },
   "news_events": [
     "fed_hawkish",
@@ -219,34 +220,9 @@
     "peace_talks",
     "oil_supply_shock"
   ],
-  "loop_stopped": false,
-  "loop_stop_reason": null,
-  "open_positions": [
-    {
-      "symbol": "AUDUSD",
-      "direction": "short",
-      "entry": 0.69084,
-      "sl": 0.6924,
-      "tp": 0.688,
-      "order_id": "109711496"
-    },
-    {
-      "symbol": "EURJPY",
-      "direction": "short",
-      "entry": 183.655,
-      "sl": 183.88,
-      "tp": 183.09,
-      "order_id": "109711605"
-    },
-    {
-      "symbol": "XAUUSD",
-      "direction": "short",
-      "entry": 4084.65,
-      "sl": 4100,
-      "tp": 4052,
-      "order_id": "109711685"
-    }
-  ],
+  "loop_stopped": true,
+  "loop_stop_reason": "NY session 21:45 SAST no open positions — off-hours at 22:00",
+  "open_positions": [],
   "xauusd_change5_trigger": 4084.41,
   "xauusd_change5_peak": 4097.61
 }
