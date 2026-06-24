@@ -1,32 +1,36 @@
 {
-  "last_scan_utc": "2026-06-23T08:04:34.712126+00:00",
+  "last_scan_utc": "2026-06-24T06:39:30.537545+00:00",
   "active_events": [
     "fed_hawkish",
-    "war_escalation",
-    "risk_off_generic",
     "peace_talks",
+    "tech_earnings_miss",
+    "risk_off_generic",
     "oil_supply_shock"
   ],
   "instruments_long": [
-    "BOEING",
     "BP",
     "CHEVRON",
     "EXXON",
     "USDCAD",
-    "USDJPY",
-    "XAGUSD"
+    "USDJPY"
   ],
   "instruments_short": [
+    "AMAZON",
+    "AMD",
+    "APPLE",
     "AUDUSD",
-    "EURJPY"
+    "LOCKHEED",
+    "META",
+    "MICROSOFT",
+    "NORTHROP",
+    "NVIDIA"
   ],
   "headlines": [
-    "Gold falls 1.49pct as Fed hike expectations dominate",
-    "Fed holds June 17 but signals September hike \u2014 9/19 FOMC project increase",
-    "BofA expects 3 Fed hikes inflation raised to 3.6pct",
-    "Iran 60-day oil export license issued Hormuz shipping recovering",
-    "Middle East conflict global event Strait of Hormuz energy crisis",
-    "US PCE price index due this week"
+    "Fed Warsh holds rates but 9/18 officials project 2026 hike \u2014 60.7% Oct probability",
+    "US-Iran peace agreement eases Hormuz pressure \u2014 gold safe haven demand falling",
+    "Micron down 10% NAS100 -2.21% chip sector selloff",
+    "S&P 500 -1.44% global risk-off on tech liquidations",
+    "Hormuz traffic recovering \u2014 oil supply pressure easing"
   ],
   "high_impact_within_2h": false
 }

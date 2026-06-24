@@ -1,38 +1,49 @@
 {
-  "generated_at": "2026-06-23T08:08:44.329948+00:00",
+  "generated_at": "2026-06-24T06:42:45.615140+00:00",
   "watchlist": [
     {
       "symbol": "AUDUSD",
       "score": 9,
       "direction": "short",
-      "reason": "H4 bearish lower highs confirmed, news ALIGNED (fed_hawkish+war_escalation SHORT catalyst), M5 perfect downtrend, IN POSITION",
-      "entry": 0.69592,
-      "sl": 0.69801,
-      "tp": 0.6921,
+      "reason": "H4 CHANGE2 confirmed: lower high 0.69413 + H4 closed 0.69123 below swing low 0.69206. NEWS CATALYST: risk_off_generic + oil_supply_shock. Price currently 0.6906 area \u2014 need entry zone after recent drop",
+      "entry": 0.691,
+      "sl": 0.6927,
+      "tp": 0.6865,
       "category": "forex",
-      "added_at": "2026-06-23T08:08:44.049387+00:00"
+      "added_at": "2026-06-24T06:42:45.540377+00:00"
     },
     {
       "symbol": "XAUUSD",
-      "score": 9,
+      "score": 8,
       "direction": "short",
-      "reason": "H4 CHANGE 2 confirmed (4198.44 lower high, 4130.73 swing low broken), news fed_hawkish gold bearish, M5 clean lower highs/lows, IN POSITION SL at entry+5",
-      "entry": 4105.02,
-      "sl": 4110.02,
-      "tp": 4069.0,
+      "reason": "H4 CHANGE2 confirmed: lower high 4144.74 + H4 closed 4062.88 below swing low 4090.89. Pullback to broken level now. Fed hawkish + peace talks = no safe haven bid. M15 lower high forming at 4097 \u2014 CHANGE5 imminent",
+      "entry": 4088.0,
+      "sl": 4106.0,
+      "tp": 4050.0,
       "category": "metals",
-      "added_at": "2026-06-23T08:08:44.188315+00:00"
+      "added_at": "2026-06-24T06:42:45.385150+00:00"
     },
     {
       "symbol": "EURUSD",
-      "score": 6,
+      "score": 7,
       "direction": "short",
-      "reason": "H4 CHANGE 2 confirmed, H1 clean compression breakout, M15 CHANGE 5 triggered. WATCH ONLY: current 5 pips from day low, RR 0.84:1 with structural SL. Re-enter on pullback to 1.14180-1.14220",
-      "entry": 1.1418,
-      "sl": 1.144,
-      "tp": 1.137,
+      "reason": "H4 CHANGE2 confirmed: lower high 1.13998 + H4 closed 1.13669 below swing low 1.13753. Need pullback bounce to 1.13720-1.13750 for entry. USD strength from Fed hawkish supports",
+      "entry": 1.1373,
+      "sl": 1.139,
+      "tp": 1.1325,
       "category": "forex",
-      "added_at": "2026-06-23T08:08:44.329948+00:00"
+      "added_at": "2026-06-24T06:42:45.459220+00:00"
+    },
+    {
+      "symbol": "GBPUSD",
+      "score": 5,
+      "direction": "short",
+      "reason": "Lower high confirmed 1.32215 but swing low 1.31825 NOT yet broken on H4 close (closes 1.31983/1.31991). Below threshold \u2014 watch only",
+      "entry": 1.3188,
+      "sl": 1.3205,
+      "tp": 1.314,
+      "category": "forex",
+      "added_at": "2026-06-24T06:42:45.615140+00:00"
     }
   ],
   "news_events": []
