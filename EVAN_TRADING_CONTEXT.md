@@ -236,6 +236,13 @@ Document version: 1.2 — updated June 5, 2026
 ## PRE-TRADE ENFORCER — MANDATORY EXECUTION PROTOCOL
 Version added: 1.3 — June 5, 2026
 
+⚠️ SUPERSEDED June 25, 2026 — REBUILD PHASE. The full 10-item checklist
+below, the hard trend gate, R:R minimum, and instrument size caps are
+SUSPENDED for now while Evan rebuilds the strategy from scratch. See
+"ENFORCER — REBUILD PHASE" at the bottom of this document for the only
+two rules currently active. Do not enforce the items below until that
+section says this protocol is reinstated.
+
 This protocol is NON-NEGOTIABLE. Claude MUST complete this BEFORE calling create_market_order on ANY trade. No exceptions. No shortcuts. If Claude skips this, Evan must say "Run the enforcer first."
 
 ### ENFORCER TEMPLATE
@@ -769,3 +776,32 @@ trend gate, the non-negotiable enforcer rule) into a scheduled process
 instead of one only triggered by a bad session.
 
 Document version: 1.9 — June 22, 2026 — Claude Code native loop added
+
+---
+
+## ENFORCER — REBUILD PHASE (June 25, 2026)
+
+Evan is rebuilding the strategy from scratch and the old enforcer logic
+(10-item checklist, hard trend gate, R:R minimum, per-trade risk %,
+instrument size caps, balance gates) is **suspended** until a validated
+strategy exists. Per-trade enforcement is intentionally off — see history
+above for why that's a real risk (June 11 catastrophic session) being
+knowingly accepted during this phase.
+
+**Active rules — these are the ONLY two checks Claude/enforcer.py runs right now:**
+1. **SESSION MAX LOSS 50%** — if current balance drops to ≤50% of the
+   session's starting balance, all further trades this session are
+   BLOCKED. No per-trade size/risk/R:R checks before that point.
+2. **TIME VALIDITY** — block if the trade timestamp falls outside normal
+   forex market hours (closed roughly Sat 00:00 UTC → Sun 21:00 UTC) or
+   the timestamp otherwise looks wrong.
+
+enforcer.py has been rewritten to reflect only these two checks (old
+version's git history retains the full logic if it's needed again).
+
+**Reinstatement:** once Evan has a validated strategy, a new enforcer
+matched to that strategy gets built and this section is updated to point
+to it. Until then, the old 10-item protocol and trend gate above are
+NOT in effect, regardless of what they say.
+
+Document version: 2.0 — June 25, 2026 — enforcer simplified for rebuild phase

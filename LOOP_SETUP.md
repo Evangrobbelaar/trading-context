@@ -29,18 +29,25 @@ Two separate loop tiers — do not merge them:
 ```
 /loop 5m Run a trading session tick: pull EVAN_TRADING_CONTEXT.md from
 this repo if not already loaded this session. Check open positions on
-the active account. Run the mandatory analysis sequence (news, H4 trend
-gate, H1 structure, M15 trigger) per CHANGE 5. For any candidate trade,
-compute risk_amount, reward_amount, sl_distance, then run:
-python3 enforcer.py --instrument X --direction X --units/--lots X
---balance X --account X --risk_amount X --reward_amount X --sl_distance X
-If enforcer.py exits 1, the trade is blocked — do not place it, do not
-re-run with adjusted numbers just to force a pass. Only call
-create_market_order after a PASS. Use the mandatory ping response format
-(CHANGE 4) on every tick for open positions. Stop this loop if: 3
+the active account. [REBUILD PHASE — June 25, 2026: the mandatory news/
+H4 trend gate/H1/M15 analysis sequence is for Claude's own logging and
+Evan's learning only — it does NOT gate the trade right now. See
+"ENFORCER — REBUILD PHASE" in the context doc.] Before any trade, run:
+python3 enforcer.py --account X --account_id X --balance X
+(add --init on the first call of a new session to set the session's
+starting balance.) If enforcer.py exits 1, the trade is blocked — do not
+place it, do not re-run with adjusted numbers just to force a pass. Only
+call create_market_order after a PASS. Use the mandatory ping response
+format (CHANGE 4) on every tick for open positions. Stop this loop if: 3
 consecutive losing trades this session, OR daily floating + closed loss
 exceeds 10% of session-start balance, OR 20 iterations reached.
 ```
+
+Note: the loop's own 10%-drawdown auto-stop above is tighter than the
+enforcer's 50% session-max-loss rule — that's intentional overlap, not a
+conflict. The loop will normally stop itself well before the enforcer's
+50% floor would ever trigger. Raise the loop's 10% if you actually want
+the 50% enforcer limit to be the binding constraint.
 
 Notes:
 - Claude picks the tick interval dynamically if you omit "5m" — for an

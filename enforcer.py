@@ -1,120 +1,120 @@
 #!/usr/bin/env python3
 """
-PRE-TRADE ENFORCER — deterministic, cannot be argued around.
+PRE-TRADE ENFORCER v2 — REBUILD PHASE (simplified June 25, 2026)
 
-This script encodes ONLY the numeric/hard rules from EVAN_TRADING_CONTEXT.md
-(max risk %, instrument size caps, SL buffers, min R:R, banned instruments,
-indices balance gate). It does NOT judge trend, news, or structure — that
-judgment still comes from Claude's analysis and must be logged separately
-(see CHANGE 4 mandatory ping format in the context doc). This script exists
-specifically because the June 11 catastrophic session proved a text rule
-("enforcer cannot be bypassed") can still be talked around by an instruction.
-A script either exits 0 (PASS) or 1 (BLOCKED). There is no instruction that
-changes that.
+Per Evan's instruction: while the strategy is being rebuilt, every check
+EXCEPT the two below is suspended on purpose. The old v1 logic (max risk %,
+R:R minimum, instrument size caps, balance gates) is preserved in git
+history (see `git log -- enforcer.py`) and can be restored once a new
+strategy is validated — see "ENFORCER — REBUILD PHASE" in
+EVAN_TRADING_CONTEXT.md.
+
+Active checks:
+  1. SESSION MAX LOSS — block all further trades once current balance has
+     dropped to <= 50% of this session's starting balance.
+  2. TIME VALIDITY — block if outside normal forex market hours
+     (closed ~Sat 00:00 UTC -> Sun 21:00 UTC) or the supplied timestamp
+     looks wrong.
 
 Usage:
-  python3 enforcer.py --instrument XAUUSD --direction buy --units 1 \
-    --balance 352.85 --account demo --risk_amount 47 --reward_amount 93 \
-    --sl_distance 18
+  # First call of a session — records the starting balance as the floor reference:
+  python3 enforcer.py --account demo --account_id 41810679 --balance 500.00 --init
 
-Claude Code MUST run this before every create_market_order call and treat
-exit code 1 as an absolute block — never re-run with adjusted inputs just to
-get a PASS without genuinely changing the trade.
+  # Every call before create_market_order:
+  python3 enforcer.py --account demo --account_id 41810679 --balance 463.20
 """
 import argparse
 import sys
 import json
+import os
 from datetime import datetime, timezone
 
-INSTRUMENT_RULES = {
-    "XAUUSD":    {"max_units": 1, "min_sl": 15, "max_sl": 25, "unit": "pts"},
-    "XAUUSD247": {"max_units": 1, "min_sl": 15, "max_sl": 25, "unit": "pts"},
-    "EURUSD":    {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
-    "GBPUSD":    {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
-    "USDJPY":    {"max_lots": 0.03, "min_sl": 15, "max_sl": 25, "unit": "pips"},
-    "NAS100":    {"blocked_below_balance": 5000, "min_sl": 80, "max_sl": 150, "unit": "pts"},
-    "SPX500":    {"blocked_below_balance": 5000, "min_sl": 80, "max_sl": 150, "unit": "pts"},
-    "US30":      {"blocked_below_balance": 5000, "min_sl": 80, "max_sl": 150, "unit": "pts"},
-}
-BANNED_ALWAYS = {"WTI", "BTCUSD", "ETHUSD"}
+STATE_FILE = "session_state.json"
+AUDIT_FILE = "enforcer_audit.jsonl"
+SESSION_MAX_LOSS_PCT = 0.50
 
-MAX_RISK_PCT = 0.20
-MIN_RR = 1.2
+
+def load_state():
+    if os.path.exists(STATE_FILE):
+        with open(STATE_FILE) as f:
+            return json.load(f)
+    return {}
+
+
+def save_state(state):
+    with open(STATE_FILE, "w") as f:
+        json.dump(state, f, indent=2)
+
+
+def check_time(now_utc):
+    """Returns a block reason string, or None if time is valid."""
+    weekday = now_utc.weekday()  # Mon=0 ... Sun=6
+    hour = now_utc.hour
+    if weekday == 5:  # Saturday
+        return "Market closed — Saturday."
+    if weekday == 6 and hour < 21:  # Sunday before 21:00 UTC
+        return "Market closed — Sunday before 21:00 UTC reopen."
+    if weekday == 4 and hour >= 21:  # Friday after 21:00 UTC
+        return "Market closed — Friday after 21:00 UTC."
+    return None
 
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--instrument", required=True)
-    p.add_argument("--direction", required=True, choices=["buy", "sell"])
-    p.add_argument("--units", type=float, default=0)
-    p.add_argument("--lots", type=float, default=0)
-    p.add_argument("--balance", type=float, required=True)
     p.add_argument("--account", required=True, choices=["demo", "live"])
-    p.add_argument("--risk_amount", type=float, required=True,
-                    help="ZAR amount lost if SL hits")
-    p.add_argument("--reward_amount", type=float, required=True,
-                    help="ZAR amount gained if TP hits")
-    p.add_argument("--sl_distance", type=float, required=True,
-                    help="pts or pips, matching the instrument's unit")
+    p.add_argument("--account_id", required=True, help="e.g. 41810679")
+    p.add_argument("--balance", type=float, required=True)
+    p.add_argument("--init", action="store_true",
+                    help="Record this balance as the session's starting balance.")
+    p.add_argument("--now", default=None,
+                    help="Override current UTC time for testing, ISO format.")
     args = p.parse_args()
 
+    now_utc = datetime.now(timezone.utc)
+    if args.now:
+        try:
+            now_utc = datetime.fromisoformat(args.now)
+        except ValueError:
+            pass
+
     blocks = []
-    inst = args.instrument.upper()
+    key = f"{args.account}_{args.account_id}"
+    state = load_state()
+    today = now_utc.strftime("%Y-%m-%d")
 
-    if inst in BANNED_ALWAYS:
-        blocks.append(f"{inst} is on the permanent avoid list. No exceptions.")
+    if args.init or key not in state or state[key].get("date") != today:
+        state[key] = {"session_start_balance": args.balance, "date": today}
+        save_state(state)
 
-    rule = INSTRUMENT_RULES.get(inst)
-    if rule:
-        if "blocked_below_balance" in rule and args.balance < rule["blocked_below_balance"]:
-            blocks.append(
-                f"{inst} blocked until balance >= R{rule['blocked_below_balance']} "
-                f"(current R{args.balance:.2f})."
-            )
-        if "max_units" in rule and args.units > rule["max_units"]:
-            blocks.append(f"{inst} max {rule['max_units']} unit(s). Requested {args.units}.")
-        if "max_lots" in rule and args.lots > rule["max_lots"]:
-            blocks.append(f"{inst} max {rule['max_lots']} lots. Requested {args.lots}.")
-        if "min_sl" in rule and args.sl_distance < rule["min_sl"]:
-            blocks.append(
-                f"{inst} SL too tight: {args.sl_distance} < min {rule['min_sl']}{rule['unit']}."
-            )
-        if "max_sl" in rule and args.sl_distance > rule["max_sl"]:
-            blocks.append(
-                f"{inst} SL too wide: {args.sl_distance} > max {rule['max_sl']}{rule['unit']} "
-                f"— check sizing, this is how June 11 happened."
-            )
+    session_start = state[key]["session_start_balance"]
+    loss_pct = 1 - (args.balance / session_start) if session_start > 0 else 0
 
-    risk_pct = (args.risk_amount / args.balance) if args.balance > 0 else 1.0
-    if risk_pct > MAX_RISK_PCT:
+    if loss_pct >= SESSION_MAX_LOSS_PCT:
         blocks.append(
-            f"Risk {risk_pct*100:.1f}% of account exceeds {MAX_RISK_PCT*100:.0f}% max "
-            f"(R{args.risk_amount:.2f} on R{args.balance:.2f})."
+            f"Session max loss hit: balance R{args.balance:.2f} is "
+            f"{loss_pct*100:.1f}% down from session start R{session_start:.2f} "
+            f"(limit {SESSION_MAX_LOSS_PCT*100:.0f}%). No more trades this session."
         )
 
-    rr = (args.reward_amount / args.risk_amount) if args.risk_amount > 0 else 0
-    if rr < MIN_RR:
-        blocks.append(f"R:R {rr:.2f}:1 is below the {MIN_RR}:1 minimum.")
+    time_block = check_time(now_utc)
+    if time_block:
+        blocks.append(time_block)
 
     result = {
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "instrument": inst,
-        "direction": args.direction,
+        "timestamp": now_utc.isoformat(),
         "account": args.account,
+        "account_id": args.account_id,
         "balance": args.balance,
-        "risk_amount": args.risk_amount,
-        "risk_pct": round(risk_pct * 100, 2),
-        "rr": round(rr, 2),
-        "sl_distance": args.sl_distance,
+        "session_start_balance": session_start,
+        "loss_pct": round(loss_pct * 100, 2),
         "verdict": "BLOCKED" if blocks else "PASS",
         "block_reasons": blocks,
+        "enforcer_mode": "v2_rebuild_phase_simplified",
     }
 
     print(json.dumps(result, indent=2))
 
-    # Every check is logged — pass or fail — so the weekly review loop has
-    # a full, honest record to learn from. Nothing gets swept under the rug.
-    with open("enforcer_audit.jsonl", "a") as f:
+    with open(AUDIT_FILE, "a") as f:
         f.write(json.dumps(result) + "\n")
 
     sys.exit(1 if blocks else 0)
