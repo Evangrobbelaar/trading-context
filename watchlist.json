@@ -1,49 +1,49 @@
 {
-  "generated_at": "2026-06-24T06:42:45.615140+00:00",
+  "generated_at": "2026-06-25T07:00:27.286663+00:00",
   "watchlist": [
     {
-      "symbol": "AUDUSD",
+      "symbol": "XAUUSD",
       "score": 9,
       "direction": "short",
-      "reason": "H4 CHANGE2 confirmed: lower high 0.69413 + H4 closed 0.69123 below swing low 0.69206. NEWS CATALYST: risk_off_generic + oil_supply_shock. Price currently 0.6906 area \u2014 need entry zone after recent drop",
-      "entry": 0.691,
-      "sl": 0.6927,
-      "tp": 0.6865,
-      "category": "forex",
-      "added_at": "2026-06-24T06:42:45.540377+00:00"
+      "reason": "H4 BEAR: 10-day downtrend 4350\u21923995 (-355pts). Fed hawkish, PCE hot expected, USD at 1yr high. Short-term bounce from 3988\u21924012 reversed at 3995. Target 3950, 3920.",
+      "entry": 3990.0,
+      "sl": 4025.0,
+      "tp": 3930.0,
+      "category": "metals",
+      "added_at": "2026-06-25T07:00:27.072609+00:00"
     },
     {
-      "symbol": "XAUUSD",
-      "score": 8,
-      "direction": "short",
-      "reason": "H4 CHANGE2 confirmed: lower high 4144.74 + H4 closed 4062.88 below swing low 4090.89. Pullback to broken level now. Fed hawkish + peace talks = no safe haven bid. M15 lower high forming at 4097 \u2014 CHANGE5 imminent",
-      "entry": 4088.0,
-      "sl": 4106.0,
-      "tp": 4050.0,
-      "category": "metals",
-      "added_at": "2026-06-24T06:42:45.385150+00:00"
+      "symbol": "USDJPY",
+      "score": 9,
+      "direction": "long",
+      "reason": "H4 BULL: 160\u2192162 trend intact. Already long 161.888 SL161.728 TP162.202. Fed hawkish = USD up, BOJ stuck = JPY weak. PCE hot = target 162.5+.",
+      "entry": 161.888,
+      "sl": 161.728,
+      "tp": 162.5,
+      "category": "forex",
+      "added_at": "2026-06-25T07:00:27.286663+00:00"
     },
     {
       "symbol": "EURUSD",
-      "score": 7,
+      "score": 8,
       "direction": "short",
-      "reason": "H4 CHANGE2 confirmed: lower high 1.13998 + H4 closed 1.13669 below swing low 1.13753. Need pullback bounce to 1.13720-1.13750 for entry. USD strength from Fed hawkish supports",
-      "entry": 1.1373,
-      "sl": 1.139,
-      "tp": 1.1325,
+      "reason": "H4 BEAR: 1.161\u21921.136 downtrend. USD bull + Fed hawkish + risk_off. Small bounce to 1.137 looks like lower high. PCE hot = accelerates breakdown.",
+      "entry": 1.137,
+      "sl": 1.141,
+      "tp": 1.128,
       "category": "forex",
-      "added_at": "2026-06-24T06:42:45.459220+00:00"
+      "added_at": "2026-06-25T07:00:27.144779+00:00"
     },
     {
       "symbol": "GBPUSD",
-      "score": 5,
+      "score": 7,
       "direction": "short",
-      "reason": "Lower high confirmed 1.32215 but swing low 1.31825 NOT yet broken on H4 close (closes 1.31983/1.31991). Below threshold \u2014 watch only",
-      "entry": 1.3188,
-      "sl": 1.3205,
-      "tp": 1.314,
+      "reason": "H4 BEAR: 1.344\u21921.318 downtrend. USD strength dominant. Current bounce to 1.318 = distribution zone. PCE hot = breaks lower.",
+      "entry": 1.318,
+      "sl": 1.323,
+      "tp": 1.308,
       "category": "forex",
-      "added_at": "2026-06-24T06:42:45.615140+00:00"
+      "added_at": "2026-06-25T07:00:27.214911+00:00"
     }
   ],
   "news_events": []

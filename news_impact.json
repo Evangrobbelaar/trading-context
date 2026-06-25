@@ -1,36 +1,36 @@
 {
-  "last_scan_utc": "2026-06-24T06:39:30.537545+00:00",
+  "last_scan_utc": "2026-06-25T06:59:58.365053+00:00",
   "active_events": [
+    "war_escalation",
     "fed_hawkish",
-    "peace_talks",
-    "tech_earnings_miss",
-    "risk_off_generic",
-    "oil_supply_shock"
+    "risk_off_generic"
   ],
   "instruments_long": [
-    "BP",
-    "CHEVRON",
-    "EXXON",
+    "BOEING",
+    "LOCKHEED",
+    "NORTHROP",
     "USDCAD",
-    "USDJPY"
+    "USDCHF",
+    "USDJPY",
+    "XAGUSD"
   ],
   "instruments_short": [
-    "AMAZON",
-    "AMD",
-    "APPLE",
     "AUDUSD",
-    "LOCKHEED",
-    "META",
-    "MICROSOFT",
-    "NORTHROP",
-    "NVIDIA"
+    "AUS200",
+    "EURJPY",
+    "EURUSD",
+    "GBPUSD",
+    "NAS100",
+    "SPX500"
   ],
   "headlines": [
-    "Fed Warsh holds rates but 9/18 officials project 2026 hike \u2014 60.7% Oct probability",
-    "US-Iran peace agreement eases Hormuz pressure \u2014 gold safe haven demand falling",
-    "Micron down 10% NAS100 -2.21% chip sector selloff",
-    "S&P 500 -1.44% global risk-off on tech liquidations",
-    "Hormuz traffic recovering \u2014 oil supply pressure easing"
+    "Ukraine drone strikes Moscow Gazprom refinery",
+    "US-Iran war ongoing costs 4-42B",
+    "Fed Chair Warsh hawkish - PCE inflation revised to 3.6% - 9 officials see rate hike",
+    "USD at highest level in 1+ year",
+    "Oil Brent -4.3% to 3.74",
+    "Bitcoin 2,760 suffering same USD headwinds as gold",
+    "PCE + GDP + Durable Orders at 14:30 SAST today"
   ],
   "high_impact_within_2h": false
 }
