@@ -552,6 +552,12 @@ def main() -> None:
         help="Datetime of last signal bar used — prevents duplicate entries on same bar",
     )
     p.add_argument(
+        "--h4_direction",
+        default="",
+        choices=["bull", "bear", "unclear", ""],
+        help="Manual H4 direction override — use when macro is obvious but 3-bar window shows noise bounce",
+    )
+    p.add_argument(
         "--list_symbols", action="store_true", help="Print supported symbols and exit"
     )
     args = p.parse_args()
@@ -574,10 +580,14 @@ def main() -> None:
 
     h4_bars = parse_bars(args.h4_bars)
     m15_bars = parse_bars(args.m15_bars)
-    direction = h4_direction(h4_bars)
-    # If H4 is unclear, fall back to M15 trend (60%+ of closes same direction)
-    if direction == "unclear":
-        direction = m15_direction(m15_bars)
+    # Use manual override if provided (macro-obvious direction contradicted by short noise bounce)
+    if args.h4_direction in ("bull", "bear"):
+        direction = args.h4_direction
+    else:
+        direction = h4_direction(h4_bars)
+        # If H4 is unclear, fall back to M15 trend (60%+ of closes same direction)
+        if direction == "unclear":
+            direction = m15_direction(m15_bars)
 
     # CHANGE 7 (trend-continuation)
     c7 = (
