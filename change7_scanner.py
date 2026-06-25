@@ -373,8 +373,9 @@ def detect_change7(m15_bars: list, direction: str, cfg: dict) -> dict | None:
         bear_bars = sum(1 for b in window if b["close"] < b["open"])
         if bear_bars < 2:
             return None
-        # Pullback: current price has bounced UP >= 10% from window low (was 20%)
-        pullback = signal["close"] - win_low
+        # Pullback: signal bar HIGH must have bounced >= 10% above window low
+        # Use HIGH not close — captures intrabar rejection (wicked up then slammed back)
+        pullback = signal["high"] - win_low
         pullback_pct = pullback / run_size if run_size > 0 else 0
         if pullback_pct < 0.10:
             return None
@@ -410,8 +411,9 @@ def detect_change7(m15_bars: list, direction: str, cfg: dict) -> dict | None:
         bull_bars = sum(1 for b in window if b["close"] > b["open"])
         if bull_bars < 2:
             return None
-        # Pullback: current price has dipped DOWN >= 10% from window high (was 20%)
-        pullback = win_high - signal["close"]
+        # Pullback: signal bar LOW must have dipped >= 10% below window high
+        # Use LOW not close — captures intrabar rejection (wicked down then recovered)
+        pullback = win_high - signal["low"]
         pullback_pct = pullback / run_size if run_size > 0 else 0
         if pullback_pct < 0.10:
             return None

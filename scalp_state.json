@@ -1,157 +1,157 @@
 {
-  "updated_sast": "08:41",
+  "updated_sast": "09:16",
   "instruments": {
-    "XAUUSD": {
-      "current_price": 4088.99,
-      "h1_trend": "bear",
-      "levels": [
-        {
-          "price": 4110,
-          "type": "resistance",
-          "direction": "short",
-          "strength": 11,
-          "distance_pips": 21.0,
-          "sl": 4115.0,
-          "tp": 4100.0,
-          "rr": 2.0,
-          "status": "watching"
-        },
-        {
-          "price": 4115.07,
-          "type": "resistance",
-          "direction": "short",
-          "strength": 11,
-          "distance_pips": 26.1,
-          "sl": 4120.07,
-          "tp": 4105.07,
-          "rr": 2.0,
-          "status": "watching"
-        },
-        {
-          "price": 4100,
-          "type": "resistance",
-          "direction": "short",
-          "strength": 6,
-          "distance_pips": 11.0,
-          "sl": 4105.0,
-          "tp": 4090.0,
-          "rr": 2.0,
-          "status": "watching"
-        }
-      ]
-    },
     "EURUSD": {
-      "current_price": 1.13653,
-      "h1_trend": "bear",
+      "current_price": 1.13511,
+      "h1_trend": "bull",
       "levels": [
         {
-          "price": 1.13831,
-          "type": "resistance",
-          "direction": "short",
-          "strength": 14,
-          "distance_pips": 17.8,
-          "sl": 1.13881,
-          "tp": 1.13731,
-          "rr": 2.0,
-          "status": "watching"
-        },
-        {
-          "price": 1.13753,
-          "type": "resistance",
-          "direction": "short",
-          "strength": 12,
-          "distance_pips": 10.0,
-          "sl": 1.13803,
-          "tp": 1.13653,
-          "rr": 2.0,
-          "status": "watching"
-        },
-        {
-          "price": 1.13608,
+          "price": 1.135,
           "type": "support",
           "direction": "long",
-          "strength": 3,
-          "distance_pips": 4.5,
-          "sl": 1.13558,
-          "tp": 1.13708,
+          "strength": 17,
+          "distance_pips": 1.1,
+          "sl": 1.1345,
+          "tp": 1.136,
+          "rr": 2.0,
+          "status": "watching"
+        },
+        {
+          "price": 1.13472,
+          "type": "support",
+          "direction": "long",
+          "strength": 12,
+          "distance_pips": 3.9,
+          "sl": 1.13422,
+          "tp": 1.13572,
+          "rr": 2.0,
+          "status": "watching"
+        },
+        {
+          "price": 1.13675,
+          "type": "resistance",
+          "direction": "short",
+          "strength": 7,
+          "distance_pips": 16.4,
+          "sl": 1.13725,
+          "tp": 1.13575,
           "rr": 2.0,
           "status": "watching"
         }
       ]
     },
     "GBPUSD": {
-      "current_price": 1.31921,
+      "current_price": 1.31756,
+      "h1_trend": "bull",
+      "levels": [
+        {
+          "price": 1.31575,
+          "type": "support",
+          "direction": "long",
+          "strength": 13,
+          "distance_pips": 18.1,
+          "sl": 1.31525,
+          "tp": 1.31675,
+          "rr": 2.0,
+          "status": "watching"
+        },
+        {
+          "price": 1.31849,
+          "type": "resistance",
+          "direction": "short",
+          "strength": 7,
+          "distance_pips": 9.3,
+          "sl": 1.31899,
+          "tp": 1.31749,
+          "rr": 2.0,
+          "status": "watching"
+        },
+        {
+          "price": 1.315,
+          "type": "support",
+          "direction": "long",
+          "strength": 6,
+          "distance_pips": 25.6,
+          "sl": 1.3145,
+          "tp": 1.316,
+          "rr": 2.0,
+          "status": "watching"
+        }
+      ]
+    },
+    "XAUUSD": {
+      "current_price": 3980.91,
       "h1_trend": "bear",
       "levels": [
         {
-          "price": 1.32,
+          "price": 3990,
           "type": "resistance",
           "direction": "short",
-          "strength": 13,
-          "distance_pips": 7.9,
-          "sl": 1.3205,
-          "tp": 1.319,
+          "strength": 15,
+          "distance_pips": 9.1,
+          "sl": 3995.0,
+          "tp": 3980.0,
           "rr": 2.0,
           "status": "watching"
         },
         {
-          "price": 1.32041,
+          "price": 4000,
           "type": "resistance",
           "direction": "short",
-          "strength": 12,
-          "distance_pips": 12.0,
-          "sl": 1.32091,
-          "tp": 1.31941,
+          "strength": 14,
+          "distance_pips": 19.1,
+          "sl": 4005.0,
+          "tp": 3990.0,
           "rr": 2.0,
           "status": "watching"
         },
         {
-          "price": 1.31867,
+          "price": 3980,
           "type": "support",
           "direction": "long",
-          "strength": 7,
-          "distance_pips": 5.4,
-          "sl": 1.31817,
-          "tp": 1.31967,
+          "strength": 10,
+          "distance_pips": 0.9,
+          "sl": 3975.0,
+          "tp": 3990.0,
           "rr": 2.0,
           "status": "watching"
         }
       ]
     },
     "USDJPY": {
-      "current_price": 161.664,
-      "h1_trend": "bull",
+      "current_price": 161.864,
+      "h1_trend": "neutral",
       "levels": [
         {
-          "price": 161.5,
+          "price": 161.823,
           "type": "support",
           "direction": "long",
-          "strength": 14,
-          "distance_pips": 16.4,
-          "sl": 161.45,
-          "tp": 161.6,
+          "strength": 8,
+          "distance_pips": 4.1,
+          "sl": 161.773,
+          "tp": 161.923,
           "rr": 2.0,
           "status": "watching"
         },
         {
-          "price": 161.498,
+          "price": 161.619,
           "type": "support",
           "direction": "long",
-          "strength": 13,
-          "distance_pips": 16.6,
-          "sl": 161.448,
-          "tp": 161.598,
+          "strength": 3,
+          "distance_pips": 24.5,
+          "sl": 161.569,
+          "tp": 161.719,
           "rr": 2.0,
           "status": "watching"
         },
         {
-          "price": 161.63,
-          "type": "support",
-          "direction": "long",
-          "strength": 10,
-          "distance_pips": 3.4,
-          "sl": 161.58,
-          "tp": 161.73,
+          "price": 161.883,
+          "type": "resistance",
+          "direction": "short",
+          "strength": 2,
+          "distance_pips": 1.9,
+          "sl": 161.933,
+          "tp": 161.783,
           "rr": 2.0,
           "status": "watching"
         }
@@ -163,14 +163,5 @@
   "session_pnl_zar": 0,
   "loop_active": false,
   "loop_stopped": false,
-  "stop_reason": null,
-  "scalp_active": true,
-  "overnight_mode": false,
-  "max_drawdown_zar": 200,
-  "session_drawdown_limit": -200,
-  "trades_this_session": 0,
-  "max_trades_per_session": 3,
-  "max_consecutive_losses": 2,
-  "open_scalp_positions": [],
-  "loop_stop_reason": null
+  "stop_reason": null
 }
