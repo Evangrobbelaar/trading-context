@@ -46,219 +46,221 @@ import sys
 # ---------------------------------------------------------------------------
 INSTRUMENT_CONFIG: dict = {
     # Gold — primary
+    # min_run lowered 15→8: Asian range is ~30pts/6hrs; need 8pt run in 8 bars (120min) not 15pt in 90min
     "XAUUSD": {
-        "min_run": 15.0,
-        "sl": 6.0,
-        "tp": 15.0,
+        "min_run": 8.0,
+        "sl": 8.0,
+        "tp": 20.0,
         "pip_size": 1.0,
         "units": 1,
         "zar_per_pip": 16.0,
     },
     # Standard forex (pip = 0.0001)
+    # min_run lowered 15pip→8pip for same reason — Asian ranges 30-50pip/session
     "EURUSD": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "GBPUSD": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "AUDUSD": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "NZDUSD": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "USDCAD": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "USDCHF": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "EURGBP": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "EURAUD": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "EURCHF": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "EURCAD": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "GBPAUD": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "GBPCAD": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "GBPCHF": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "AUDCHF": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "AUDNZD": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "AUDCAD": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "NZDCAD": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
     "NZDCHF": {
-        "min_run": 0.0015,
-        "sl": 0.0006,
-        "tp": 0.0015,
+        "min_run": 0.0008,
+        "sl": 0.0008,
+        "tp": 0.0020,
         "pip_size": 0.0001,
         "units": 3000,
         "zar_per_pip": 5.46,
     },
-    # JPY pairs (pip = 0.01)
+    # JPY pairs (pip = 0.01) — min_run 15pip→8pip
     "USDJPY": {
-        "min_run": 0.15,
-        "sl": 0.06,
-        "tp": 0.15,
+        "min_run": 0.08,
+        "sl": 0.08,
+        "tp": 0.20,
         "pip_size": 0.01,
         "units": 3000,
         "zar_per_pip": 3.71,
     },
     "EURJPY": {
-        "min_run": 0.15,
-        "sl": 0.06,
-        "tp": 0.15,
+        "min_run": 0.08,
+        "sl": 0.08,
+        "tp": 0.20,
         "pip_size": 0.01,
         "units": 3000,
         "zar_per_pip": 3.71,
     },
     "GBPJPY": {
-        "min_run": 0.15,
-        "sl": 0.06,
-        "tp": 0.15,
+        "min_run": 0.08,
+        "sl": 0.08,
+        "tp": 0.20,
         "pip_size": 0.01,
         "units": 3000,
         "zar_per_pip": 3.71,
     },
     "AUDJPY": {
-        "min_run": 0.15,
-        "sl": 0.06,
-        "tp": 0.15,
+        "min_run": 0.08,
+        "sl": 0.08,
+        "tp": 0.20,
         "pip_size": 0.01,
         "units": 3000,
         "zar_per_pip": 3.71,
     },
     "CADJPY": {
-        "min_run": 0.15,
-        "sl": 0.06,
-        "tp": 0.15,
+        "min_run": 0.08,
+        "sl": 0.08,
+        "tp": 0.20,
         "pip_size": 0.01,
         "units": 3000,
         "zar_per_pip": 3.30,
     },
     "NZDJPY": {
-        "min_run": 0.15,
-        "sl": 0.06,
-        "tp": 0.15,
+        "min_run": 0.08,
+        "sl": 0.08,
+        "tp": 0.20,
         "pip_size": 0.01,
         "units": 3000,
         "zar_per_pip": 3.10,
     },
     "CHFJPY": {
-        "min_run": 0.15,
-        "sl": 0.06,
-        "tp": 0.15,
+        "min_run": 0.08,
+        "sl": 0.08,
+        "tp": 0.20,
         "pip_size": 0.01,
         "units": 3000,
         "zar_per_pip": 3.50,
     },
     # Silver
     "XAGUSD": {
-        "min_run": 0.50,
+        "min_run": 0.25,
         "sl": 0.20,
         "tp": 0.50,
         "pip_size": 0.01,
@@ -325,17 +327,35 @@ def _count_consecutive(bars: list, direction: str) -> int:
     return count
 
 
+def m15_direction(bars: list) -> str:
+    """Fallback direction from M15 when H4 is unclear: majority of last 8 closes."""
+    if len(bars) < 4:
+        return "unclear"
+    recent = bars[-8:] if len(bars) >= 8 else bars
+    closes = [b["close"] for b in recent]
+    total = len(closes) - 1
+    if total == 0:
+        return "unclear"
+    falling = sum(1 for i in range(1, len(closes)) if closes[i] < closes[i - 1])
+    rising = sum(1 for i in range(1, len(closes)) if closes[i] > closes[i - 1])
+    if falling / total >= 0.6:
+        return "bear"
+    if rising / total >= 0.6:
+        return "bull"
+    return "unclear"
+
+
 def detect_change7(m15_bars: list, direction: str, cfg: dict) -> dict | None:
     """
     Detect CHANGE 7 signal in M15 bars.
-    Needs >= 8 bars (6 lookback + 1 signal bar minimum).
+    Window expanded to 8 bars (120min). Pullback lowered to 10%. Direction bars lowered to 2.
     """
-    if len(m15_bars) < 7:
+    if len(m15_bars) < 9:
         return None
     if direction not in ("bear", "bull"):
         return None
 
-    window = m15_bars[-7:-1]  # 6-bar lookback
+    window = m15_bars[-9:-1]  # 8-bar lookback (was 6)
     signal = m15_bars[-1]  # last completed bar = signal bar
 
     win_high = max(b["high"] for b in window)
@@ -349,14 +369,14 @@ def detect_change7(m15_bars: list, direction: str, cfg: dict) -> dict | None:
         # Signal bar must be bearish
         if signal["close"] >= signal["open"]:
             return None
-        # Majority of window bars must be bearish (run was DOWN)
+        # At least 2 of 8 window bars must be bearish (was 3 of 6)
         bear_bars = sum(1 for b in window if b["close"] < b["open"])
-        if bear_bars < 3:
+        if bear_bars < 2:
             return None
-        # Pullback: current price has bounced UP >= 20% from window low
+        # Pullback: current price has bounced UP >= 10% from window low (was 20%)
         pullback = signal["close"] - win_low
         pullback_pct = pullback / run_size if run_size > 0 else 0
-        if pullback_pct < 0.20:
+        if pullback_pct < 0.10:
             return None
 
         entry = signal["close"]
@@ -386,14 +406,14 @@ def detect_change7(m15_bars: list, direction: str, cfg: dict) -> dict | None:
         # Signal bar must be bullish
         if signal["close"] <= signal["open"]:
             return None
-        # Majority of window bars must be bullish
+        # At least 2 of 8 window bars must be bullish (was 3 of 6)
         bull_bars = sum(1 for b in window if b["close"] > b["open"])
-        if bull_bars < 3:
+        if bull_bars < 2:
             return None
-        # Pullback: current price has dipped DOWN >= 20% from window high
+        # Pullback: current price has dipped DOWN >= 10% from window high (was 20%)
         pullback = win_high - signal["close"]
         pullback_pct = pullback / run_size if run_size > 0 else 0
-        if pullback_pct < 0.20:
+        if pullback_pct < 0.10:
             return None
 
         entry = signal["close"]
@@ -434,7 +454,7 @@ def detect_bounce(m15_bars: list, cfg: dict) -> dict | None:
     consec_bear = _count_consecutive(pre_bars, "bear")
     consec_bull = _count_consecutive(pre_bars, "bull")
 
-    if consec_bear >= 5 and signal["close"] > signal["open"]:
+    if consec_bear >= 3 and signal["close"] > signal["open"]:
         # Exhaustion bounce LONG after 5+ bearish bars
         run_bars = pre_bars[-consec_bear:]
         run_low = min(b["low"] for b in run_bars)
@@ -472,7 +492,7 @@ def detect_bounce(m15_bars: list, cfg: dict) -> dict | None:
             "note": "Counter-trend exhaustion — overrides H4 direction gate",
         }
 
-    if consec_bull >= 5 and signal["close"] < signal["open"]:
+    if consec_bull >= 3 and signal["close"] < signal["open"]:
         # Exhaustion bounce SHORT after 5+ bullish bars
         run_bars = pre_bars[-consec_bull:]
         run_high = max(b["high"] for b in run_bars)
@@ -555,6 +575,9 @@ def main() -> None:
     h4_bars = parse_bars(args.h4_bars)
     m15_bars = parse_bars(args.m15_bars)
     direction = h4_direction(h4_bars)
+    # If H4 is unclear, fall back to M15 trend (60%+ of closes same direction)
+    if direction == "unclear":
+        direction = m15_direction(m15_bars)
 
     # CHANGE 7 (trend-continuation)
     c7 = (

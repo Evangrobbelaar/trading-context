@@ -50,16 +50,16 @@ INSTRUMENT_RULES: dict = {
     # Gold
     "XAUUSD": {
         "max_units": 1,
-        "min_sl": 15,
-        "max_sl": 25,
+        "min_sl": 6,
+        "max_sl": 30,
         "unit": "pts",
         "value_per_unit_per_pt": 16.0,
         "note": "1 unit ONLY. 3 units = account killer (confirmed June loss).",
     },
     "XAUUSD247": {
         "max_units": 1,
-        "min_sl": 15,
-        "max_sl": 25,
+        "min_sl": 6,
+        "max_sl": 30,
         "unit": "pts",
         "value_per_unit_per_pt": 16.0,
         "note": "Weekend Gold — exceptional setups only, spread 8x wider.",
@@ -268,7 +268,7 @@ BANNED_ALWAYS: set = {"WTI", "BTCUSD", "ETHUSD", "NGAS"}
 
 MAX_RISK_PCT: float = 0.20  # 20% of account per trade
 MIN_RR: float = 1.2  # minimum reward:risk ratio (standard)
-MIN_RR_C7: float = 2.5  # minimum R:R for CHANGE 7 mode (6pt SL, 15pt TP = 2.5x)
+MIN_RR_C7: float = 2.0  # minimum R:R for CHANGE 7 mode (8pt SL, 20pt TP = 2.5x)
 MIN_SL_C7: float = 6.0  # minimum SL in CHANGE 7 mode (pts or pips)
 
 

@@ -1,5 +1,5 @@
 # TRADING SESSION — CLAUDE CODE BOOTSTRAP
-Version: 3.2 | Updated: June 24, 2026
+Version: 3.3 | Updated: June 25, 2026
 
 ## MANDATORY FIRST ACTION
 Read `EVAN_TRADING_CONTEXT.md` fully before any other output.
@@ -7,6 +7,16 @@ Then respond ONLY with:
 "Context loaded v[X.X] — [SAST time] — [session] — [N] open positions — ready."
 
 If you skipped this and the user sees no confirmation phrase: stop, read the file, output the phrase.
+
+## LOOP DROPOUT RESTART RULE (CRITICAL — added v3.3)
+If the context was compacted or the session reset mid-loop: **restart the loop immediately without waiting for Evan**.
+Do NOT wait for user input. Do NOT output an explanation. Simply:
+1. Read EVAN_TRADING_CONTEXT.md
+2. Get SAST time + account info + open positions
+3. Determine current session
+4. Resume the correct loop for that session
+5. ScheduleWakeup 270s (cache-warm) to continue
+This means Evan can step away at any time and the loop will self-heal on the next invocation.
 
 ---
 
@@ -43,15 +53,18 @@ A tick where nothing happened and nothing should have happened is a PASS, not a 
 
 ---
 
-## v3.2 LOOP ARCHITECTURE — FIVE SESSIONS
+## v3.3 LOOP ARCHITECTURE — FIVE SESSIONS
 
 | Session | Time (SAST) | Strategy | Max trades |
 |---|---|---|---|
-| Asian | 01:00-07:00 | CHANGE 7 only (USDJPY/AUDUSD/NZDUSD/XAUUSD) | 1 |
-| London | 09:00-15:00 | CHANGE 7 + scalp | 2 + 3 scalp |
-| London/NY | 15:00-18:00 | CHANGE 7 + scalp (BEST) | 2 + 3 scalp |
-| NY | 18:00-22:00 | Monitor open positions only | 0 new |
-| Overnight | 22:00-01:00 | Position monitor every 30 min if trades open | 0 new |
+| Asian | 01:00-07:00 | CHANGE 7 (USDJPY/AUDUSD/NZDUSD/XAUUSD) | 2 |
+| London | 09:00-15:00 | CHANGE 7 + scalp (ALL instruments) | 4 + 3 scalp |
+| London/NY | 15:00-18:00 | CHANGE 7 + scalp (BEST) | 4 + 3 scalp |
+| NY | 18:00-22:00 | CHANGE 7 + open position monitor | 2 |
+| Overnight | 22:00-01:00 | Position monitor + CHANGE 7 if signal fires | 1 |
+
+**No correlated pair restriction. AUDUSD and NZDUSD may be held simultaneously.**
+**No session instrument restrictions except: indices blocked below R8,000 balance.**
 
 **Full loop commands in LOOP_SETUP.md.**
 
@@ -71,12 +84,12 @@ Focused scan: watchlist instruments + open positions only. Faster, lower API usa
 2. `mcp__claude_ai_claude__get_account_info` — confirm balance, confirm account is #41829612
 3. `mcp__claude_ai_claude__get_open_positions` — list open positions and floating P&L
 4. Determine session:
-   - Asian: 01:00-07:00 SAST (CHANGE 7 only — USDJPY/AUDUSD/NZDUSD/XAUUSD — no scalp)
+   - Asian: 01:00-07:00 SAST (CHANGE 7 — USDJPY/AUDUSD/NZDUSD/XAUUSD — max 2 trades)
    - Pre-London: 08:43 SAST — scalp_levels.py setup (1-time, not a loop)
-   - London: 09:00-15:00 SAST (CHANGE 7 + scalp)
-   - London/NY overlap: 15:00-18:00 SAST (CHANGE 7 + scalp — BEST session)
-   - NY: 18:00-22:00 SAST (monitor open positions only — no new trades)
-   - Off-hours: 22:00-01:00 SAST (STOP LOOP unless positions open → overnight monitor)
+   - London: 09:00-15:00 SAST (CHANGE 7 + scalp — ALL instruments — max 4 trades)
+   - London/NY overlap: 15:00-18:00 SAST (CHANGE 7 + scalp — BEST session — max 4 trades)
+   - NY: 18:00-22:00 SAST (CHANGE 7 + monitor open positions — max 2 trades)
+   - Off-hours: 22:00-01:00 SAST (CHANGE 7 if signal fires — max 1 trade — else monitor)
 
 ---
 
@@ -269,12 +282,13 @@ python3 session_logger.py \
 ## LOOP STOP CONDITIONS
 
 Stop immediately if ANY are true:
-1. 2 consecutive losing trades this session
-2. Session drawdown exceeds R500 from session-start balance
-3. 2 trades placed this session (quality over quantity)
-4. 36 ticks reached (3 hours at 5-min ticks)
-5. Time is outside active session window
-6. Evan types "stop loop" or presses Esc
+1. 3 consecutive losing trades this session (was 2 — more room to work)
+2. Session drawdown exceeds R800 from session-start balance (was R500)
+3. Max trades for session reached (see session table above)
+4. 72 ticks reached (6 hours at 5-min ticks — full session coverage)
+5. Evan types "stop loop" or presses Esc
+
+Do NOT stop just because no signal fired. Keep scanning.
 
 ---
 
