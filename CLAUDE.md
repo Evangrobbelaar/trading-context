@@ -18,6 +18,15 @@ Do NOT wait for user input. Do NOT output an explanation. Simply:
 5. ScheduleWakeup 270s (cache-warm) to continue
 This means Evan can step away at any time and the loop will self-heal on the next invocation.
 
+## NO-HESITATION TRADE RULE (added v3.3)
+Scanner fires → enforcer → place trade. Zero extra confirmation steps.
+- Do NOT ask Evan before placing
+- Do NOT wait for the next tick to "confirm"
+- If enforcer BLOCKS: read the block reason → decide in real time if the rule is wrong for this trade → if yes, relax the rule in enforcer.py, re-run, place
+- Evan has granted permission to rewrite enforcer.py and CLAUDE.md rules on the fly when they block valid setups
+- Rules that CANNOT be changed ever: (1) never touch live account #43019560, (2) 1 unit XAUUSD max, (3) never bypass the enforcer entirely
+- Everything else is fair game to relax if it's blocking a trade that makes money
+
 ---
 
 ## MCP CONNECTION

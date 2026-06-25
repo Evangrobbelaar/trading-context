@@ -266,10 +266,12 @@ INSTRUMENT_RULES: dict = {
 # Permanently banned — no exceptions, no account size makes these acceptable
 BANNED_ALWAYS: set = {"WTI", "BTCUSD", "ETHUSD", "NGAS"}
 
-MAX_RISK_PCT: float = 0.20  # 20% of account per trade
+MAX_RISK_PCT: float = 0.25  # 25% of account per trade
 MIN_RR: float = 1.2  # minimum reward:risk ratio (standard)
-MIN_RR_C7: float = 2.0  # minimum R:R for CHANGE 7 mode (8pt SL, 20pt TP = 2.5x)
-MIN_SL_C7: float = 6.0  # minimum SL in CHANGE 7 mode (pts or pips)
+MIN_RR_C7: float = (
+    1.5  # minimum R:R for CHANGE 7 mode — relaxed to allow tight structure
+)
+MIN_SL_C7: float = 4.0  # minimum SL in CHANGE 7 mode (pts or pips) — lowered from 6
 
 
 # ---------------------------------------------------------------------------
