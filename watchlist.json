@@ -4,62 +4,95 @@
       "instrument": "BRENT",
       "direction": "sell",
       "score": 9,
-      "reason": "H1 lower high structure confirmed: 75.414→74.852→74.618→74.571. Active London breakdown. Fundamental: Hormuz de-escalation supply returning. OPEN #109724297.",
+      "reason": "H1 lower high structure confirmed: 75.414→74.852→74.618→74.571. London breakdown confirmed. Fundamental: Hormuz de-escalation supply returning. Session low 72.468.",
       "entry_zone": 73.539,
-      "sl": 74.62,
+      "sl": 74.0,
       "tp": 72.4,
       "added": "2026-06-26T07:55:00+00:00",
-      "status": "OPEN #109724297 — entry 73.539 — monitoring"
+      "closed": "2026-06-26T10:25:00+00:00",
+      "close_price": 72.839,
+      "realised_pnl_zar": 127.22,
+      "status": "CLOSED — locked profit at 72.839, user instruction to secure early (40min to session close)"
     },
     {
       "instrument": "USDCHF",
       "direction": "sell",
       "score": 8,
-      "reason": "USD broadly weak post-PCE. H1 lower lows. Breakout below consolidation 0.80845-0.80926. R:R 2.25:1. OPEN #109724298.",
+      "reason": "USD broadly weak post-PCE. H1 lower lows. Breakout below consolidation 0.80845-0.80926.",
       "entry_zone": 0.8085,
       "sl": 0.8105,
       "tp": 0.804,
       "added": "2026-06-26T07:55:00+00:00",
-      "status": "OPEN #109724298 — entry 0.80850 — monitoring"
+      "closed": "2026-06-26T08:29:00+00:00",
+      "close_price": 0.80883,
+      "realised_pnl_zar": -18.31,
+      "status": "CLOSED tick 29 — USD strengthened intraday, -R18.31"
     },
     {
       "instrument": "GBPUSD",
       "direction": "buy",
       "score": 8,
-      "reason": "London home session. H1 higher lows since 1.31798 session low. London open momentum. R:R 1.60:1. OPEN #109724299.",
+      "reason": "London home session. H1 higher lows since 1.31798 session low. London open momentum.",
       "entry_zone": 1.32019,
       "sl": 1.3175,
       "tp": 1.3245,
       "added": "2026-06-26T07:55:00+00:00",
-      "status": "OPEN #109724299 — entry 1.32019 — monitoring"
+      "closed": "2026-06-26T10:25:00+00:00",
+      "close_price": 1.32216,
+      "realised_pnl_zar": 151.28,
+      "status": "CLOSED — locked profit at session high 1.32216, user instruction to secure early"
+    },
+    {
+      "instrument": "XAGUSD",
+      "direction": "buy",
+      "score": 7,
+      "reason": "Added tick 16. Session momentum. Exhaustion spike to 58.32 ASK missed BID TP 58.300 by spread.",
+      "entry_zone": 57.63,
+      "sl": 57.4,
+      "tp": 58.3,
+      "added": "2026-06-26T07:55:00+00:00",
+      "closed": "2026-06-26T08:00:00+00:00",
+      "close_price": 57.73,
+      "realised_pnl_zar": -56.74,
+      "status": "CLOSED tick 25 — exhaustion spike reversed, two bearish bars, -R56.74"
     },
     {
       "instrument": "XAUUSD",
       "direction": "buy",
       "score": 7,
-      "reason": "Recovery from 3983.14 support. H1 higher lows: 3986→3999→4006→4021. Watch for pullback to 4020-4025 ask for entry. SL 4002, TP 4055. H4 gate 4044 in sight.",
+      "reason": "H4 gate 4044 broken during session (high 4054.03). Entry 4025 never pulled back to.",
       "entry_zone": 4022.0,
       "sl": 4002.0,
       "tp": 4055.0,
       "added": "2026-06-26T07:55:00+00:00",
-      "status": "WATCHING — pullback to 4020-4025 ask required before entry"
+      "status": "EXPIRED — session ended, entry 4025 never met (low was 3983, ask never returned to 4025 during session)"
     },
     {
       "instrument": "EURUSD",
       "direction": "buy",
       "score": 7,
-      "reason": "H1 higher lows confirmed. London momentum. USD weak. Wait for pullback to 1.1382 ask before entry — do not buy at session high. SL 1.1360, TP 1.1410.",
+      "reason": "H1 higher lows confirmed. London momentum. USD weak.",
       "entry_zone": 1.1383,
       "sl": 1.136,
       "tp": 1.141,
       "added": "2026-06-26T07:55:00+00:00",
-      "status": "WATCHING — wait for pullback to 1.1382 before entry"
+      "status": "EXPIRED — session ended, stayed in top 15% session range all session, Rule 17 blocked entry"
     }
   ],
-  "scan_time": "2026-06-26T07:55:00+00:00",
+  "scan_time": "2026-06-26T10:25:00+00:00",
   "session": "London",
+  "session_complete": true,
   "session_start_balance": 2602.33,
+  "session_end_balance": 2805.50,
+  "session_net_pnl_zar": 203.17,
   "max_session_loss_zar": 1301.17,
-  "instruments_scanned": ["EURUSD","GBPUSD","USDJPY","AUDUSD","NZDUSD","USDCAD","USDCHF","XAUUSD","XAGUSD","BRENT","EURJPY","GBPJPY","EURGBP","AUDJPY","CADJPY","EURAUD","GBPAUD","EURCAD","GBPCAD","NZDJPY","CHFJPY","AUDNZD","AUDCAD","NZDCAD","GBPNZD","EURNZD","CADCHF","NZDCHF","ETHUSD","BTCUSD"],
-  "macro_theme": "USD broadly weak post-PCE in-line. EUR/GBP bullish London. BRENT bearish (Hormuz de-escalation, H1 lower highs). Gold recovering from 3983 support toward 4044 gate."
+  "gate_breached": false,
+  "closed_loss_pct": 2.88,
+  "trades_summary": {
+    "BRENT": "+R127.22 (closed early tick 37)",
+    "GBPUSD": "+R151.28 (closed early tick 37)",
+    "USDCHF": "-R18.31 (closed tick 29)",
+    "XAGUSD": "-R56.74 (closed tick 25)"
+  },
+  "macro_theme": "USD broadly weak post-PCE in-line. GBP bullish — GBPUSD hit session H 1.32217. BRENT bearish confirmed (H1 lower highs, session low 72.468). XAUUSD broke H4 gate 4044 (high 4054.03) — bullish into NY session. All instruments at session extremes at close, Rule 17 blocked new entries."
 }
