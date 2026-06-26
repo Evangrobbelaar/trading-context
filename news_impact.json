@@ -1,36 +1,30 @@
 {
-  "last_scan_utc": "2026-06-25T06:59:58.365053+00:00",
+  "last_scan_utc": "2026-06-26T19:57:48.546562+00:00",
   "active_events": [
-    "war_escalation",
-    "fed_hawkish",
-    "risk_off_generic"
+    "cpi_cool",
+    "risk_on_generic",
+    "war_escalation"
   ],
   "instruments_long": [
+    "AUDUSD",
     "BOEING",
     "LOCKHEED",
     "NORTHROP",
-    "USDCAD",
-    "USDCHF",
-    "USDJPY",
     "XAGUSD"
   ],
   "instruments_short": [
-    "AUDUSD",
     "AUS200",
     "EURJPY",
-    "EURUSD",
-    "GBPUSD",
-    "NAS100",
-    "SPX500"
+    "USDCAD",
+    "USDJPY"
   ],
   "headlines": [
-    "Ukraine drone strikes Moscow Gazprom refinery",
-    "US-Iran war ongoing costs 4-42B",
-    "Fed Chair Warsh hawkish - PCE inflation revised to 3.6% - 9 officials see rate hike",
-    "USD at highest level in 1+ year",
-    "Oil Brent -4.3% to 3.74",
-    "Bitcoin 2,760 suffering same USD headwinds as gold",
-    "PCE + GDP + Durable Orders at 14:30 SAST today"
+    "PCE June 25 cool print \u2014 USD weakened sharply",
+    "EUR/GBP rallied post-PCE \u2014 EURUSD high 1.14335",
+    "XAUUSD rallied to 4095 high",
+    "USDJPY dropped to 161.53",
+    "Fed hawkish but PCE miss softened outlook",
+    "War escalation ongoing \u2014 gold/defense bid"
   ],
   "high_impact_within_2h": false
 }
