@@ -1,5 +1,5 @@
 # TRADING SESSION — CLAUDE CODE BOOTSTRAP
-Version: 3.3 | Updated: June 25, 2026
+Version: 3.4 | Updated: June 26, 2026
 
 ## MANDATORY FIRST ACTION
 Read `EVAN_TRADING_CONTEXT.md` fully before any other output.
@@ -34,6 +34,50 @@ Scanner fires → enforcer → place trade. Zero extra confirmation steps.
 - MCP drops after inactivity — reconnect with `mcp__claude_ai_claude__reconnect_connection` if tools fail
 - At session start: `mcp__claude_ai_claude__switch_trading_account` → demo #41829612
 - Never touch live #43019560 unless Evan explicitly says "use live account" this session
+
+---
+
+## CACHE SYSTEM (v3.4 — reduces MCP calls ~65%)
+
+Four files handle local data caching so Claude only fetches what's actually stale:
+
+| File | What it caches | Expiry |
+|---|---|---|
+| `h4_cache.json` | H4 candles + trend per symbol | Until next H4 boundary (00/04/08/12/16/20 UTC) |
+| `m15_cache.json` | M15 candles + structure per symbol | Until next 15-min boundary |
+| `instrument_specs.json` | Pip values, categories, min balances | Never expires (static) |
+| `session_state.json` | Session counters, H4 trends, stop conditions | Reset each session |
+
+**Tools:**
+```bash
+python tick_prep.py                          # Run at start of every tick — outputs full tick summary
+python h4_updater.py --check                 # Which H4 symbols are stale?
+python h4_updater.py --write --symbol X \   # Write H4 to cache after MCP fetch
+    --trend bear --evidence "LH at X..."    # (reads bars from h4_temp.json)
+python h4_updater.py --read-all             # Read all cached H4 trends
+python m15_updater.py --check --symbols X,Y # Which M15 symbols are stale?
+python m15_updater.py --write --symbol X    # Write M15 to cache (reads from m15_temp.json)
+python m15_updater.py --read --symbol X     # Read cached M15 bars + structure
+```
+
+**H4 write flow** (after MCP fetch):
+```bash
+# 1. Write MCP bars to temp file (JSON array of "YYYY-MM-DD HH:MM|O|H|L|C|V" strings)
+# 2. python h4_updater.py --write --symbol EURUSD --trend bear --evidence "..."
+# Next 4 hours: h4_updater --read-all replaces all H4 MCP calls
+```
+
+**M15 write flow** (after MCP fetch):
+```bash
+# 1. Write MCP bars to m15_temp.json as {"SYMBOL": ["bar1", "bar2", ...]}
+# 2. python m15_updater.py --write --symbol EURUSD
+# Next 15 min: m15_updater --read replaces M15 MCP call
+```
+
+**Session start:**
+```bash
+python tick_prep.py --session-start --balance [current_balance]
+```
 
 ---
 
@@ -87,12 +131,35 @@ Focused scan: watchlist instruments + open positions only. Faster, lower API usa
 
 ## TICK PROTOCOL
 
+### ALL TICKS — STEP 0: TICK PREP (run first, every tick)
+
+```bash
+python tick_prep.py
+```
+
+Read the JSON output. It gives you:
+- `session` + `session_desc` — no manual derivation needed
+- `h4_cache.fresh` — all cached H4 trends (use these, skip MCP)
+- `h4_cache.stale` — only these symbols need `get_symbol_history` H4 via MCP
+- `m15_cache.stale` — only these need M15 MCP fetch
+- `news_gate` — clear / blocked
+- `session_counters` — trades remaining, consecutive losses, drawdown
+- `should_stop` — if true, do not place new trades
+- `actions_this_tick` — exact list of what to fetch this tick
+
+**Only fetch what `actions_this_tick` says.** Skip everything else.
+
+After fetching stale H4 data → write to `h4_temp.json` → run `h4_updater.py --write`.
+After fetching stale M15 data → write to `m15_temp.json` → run `m15_updater.py --write`.
+
+---
+
 ### ALL TICKS — STEP 1: TIME, ACCOUNT, POSITIONS
 
 1. Get SAST time from `mcp__claude_ai_claude__get_symbol_price` on XAUUSD — NEVER ask Evan
 2. `mcp__claude_ai_claude__get_account_info` — confirm balance, confirm account is #41829612
 3. `mcp__claude_ai_claude__get_open_positions` — list open positions and floating P&L
-4. Determine session:
+4. Determine session (use `tick_prep.py` output — do not re-derive manually):
    - Asian: 01:00-07:00 SAST (CHANGE 7 — USDJPY/AUDUSD/NZDUSD/XAUUSD — max 2 trades)
    - Pre-London: 08:43 SAST — scalp_levels.py setup (1-time, not a loop)
    - London: 09:00-15:00 SAST (CHANGE 7 + scalp — ALL instruments — max 4 trades)
@@ -106,7 +173,7 @@ Focused scan: watchlist instruments + open positions only. Faster, lower API usa
 
 For each open position:
 - `mcp__claude_ai_claude__get_symbol_history` — last 10 M5 candles
-- `mcp__claude_ai_claude__get_symbol_history` — last 6 H4 candles
+- H4: use `python h4_updater.py --read --symbol X` first — only call MCP if `expired: true`
 - Output CHANGE 4 format:
 
 ```
@@ -176,9 +243,13 @@ Scan in priority order — skip categories with no active news relevance:
 
 For each instrument:
 - `mcp__claude_ai_claude__get_symbol_price` → current price
-- `mcp__claude_ai_claude__get_symbol_history` H4: use `timeframeMinutes=240, limit=50` — NEVER `timeframe="H4"` (returns 0 bars)
-- `mcp__claude_ai_claude__get_symbol_history` M15: use `timeframeMinutes=15, limit=50` — same rule
+- H4: **check cache first** → `python h4_updater.py --read --symbol X` — only call MCP if `expired: true`
+  - If MCP needed: `timeframeMinutes=240, limit=6` — NEVER `timeframe="H4"` (returns 0 bars)
+  - After fetch: write to `h4_temp.json` → `python h4_updater.py --write --symbol X --trend X --evidence "..."`
 - H4 last 6 closes → CHANGE 2 trend gate
+- If H4 passes: M15 → `python m15_updater.py --read --symbol X` — only call MCP if `expired: true`
+  - If MCP needed: `timeframeMinutes=15, limit=8`
+  - After fetch: write to `m15_temp.json` → `python m15_updater.py --write --symbol X`
 - If H4 passes: `mcp__claude_ai_claude__get_symbol_history` H1 (timeframeMinutes=60, limit=12)
 - `python3 news_scanner.py check --symbol [X] --direction [long/short]`
 

@@ -1,5 +1,5 @@
-# EVAN'S TRADING CONTEXT — v1.1
-Last updated: June 5, 2026
+# EVAN'S TRADING CONTEXT — v1.2
+Last updated: June 26, 2026
 Platform: ThinkMarkets (ThinkTrader)
 Trader: Evan | Location: Johannesburg, South Africa (SAST = UTC+2)
 
@@ -28,6 +28,15 @@ Every Monday at session open Claude must:
 5. Add any new lessons learned
 6. Commit updated file to GitHub using bash git commands
 7. Confirm "Context updated vX.X — ready." before trading begins
+
+---
+
+## CACHE SYSTEM (v1.2 addition — June 26 2026)
+Four Python tools reduce MCP API calls by ~65% by caching candle data locally.
+Run `python tick_prep.py` at the start of every tick — it tells you exactly what to fetch.
+H4 cache valid until next 4h UTC boundary. M15 cache valid until next 15-min boundary.
+Files: `tick_prep.py`, `h4_updater.py`, `m15_updater.py`, `instrument_specs.json`
+See CLAUDE.md → CACHE SYSTEM section for full usage.
 
 ---
 
