@@ -1,43 +1,65 @@
 {
   "watchlist": [
     {
-      "instrument": "EURUSD",
+      "instrument": "BRENT",
+      "direction": "sell",
+      "score": 9,
+      "reason": "H1 lower high structure confirmed: 75.414→74.852→74.618→74.571. Active London breakdown. Fundamental: Hormuz de-escalation supply returning. OPEN #109724297.",
+      "entry_zone": 73.539,
+      "sl": 74.62,
+      "tp": 72.4,
+      "added": "2026-06-26T07:55:00+00:00",
+      "status": "OPEN #109724297 — entry 73.539 — monitoring"
+    },
+    {
+      "instrument": "USDCHF",
+      "direction": "sell",
+      "score": 8,
+      "reason": "USD broadly weak post-PCE. H1 lower lows. Breakout below consolidation 0.80845-0.80926. R:R 2.25:1. OPEN #109724298.",
+      "entry_zone": 0.8085,
+      "sl": 0.8105,
+      "tp": 0.804,
+      "added": "2026-06-26T07:55:00+00:00",
+      "status": "OPEN #109724298 — entry 0.80850 — monitoring"
+    },
+    {
+      "instrument": "GBPUSD",
       "direction": "buy",
-      "score": 7,
-      "reason": "Post-PCE USD weakness. EUR broke June 23 high (1.1388 > 1.1386). Macro: projected range 1.13-1.21 — at LOW end. Asian session valid for forex. Wait for pullback to 1.1350-1.1360 + M15 higher low before entry.",
-      "entry_zone": 1.1355,
-      "sl": 1.133,
-      "tp": 1.1385,
-      "added": "2026-06-25T21:10:00+00:00",
-      "status": "WATCHING — waiting for pullback dip to 1.1350-1.1360 entry zone"
+      "score": 8,
+      "reason": "London home session. H1 higher lows since 1.31798 session low. London open momentum. R:R 1.60:1. OPEN #109724299.",
+      "entry_zone": 1.32019,
+      "sl": 1.3175,
+      "tp": 1.3245,
+      "added": "2026-06-26T07:55:00+00:00",
+      "status": "OPEN #109724299 — entry 1.32019 — monitoring"
     },
     {
       "instrument": "XAUUSD",
       "direction": "buy",
-      "score": 5,
-      "reason": "Post-PCE in-line bounce 3963→4044. USD weak, yields lower = Gold positive. H4 downtrend from 4126 not fully invalidated yet (need 4044 break). Entry only if dips to 4010-4020 + M15 higher low. Score rises to 8 on confirmed 4044 break.",
-      "entry_zone": 4015.0,
-      "sl": 3995.0,
-      "tp": 4040.0,
-      "added": "2026-06-25T21:10:00+00:00",
-      "status": "WATCHING — H4 trend gate not yet confirmed. Need break of 4044 OR clear M15 bounce at 4010-4020"
+      "score": 7,
+      "reason": "Recovery from 3983.14 support. H1 higher lows: 3986→3999→4006→4021. Watch for pullback to 4020-4025 ask for entry. SL 4002, TP 4055. H4 gate 4044 in sight.",
+      "entry_zone": 4022.0,
+      "sl": 4002.0,
+      "tp": 4055.0,
+      "added": "2026-06-26T07:55:00+00:00",
+      "status": "WATCHING — pullback to 4020-4025 ask required before entry"
     },
     {
-      "instrument": "BRENT",
-      "direction": "sell",
-      "score": 6,
-      "reason": "Fundamentals: Hormuz de-escalation → supply back online → Oil bearish. H4: Lower high structure (77.15→76.08). Late 21:00 H1 bearish reversal candle (75.75→74.96). Retest of 75.50-75.75 + rejection = short entry. Conservative sizing — no explicit enforcer sizing rule.",
-      "entry_zone": 75.6,
-      "sl": 76.25,
-      "tp": 74.2,
-      "added": "2026-06-25T21:10:00+00:00",
-      "status": "WATCHING — monitor for retest and rejection of 75.50-75.75"
+      "instrument": "EURUSD",
+      "direction": "buy",
+      "score": 7,
+      "reason": "H1 higher lows confirmed. London momentum. USD weak. Wait for pullback to 1.1382 ask before entry — do not buy at session high. SL 1.1360, TP 1.1410.",
+      "entry_zone": 1.1383,
+      "sl": 1.136,
+      "tp": 1.141,
+      "added": "2026-06-26T07:55:00+00:00",
+      "status": "WATCHING — wait for pullback to 1.1382 before entry"
     }
   ],
-  "scan_time": "2026-06-25T21:10:00+00:00",
-  "session": "Asian",
-  "session_start_balance": 3842.64,
-  "max_session_loss_zar": 384.26,
-  "instruments_scanned": ["XAUUSD", "EURUSD", "BRENT", "GBPUSD", "USDJPY", "WTI(banned)"],
-  "macro_theme": "USD weakness post-PCE in-line print. Gold bullish above 4000. EUR bullish (range 1.13-1.21 low end). Oil bearish (Hormuz de-escalation, supply back)."
+  "scan_time": "2026-06-26T07:55:00+00:00",
+  "session": "London",
+  "session_start_balance": 2602.33,
+  "max_session_loss_zar": 1301.17,
+  "instruments_scanned": ["EURUSD","GBPUSD","USDJPY","AUDUSD","NZDUSD","USDCAD","USDCHF","XAUUSD","XAGUSD","BRENT","EURJPY","GBPJPY","EURGBP","AUDJPY","CADJPY","EURAUD","GBPAUD","EURCAD","GBPCAD","NZDJPY","CHFJPY","AUDNZD","AUDCAD","NZDCAD","GBPNZD","EURNZD","CADCHF","NZDCHF","ETHUSD","BTCUSD"],
+  "macro_theme": "USD broadly weak post-PCE in-line. EUR/GBP bullish London. BRENT bearish (Hormuz de-escalation, H1 lower highs). Gold recovering from 3983 support toward 4044 gate."
 }
