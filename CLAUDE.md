@@ -139,6 +139,35 @@ Run in this order. No shortcuts:
 - Minimum SL: 80-150 pts
 - Only trade if session range is clearly directional
 
+### XAGUSD (Silver)
+- **0.01 lots = 50 oz = R779/pt** (calibrated July 1 via margin comparison to XAUUSD anchor)
+- Contract is 50× the oz-per-lot of Gold (5000 oz/lot vs 100 oz/lot) — pip value is massive
+- Daily range: ~3-5pt (vs Gold 100-150pt). Scale SL to instrument, NOT gold rules:
+  - Structural SL: above/below structural level + 0.10-0.15pt buffer
+  - Normal session min SL: 0.30-0.50pt (R234-R390 at 0.01 lots)
+  - Asian session min SL (Rule 15): 0.60-1.00pt (R468-R779 at 0.01 lots)
+- **Asian session: 0.01 lots minimum = R779/pt = TOO LARGE for account < R15,000**
+- **London/NY session only** at 0.01 lots with 0.30-0.50pt SL (R234-R390 risk = acceptable)
+- H4/H1 structure mirrors Gold closely — use same trend/entry analysis
+- R:R targets: 0.5-1pt TP on a 0.3pt SL = 1.7-3.3:1 (silver moves fast in its range)
+
+### USDJPY
+- **0.1 lots = ~R9.58/pip** (calibrated July 1 via margin analysis, 0.1 lots = 10,000 USD units)
+- Asian session prime time (Japan market = major JPY driver 00:00-07:00 SAST)
+- Normal min SL: 15-25 pips (Rule 2) → Asian min: 30-50 pips (Rule 15)
+- At 0.1 lots: 30-pip SL = R287 risk (4.7%) ✓ | 36-pip TP = R345 reward (1.2:1) ✓
+- At 0.2 lots: 30-pip SL = R574 (9.4%) — near session limit, use only if setup exceptional
+- Stop-hunt sweeps are common in Asian session — Rule 15 doubles SL minimum
+- Watch for stop-hunt wicks then real direction resuming (similar to Asian Gold behaviour)
+
+### USDCHF
+- **0.1 lots = ~R19.3/pip** (calibrated July 1 via margin analysis, 0.1 lots = 10,000 USD units)
+- USDCHF pip value is ~2× USDJPY at same lot size due to CHF counter-currency dynamics
+- Asian session: use 0.05 lots max (30-pip SL = R289 risk = 4.7%) ✓
+- Normal min SL: 15-25 pips (Rule 2) → Asian min: 30-50 pips (Rule 15)
+- At 0.05 lots: 30-pip SL = R289 risk | 36-pip TP = R347 reward (1.2:1) ✓
+- Watch for 50% Fib retracements of H4 moves as short/long entry zones
+
 ### XAUUSD247 (weekends only)
 - Spread 8x wider (2.37 vs 0.19) — exceptional setups only
 
