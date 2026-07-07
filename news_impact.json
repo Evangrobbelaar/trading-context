@@ -1,10 +1,13 @@
 {
   "events": [
-    "FedHawkish",
-    "USIranPeaceDeal",
-    "OilBearish",
-    "RiskOff"
+    "PCE_InLine",
+    "GDP_Q1_Done",
+    "Jobless_Claims_Done",
+    "HormuzDeEscalation_OilBearish",
+    "MichSentiment_Friday"
   ],
-  "headlines": "Fed Warsh hawkish (rate hike Oct priced). US-Iran peace MoU Jun18 reopened Hormuz, oil supply back online. Brent broke below 80. S&P500 -1.2%. No high-impact events scheduled today Jun23.",
-  "updated": "2026-06-23T06:55:24.943879+00:00"
+  "headlines": "US PCE May came in-line with expectations — USD sold off, Treasury yields lower. Gold bounced from 3963 back above 4000 (4044 intraday high). Oil retreating as Strait of Hormuz conflict de-escalates, supply returning, prices near pre-conflict levels. EUR/USD projected range-bound 1.13-1.21. Only remaining event this week: University of Michigan inflation expectations Friday — moderate impact. No high-impact events tonight (Asian session clear).",
+  "updated": "2026-06-25T21:10:00+00:00",
+  "overnight_clear": true,
+  "next_event": "Michigan Consumer Sentiment — Friday ~16:00 SAST — medium impact"
 }

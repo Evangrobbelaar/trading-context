@@ -805,3 +805,88 @@ to it. Until then, the old 10-item protocol and trend gate above are
 NOT in effect, regardless of what they say.
 
 Document version: 2.0 — June 25, 2026 — enforcer simplified for rebuild phase
+
+---
+
+## UPDATE — June 26, 2026 (Post-Overnight Debrief — Strategy v2.1)
+
+### Overnight session post-mortem (June 25–26, 00:00–07:00 SAST)
+
+Account: Demo #41829612 | Start: R3,842.64 | End: R2,602.33 | Loss: -R1,240.31
+
+Two trades placed at Asian session open:
+| Trade | Entry | SL | Result | Root cause |
+|---|---|---|---|---|
+| EURUSD BUY #109722893 (0.20L) | 1.13755 | 1.13620 | -R452.18 (SL hit) | Stop-hunt sweep to 1.13618 (2 pip below SL), then reversed +130 pips |
+| ETHUSD BUY #109722961 (2L) | 1571.335 | 1548.000 | ~-R788 (SL hit) | Stop-hunt sweep to session low 1509.23 (38.77 pts through SL), then recovered |
+
+Both positions hit SL during thin Asian session liquidity then reversed — textbook stop-hunt pattern.
+
+### Root causes (6 identified)
+
+1. **Asian session stop-hunt**: Price swept EURUSD to 1.13618 (SL was 1.13620 — 0.2 pips clearance). ETH swept 38.77 pts through SL. Market makers target obvious structural lows before reversing.
+
+2. **SL too tight**: EURUSD 13.5 pips minimum (below 15-pip Rule 2 minimum). ETH 23.5 pts vs 40-50pt recommended for crypto volatility in Asian session.
+
+3. **Entry at session extremes**: EURUSD entered at 1.13755 near session high — wrong timing. Should wait for pullback before entry (Rule 17 violation).
+
+4. **ETHUSD banned instrument**: ETHUSD was explicitly "AVOID ENTIRELY" in Critical Lesson 12. Rebuild phase suspended the ban but the ban exists for exactly this reason.
+
+5. **BRENT setup missed**: Clearest H1 lower-high structure from 21:00 SAST. Waited for zone retest at 75.50-75.75 that never came. BRENT dropped 239 pips (76.08→73.54) while we waited. Momentum entry protocol not applied — Rule 19 added to address this.
+
+6. **No instrument diversification**: Both trades were USD-weakness longs (EUR long + ETH long). One macro direction = one bet, not two independent setups. Rule 20 added.
+
+---
+
+### NEW RULES — v2.1 (effective immediately)
+
+**Rule 15 — Asian Session SL Buffer**
+During 00:00–07:00 SAST (Asian session), minimum SL distance is 2× the normal Rule 2 minimum.
+- Forex: SL minimum 25–35 pips (not 15–25)
+- Gold: SL minimum 30–50 pts (not 15–25)
+- Crypto: SL minimum 50–80 pts
+Reason: Thin liquidity enables market maker stop-hunt sweeps of obvious structural levels. The sweep always exceeds the structural level by 3–15 pips/pts before reversing. SL placed AT the level will be taken.
+
+**Rule 16 — Crypto Asian Session Ban**
+No ETHUSD or BTCUSD entries during 00:00–07:00 SAST.
+Entries only during London/NY overlap (09:00–22:00 SAST) when sufficient liquidity supports clean structure.
+Reason: Confirmed June 26 — ETH swept 38.77 pts through SL during Asian session despite "valid" setup. The ban that existed before the rebuild phase exists for this exact reason.
+
+**Rule 17 — Session Range Entry Filter**
+Before any entry, determine the current session's high and low (from 00:00 SAST for Asian, 09:00 SAST for London).
+- No BUY entries if current price is in the top 15% of session range
+- No SELL entries if current price is in the bottom 15% of session range
+- Wait for a minimum 70% range pullback before entry in trend direction
+Exception: confirmed H1 breakout candle (close) above/below session range — then entry on first pullback to the breakout level.
+Reason: EURUSD entered at 1.13755 near session high 1.13736 — was in top 1% of range. Price immediately swept down to take the SL.
+
+**Rule 18 — Stop Hunt Buffer (SL beyond structure, not at it)**
+SL must be placed BEYOND the structural level, not AT it.
+- Long: SL = swing_low − (3–5 extra pips/pts minimum)
+- Short: SL = swing_high + (3–5 extra pips/pts minimum)
+- Asian session: add 5 more pips/pts on top of the above
+Reason: EURUSD SL was 1.13620 — placed AT the swing low. Price swept to 1.13618 (2 pips through) then reversed. Market makers target the obvious level. SL needs room beyond it.
+
+**Rule 19 — Momentum Entry Protocol (no zone retest required)**
+When 3+ consecutive H1 lower highs are confirmed on a bearish instrument, a SELL entry is valid on the NEXT bearish H1 candle close WITHOUT requiring a zone retest.
+- For buys: 3+ consecutive H1 higher lows confirmed → BUY on next bullish H1 candle close
+- This overrides waiting for a specific zone retest when momentum is clear
+Reason: BRENT had 3+ consecutive H1 lower highs from 21:00 SAST (76.40→75.81→75.41→74.85→74.62→74.57). Price dropped 239 pips while waiting for a 75.50-75.75 zone retest that never came. Momentum entry at any of those lower highs would have captured the move.
+
+**Rule 20 — Minimum Instrument Diversification**
+For any overnight session (Asian or London), a minimum of 3 non-correlated setups must be identified before trading begins.
+- Non-correlated means: instruments that do NOT all point the same direction on the same macro theme
+- EUR long + GBP long + ETH long = all USD weakness = 1 directional bet, not 3
+- Valid diversification example: BRENT SELL (energy) + USDCHF SELL (USD weak) + XAUUSD BUY (safe haven)
+- If fewer than 3 non-correlated setups exist → take the 1–2 best setups only, reduce size
+Reason: June 25 overnight placed 2 correlated longs. A single USD-positive shock would have stopped both. Independent setups protect against single-theme risk.
+
+---
+
+### Corrective actions taken — London session June 26
+- BRENT SELL #109724297: entry 73.539, SL 74.620 (108 pts), TP 72.400 — Rule 19 applied (momentum without zone retest)
+- USDCHF SELL #109724298: entry 0.80850, SL 0.81050 (20 pips), TP 0.80400 — R:R 2.25:1
+- GBPUSD BUY #109724299: entry 1.32019, SL 1.31750 (26.9 pips), TP 1.32450 — London home session
+- XAUUSD and EURUSD on watchlist ONLY — waiting for pullback entries per Rule 17
+
+Document version: 2.1 — June 26, 2026 — overnight debrief + Rules 15-20 added
