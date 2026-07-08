@@ -1,4 +1,4 @@
-# SPRUNG LADDER v1.0 — Scout & Strike Protocol
+# SPRUNG LADDER v1.1 — Scout & Strike Protocol
 *Formulated 8 Jul 2026. Status: SPEC ONLY — not yet live. First deployment requires Evan's go + a qualifying range.*
 
 ## Origin
@@ -43,3 +43,13 @@ Market buy 0.07-0.10 lots on trigger. SL = 3-5 pips below the sweep extreme (str
 ## Provenance (why we believe the spring edge)
 - Jul 6-7 log: XAUUSD counter-trend at swept extreme +R512; USDJPY sweep-fade wins
 - Jun 25 log: being ON THE WRONG SIDE of Asian sweeps cost -R1,240 — this protocol makes us the counterparty of that pattern instead of its victim
+
+## v1.1 amendment (8 Jul 2026, pre-first-deployment)
+- Width test and scout SLs are now ATR-PROPORTIONAL, not fixed pips: scout SL = 4x H1 ATR of the instrument; range width must be >= 1.5x scout SL. v1.0's fixed 25-35 pip SL was calibrated for majors and wrongly disqualified low-vol crosses (EURGBP H1 ATR ~4-5 pips).
+- Amendment made openly BEFORE deployment, logged same-commit as first live test.
+
+## LIVE TEST 1 — EURGBP, deployed 8 Jul 2026 13:37 SAST
+Range: 0.8532-0.8554 (3+ touches each side over 2 days). Regime-orthogonal (USD war bid hits both legs). No UK/EZ news.
+Scouts (0.01L each, SL 20p, no TP, exp Fri 14:00): 0.85300 / 0.85260 / 0.85220 (#909845126/128/130 on 41829612)
+Total scout risk ~R131. Spring trigger: reclaim of 0.85322 + M5 close above, within 15 min of sweep. Strike: 0.07L, SL 3-5p below sweep low, target 0.8543 mean.
+INCIDENT: first scout initially landed on 41750592 (MCP account revert #3 today) - caught via accountId verification per ACCOUNT LOCK rule, cancelled + verified empty, redeployed correctly.
