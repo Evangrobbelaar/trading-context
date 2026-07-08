@@ -1,3 +1,16 @@
+
+=========================
+ACCOUNT LOCK — HARD RULE (added 8 Jul 2026)
+=========================
+- The ONLY account for all trading is #41829612.
+- #41750592 (R78k demo) must NEVER be traded. The ThinkTrader MCP silently
+  defaults back to 41750592 on every new session, reconnect, or context reset.
+- MANDATORY: at session start AND before every order, call
+  switch_trading_account(41829612), then confirm the tool response shows
+  "accountId":"41829612". If ANY tool response shows 41750592, stop,
+  switch, and re-verify before doing anything else.
+- This has already caused wasted tokens and one near-miss (8 Jul 2026,
+  war-escalation session). Treat a wrong-account response as a hard stop.
 # EVAN'S TRADING CONTEXT — v1.1
 Last updated: June 5, 2026
 Platform: ThinkMarkets (ThinkTrader)
