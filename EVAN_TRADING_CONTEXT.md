@@ -903,3 +903,28 @@ Reason: June 25 overnight placed 2 correlated longs. A single USD-positive shock
 - XAUUSD and EURUSD on watchlist ONLY — waiting for pullback entries per Rule 17
 
 Document version: 2.1 — June 26, 2026 — overnight debrief + Rules 15-20 added
+
+=========================
+RULE 21 — SCALP MODE (added 8 Jul 2026, v2.2)
+=========================
+Fast-resolve trades (target <60 min, M5 structure, tighter stops, larger lots)
+are ALLOWED only when ALL conditions hold:
+1. INSTRUMENT: tightest-spread tier only — EURUSD, USDJPY, GBPUSD.
+   Spread must be <=10% of the TP distance. (Bans gold, GBPJPY, NGAS,
+   indices, crypto from scalp mode — spread tax kills the math.)
+2. TRIGGER: live momentum only — a fresh M5/M15 structure break moving in
+   your direction NOW. Never fade, never anticipate, never scalp a flat market.
+3. SESSION: London or NY main hours only. Never Asian session,
+   never the first 15 min of an open.
+4. NEWS: no high-impact release within 2h either side. Hard ban.
+5. STOP: structural micro-stop (beyond the M5 shelf +2-3p), minimum 10 pips.
+   Never <10p regardless of structure (EURAUD 5.2p lesson, 25 Jun).
+6. SIZE: risk per scalp <= 3.5% of balance. Lots may be larger than swing
+   trades ONLY because the stop is tighter — rand risk stays the same.
+7. TIME STOP: if neither SL nor TP within 60 min -> close at market at next
+   tick. A scalp that becomes a hold is a rule violation, not a trade.
+8. FREQUENCY: max 3 scalps/day, stop scalping for the day after 2
+   consecutive scalp losses.
+PROVENANCE: EURUSD scalp 8 Jul (+R228, <50min, all conditions met) vs
+EURAUD 5.2p spike-out 25 Jun (conditions 1/5 violated). The mode works
+only inside these bounds; outside them it is the spread's income, not ours.
