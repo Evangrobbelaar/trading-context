@@ -792,34 +792,15 @@ Document version: 1.9 — June 22, 2026 — Claude Code native loop added
 
 ---
 
-## ENFORCER — REBUILD PHASE (June 25, 2026)
-
-Evan is rebuilding the strategy from scratch and the old enforcer logic
-(10-item checklist, hard trend gate, R:R minimum, per-trade risk %,
-instrument size caps, balance gates) is **suspended** until a validated
-strategy exists. Per-trade enforcement is intentionally off — see history
-above for why that's a real risk (June 11 catastrophic session) being
-knowingly accepted during this phase.
-
-**Active rules — these are the ONLY two checks Claude/enforcer.py runs right now:**
-1. **SESSION MAX LOSS 50%** — if current balance drops to ≤50% of the
-   session's starting balance, all further trades this session are
-   BLOCKED. No per-trade size/risk/R:R checks before that point.
-2. **TIME VALIDITY** — block if the trade timestamp falls outside normal
-   forex market hours (closed roughly Sat 00:00 UTC → Sun 21:00 UTC) or
-   the timestamp otherwise looks wrong.
-
-enforcer.py has been rewritten to reflect only these two checks (old
-version's git history retains the full logic if it's needed again).
-
-**Reinstatement:** once Evan has a validated strategy, a new enforcer
-matched to that strategy gets built and this section is updated to point
-to it. Until then, the old 10-item protocol and trend gate above are
-NOT in effect, regardless of what they say.
-
-Document version: 2.0 — June 25, 2026 — enforcer simplified for rebuild phase
-
----
+## ENFORCER — v3 ACTIVE (rebuilt 10 Jul 2026)
+Rebuild phase ENDED. enforcer.py v3 now enforces, for ALL trades:
+1. Session max-loss 50% | 2. Market hours | 3. ACCOUNT LOCK 41829612 (in code)
+4. Per-trade risk <= 5% of balance | 5. Aggregate open+pending worst-case <= 25%
+6. News attestation (--news_checked --news_clear) — high-impact within 2h blocks
+Sprung Ladder modes: --mode scout (min-lot only, max 3, total <=2%, range/ATR
+attestation, 24h trend-verdict lockout) and --mode strike (<=5%, all 3 trigger
+attestations + structural SL required). Record verdicts: --record_verdict SYMBOL.
+Every order MUST clear enforcer.py before placement. Exit 1 = do not place.
 
 ## UPDATE — June 26, 2026 (Post-Overnight Debrief — Strategy v2.1)
 

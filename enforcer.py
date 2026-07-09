@@ -1,38 +1,52 @@
 #!/usr/bin/env python3
 """
-PRE-TRADE ENFORCER v2 — REBUILD PHASE (simplified June 25, 2026)
+PRE-TRADE ENFORCER v3 — REBUILT 10 Jul 2026 (post-rebuild-phase)
 
-Per Evan's instruction: while the strategy is being rebuilt, every check
-EXCEPT the two below is suspended on purpose. The old v1 logic (max risk %,
-R:R minimum, instrument size caps, balance gates) is preserved in git
-history (see `git log -- enforcer.py`) and can be restored once a new
-strategy is validated — see "ENFORCER — REBUILD PHASE" in
-EVAN_TRADING_CONTEXT.md.
+Replaces v2 (rebuild-phase, 2 checks only). v1 logic remains in git history.
+v3 is built around SPRUNG LADDER v1.1 (see STRATEGY_SPRUNG_LADDER.md) plus
+the general lessons that survived the rebuild review:
+  - 8 Jul: XAUUSD -R513 single trade (~8% of balance) with no per-trade gate
+  - 9 Jul (tick 20): 7-pending book = 22% aggregate worst-case, nothing caught it
+  - MCP account-revert incidents x4: account lock must be code, not vigilance
 
-Active checks:
-  1. SESSION MAX LOSS — block all further trades once current balance has
-     dropped to <= 50% of this session's starting balance.
-  2. TIME VALIDITY — block if outside normal forex market hours
-     (closed ~Sat 00:00 UTC -> Sun 21:00 UTC) or the supplied timestamp
-     looks wrong.
+CHECKS (all trades):
+  1. SESSION MAX LOSS   — balance <= 50% of session start => block everything
+  2. TIME VALIDITY      — outside forex market hours => block
+  3. ACCOUNT LOCK       — account_id != 41829612 => block (hard rule)
+  4. PER-TRADE RISK     — risk_amount > 5% of balance => block
+  5. AGGREGATE EXPOSURE — (this trade + open + pending worst-case) > 25% => block
+  6. NEWS ATTESTATION   — --news_checked flag required; high-impact within 2h => block
 
-Usage:
-  # First call of a session — records the starting balance as the floor reference:
-  python3 enforcer.py --account demo --account_id 41810679 --balance 500.00 --init
+CHECKS (--mode scout):
+  7.  Scout size must be minimum lot for the instrument (--lots == --min_lots)
+  8.  Scout count after this order <= 3 (NEVER a 4th)
+  9.  Total scout risk (all scouts incl. this one) <= 2% of balance
+  10. Range attestation: --range_touches >= 2 per side AND --range_width >= 1.5 * --scout_sl
+      (scout SL itself must equal ~4x H1 ATR: 3.5x-4.5x accepted)
+  11. TREND-VERDICT LOCKOUT: instrument had a trend verdict < 24h ago => block
 
-  # Every call before create_market_order:
-  python3 enforcer.py --account demo --account_id 41810679 --balance 463.20
+CHECKS (--mode strike):
+  12. Strike risk <= 5% of balance
+  13. All three trigger attestations required: --swept --reclaimed_15min --m5_close
+  14. SL structural: --sl_below_sweep flag required
+
+STATE: session_state.json gains "trend_verdicts": {instrument: iso_ts}.
+Record a verdict with:  python3 enforcer.py --record_verdict EURGBP
+Exit code 1 = BLOCKED. All decisions appended to enforcer_audit.jsonl.
 """
-import argparse
-import sys
-import json
-import os
-from datetime import datetime, timezone
+import argparse, sys, json, os
+from datetime import datetime, timezone, timedelta
 
 STATE_FILE = "session_state.json"
 AUDIT_FILE = "enforcer_audit.jsonl"
 SESSION_MAX_LOSS_PCT = 0.50
-
+PER_TRADE_RISK_PCT   = 0.05
+AGGREGATE_RISK_PCT   = 0.25
+SCOUT_TOTAL_RISK_PCT = 0.02
+STRIKE_RISK_PCT      = 0.05
+MAX_SCOUTS           = 3
+VERDICT_LOCKOUT_H    = 24
+ALLOWED_ACCOUNT      = "41829612"
 
 def load_state():
     if os.path.exists(STATE_FILE):
@@ -40,85 +54,144 @@ def load_state():
             return json.load(f)
     return {}
 
-
-def save_state(state):
+def save_state(s):
     with open(STATE_FILE, "w") as f:
-        json.dump(state, f, indent=2)
-
+        json.dump(s, f, indent=2)
 
 def check_time(now_utc):
-    """Returns a block reason string, or None if time is valid."""
-    weekday = now_utc.weekday()  # Mon=0 ... Sun=6
-    hour = now_utc.hour
-    if weekday == 5:  # Saturday
-        return "Market closed — Saturday."
-    if weekday == 6 and hour < 21:  # Sunday before 21:00 UTC
-        return "Market closed — Sunday before 21:00 UTC reopen."
-    if weekday == 4 and hour >= 21:  # Friday after 21:00 UTC
-        return "Market closed — Friday after 21:00 UTC."
+    wd, h = now_utc.weekday(), now_utc.hour
+    if wd == 5: return "Market closed — Saturday."
+    if wd == 6 and h < 21: return "Market closed — Sunday before 21:00 UTC."
+    if wd == 4 and h >= 21: return "Market closed — Friday after 21:00 UTC."
     return None
-
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--account", required=True, choices=["demo", "live"])
-    p.add_argument("--account_id", required=True, help="e.g. 41810679")
-    p.add_argument("--balance", type=float, required=True)
-    p.add_argument("--init", action="store_true",
-                    help="Record this balance as the session's starting balance.")
-    p.add_argument("--now", default=None,
-                    help="Override current UTC time for testing, ISO format.")
+    p.add_argument("--account", choices=["demo","live"], default="demo")
+    p.add_argument("--account_id", default=None)
+    p.add_argument("--balance", type=float, default=None)
+    p.add_argument("--init", action="store_true")
+    p.add_argument("--now", default=None)
+    p.add_argument("--mode", choices=["general","scout","strike"], default="general")
+    p.add_argument("--instrument", default="?")
+    p.add_argument("--risk_amount", type=float, default=None, help="worst-case loss of THIS order in account ccy")
+    p.add_argument("--open_pending_risk", type=float, default=0.0, help="summed worst-case of all existing open+pending")
+    p.add_argument("--news_checked", action="store_true", help="attest: news scan run")
+    p.add_argument("--news_clear", action="store_true", help="attest: no high-impact within 2h for this instrument")
+    # scout args
+    p.add_argument("--lots", type=float, default=None)
+    p.add_argument("--min_lots", type=float, default=None)
+    p.add_argument("--scout_count_after", type=int, default=None)
+    p.add_argument("--scout_total_risk", type=float, default=None)
+    p.add_argument("--range_touches", type=int, default=None, help="min touches per side on H1")
+    p.add_argument("--range_width", type=float, default=None, help="pips")
+    p.add_argument("--scout_sl", type=float, default=None, help="pips")
+    p.add_argument("--h1_atr", type=float, default=None, help="pips")
+    # strike args
+    p.add_argument("--swept", action="store_true")
+    p.add_argument("--reclaimed_15min", action="store_true")
+    p.add_argument("--m5_close", action="store_true")
+    p.add_argument("--sl_below_sweep", action="store_true")
+    # verdict recording
+    p.add_argument("--record_verdict", default=None, metavar="INSTRUMENT")
     args = p.parse_args()
 
     now_utc = datetime.now(timezone.utc)
     if args.now:
-        try:
-            now_utc = datetime.fromisoformat(args.now)
-        except ValueError:
-            pass
+        try: now_utc = datetime.fromisoformat(args.now)
+        except ValueError: pass
+
+    state = load_state()
+
+    if args.record_verdict:
+        state.setdefault("trend_verdicts", {})[args.record_verdict.upper()] = now_utc.isoformat()
+        save_state(state)
+        print(f"TREND VERDICT recorded for {args.record_verdict.upper()} — 24h scout lockout active.")
+        return 0
+
+    if args.balance is None or args.account_id is None:
+        print("BLOCKED: --balance and --account_id are required."); return 1
 
     blocks = []
-    key = f"{args.account}_{args.account_id}"
-    state = load_state()
-    today = now_utc.strftime("%Y-%m-%d")
 
-    if args.init or key not in state or state[key].get("date") != today:
-        state[key] = {"session_start_balance": args.balance, "date": today}
+    # 3. ACCOUNT LOCK
+    if str(args.account_id) != ALLOWED_ACCOUNT:
+        blocks.append(f"ACCOUNT LOCK: {args.account_id} is not {ALLOWED_ACCOUNT}. 41750592 is permanently off-limits.")
+
+    # 2. TIME
+    t = check_time(now_utc)
+    if t: blocks.append(t)
+
+    # 1. SESSION MAX LOSS
+    if args.init:
+        state["session_start_balance"] = args.balance
+        state["session_start_ts"] = now_utc.isoformat()
         save_state(state)
+    start = state.get("session_start_balance")
+    if start and args.balance <= start * SESSION_MAX_LOSS_PCT:
+        blocks.append(f"SESSION MAX LOSS: balance {args.balance:.2f} <= 50% of session start {start:.2f}.")
 
-    session_start = state[key]["session_start_balance"]
-    loss_pct = 1 - (args.balance / session_start) if session_start > 0 else 0
+    # 4/5. RISK GATES (any non-init order should supply risk_amount)
+    if not args.init or args.risk_amount is not None:
+        if args.risk_amount is None:
+            blocks.append("PER-TRADE RISK: --risk_amount not supplied — cannot verify, blocked by default.")
+        else:
+            if args.risk_amount > args.balance * PER_TRADE_RISK_PCT:
+                blocks.append(f"PER-TRADE RISK: {args.risk_amount:.2f} > {PER_TRADE_RISK_PCT*100:.0f}% of balance ({args.balance*PER_TRADE_RISK_PCT:.2f}).")
+            agg = args.risk_amount + args.open_pending_risk
+            if agg > args.balance * AGGREGATE_RISK_PCT:
+                blocks.append(f"AGGREGATE EXPOSURE: {agg:.2f} > {AGGREGATE_RISK_PCT*100:.0f}% of balance ({args.balance*AGGREGATE_RISK_PCT:.2f}). (Tick-20 lesson: 22% book with no gate.)")
 
-    if loss_pct >= SESSION_MAX_LOSS_PCT:
-        blocks.append(
-            f"Session max loss hit: balance R{args.balance:.2f} is "
-            f"{loss_pct*100:.1f}% down from session start R{session_start:.2f} "
-            f"(limit {SESSION_MAX_LOSS_PCT*100:.0f}%). No more trades this session."
-        )
+        # 6. NEWS
+        if not args.news_checked:
+            blocks.append("NEWS: news scan not attested (--news_checked missing).")
+        elif not args.news_clear:
+            blocks.append("NEWS: high-impact event within 2h for this instrument (--news_clear not set).")
 
-    time_block = check_time(now_utc)
-    if time_block:
-        blocks.append(time_block)
+    # SCOUT MODE
+    if args.mode == "scout":
+        if args.lots is None or args.min_lots is None or args.lots > args.min_lots:
+            blocks.append(f"SCOUT SIZE: lots must equal instrument minimum ({args.min_lots}). Scouts are sensors, not positions.")
+        if args.scout_count_after is None or args.scout_count_after > MAX_SCOUTS:
+            blocks.append(f"SCOUT COUNT: max {MAX_SCOUTS} scouts. NEVER a 4th.")
+        if args.scout_total_risk is None or args.scout_total_risk > args.balance * SCOUT_TOTAL_RISK_PCT:
+            blocks.append(f"SCOUT RISK: total scout risk must be <= 2% of balance ({args.balance*SCOUT_TOTAL_RISK_PCT:.2f}).")
+        if args.range_touches is None or args.range_touches < 2:
+            blocks.append("RANGE: need >= 2 touches per side on H1 (proven range).")
+        if args.scout_sl is None or args.h1_atr is None or not (3.5*args.h1_atr <= args.scout_sl <= 4.5*args.h1_atr):
+            blocks.append("SCOUT SL: must be ~4x H1 ATR (3.5x-4.5x accepted) per v1.1 amendment.")
+        if args.range_width is None or args.scout_sl is None or args.range_width < 1.5*args.scout_sl:
+            blocks.append("RANGE WIDTH: must be >= 1.5x scout SL per v1.1 amendment.")
+        verdicts = state.get("trend_verdicts", {})
+        vts = verdicts.get(args.instrument.upper())
+        if vts:
+            age = now_utc - datetime.fromisoformat(vts)
+            if age < timedelta(hours=VERDICT_LOCKOUT_H):
+                blocks.append(f"VERDICT LOCKOUT: {args.instrument} had a trend verdict {age} ago (<24h). No re-arm.")
 
-    result = {
-        "timestamp": now_utc.isoformat(),
-        "account": args.account,
-        "account_id": args.account_id,
-        "balance": args.balance,
-        "session_start_balance": session_start,
-        "loss_pct": round(loss_pct * 100, 2),
-        "verdict": "BLOCKED" if blocks else "PASS",
-        "block_reasons": blocks,
-        "enforcer_mode": "v2_rebuild_phase_simplified",
-    }
+    # STRIKE MODE
+    if args.mode == "strike":
+        if args.risk_amount is not None and args.risk_amount > args.balance * STRIKE_RISK_PCT:
+            blocks.append(f"STRIKE RISK: > 5% of balance ({args.balance*STRIKE_RISK_PCT:.2f}).")
+        if not (args.swept and args.reclaimed_15min and args.m5_close):
+            blocks.append("STRIKE TRIGGER: all three required — level swept, reclaim within 15min, full M5 close above. Missing at least one.")
+        if not args.sl_below_sweep:
+            blocks.append("STRIKE SL: must be structural, 3-5 pips below sweep extreme (--sl_below_sweep).")
 
-    print(json.dumps(result, indent=2))
-
+    verdict = "BLOCKED" if blocks else "PASS"
+    audit = {"ts": now_utc.isoformat(), "verdict": verdict, "mode": args.mode,
+             "instrument": args.instrument, "account_id": args.account_id,
+             "balance": args.balance, "risk_amount": args.risk_amount,
+             "blocks": blocks, "version": "v3"}
     with open(AUDIT_FILE, "a") as f:
-        f.write(json.dumps(result) + "\n")
+        f.write(json.dumps(audit) + "\n")
 
-    sys.exit(1 if blocks else 0)
-
+    if blocks:
+        print("BLOCKED:")
+        for b in blocks: print(f"  - {b}")
+        return 1
+    print(f"PASS — {args.mode} on {args.instrument} cleared (v3).")
+    return 0
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
