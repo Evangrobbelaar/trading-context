@@ -56,3 +56,5 @@
 {"ts": "2026-07-09T23:05:08.196212+00:00", "verdict": "BLOCKED", "mode": "general", "instrument": "TEST", "account_id": "41750592", "balance": 6514.0, "risk_amount": 100.0, "blocks": ["ACCOUNT LOCK: 41750592 is not 41829612. 41750592 is permanently off-limits."], "version": "v3"}
 {"ts": "2026-07-09T23:05:08.235481+00:00", "verdict": "BLOCKED", "mode": "general", "instrument": "TEST", "account_id": "41829612", "balance": 6514.0, "risk_amount": 500.0, "blocks": ["PER-TRADE RISK: 500.00 > 5% of balance (325.70)."], "version": "v3"}
 {"ts": "2026-07-09T23:05:08.267171+00:00", "verdict": "PASS", "mode": "scout", "instrument": "EURCHF", "account_id": "41829612", "balance": 6514.0, "risk_amount": 120.0, "blocks": [], "version": "v3"}
+{"ts": "2026-07-09T23:29:28.418355+00:00", "verdict": "PASS", "mode": "general", "instrument": "NZDUSD", "account_id": "41829612", "balance": 6514.53, "risk_amount": 248.0, "blocks": [], "version": "v3"}
+{"ts": "2026-07-09T23:29:28.464922+00:00", "verdict": "PASS", "mode": "general", "instrument": "GBPJPY", "account_id": "41829612", "balance": 6514.53, "risk_amount": 218.0, "blocks": [], "version": "v3"}
