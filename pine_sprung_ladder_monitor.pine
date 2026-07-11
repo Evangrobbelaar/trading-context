@@ -1,0 +1,81 @@
+//@version=6
+// SPRUNG LADDER v1.1 — Sweep/Spring Monitor  (run on an M5 chart)
+// Fires webhook events for Phase 2/3 of the protocol:
+//   SWEEP_LOW / SWEEP_HIGH            — structural level swept
+//   SPRING_TRIGGER_LONG / _SHORT      — level reclaimed + full M5 close beyond it
+//                                        within the reclaim window (Phase 3 complete)
+//   SWEEP_LOW_EXPIRED / SWEEP_HIGH_EXPIRED — window passed, no reclaim (trend warning)
+// Signals are for evaluation only. Preconditions + enforcer still gate any strike.
+indicator("Sprung Ladder — Sweep/Spring Monitor", overlay = true)
+
+// ── Inputs ─────────────────────────────────────────────────────────────
+secret     = input.string("PASTE-SECRET-FROM-DEPLOY", "Webhook secret")
+rangeHigh  = input.price(0.85540, "Range HIGH (structural)")
+rangeLow   = input.price(0.85320, "Range LOW (structural)")
+windowMin  = input.int(15, "Reclaim window (minutes)", minval = 1)
+
+// ── Context ────────────────────────────────────────────────────────────
+h1atr = request.security(syminfo.tickerid, "60", ta.atr(14), lookahead = barmerge.lookahead_off)
+
+// ── State ──────────────────────────────────────────────────────────────
+var bool  sweepLowActive  = false
+var float sweepLowExtreme = na
+var int   sweepLowStart   = na
+var bool  sweepHighActive  = false
+var float sweepHighExtreme = na
+var int   sweepHighStart   = na
+
+// ── Payload builder ────────────────────────────────────────────────────
+payload(string ev, float level, float extreme) =>
+    '{"secret":"' + secret + '"' +
+     ',"event":"' + ev + '"' +
+     ',"ticker":"' + syminfo.ticker + '"' +
+     ',"tf":"' + timeframe.period + '"' +
+     ',"price":' + str.tostring(close, format.mintick) +
+     ',"level":' + str.tostring(level, format.mintick) +
+     ',"sweep_extreme":' + (na(extreme) ? 'null' : str.tostring(extreme, format.mintick)) +
+     ',"h1_atr":' + str.tostring(h1atr, "#.######") +
+     ',"bar_time_sast":"' + str.format_time(time, "yyyy-MM-dd HH:mm", "Africa/Johannesburg") + '"}'
+
+fire(string ev, float level, float extreme) =>
+    alert(payload(ev, level, extreme), alert.freq_once_per_bar_close)
+
+winMs = windowMin * 60 * 1000
+
+// ── LOW side (long setup) ──────────────────────────────────────────────
+if not sweepLowActive and low < rangeLow
+    sweepLowActive  := true
+    sweepLowExtreme := low
+    sweepLowStart   := time
+    fire("SWEEP_LOW", rangeLow, sweepLowExtreme)
+
+if sweepLowActive
+    sweepLowExtreme := math.min(sweepLowExtreme, low)
+    if close > rangeLow and (time - sweepLowStart) <= winMs
+        fire("SPRING_TRIGGER_LONG", rangeLow, sweepLowExtreme)
+        sweepLowActive := false
+    else if (time - sweepLowStart) > winMs
+        fire("SWEEP_LOW_EXPIRED", rangeLow, sweepLowExtreme)
+        sweepLowActive := false
+
+// ── HIGH side (short setup, mirror) ────────────────────────────────────
+if not sweepHighActive and high > rangeHigh
+    sweepHighActive  := true
+    sweepHighExtreme := high
+    sweepHighStart   := time
+    fire("SWEEP_HIGH", rangeHigh, sweepHighExtreme)
+
+if sweepHighActive
+    sweepHighExtreme := math.max(sweepHighExtreme, high)
+    if close < rangeHigh and (time - sweepHighStart) <= winMs
+        fire("SPRING_TRIGGER_SHORT", rangeHigh, sweepHighExtreme)
+        sweepHighActive := false
+    else if (time - sweepHighStart) > winMs
+        fire("SWEEP_HIGH_EXPIRED", rangeHigh, sweepHighExtreme)
+        sweepHighActive := false
+
+// ── Visuals ────────────────────────────────────────────────────────────
+plot(rangeHigh, "Range high", color.red,  2, plot.style_line)
+plot(rangeLow,  "Range low",  color.teal, 2, plot.style_line)
+bgcolor(sweepLowActive  ? color.new(color.teal, 85) : na)
+bgcolor(sweepHighActive ? color.new(color.red, 85)  : na)

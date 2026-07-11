@@ -1,0 +1,14 @@
+[Unit]
+Description=TradingView webhook receiver (Sprung Ladder monitor)
+After=network.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/tv-webhook.env
+ExecStart=/opt/tv-webhook/venv/bin/uvicorn receiver:app --host 0.0.0.0 --port 80
+WorkingDirectory=/opt/tv-webhook
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
