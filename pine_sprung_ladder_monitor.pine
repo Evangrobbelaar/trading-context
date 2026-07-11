@@ -27,15 +27,12 @@ var int   sweepHighStart   = na
 
 // ── Payload builder ────────────────────────────────────────────────────
 payload(string ev, float level, float extreme) =>
-    '{"secret":"' + secret + '"' +
-     ',"event":"' + ev + '"' +
-     ',"ticker":"' + syminfo.ticker + '"' +
-     ',"tf":"' + timeframe.period + '"' +
-     ',"price":' + str.tostring(close, format.mintick) +
-     ',"level":' + str.tostring(level, format.mintick) +
-     ',"sweep_extreme":' + (na(extreme) ? 'null' : str.tostring(extreme, format.mintick)) +
-     ',"h1_atr":' + str.tostring(h1atr, "#.######") +
-     ',"bar_time_sast":"' + str.format_time(time, "yyyy-MM-dd HH:mm", "Africa/Johannesburg") + '"}'
+    string ext = na(extreme) ? "null" : str.tostring(extreme, format.mintick)
+    string ts = str.format_time(time, "yyyy-MM-dd HH:mm", "Africa/Johannesburg")
+    string p1 = '{"secret":"' + secret + '","event":"' + ev + '","ticker":"' + syminfo.ticker + '","tf":"' + timeframe.period + '"'
+    string p2 = ',"price":' + str.tostring(close, format.mintick) + ',"level":' + str.tostring(level, format.mintick)
+    string p3 = ',"sweep_extreme":' + ext + ',"h1_atr":' + str.tostring(h1atr, "#.######") + ',"bar_time_sast":"' + ts + '"}'
+    p1 + p2 + p3
 
 fire(string ev, float level, float extreme) =>
     alert(payload(ev, level, extreme), alert.freq_once_per_bar_close)
