@@ -909,3 +909,33 @@ are ALLOWED only when ALL conditions hold:
 PROVENANCE: EURUSD scalp 8 Jul (+R228, <50min, all conditions met) vs
 EURAUD 5.2p spike-out 25 Jun (conditions 1/5 violated). The mode works
 only inside these bounds; outside them it is the spread's income, not ours.
+
+---
+
+## MONDAY WEEKLY UPDATE — July 13, 2026 (v2.3)
+
+### Week of July 6–10 closed P&L (account 41829612)
+Winners: BRENT +708.91, USDJPY +618.58, USDJPY +579.21, GBPUSD +604.45 (BE-move → TP overnight Fri), XAUUSD sell +511.78, USDCAD +251.24, EURUSD scalp +228.47 (Rule 21 provenance trade), NVIDIA +106.74 (TP 209), USDCHF +68.91, misc +2.
+Losers: GBPUSD -803.03 (oversized 1.0L), XAUUSD buy -513.24, XAGUSD -277.79, USDJPY -233.69, BRENT -222.14, EURUSD -213.36, USDJPY -199.57, GBPJPY -168.57, USDJPY -167.94, AUDUSD -134.72, BRENT -130.78, EURUSD -122.92, misc -370.
+**Week net ≈ +R887 closed. Balance path: ~R6,515 (Thu) → R7,336 (Mon open).**
+
+### Weekend/Sunday-open events (Jul 12–13)
+- XAUUSD sell 4118 (held from Thu) filled TP overnight at 4070.45 = **+R778.41** (gapped 1.5pts through TP in our favor).
+- EURGBP Sunday open **gapped down 17p to 0.85026** — took scout #2 SL 0.8506 at the open print (-R51.11, 3.4p gap slippage). Scout #1 had already stopped Friday London (-R44.42). Scout #3 (0.8522) survived.
+- Sprung Ladder live test 1 sensor cost so far: -R95.53 of the ~R131 budgeted. Scout #3 now in profit.
+
+### SPRUNG LADDER — LIVE TEST 1 STATUS (EURGBP)
+- The sweep came as a WEEKEND GAP, not an intraday flush. Price recovered 0.8502→0.8517 within the first 15-min bar, but the armed trigger level **0.85322 was only reclaimed ~11h later** (Mon 10:10 SAST, London open surge). **Strict Phase-3 trigger (reclaim within 15 min) = FAILED → NO STRIKE fired.** Enforcer strike mode correctly unattestable (--reclaimed_15min false).
+- Scout #3 converted to managed range long: SL trailed 0.8502→**0.8511** (3.5p beyond the 0.85145 overnight floor, Rule 18), TP set at range mean **0.8543** (protocol Phase-5 first target; min-lot cannot scale out).
+- LESSON (new): weekend-held scouts face gap-sweeps that satisfy the sweep condition but distort the 15-min reclaim clock. Proposal for Evan: define gap-opens as "sweep at open; reclaim window starts at first tradeable print" OR ban holding unarmed scouts over weekends (this is the 2nd weekend-gap cost after the Jun EURCHF paper case). DO NOT adopt until Evan approves.
+
+### THIS WEEK'S NEWS CALENDAR (Jul 13–17) — updated via web_search Mon
+- Mon 13: light calendar. Unscheduled risk: US–Iran / Strait of Hormuz headlines (ceasefire declared over by Trump; oil bid, Brent ~$76).
+- Tue 14: 🔴 Fed Chair Warsh FIRST congressional testimony (House Financial Services); EZ Industrial Production.
+- Wed 15: 🔴🔴 US June CPI ~14:30 SAST + Warsh Senate testimony + EIA crude. **NO new positions within 2h; review all holdings Tue night.**
+- Thu 16: 🔴 US PPI, Fed Beige Book, jobless claims, Philly Fed; UK GDP.
+- Fri 17: UMich sentiment + inflation expectations; UK PM transition (Burnham inauguration expected).
+- CORRECTION: last week's log attested "CPI Jul 14" — fresh calendar confirms **CPI is Wed Jul 15**, Warsh is Tue Jul 14.
+- Macro bias: ECB tightening bets rising on oil-driven inflation (June hike was first since 2023; ~30bp more priced) = EUR-supportive. GBP soft on PM transition. Warsh hawkish = USD-supportive into Tue/Wed. Geopolitical risk = gold/oil bid regime.
+
+Document version: 2.3 — updated July 13, 2026 (Monday protocol) — committed by Claude
