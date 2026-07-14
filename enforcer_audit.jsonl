@@ -62,3 +62,6 @@
 {"ts": "2026-07-09T23:32:13.733417+00:00", "verdict": "PASS", "mode": "general", "instrument": "GBPJPY", "account_id": "41829612", "balance": 6514.53, "risk_amount": 182.0, "blocks": [], "version": "v3"}
 {"ts": "2026-07-13T08:40:00+00:00", "verdict": "PASS", "mode": "general", "instrument": "USDCAD", "account_id": "41829612", "balance": 7336.0, "risk_amount": 219.0, "blocks": [], "version": "v3"}
 {"ts": "2026-07-13T08:40:00+00:00", "verdict": "PASS", "mode": "general", "instrument": "EURUSD", "account_id": "41829612", "balance": 7336.0, "risk_amount": 142.0, "blocks": [], "version": "v3"}
+{"ts": "2026-07-14T08:12:59.732467+00:00", "verdict": "PASS", "mode": "general", "instrument": "?", "account_id": "41829612", "balance": 7158.92, "risk_amount": null, "blocks": [], "version": "v3"}
+{"ts": "2026-07-14T08:22:37.038312+00:00", "verdict": "PASS", "mode": "general", "instrument": "CADJPY", "account_id": "41829612", "balance": 7158.92, "risk_amount": 156.0, "blocks": [], "version": "v3"}
+{"ts": "2026-07-14T08:22:37.070042+00:00", "verdict": "PASS", "mode": "general", "instrument": "BRENT", "account_id": "41829612", "balance": 7158.92, "risk_amount": 193.0, "blocks": [], "version": "v3"}

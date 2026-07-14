@@ -939,3 +939,11 @@ Losers: GBPUSD -803.03 (oversized 1.0L), XAUUSD buy -513.24, XAGUSD -277.79, USD
 - Macro bias: ECB tightening bets rising on oil-driven inflation (June hike was first since 2023; ~30bp more priced) = EUR-supportive. GBP soft on PM transition. Warsh hawkish = USD-supportive into Tue/Wed. Geopolitical risk = gold/oil bid regime.
 
 Document version: 2.3 — updated July 13, 2026 (Monday protocol) — committed by Claude
+
+
+## CALENDAR CORRECTION + CPI-DAY BOOK — July 14, 2026 (tick 26)
+- **v2.3 Monday update was wrong: US June CPI is TUESDAY 14 July 14:30 SAST** (BLS official; Warsh House testimony same day 16:00 SAST; Senate Wed 15th; JPM/GS/WFC earnings also Tue). Lesson: verify CPI date against BLS schedule directly, not press summaries.
+- Overnight escalation: 3rd day of US-Iran strikes, supertankers hit in Hormuz, Brent 85+ (1-month high). CAD strongest / JPY weakest (oil importer) — war regime inverts the yen-haven reflex.
+- Tick 26 book (both pullback limits, enforcer v3 PASS, combined 4.9% single-theme cap): CADJPY buy 115.00 SL 114.78 TP 115.40 0.07L #909857160 | BRENT buy 84.75 SL 83.28 TP 86.90 8u #909857166.
+- HARD SCHEDULE: 12:30 SAST cancel unfilled pendings; 13:50 SAST flatten all; no entries again until 16:30+ at earliest (CPI 14:30 + Warsh 16:00).
+- MCP account reverts #7 and #8 today (one mid-session between enforcer pass and order placement). Switch+verify before EVERY order remains mandatory.
