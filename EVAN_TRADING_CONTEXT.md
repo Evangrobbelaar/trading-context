@@ -975,3 +975,28 @@ Document version: 2.3 — updated July 13, 2026 (Monday protocol) — committed 
 
 ### Live enforcer TODO (next session)
 - New account lock: live=42805520 / demo=41829612, mode-aware. Min-balance gate. Per-trade 5% cap carried over. Instrument floor table from today's min-size scan (NAS100 primary for R250-R1,000 tier).
+
+---
+
+## UPDATE — July 21, 2026 (tick 29 — MCP ROUTING INTEGRITY FAILURE — orders halted)
+
+### Trades placed this session (all enforcer v3 PASS, exit 0)
+| # | Instrument | Type | Size | Entry | SL | TP | Risk |
+|---|---|---|---|---|---|---|---|
+| 109824601 | NAS100 | Market Buy | 0.12u | 28,973.71 | 28,830 | 29,190 | R283 / 3.8% |
+| 109824617 | USDJPY | Market Buy | 0.05L | 162.565 | 162.385 | 162.90 | R91 / 1.2% |
+| 909872709 | XAUUSD | Pending Limit Buy | 1oz | 4,063 | 4,043 | 4,095 | R329 / 4.4% |
+WTI passed over deliberately (duplicate war-theme with gold + ceasefire-headline air-pocket risk). 3 drivers > 5 tickets.
+
+### CRITICAL: account routing can no longer be trusted (reverts #10, #11 + bidirectional bounce)
+Sequence of evidence this session:
+1. Pre-order switches kept catching silent reverts to 41750592 (#9, #10).
+2. Switch TO 41750592 (read-only stray inspection) → confirmed current=41750592 → get_open_positions returned accountId=41829612 with our book. Twice. The session bounces BOTH directions mid-operation.
+3. Before the XAU/JPY orders: warning said 1 stray open position on 41750592 (origin unknown — NOT ours).
+4. After the XAU/JPY orders: warning says 41750592 holds 2 open + 1 pending = EXACTLY our order count.
+Two hypotheses fit all data: (A) our orders are on 41829612 as every order response labeled, and the warnings mirror-mislabel the wrong account; (B) execution silently followed 41750592 while response labels lied. MCP responses cannot distinguish A from B. ONLY the platform app UI is ground truth.
+
+### PROTOCOL CHANGE (immediate, until MCP fixed or trigger found)
+- NO order placement via MCP on any account. MCP = data/analysis only. All order placement MANUAL in the ThinkTrader app (already true for live 42805520).
+- Evan to verify in app: which account holds USDJPY 0.05L + XAUUSD pending + NAS100 0.12u, and identify the pre-existing stray on 41750592. Reconcile before next session.
+- Live enforcer design input: account verification cannot rely on ANY MCP response field. Manual placement is a feature, not a limitation, for the live era.
