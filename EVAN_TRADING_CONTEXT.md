@@ -1198,3 +1198,11 @@ Tick 40 addendum claimed the 14:30 springs were "processed ~15:10, stale on arri
 
 ### Book after strike (3 open, 0 pending)
 WTI #109825975 buy 84.47 (was -R40 recovering) | BTC #909873865 buy 66,699 flat | XAU #109826749 buy 4064.13 fresh. Aggregate worst-case R207+R171+R249 = R627 = 8.5% of R7,338. Cap 25% clear. Theme note: BTC+XAU risk-on cluster R420, WTI war-theme R207.
+
+## tick 42 — FUTURES SPRING DECODE + RULE 14 TRIGGERED + TRAIL (21 Jul, 14:52 UTC)
+
+- TV event: SPRING XAUUSD1! 4089.5 (14:45:12, read 3.7 min later — fresh). BASIS DISCOVERY: XAUUSD1! futures run ~16-20pts over spot (futures 4085.3 sweep printed while spot closed 4069.28). The futures monitor's level ≈ SPOT 4069-4070 — its SPRING = spot M5 close confirming above the 4069 zone (continuation through our entry area), NOT a day-high breakout. Rule for future decoding: subtract ~16-20 basis on all XAUUSD1! prints; verify against spot before acting.
+- Spot structure: 4061-63 shelf defended 4x (4061.16 / 4061.36 / 4062.20 / 4062.83), HH 4070.41. Staircase rising under #109826749.
+- **RULE 14 TRIGGERED** (+R92 at 14:50) — and a DRAFTING FLAW surfaced: at 1oz, +R80 = +4.9pts, so "SL to entry+5 minimum" places the stop AT/ABOVE the trigger price = instant stop-out by design. The rule self-defeats at its own boundary. ACTION TAKEN (spirit, within working rules): trailed SL 4049 -> 4054.5 after pre-trail checklist pass (new swing HL 4062.83 + HH 4070.41; SL 6.6pts beyond the 4x-defended cluster; 15.2pts from price = Rule 2 minimum). Worst case R249 -> R158 (-37%). Entry+5 lock (4069.13) stays ARMED for when price gives it >=8pts of room (spot 4077+). **EVAN TO RULE: fix Rule 14 for min-size positions — proposal: at trigger, SL moves to max(entry+5, structure-based trail) only when the chosen level is >=8pts below current bid; otherwise trail to structure per Rules 1/2/3 and lock entry+5 at the next qualifying push.**
+- Book at 14:52: XAU #109826749 +R81 (SL 4054.5 / TP 4090) | WTI #109825975 -R86 (new session high 84.713 printed, pulled back 84.22, 83.99 floor intact) | BTC #909873865 +R27 (66,780, checkpoint 67,000). Aggregate worst-case now R207+R171+R158 = R536 = 7.3%.
+- Routing: revert #13 caught pre-modify. Mirror stable at "3 open" = stray + our WTI/BTC (XAU not yet mirrored or count lag — noted, not actionable).
