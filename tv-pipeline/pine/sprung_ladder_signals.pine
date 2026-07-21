@@ -21,18 +21,24 @@ if sweep
     sweepHigh := high
     sweepBar  := bar_index
 
+// ---------- ta.* calls hoisted to globals so they run every bar (fixes CW10002) ----------
+crossSweepHigh = ta.crossover(close, sweepHigh)
+pl             = ta.pivotlow(low, hlLen, hlLen)
+recentHigh     = ta.highest(high, hiLen)[1]
+crossRecent    = ta.crossover(close, recentHigh)
+crossLvl1      = ta.cross(close, lvl1)
+crossLvl2      = ta.cross(close, lvl2)
+
 // ---------- SPRING: reclaim of the sweep bar's high within the window ----------
-spring = not na(sweepBar) and (bar_index - sweepBar) <= springWindow and ta.crossover(close, sweepHigh)
+spring = not na(sweepBar) and (bar_index - sweepBar) <= springWindow and crossSweepHigh
 if spring
     sweepBar := na
 
 // ---------- HL_RECLAIM: shallow pullback holds above prior pivot low, breaks recent high ----------
-pl = ta.pivotlow(low, hlLen, hlLen)
 var float lastPivotLow = na
 if not na(pl)
     lastPivotLow := pl
-recentHigh = ta.highest(high, hiLen)[1]
-hlReclaim  = not na(lastPivotLow) and low > lastPivotLow and ta.crossover(close, recentHigh)
+hlReclaim = not na(lastPivotLow) and low > lastPivotLow and crossRecent
 
 // ---------- Visuals ----------
 plotshape(sweep,     "SWEEP",      shape.triangleup, location.belowbar, color.orange, size=size.small)
@@ -47,7 +53,7 @@ if spring
     f_fire("SPRING")
 if hlReclaim
     f_fire("HL_RECLAIM")
-if lvl1 > 0 and ta.cross(close, lvl1)
+if lvl1 > 0 and crossLvl1
     f_fire("LEVEL1_HIT")
-if lvl2 > 0 and ta.cross(close, lvl2)
+if lvl2 > 0 and crossLvl2
     f_fire("LEVEL2_HIT")
