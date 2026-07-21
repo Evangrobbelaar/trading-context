@@ -947,3 +947,31 @@ Document version: 2.3 — updated July 13, 2026 (Monday protocol) — committed 
 - Tick 26 book (both pullback limits, enforcer v3 PASS, combined 4.9% single-theme cap): CADJPY buy 115.00 SL 114.78 TP 115.40 0.07L #909857160 | BRENT buy 84.75 SL 83.28 TP 86.90 8u #909857166.
 - HARD SCHEDULE: 12:30 SAST cancel unfilled pendings; 13:50 SAST flatten all; no entries again until 16:30+ at earliest (CPI 14:30 + Warsh 16:00).
 - MCP account reverts #7 and #8 today (one mid-session between enforcer pass and order placement). Switch+verify before EVERY order remains mandatory.
+
+---
+
+## UPDATE — July 21, 2026 (tick 28 — London open, LIVE ERA BEGINS)
+
+### Live account identified
+- Funded live account is **#42805520** (ZAR, R250) — confirmed via platform screenshot 09:11 SAST.
+- MCP grant currently contains ONLY the three demos (41750592/41810679/41829612). Live account NOT authorized — Evan must re-connect the ThinkTrader connector with 42805520 ticked before Claude can monitor/manage live.
+- ACCOUNT LOCK rule is now STALE (locks a demo). Rewrite pending as part of the live enforcer.
+- MCP revert #9 today: session flipped back to 41750592 mid-session between operations. Switch+verify before EVERY order remains mandatory and just caught it.
+
+### Min-size spec discovery (full 2,832-instrument scan)
+- NAS100 true minimum is 0.01 units = ~R0.164/pt (USDZAR ~16.44 per platform), spread 1pt, margin ~R9.50. The old "R1.30/pt, avoid indices" note was based on 1-unit sizing — at true min size NAS100 is ~10x cheaper per point than EURUSD (R1.64/pip at 0.01) and is the best small-account instrument on the book.
+- US shares min 0.1 shares (R1.64/$ move) — viable only during US cash session (pre-market spreads wide).
+- JSE shares min 0.1 shares — microscopic risk and profit. Crypto minors (100-unit mins) — spread 20-40% of sane stops. USDZAR — spread+swap tax. All rejected.
+
+### Trade thesis (both accounts): NAS100 oversold bounce into earnings week
+- Last week's tech selloff 29,889→28,244; double bottom 28,550 (Mon + overnight sweep-reclaim); 450pt overnight staircase; Asia risk-on (Nikkei +2.2%, chips leading). Fed blackout week (FOMC Jul 28-29), no high-impact US data today. Risks: Iran headlines (day 9 of strikes; diplomacy hopes current), mega-cap earnings Wed-Thu = flat before Wed close, no overnight holds into earnings.
+
+### Demo trade placed (enforcer v3 PASS, exit 0)
+- #109824601: NAS100 Buy 0.12u @ 28,973.71 | SL 28,830 | TP 29,190 | risk R283 = 3.8% | R:R ~1.5:1 | market order per standing rule.
+
+### Live ticket review (Evan placing manually)
+- Evan's draft ticket (buy 28,989.92, SL 28,860.92, TP 29,119.92) = 1:1 R:R, entry at HOD, SL 4pts under the 28,865 higher low (Rule 18 stop-hunt bait), 8.5% risk (v3 would block).
+- Advised: alert at 28,910, enter on pullback tag of 28,900-28,925, SL 28,830, TP 29,190 → ~75pts = R12.30 = 4.9% (v3-compliant). Breakout alt above 29,065 (SL 28,960) = 6.9% — Evan's call pending live enforcer.
+
+### Live enforcer TODO (next session)
+- New account lock: live=42805520 / demo=41829612, mode-aware. Min-balance gate. Per-trade 5% cap carried over. Instrument floor table from today's min-size scan (NAS100 primary for R250-R1,000 tier).

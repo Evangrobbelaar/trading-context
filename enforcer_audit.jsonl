@@ -68,3 +68,5 @@
 {"ts": "2026-07-14T09:02:58.888822+00:00", "verdict": "PASS", "mode": "general", "instrument": "BRENT", "account_id": "41829612", "balance": 7158.92, "risk_amount": 131.0, "blocks": [], "version": "v3"}
 {"ts": "2026-07-16T13:00:27.130011+00:00", "verdict": "PASS", "mode": "general", "instrument": "?", "account_id": "41829612", "balance": 7035.64, "risk_amount": null, "blocks": [], "version": "v3"}
 {"ts": "2026-07-16T13:00:27.184456+00:00", "verdict": "PASS", "mode": "general", "instrument": "CADJPY", "account_id": "41829612", "balance": 7035.64, "risk_amount": 182.0, "blocks": [], "version": "v3"}
+{"ts": "2026-07-21T07:13:39.013744+00:00", "verdict": "PASS", "mode": "general", "instrument": "?", "account_id": "41829612", "balance": 7394.99, "risk_amount": null, "blocks": [], "version": "v3"}
+{"ts": "2026-07-21T07:13:39.057434+00:00", "verdict": "PASS", "mode": "general", "instrument": "NAS100", "account_id": "41829612", "balance": 7394.99, "risk_amount": 315.6, "blocks": [], "version": "v3"}
