@@ -1029,3 +1029,22 @@ Standing shortcut: when Evan says "TV alert" (or "tick tradingview alert" or sim
 3. Pre-flight the matching ticket through enforcer.py advisory (live balance) — for LEVEL hits use the standing session tickets; for SPRING/HL_RECLAIM design the ticket from structure.
 4. Respond with a complete manual ThinkTrader ticket: instrument, direction, size, entry, SL, TP, rand risk, % of balance — nothing else unless something's wrong.
 Evan places all orders by hand. Machine analyzes, Evan clicks — settled architecture.
+
+---
+
+## UPDATE — July 21, 2026 (tick 34 — MCP HALT NARROWED TO LIVE-ONLY)
+
+Tick 29's blanket order-placement halt is **narrowed, not lifted**, at Evan's instruction.
+
+- **New scope:** MCP order placement PERMITTED on demo 41829612 only. LIVE 42805520 remains manual-forever per tick 30 — not up for revision.
+- **Reasoning (Evan's, recorded as given):** the routing bug moves orders between two DEMO accounts, so worst case is bookkeeping confusion, not capital loss. MCP execution speed is worth that cost during the demo build-out.
+- **Correction to the record:** tick 29 was not a "developmental" halt. It was a safety halt on an open integrity fault, scoped "until MCP fixed or trigger found." Neither condition has been met. This narrowing is a deliberate acceptance of a known, live fault — not a fix, and it should be read that way later.
+- **MANDATORY per-order procedure under this narrowing:**
+  1. switch_trading_account -> 41829612, verify "current":"41829612"
+  2. enforcer.py exit 0
+  3. place order
+  4. verify accountId on the ORDER RESPONSE
+  5. immediately re-check open positions, confirm the fill sits on 41829612
+  Any step returning 41750592 -> stop, place nothing further, reconcile in the app.
+- **Revert count this session: 3.** Every switch call returned previous=41750592. The bug is active, not dormant.
+- **Still open from tick 29:** in-app reconciliation of USDJPY 0.05L / XAUUSD pending / NAS100 0.12u plus the pre-existing stray on 41750592. Narrowing the halt does not close this.
