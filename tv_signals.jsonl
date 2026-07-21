@@ -20,3 +20,4 @@
 {"event": "HL_RECLAIM", "symbol": "XAUUSD1!", "tf": "15", "price": 4104.3, "t": 1784659522290, "received_utc": "2026-07-21T18:45:22.753513+00:00"}
 {"event": "SWEEP", "symbol": "EURUSD", "tf": "15", "price": 1.1403, "t": 1784660400381, "received_utc": "2026-07-21T19:00:03.734690+00:00"}
 {"event": "SWEEP", "symbol": "BTCUSD", "tf": "15", "price": 66281.51, "t": 1784660402285, "received_utc": "2026-07-21T19:00:14.742020+00:00"}
+{"event": "SWEEP", "symbol": "EURUSD", "tf": "15", "price": 1.14032, "t": 1784662200990, "received_utc": "2026-07-21T19:30:15.133326+00:00"}
