@@ -1236,3 +1236,42 @@ HL_RECLAIM USDJPY @ 163.139, 18:15:03 UTC. The 18:15 M15 bar was a 17-pip impuls
 Revert #14 today caught on this session's switch (previous=41750592, as always). All subsequent responses (positions, account, modify) labeled 41829612. Mirror warnings: none this session. Hypothesis A intact.
 
 Document version: 2.6 — July 21, 2026 (tick 43)
+
+## tick 44 — TV TICK: XAU LOCKED (Rule 14 executed) + USDJPY TICKET RETIRED + BTC SPRING PASSED (21 Jul, 19:36-19:40 UTC)
+
+### Signals since tick 43 (read 19:36:27 UTC)
+| UTC | Event | Symbol | Price | Age at read | Status |
+|---|---|---|---|---|---|
+| 18:30 | HL_RECLAIM | GOLD | 4083.77 | 66m | stale — but confirmed our long's continuation |
+| 18:45 | HL_RECLAIM | USDJPY | 163.228 | 51m | stale — structure migrated above the armed tag zone |
+| 18:45 | HL_RECLAIM | XAUUSD1! | 4104.3 | 51m | ≈ spot 4085-88 by basis; consistent |
+| 19:00 + 19:30 | SWEEP x2 | EURUSD | 1.1403 / 1.14032 | 36m / 6m | same level to 0.2p, twice, no follow-through |
+| 19:30 | SPRING | BTCUSD | 66,376.75 | 6.1m | FRESH — no strike (below) |
+
+### XAUUSD #109826749 — Rule 14 lock EXECUTED
+- Price broke the 4084.25 morning wall to 4087.08 (18:30), then 45-min compression: triple ceiling 4085.3-4085.7 under TP, rising HLs 4079.18 -> 4079.97 -> 4080.78. Rule 4 read at 72%-of-TP: compression under resistance with rising floors + the whole risk-on complex still impulsing = HOLD to TP, not Rule 13 close.
+- Tick 42's armed condition (spot 4077+ = >=8pts room for the 4069.13 lock) MET at spot ~4083. SL trailed 4056.5 -> 4069.13 (entry+5). accountId verified on modify response. Position is now a GUARANTEED WINNER: min +R82, target +R425 at TP 4090. Floating +R298 at action time. Asian rollover risk on this position is now zero-downside by construction.
+- Rule 4/13 note: the 60% checkpoint (4079.6) was crossed between ticks again — second time today — but this time the lock architecture absorbed it. The between-turn gap is real; locks are the mitigation that works.
+
+### USDJPY armed ticket (tick 43) — RETIRED, no trade tonight
+- Breakout exception DID confirm: 18:00 H1 closed 163.224 > 163.036. But the first pullback bottomed at 163.158 (double-tap, 19:15+19:30) — the 163.04-163.07 tag zone never printed and now sits BELOW the operative staircase (HLs 163.125/163.142/163.158x2).
+- DECISION LOGIC (recorded): if 163.04-163.07 prints from here, the staircase必 breaks first -> the trigger would invalidate the thesis it was designed to enter. Buying it would be knife-catching, not breakout-retesting. This is the tick-36 WTI decision-level lesson applied BEFORE entry instead of after. Ticket retired.
+- No re-arm higher: every structurally-valid stop from current price (163.21 ask, top 2.3% of an 82.4p range) either violates Rule 2 (flag-floor stop = 10.3p) or requires an entry Rule 17 blocks. Rule 21 scalp path also dead: no live M5/M15 break firing NOW, and Rule 17 is read as governing scalp entries too (no exemption written; conservative reading holds).
+- Net cost of discipline tonight: ~4 pips of missed continuation vs the pattern (June-25 EURUSD, today's WTI) the rule exists to prevent. Acceptable. If a fast sweep-reclaim of the 163.00 round prints and Evan pings on it, that is a NEW evaluation, not this ticket.
+
+### BTCUSD SPRING 66,376.75 — NO STRIKE (3 reasons, protocol held)
+1. No scouts deployed on BTC — Phase-3 condition 1 unmet; monitor firing naked = information only (tick 39/40 precedent).
+2. Rule 16 window closes 22:00 SAST — 22 min left at read; any fill holds through Asia = the June-26 ETH failure mode exactly.
+3. Sequence note (painful, honest): BTC swept 66,281 (19:00) and sprung 66,376 (19:30) — reclaiming the SAME shelf zone whose hunt took our stop at 66,156 (-R179). Our 66,180 stop sat below the 66,220 shelf but the flush ran 24pts deeper. LESSON CANDIDATE for Evan: crypto stops need Rule-15-style 2x buffers even in NY hours on impulse days; today's 520pt stop was structurally placed and still inside the hunt radius.
+- Regime read: risk-on complex (JPY-weak/metals/BTC) still bid into the close.
+
+### EURUSD 1.1403 double sweep — Phase-1 shelf signature FLAGGED for tomorrow
+Two down-sweeps 30 min apart at the same price (0.2p apart), zero follow-through = the Sprung Ladder's defended-shelf detection condition, printed live by the pipeline for the first time. NOT deployed tonight: scouts held into Asia face the gap/hunt lesson (2 prior costs), and scout-mode attestations (range touches/ATR) not computed this late. CANDIDATE: London tomorrow, deploy scouts at 1.1403 per Phase 1 if the shelf survives the night — Evan's call.
+
+### Routing
+Revert #15 caught pre-operations (previous=41750592). All operation responses labeled 41829612. No mirror warnings. Hypothesis A intact.
+
+### Book at close of tick
+XAUUSD 1oz buy 4064.13 | SL 4069.13 (LOCKED +R82 min) | TP 4090 | +R298 floating. Nothing else open, no pendings. Balance R6,968.27, equity ~R7,266. Session closed P&L -R427; floating book turns the session green if TP fills (+R425 -> session ≈ -R2).
+
+Document version: 2.7 — July 21, 2026 (tick 44)
