@@ -1206,3 +1206,33 @@ WTI #109825975 buy 84.47 (was -R40 recovering) | BTC #909873865 buy 66,699 flat 
 - **RULE 14 TRIGGERED** (+R92 at 14:50) — and a DRAFTING FLAW surfaced: at 1oz, +R80 = +4.9pts, so "SL to entry+5 minimum" places the stop AT/ABOVE the trigger price = instant stop-out by design. The rule self-defeats at its own boundary. ACTION TAKEN (spirit, within working rules): trailed SL 4049 -> 4054.5 after pre-trail checklist pass (new swing HL 4062.83 + HH 4070.41; SL 6.6pts beyond the 4x-defended cluster; 15.2pts from price = Rule 2 minimum). Worst case R249 -> R158 (-37%). Entry+5 lock (4069.13) stays ARMED for when price gives it >=8pts of room (spot 4077+). **EVAN TO RULE: fix Rule 14 for min-size positions — proposal: at trigger, SL moves to max(entry+5, structure-based trail) only when the chosen level is >=8pts below current bid; otherwise trail to structure per Rules 1/2/3 and lock entry+5 at the next qualifying push.**
 - Book at 14:52: XAU #109826749 +R81 (SL 4054.5 / TP 4090) | WTI #109825975 -R86 (new session high 84.713 printed, pulled back 84.22, 83.99 floor intact) | BTC #909873865 +R27 (66,780, checkpoint 67,000). Aggregate worst-case now R207+R171+R158 = R536 = 7.3%.
 - Routing: revert #13 caught pre-modify. Mirror stable at "3 open" = stray + our WTI/BTC (XAU not yet mirrored or count lag — noted, not actionable).
+
+## tick 43 — TV TICK: USDJPY HL_RECLAIM 163.139 — ARMED, NOT ENTERED + BOOK RECONCILED (21 Jul, 18:16-18:25 UTC)
+
+### Signal (read 1.4 min after fire — fresh)
+HL_RECLAIM USDJPY @ 163.139, 18:15:03 UTC. The 18:15 M15 bar was a 17-pip impulse: 163.02 -> 163.211 (new multi-decade high) in seconds, elevated volume, settling ~163.16. No scheduled news (Fed blackout, calendar empty tonight) — momentum/flow in the war-premium JPY-weakness regime. Stale signals since tick 42 (GOLD reclaim 4076.76 @15:30, XAUUSD1! 4098.4 @16:31 ≈ spot ~4080 by basis) = information only.
+
+### Book reconciliation (balance R6,968.27 live-queried; session -R427 / -5.8% from R7,394.99 start)
+- WTI #109825975 STOPPED 15:48 UTC @ 83.843 = -R216.83. Fill 2.7c THROUGH the 83.87 stop — WTI negative slippage now 2/2 (tick 34 entry + this exit). VERDICT: WTI slippage IS habitual; future WTI pre-flights must add a slippage buffer to risk, or skip the instrument at this size.
+- BTCUSD #909873865 STOPPED 17:47 UTC @ 66,156.45 (23.5pts through 66,180) = -R178.53. Rule 16 window was respected; NY flush took it anyway. First v3-era BTC trade: -R178 for the data.
+- ⚠️ UNRECORDED TRADE on 41829612: USDJPY #109826491 Buy 0.01L @ 162.917 (14:17 UTC), SL 162.852 / TP 163.156 — closed AT TP 163.166 = +R25.11 (18:05 UTC). No tick logged it. Market-order ID series, our account. EVAN TO CONFIRM: was this you in the app? If not, it is a new routing/integrity data point and must be treated as such.
+- XAUUSD #109826749 alive. Ran to 4083.29 (74% of TP distance) unattended, faded to a 4066.7/4066.8 double floor, now ~4072-74. Rule 4/13 60%-checkpoint was TAGGED AND MISSED between turns — the tick 40 process gap costing real money (+R280 was on the table at the peak). Trailed SL 4054.5 -> 4056.5 after full pre-trail checklist pass (new HH 4083.29 + fresh HL 4066.7; 4.7pts beyond the 4x-defended 4061.16 cluster per Rule 18; 15.0pts from spot = Rule 2 minimum). Worst case R158 -> R125. TP 4090 unchanged. accountId verified on modify response.
+
+### USDJPY analysis — setup real, entry location blocked (again)
+- H4 TREND GATE: BULLISH, PASS. Unbroken day staircase 162.406 -> 163.211; HLs 162.465/162.580/162.691/162.852/162.907/162.955; every prior swing high broken. Buy = WITH trend, true CHANGE-1 pass.
+- RULE 17: day range 162.406–163.211 (80.5p), top-15% floor 163.090. Ask 163.172 = top 4.8% of range -> MARKET ENTRY BLOCKED. Identical geometry to the WTI entry that died at its stop today. Rule 22: answer is NO TRADE at market, wait for the rule-passing zone.
+- BREAKOUT EXCEPTION: 18:00 H1 (trading 163.16 vs prior session high 163.036) closes 19:00 UTC — near-certain confirmation. Exception then permits: market buy on FIRST PULLBACK to the breakout level.
+- INTERVENTION TAIL (new risk factor, priced into size): BoJ/MoF issued a fresh FX-intervention warning yesterday; pair at multi-decade highs on a vertical tape is intervention-bait. Precedent: 150-250 pip drops in minutes. Not a block (same unscheduled class as the Iran headlines this book trades through) but sized down for it.
+
+### ARMED TICKET (enforcer v3 general PASS exit 0, run 18:24 UTC vs live-queried balance)
+- Trigger: AFTER 19:00 UTC H1 close >163.036, market BUY on first tag of 163.04–163.07 (breakout retest; below the 163.090 Rule-17 floor). Alert level for Evan's app: 163.06.
+- BUY 0.10L | SL 162.90 (5.0p beyond the 162.954/162.956 consolidation floor, Rule 18; 15.0p from 163.05 ref entry, Rule 2 min) | TP 163.40 (35p; nothing overhead — next cited objective 164.00) | R:R 2.33:1 | risk ~R152 = 2.2% | aggregate with XAU worst case R125 = R277 = 4.0% (cap 25% clear).
+- SIZE RATIONALE: 0.10L not 0.15L — (a) BoJ intervention tail, (b) XAU long open = mild risk-on cluster (Rule 20, tick 35 precedent), (c) entry rolls toward Asia.
+- ASIAN-BOUNDARY TIME RULE (part of this ticket): at 21:45–22:00 UTC, if position has not reached +6p (Rule 14 forex trigger -> SL to entry+3), CLOSE AT MARKET. A 15p stop is Asian stop-hunt bait (June-26 EURUSD lesson, 13.5p stop swept at the open). No holding this into 00:00 SAST at full stop width.
+- Rule 21 check (if the move resolves fast): spread 1.3p vs 35p TP = 3.7% — clears the 10% spread test regardless.
+- At tag time: re-run switch+verify, re-run enforcer with live numbers, THEN place. This tick's PASS does not skip the per-order procedure.
+
+### Routing
+Revert #14 today caught on this session's switch (previous=41750592, as always). All subsequent responses (positions, account, modify) labeled 41829612. Mirror warnings: none this session. Hypothesis A intact.
+
+Document version: 2.6 — July 21, 2026 (tick 43)
