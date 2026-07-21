@@ -1369,3 +1369,38 @@ de-hardcoded (server name differs: mcp__claude__* in chat, mcp__thinktrader__* o
 **Plan-limit note:** the box runs Claude Pro. Tier 2 = sonnet up to 45 turns; a busy signal
 day could hit subscription limits mid-session. Watch the first live day's usage; API-key
 billing remains the cleaner path for sustained unattended running.
+
+## tick 46 (this run) — AUTO TIER2, advise mode, 20:41:44 UTC
+
+Signal: XAUUSD HL_RECLAIM @4075.0 (M15), Tier1 escalated (H4 Bull alignment claimed +
+Rule 13 assessment flagged).
+
+**Account/balance:** switched to 41829612, verified. Live balance R7,290.79, equity
+R7,288.32 (queried this run, not from file).
+
+**Open-position reconciliation — snapshot was stale:** the tick-45 snapshot's Rule-14-locked
+XAUUSD BUY (109826749) is GONE from live open_positions — closed by TP/SL or manually between
+19:58 and 20:41 UTC, outcome not queryable this run (see tool gap below). Two positions are
+live that were NOT in the snapshot at all: USDJPY BUY 1000u @163.209 (SL:0, TP:0) and EURUSD
+SELL 5000u @1.1401 (SL:0, TP:1.1377, floating -R2.47). **Both have zero stop-loss — a live
+Rule 2 violation already on the book.** Advise-mode + tool restrictions meant nothing could be
+modified; flagging for Evan to add stops manually.
+
+**Tool gap this run:** `get_symbol_history` came back permission-denied on every call
+(headless session, no human available to grant). This blocked CHANGE 3 M5 structure checks
+on the two open positions and the full CHANGE 5 sequence (H4 swing refresh, H1 structure,
+M15 trigger) for the fired XAUUSD signal. Only `get_symbol_price` (bid/ask + day high/low)
+worked. **Action needed: pre-authorize get_symbol_history for the auto-tick harness**, or
+Tier 2 runs will keep degrading to price-only analysis.
+
+**Decision on the signal — NO_ACTION (WOULD-NOT-PLACE):** Rule 17 check using day high/low
+from get_symbol_price (low 3999.82, high 4087.08, range 87.26) puts both the signal price
+(4075.0) and current price (4080.63) inside the **top 15% of session range** (cutoff
+4073.99). Rule 17 blocks new BUY entries there unless an H1 breakout-close is confirmed —
+which could not be verified (history tool blocked). No enforcer call made since no order was
+being placed. H4 verdict for XAUUSD (BULL, swings 3999.82→4043.65) carried forward unrefreshed
+from tick 45 snapshot.
+
+**Bookkeeping:** session_snapshot.json refreshed (live balance, real open positions, closed
+XAUUSD noted, session range recorded, watch_levels updated, tool-gap note added).
+tick_counter.txt → 47.
