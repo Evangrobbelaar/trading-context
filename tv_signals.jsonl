@@ -7,3 +7,4 @@
 {"event": "HL_RECLAIM", "symbol": "BTCUSD", "tf": "15", "price": 66737.44, "t": 1784642403101, "received_utc": "2026-07-21T14:00:25.813065+00:00"}
 {"event": "SWEEP", "symbol": "SILVER", "tf": "15", "price": 58.845, "t": 1784643300245, "received_utc": "2026-07-21T14:15:01.840677+00:00"}
 {"event": "SWEEP", "symbol": "EURUSD", "tf": "15", "price": 1.1419, "t": 1784643300363, "received_utc": "2026-07-21T14:15:04.020007+00:00"}
+{"event": "SWEEP", "symbol": "GOLD", "tf": "15", "price": 4065.86, "t": 1784643300244, "received_utc": "2026-07-21T14:15:06.590917+00:00"}
