@@ -1513,3 +1513,46 @@ proceed past the enforcer gate it could not satisfy, and placed nothing.
 now -R165 floating.** USDJPY 1000u @163.209 and EURUSD 5000u @1.1401 still have SL=0 with
 JPY at multi-decade highs and BoJ intervention warnings live. This is the only item tonight
 that can actually lose money; everything else has been plumbing.
+
+## tick 51 — AUTO TIER2 advise (21 Jul, 21:31-21:36 UTC / 23:31-23:38 SAST)
+
+**Housekeeping first:** repo had a stale unresolved git-stash conflict in `.claude/settings.json`
+and `.claude/settings.execute.json` (literal `<<<<<<<`/`=======`/`>>>>>>>` markers sitting in
+the JSON, left mid-merge from an earlier tick). One side of the `settings.execute.json`
+conflict had silently dropped the entire destructive-Bash deny list (rm/sudo/dd/curl/etc.) —
+would have been a real safety regression if that side had won. Working tree self-resolved to
+the safe committed version (both files now match HEAD, deny-list intact) before I could push
+a fix; verified `get_symbol_history` now works and the 12 order-mutation MCP tools are
+correctly absent from this session's tool list (deny-list confirmed live, advise mode enforced
+structurally, not just by prompt).
+
+**Signal:** SWEEP EURUSD 1.1399 (15m), 3rd sweep of the ~1.1399-1.1403 shelf within 240min —
+Sprung Ladder Phase-1 shelf-signature flagged by the runner.
+
+**Open-position guard:** both previously-flagged no-SL positions are GONE — checked via
+get_position_by_id since get_open_positions returned empty (initially read as a possible
+vanished-order anomaly, resolved by direct lookup, not an integrity fault):
+- USDJPY 109827820 BUY 1000u @163.209 — closed 21:00:00 UTC @163.127, hit its stop loss
+  (SL 163.146 WAS actually set — the tick46/47 "no SL" flag on this leg was stale/wrong).
+  P&L -R8.28.
+- EURUSD 109827829 SELL 5000u @1.1401 — closed 20:58:48 UTC @1.13985, closeOrderId does not
+  match the TP order and price never reached TP 1.1377, so this was a manual close (likely
+  Evan, in the app) — genuinely had no SL (Rule 2 violation) but got closed for a small
+  profit before it mattered. P&L +R20.58.
+Book is flat on 41829612 as of this tick.
+
+**Analysis (EURUSD, bounded to fired symbol):** H4 pulled fresh — confirmed BEAR, lower
+highs/lower lows for the full prior 36h (1.14492->1.1445->1.14296->1.14201->1.14104 highs;
+1.14337->1.14021->1.13983 lows), fresh intrabar low 1.13924 at check time. News: WebSearch
+clear — ECB decision is Thursday (2 days out), nothing high-impact within 2h of EURUSD.
+
+**Decision: NO_ACTION.** A spring/reclaim LONG off this shelf would be counter-trend against
+a freshly-confirmed H4 bear leg — Rule 3 requires a confirmed higher low + broken prior H4
+swing high first, neither present yet (still making lower lows). Separately, this exact level
+was already flagged tick44 as "scout decision is Evan's, never auto-deploy" for Sprung Ladder
+Phase 1 — so even if structure had qualified, deployment stays manual. No enforcer run needed
+(no order path taken). Recorded as a watch-only shelf-signature note for Evan.
+
+**Bookkeeping:** session_snapshot.json refreshed (balance R7164.09 live-queried, open_positions
+now empty, two closes logged, EURUSD H4 verdict + session range added, watch_levels updated).
+tick_counter.txt -> 51. Session P&L = 7164.09 - 7394.99 (session_start_balance) = -R230.90.
