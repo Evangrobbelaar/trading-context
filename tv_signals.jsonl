@@ -10,3 +10,4 @@
 {"event": "SWEEP", "symbol": "GOLD", "tf": "15", "price": 4065.86, "t": 1784643300244, "received_utc": "2026-07-21T14:15:06.590917+00:00"}
 {"event": "SPRING", "symbol": "SILVER", "tf": "15", "price": 58.985, "t": 1784644200081, "received_utc": "2026-07-21T14:30:00.581747+00:00"}
 {"event": "SPRING", "symbol": "GOLD", "tf": "15", "price": 4069.407, "t": 1784644200179, "received_utc": "2026-07-21T14:30:05.433835+00:00"}
+{"event": "SWEEP", "symbol": "XAUUSD1!", "tf": "15", "price": 4085.3, "t": 1784644201949, "received_utc": "2026-07-21T14:30:14.188483+00:00"}
