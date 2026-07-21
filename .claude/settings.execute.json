@@ -1,5 +1,5 @@
 {
-  "_comment": "ADVISE-MODE permissions (tick 47). Order tools are DENIED at the harness level, so advise mode is structurally enforced, not just promised in a prompt. To go live: cp .claude/settings.execute.json .claude/settings.json && git commit && push. Blanket 'mcp__thinktrader' proved insufficient on 21 Jul — get_symbol_history was denied mid-run while get_symbol_price passed, degrading Tier 2 to price-only analysis. Tools are enumerated explicitly now.",
+  "_comment": "EXECUTE-MODE permissions (tick 47). Single-position order tools allowed; the enforcer + AUTO_TICK_PROTOCOL remain the real gate. Bulk/close-all tools stay DENIED \u2014 no unattended run should ever be able to flatten the book.",
   "permissions": {
     "allow": [
       "mcp__thinktrader",
@@ -34,20 +34,20 @@
       "Read",
       "Edit",
       "Write",
-      "WebSearch"
-    ],
-    "deny": [
+      "WebSearch",
       "mcp__thinktrader__create_market_order",
-      "mcp__thinktrader__create_pending_order",
       "mcp__thinktrader__modify_position",
-      "mcp__thinktrader__modify_pending_order",
       "mcp__thinktrader__close_position",
       "mcp__thinktrader__partial_close_position",
+      "mcp__thinktrader__cancel_pending_order",
+      "mcp__thinktrader__cancel_pending_orders_by_symbol",
+      "mcp__thinktrader__create_pending_order",
+      "mcp__thinktrader__modify_pending_order"
+    ],
+    "deny": [
       "mcp__thinktrader__close_all_positions",
       "mcp__thinktrader__close_all_positions_by_symbol",
-      "mcp__thinktrader__cancel_pending_order",
-      "mcp__thinktrader__cancel_all_pending_orders",
-      "mcp__thinktrader__cancel_pending_orders_by_symbol"
+      "mcp__thinktrader__cancel_all_pending_orders"
     ]
   }
 }
