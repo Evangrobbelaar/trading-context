@@ -1,2 +1,3 @@
 {"price": 29000.5, "t": 1784633936781, "tf": "15", "symbol": "US100", "event": "TEST_SWEEP", "received_utc": "2026-07-21T11:38:54.067703+00:00"}
 {"price": 29000.5, "t": 1784634123904, "tf": "15", "symbol": "US100", "event": "TEST_SWEEP", "received_utc": "2026-07-21T11:42:01.107245+00:00"}
+{"event": "SWEEP", "symbol": "GOLD", "tf": "15", "price": 4059.768, "t": 1784639700202, "received_utc": "2026-07-21T13:15:00.847294+00:00"}
