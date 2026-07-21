@@ -1473,3 +1473,43 @@ headless-correct alternative and is the runner default.
 
 Still open: two no-SL positions (USDJPY 1000u @163.209, EURUSD 5000u @1.1401) unstopped on
 41829612. Order-path plumbing test still unverified.
+
+## tick 50 — ROOT CAUSE: THE SETTINGS FILE WAS INERT FROM TICK 45 TO 49 (21 Jul, ~21:25 UTC)
+
+The denial message on the second placement test named the tool exactly:
+`mcp__claude_ai_claude__get_symbol_history`.
+
+**The real prefix is `mcp__claude_ai_claude__`** — the claude.ai connector scope prefixes the
+server name (`claude_ai` + `claude`). Every allow/deny entry written in ticks 45, 47 and 49
+used `mcp__thinktrader__*` or `mcp__claude__*` and therefore **matched nothing at all**.
+`.claude/settings.json` has been inert since it was created. The MCP tools that did work
+(switch_trading_account, get_account_info, get_symbol_price) were approved interactively
+during the earlier Claude Code work on this box and live in /root/.claude.json — not from
+any file this project pushed. Three consecutive "fixes" were aimed at a file with no effect.
+
+**Bash denial, second cause:** patterns like `Bash(python3 enforcer.py:*)` do not match the
+compound `cd /root/trading-context && python3 enforcer.py ...` form the model naturally
+writes, so under dontAsk the enforcer could not run at all — which correctly halted the test
+at the enforcer gate. Narrow per-command allow patterns are too brittle for an agent that
+composes its own shell lines.
+
+**FIX (both settings files):**
+- Server-wide MCP allow (`mcp__claude_ai_claude`) — robust to future tool-name changes.
+- `Bash` allowed broadly; destructive verbs denied instead (rm, sudo, dd, mkfs, shutdown,
+  reboot, systemctl, docker, useradd, passwd, chown, chmod 777, curl, wget, npm, pip, apt).
+  Deny beats allow in every mode, so these hold even if the mode is later changed.
+- Advise: all 9 order tools denied (dry run structurally cannot place).
+- Execute: order tools allowed; close_all/cancel_all denied in every mode.
+This lands much closer to the "bypass" ergonomics Evan asked for while keeping the two things
+worth keeping: no unattended flatten-the-book, and no unattended package/service/filesystem
+mutation on the box that also hosts ClockPay payroll data.
+
+**Verified working this run (real MCP, no OAuth needed):** switch_trading_account
+previous=41750592 -> current=41829612 (**revert #16 today — bug still firing every session**),
+balance R7,303.10, equity R7,137.98, GBPUSD 1.33737/1.33862. The test correctly refused to
+proceed past the enforcer gate it could not satisfy, and placed nothing.
+
+⚠️ **EQUITY GAP: balance R7,303.10 vs equity R7,137.98 = the two UNSTOPPED positions are
+now -R165 floating.** USDJPY 1000u @163.209 and EURUSD 5000u @1.1401 still have SL=0 with
+JPY at multi-decade highs and BoJ intervention warnings live. This is the only item tonight
+that can actually lose money; everything else has been plumbing.
