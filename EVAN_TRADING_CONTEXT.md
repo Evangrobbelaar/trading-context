@@ -1018,3 +1018,14 @@ Two hypotheses fit all data: (A) our orders are on 41829612 as every order respo
 - **NEW SESSION-START RULE:** every trading session, after reading this file, also read the tail of tv_signals.jsonl (last ~20 lines) — overnight SWEEP/SPRING/HL_RECLAIM/LEVEL_HIT events from TradingView land there automatically.
 - Remaining manual step (Evan): paste Pine script into TradingView + create the one alert with the webhook URL. Until done, tv_signals.jsonl only contains test events.
 - Security follow-ups (Evan's list): VPS root password appeared in Claude Code transcript — change it, prefer SSH keys; VPS git push currently uses the broad OAuth token (Evan's call after fine-grained PAT 403'd) — revisit/rotate when convenient.
+
+---
+
+## UPDATE — July 21, 2026 (tick 33 — "TV ALERT" TRIGGER PROTOCOL)
+
+Standing shortcut: when Evan says "TV alert" (or "tick tradingview alert" or similar), immediately and without further questions:
+1. git pull the repo, read the tail of tv_signals.jsonl — identify the newest event(s).
+2. Get current price of the fired symbol via MCP (data only — NO order placement, per tick 29 halt and demo-only grant).
+3. Pre-flight the matching ticket through enforcer.py advisory (live balance) — for LEVEL hits use the standing session tickets; for SPRING/HL_RECLAIM design the ticket from structure.
+4. Respond with a complete manual ThinkTrader ticket: instrument, direction, size, entry, SL, TP, rand risk, % of balance — nothing else unless something's wrong.
+Evan places all orders by hand. Machine analyzes, Evan clicks — settled architecture.
