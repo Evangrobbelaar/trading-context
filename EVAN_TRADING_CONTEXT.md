@@ -1096,3 +1096,35 @@ Triggered by Evan's "tv alert" shortcut (tick 33 protocol). Three real events in
 - Still unreconciled from tick 29: the XAUUSD 4,063 pending is gone from both open positions and the pending book with no logged fill or cancel, and NAS100 0.12u / USDJPY 0.05L are likewise absent. Only WTI remains on 41829612. The 1 stray on 41750592 is still there.
 
 Document version: 2.4 — July 21, 2026 (tick 35)
+
+---
+
+## UPDATE — July 21, 2026 (tick 36 — CORRECTION: live balance was assumed, not checked)
+
+Evan caught this. Tick 35 asserted the live account holds R250 and built a conclusion on it. Retracted.
+
+### What happened
+- R250 came from the tick 28 note ("confirmed via platform screenshot 09:11 SAST"). By the time tick 35 used it, that number was ~7 hours stale, and it was written into the tick as a present-tense fact, then fed to enforcer.py as `--balance 250`.
+- The output — "min forex size = 10.5% of balance, BLOCKED, forex out of reach on the live tier" — is **unsupported**. If the live balance is not R250 the whole finding inverts. **Tick 35's live-account section is retracted.** The demo ticket (0.15L, R242, 3.30%) stands; it was pre-flighted against a live-queried balance.
+
+### Direct check via list_authorized_accounts (13:59 UTC)
+Grant contains **three DEMO accounts only**: 41829612 (current), 41750592, 41810679. **42805520 is not in the grant.** Tick 30's air-gap is confirmed by direct query, not inference.
+
+### STRUCTURAL GAP IN THE TICK 33 PROTOCOL
+Step 3 reads "pre-flight the matching ticket through enforcer.py advisory (live balance)". **Claude cannot obtain the live balance — by design, permanently, per tick 30.** The protocol contains a step that is impossible to execute, and the failure mode is silent: the gap gets filled with the last number seen in the file instead of raising an error. That is exactly what happened here.
+
+Two ways to close it — Evan's call:
+1. **Evan supplies the live balance** at session start or with each "tv alert" trigger. Live pre-flight stays in the protocol and becomes real.
+2. **Drop live pre-flight from tick 33.** Claude returns demo tickets and a per-pip risk figure; Evan does the % arithmetic against whatever the live balance actually is.
+
+Until one is chosen: **Claude must not state a live balance or run a live pre-flight.** No number from a screenshot note is a current balance. If a live figure is needed, ask.
+
+### RULE (new, immediate)
+Any balance used in a calculation must come from a live query in the current session, or be supplied by Evan in the current session. A balance read out of this file is a **historical record**, never a current value. This applies to every account, live or demo.
+
+### WTI #109825975 — tick 35 decision level BROKE
+- 83.987 gave way. Spot **83.952**, floating **-R190**, equity R7,148.70 (balance R7,338.36 unchanged).
+- Rule 5 trigger has fired, but price ran through the decision level straight to the stop zone — SL 83.870 is now only 0.082 away (~R28). Cutting now saves ~R28 before slippage, against R207 at the stop.
+- LESSON: a decision level placed 0.117 above the hard stop is too thin to be actionable on a fast tape. It needs to sit far enough above the stop that acting on it saves something real, or it is just a stop with extra steps.
+
+Document version: 2.5 — July 21, 2026 (tick 36)
