@@ -1058,3 +1058,41 @@ Tick 29's blanket order-placement halt is **narrowed, not lifted**, at Evan's in
 ### ROUTING — FIRST APP-VERIFIED DATA POINT (supports hypothesis A)
 Evan confirmed **in the platform UI** that #109825975 sits on 41829612 — matching what MCP labelled at every step (switch, order response, position query). This is the first ground-truth check since tick 29 and it favours **hypothesis A: orders execute where the labels say; the warnings mirror-mislabel the account.** Not conclusive on one sample. Still open: the three morning tickets (USDJPY 0.05L / XAUUSD pending / NAS100 0.12u) and the pre-existing stray on 41750592.
 - Revert count this session: **4.** Pre-order switch caught it every time. The switch-and-verify step is doing real work — keep it.
+
+---
+
+## UPDATE — July 21, 2026 (tick 35 — TV ALERT: USDJPY HL_RECLAIM — armed, not entered)
+
+Triggered by Evan's "tv alert" shortcut (tick 33 protocol). Three real events in tv_signals.jsonl today, first live ones since the pipeline went up:
+| UTC | Event | Symbol | Alert price | Status at 13:58 UTC |
+|---|---|---|---|---|
+| 13:15 | SWEEP | GOLD | 4,059.77 | FAILED — no reclaim in the 15-min window; spot 4,050.89, below the sweep. No strike. |
+| 13:30 | HL_RECLAIM | USOIL | 84.59 | Reclaim FAILED — spot 84.16, back under the alert level. Live position underwater. |
+| 13:45 | HL_RECLAIM | USDJPY | 162.83 | VALID — spot 162.87, ran to a new session/3-week high 162.888. |
+
+### USDJPY — setup is real, entry location is not
+- H4 TREND GATE: **BULLISH, PASS.** Higher lows 162.185 -> 162.339 -> 162.406 -> 162.465 -> 162.580; prior H4 swing high 162.592/162.613 broken. Buy = WITH trend, a true CHANGE-1 pass (confirmed HL + prior swing high broken), not a bounce.
+- M15 staircase clean: HLs 162.691 -> 162.718 -> 162.748 -> 162.767, HHs 162.780 -> 162.799 -> 162.831.
+- D1: 162.888 takes out the 1 Jul high 162.834 — highest print in 3 weeks. Nothing overhead until 163.00.
+- **RULE 17 BLOCKS A MARKET ENTRY.** Session range 162.406–162.888 (48.2p). Top-15% floor = 162.816. Ask 162.876 sits in the top 2.5% of range. This is the exact June-25 EURUSD failure geometry (entered top 1% of range, swept immediately).
+- ARMED TICKET (market order on the tag, per standing rule — no resting limit for a new position):
+  alert 162.800 | BUY 0.15L | SL 162.640 (16.0p, 5.1p under the 162.691 M15 swing low per Rule 18) | TP 163.050 (25.0p) | R:R 1.56:1 | risk R242 = 3.30% | enforcer v3 general PASS exit 0.
+- Rule 20 note: WTI long + USDJPY long are the same war-premium theme in the current regime (oil up -> JPY weak). Correlation is NOT holding right now (oil down while USDJPY rips = USD-driven move), but if both fill, size the second at 0.10L (R162 / 2.20%).
+
+### LIVE ACCOUNT: setup is not tradeable at minimum size
+- 42805520 (R250): min forex size R1.64/pip x 16p stop = R26.24 = **10.5% of balance**. Enforcer BLOCKED on per-trade risk (cap R12.50). Confirms tick 28's min-size finding — forex is out of reach on the live tier; NAS100 at 0.01u remains the only instrument that fits.
+- Enforcer also threw two STALE blocks on the live pre-flight: hardcoded ACCOUNT LOCK to 41829612, and session-max-loss comparing R250 against the demo's R7,394.99 session start. Both are the tick 28 "live enforcer TODO" — v3 cannot pre-flight live until it is mode-aware.
+
+### WTI #109825975 — MID-TRADE STRUCTURE MONITOR (CHANGE 3)
+- Entry 84.470 (13:42), spot 84.157, **P&L -R108**. SL 83.870, TP 85.000.
+- M5 structure has REVERSED against the trade: lower highs 84.618 -> 84.589 -> 84.444, with a 0.54 flush to 84.077 inside 10 minutes. M5 reversed + P&L negative = **Rule 5 flag raised**.
+- M15 staircase NOT yet broken — HLs 83.905 -> 83.987 both still intact with spot above them.
+- **DECISION LEVEL: 83.987.** If that M15 higher low breaks, the staircase is gone and Rule 5 says cut there (~-R145) rather than wear the full stop to 83.870 (-R207). Saves ~R60 on a failure, costs nothing if it holds.
+- RETROSPECT: the tick-34 entry itself was a **Rule 17 violation** and it was not caught at pre-flight. Session range at entry was 81.192–84.618; entry at 84.470 sat in the **top 4.3%** of that range. Enforcer v3 has no Rule 17 check in code — it is a text rule only. Candidate v4 check: reject any entry in the top/bottom 15% of session range. This is the second Rule 17 casualty (EURUSD 25 Jun was the first).
+- Regime note: oil is a two-way headline tape — day 10 of US strikes vs active ceasefire brokering (Bloomberg). Tick 29 deliberately passed WTI over for exactly this "ceasefire-headline air-pocket" reason; tick 34 took it anyway.
+
+### Routing
+- Reverts #5 and #6 this session — every switch call still returns previous=41750592. Switch-and-verify caught both.
+- Still unreconciled from tick 29: the XAUUSD 4,063 pending is gone from both open positions and the pending book with no logged fill or cancel, and NAS100 0.12u / USDJPY 0.05L are likewise absent. Only WTI remains on 41829612. The 1 stray on 41750592 is still there.
+
+Document version: 2.4 — July 21, 2026 (tick 35)
