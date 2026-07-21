@@ -1000,3 +1000,12 @@ Two hypotheses fit all data: (A) our orders are on 41829612 as every order respo
 - NO order placement via MCP on any account. MCP = data/analysis only. All order placement MANUAL in the ThinkTrader app (already true for live 42805520).
 - Evan to verify in app: which account holds USDJPY 0.05L + XAUUSD pending + NAS100 0.12u, and identify the pre-existing stray on 41750592. Reconcile before next session.
 - Live enforcer design input: account verification cannot rely on ANY MCP response field. Manual placement is a feature, not a limitation, for the live era.
+
+---
+
+## UPDATE — July 21, 2026 (tick 30 — FINAL ACCOUNT ARCHITECTURE, per Evan)
+
+- MCP is DEMO-ONLY, permanently. Claude will only ever see two demos: BIG = 41750592 (R78k, NEVER trade) and SMALL = 41829612 (active book). The live account is air-gapped from the MCP by design — tick 28's "reconnect connector with live ticked" advice is VOID.
+- LIVE (42805520, R250): manual placement forever. Live enforcer = ADVISORY PRE-FLIGHT: Claude computes ticket numbers + runs enforcer.py against live balance, Evan types the order in the app. Today's live ticket review was the prototype of this flow.
+- Stray position on 41750592 (pre-existing today): leading hypothesis = an earlier session's silently misrouted order — the revert bug's labels may have lied before today without detection. Evan to identify in app and reconcile.
+- 41810679 (old practice demo, NVIDIA [SWING]) listed in grant but per Evan only 2 demos are real going forward — swing-lock section flagged possibly stale pending his confirmation.
