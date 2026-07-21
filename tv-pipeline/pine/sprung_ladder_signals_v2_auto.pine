@@ -1,0 +1,68 @@
+//@version=6
+indicator("Sprung Ladder Signals v2 AUTO", "SLS2", overlay=true)
+
+// ---------- Inputs ----------
+mode         = input.string("Auto", "Shelf mode", options=["Auto","Manual"])
+shelfIn      = input.float(0.0, "Manual shelf level (Manual mode only)")
+pivLen       = input.int(5,  "Auto shelf pivot strength", minval=2)
+springWindow = input.int(3,  "Spring reclaim window (bars)", minval=1)
+lvl1         = input.float(0.0, "Alert level 1 (0 = off, optional)")
+lvl2         = input.float(0.0, "Alert level 2 (0 = off, optional)")
+hlLen        = input.int(2,  "Higher-low pivot strength", minval=1)
+hiLen        = input.int(20, "Session-high lookback (bars)", minval=5)
+
+// ---------- Webhook payload helper ----------
+f_fire(ev, px) =>
+    alert('{"event":"' + ev + '","symbol":"' + syminfo.ticker + '","tf":"' + timeframe.period + '","price":' + str.tostring(px) + ',"t":' + str.tostring(timenow) + '}', alert.freq_once_per_bar_close)
+
+// ---------- Self-tuning shelf: last confirmed pivot low ----------
+autoPl = ta.pivotlow(low, pivLen, pivLen)
+var float autoShelf = na
+if not na(autoPl)
+    autoShelf := autoPl
+shelf = mode == "Auto" ? autoShelf : (shelfIn > 0 ? shelfIn : na)
+
+// ---------- SWEEP: pokes below shelf, closes back above ----------
+sweep = not na(shelf) and low < shelf and close > shelf
+var float sweepHigh = na
+var int   sweepBar  = na
+if sweep
+    sweepHigh := high
+    sweepBar  := bar_index
+
+// ---------- ta.* calls hoisted to globals (CW10002-safe) ----------
+crossSweepHigh = ta.crossover(close, sweepHigh)
+pl             = ta.pivotlow(low, hlLen, hlLen)
+recentHigh     = ta.highest(high, hiLen)[1]
+crossRecent    = ta.crossover(close, recentHigh)
+crossLvl1      = ta.cross(close, lvl1)
+crossLvl2      = ta.cross(close, lvl2)
+
+// ---------- SPRING ----------
+spring = not na(sweepBar) and (bar_index - sweepBar) <= springWindow and crossSweepHigh
+if spring
+    sweepBar := na
+
+// ---------- HL_RECLAIM ----------
+var float lastPivotLow = na
+if not na(pl)
+    lastPivotLow := pl
+hlReclaim = not na(lastPivotLow) and low > lastPivotLow and crossRecent
+
+// ---------- Visuals ----------
+plotshape(sweep,     "SWEEP",      shape.triangleup, location.belowbar, color.orange, size=size.small)
+plotshape(spring,    "SPRING",     shape.labelup,    location.belowbar, color.green,  size=size.small)
+plotshape(hlReclaim, "HL_RECLAIM", shape.diamond,    location.belowbar, color.aqua,   size=size.tiny)
+plot(shelf, "Shelf", color.new(color.yellow, 30), 2, plot.style_linebr)
+
+// ---------- Fire webhooks ----------
+if sweep
+    f_fire("SWEEP", close)
+if spring
+    f_fire("SPRING", close)
+if hlReclaim
+    f_fire("HL_RECLAIM", close)
+if lvl1 > 0 and crossLvl1
+    f_fire("LEVEL1_HIT", close)
+if lvl2 > 0 and crossLvl2
+    f_fire("LEVEL2_HIT", close)
