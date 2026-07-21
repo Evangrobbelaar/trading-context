@@ -24,3 +24,4 @@
 {"event": "SPRING", "symbol": "BTCUSD", "tf": "15", "price": 66376.75, "t": 1784662201287, "received_utc": "2026-07-21T19:30:20.755343+00:00"}
 {"event": "SWEEP", "symbol": "SILVER", "tf": "15", "price": 58.6922, "t": 1784665800286, "received_utc": "2026-07-21T20:30:01.525604+00:00"}
 {"event": "HL_RECLAIM", "symbol": "XAUUSD", "tf": "15", "price": 4075.0, "t": 1784666465000, "received_utc": "2026-07-21T20:41:05.096093+00:00"}
+{"event": "SPRING", "symbol": "SILVER", "tf": "15", "price": 58.821, "t": 1784666700239, "received_utc": "2026-07-21T20:45:01.781931+00:00"}
