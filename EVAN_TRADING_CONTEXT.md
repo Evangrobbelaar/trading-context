@@ -1134,3 +1134,15 @@ Document version: 2.5 — July 21, 2026 (tick 36)
 Limit rather than market: price had run to 162.901 by placement time; a market fill there gave 26.1p risk against 14.9p reward = 0.57:1.
 Evan's note, recorded: tick 33 ("Evan places all orders by hand") and tick 34 ("MCP placement permitted on demo 41829612") contradict each other, and Claude kept issuing manual tickets for demo trades it was cleared to place. Tick 34 is the later rule and governs. Demo = Claude places. Live = Evan places.
 WTI #109825975: pierced 83.952, reclaimed, now -R99. Stop untouched, position alive.
+
+## tick 38 — TV ALERT: BTCUSD HL_RECLAIM — pending limit placed (21 Jul, 14:20 UTC)
+
+TV event: HL_RECLAIM BTCUSD @ 66,737.44 (14:00:25 UTC) — VALID. Spot ran to 66,905 new day high; reclaim held.
+- H4 TREND GATE: BULLISH, PASS. HLs 62,458 (17 Jul) -> 63,693 (20 Jul) -> 65,004 (21 Jul); prior H4 swing highs 64,908 and 65,737 both broken. Buy = WITH trend (true CHANGE-1 pass). Same risk-on complex as the tick 28 NAS100 thesis.
+- RULE 17 BLOCKED A MARKET ENTRY: London session range 65,814–66,905; ask 66,896 = top ~1% of range (the USDJPY tick-35 / WTI tick-34 geometry). Applied the Rule 17 breakout exception: fresh break to new day highs -> entry on first pullback toward the breakout/reclaim zone. Tick 37 precedent: pending limit at the level, not market chase.
+- **#909873865 BTCUSD Buy Limit 0.02L @ 66,700** | SL 66,180 (520 pts — 91 pts beyond the 66,271 M15 sweep low + below the 66,220 shelf, Rule 18) | TP 67,500 (800 pts, R:R 1.54:1) | risk R171 = 2.3% | expiry 22:00 SAST (Rule 16 crypto window — no fill outside London/NY hours) | enforcer v3 general PASS exit 0.
+- Legacy "AVOID BTCUSD" note: superseded in practice by Rule 16 (which defines crypto entry windows) + this stop scale — $16.8 spread = 2.1% of TP distance here, vs fatal on the old 20-40pt stops. First BTC trade under v3, sized small deliberately.
+- Aggregate exposure after this order: WTI R207 + USDJPY R242 + BTC R171 = R620 = 8.4% of balance (cap 25%). Rule 20: BTC long + USDJPY long share risk-on flavour (different drivers); WTI is the war theme — 0.02L sizing partly reflects this.
+- Momentum checkpoint if filled: 67,000 round number — Rule 4/13 assessment there before letting it run to TP.
+- ROUTING: both switch calls this trigger returned previous=41750592 (reverts #7, #8 today — bug still active every call). Order response + pending book both label 41829612. Hypothesis A still holding; mirror-mislabel warnings again showed exactly our book (1 open + 1 pending) "on" 41750592.
+- WTI #109825975: -R103 floating at trigger time, spot ~84.16, stop 83.870 untouched — alive.
