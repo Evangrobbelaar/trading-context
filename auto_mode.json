@@ -1,1 +1,1 @@
-{"mode": "advise", "_comment": "advise = full tick, no orders placed, would-be ticket recorded. execute = live demo placement on 41829612. Flip only after the dry-run review."}
+{"mode": "execute", "_comment": "advise = full tick, no orders placed, would-be ticket recorded. execute = live demo placement on 41829612. Flipped to execute 2026-07-21T21:44:11Z (Evan confirmed via chat, after tick 51 settings.execute.json wiring fix verified)."}
