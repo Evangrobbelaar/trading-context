@@ -14,3 +14,4 @@
 {"event": "SPRING", "symbol": "XAUUSD1!", "tf": "15", "price": 4089.5, "t": 1784645101860, "received_utc": "2026-07-21T14:45:12.920778+00:00"}
 {"event": "HL_RECLAIM", "symbol": "GOLD", "tf": "15", "price": 4076.764, "t": 1784647800328, "received_utc": "2026-07-21T15:30:07.082569+00:00"}
 {"event": "HL_RECLAIM", "symbol": "XAUUSD1!", "tf": "15", "price": 4098.4, "t": 1784651460060, "received_utc": "2026-07-21T16:31:00.989471+00:00"}
+{"event": "HL_RECLAIM", "symbol": "USDJPY", "tf": "15", "price": 163.139, "t": 1784657700460, "received_utc": "2026-07-21T18:15:03.938713+00:00"}
