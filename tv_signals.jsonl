@@ -26,3 +26,4 @@
 {"event": "HL_RECLAIM", "symbol": "XAUUSD", "tf": "15", "price": 4075.0, "t": 1784666465000, "received_utc": "2026-07-21T20:41:05.096093+00:00"}
 {"event": "SPRING", "symbol": "SILVER", "tf": "15", "price": 58.821, "t": 1784666700239, "received_utc": "2026-07-21T20:45:01.781931+00:00"}
 {"event": "SWEEP", "symbol": "GBPUSD", "tf": "15", "price": 1.33754, "t": 1784667600292, "received_utc": "2026-07-21T21:00:01.792755+00:00"}
+{"event": "SWEEP", "symbol": "EURUSD", "tf": "15", "price": 1.1399, "t": 1784669402417, "received_utc": "2026-07-21T21:30:05.787823+00:00"}
