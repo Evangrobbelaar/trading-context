@@ -250,12 +250,21 @@ def run_claude(tier, batch, notes, c):
     # --permission-mode dontAsk (tick 48): headless-correct baseline. Pre-approved tools
     # (settings.json allow rules) run normally; anything else is DENIED rather than
     # silently hanging on a prompt no human can answer. Deny rules apply in every mode.
+    #
+    # tick 51 fix: this previously never varied by run_mode, so it always loaded the
+    # default .claude/settings.json (advise — every order tool DENIED at the harness
+    # level). Flipping auto_mode.json to "execute" changed the PROMPT text only; the
+    # harness still hard-blocked create_market_order underneath it, so execute mode was
+    # a no-op. settings.execute.json (single-position order tools allowed, bulk
+    # close-all/cancel-all still denied in every mode) now loads only when mode=execute.
     cmd = ["claude", "-p", prompt,
            "--model", t["model"],
            "--max-turns", str(t["max_turns"]),
            "--permission-mode", "dontAsk",
            "--output-format", "json"]
-    log(f"spawning tier{tier} ({t['model']}, mode={run_mode}, batch={len(batch)})")
+    if run_mode == "execute":
+        cmd += ["--settings", str(REPO / ".claude" / "settings.execute.json")]
+    log(f"spawning tier{tier} ({t['model']}, mode={run_mode}, settings={'execute' if run_mode == 'execute' else 'advise'}, batch={len(batch)})")
     started = time.time()
     try:
         r = subprocess.run(cmd, cwd=str(REPO), capture_output=True, text=True,
