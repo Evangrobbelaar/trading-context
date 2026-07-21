@@ -1,0 +1,19 @@
+# Deployed on the VPS at /docker/tv-receiver/docker-compose.yml
+# Traefik (already running, host network, docker provider) auto-discovers this
+# via the traefik.* labels below — no changes to Traefik's own config needed.
+services:
+  tv-receiver:
+    build: /root/trading-context/tv-pipeline/receiver
+    restart: unless-stopped
+    environment:
+      TV_KEY: ${TV_KEY}
+      TV_REPO_DIR: /root/trading-context
+      TV_AUTO_GIT: "1"
+    volumes:
+      - /root/trading-context:/root/trading-context
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.tv-receiver.entrypoints: websecure
+      traefik.http.routers.tv-receiver.rule: Host(`tv-signal.srv1695304.hstgr.cloud`)
+      traefik.http.routers.tv-receiver.tls.certresolver: letsencrypt
+      traefik.http.services.tv-receiver.loadbalancer.server.port: "8091"

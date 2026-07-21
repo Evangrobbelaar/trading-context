@@ -6,8 +6,8 @@ tv_signals.jsonl and pushes to GitHub, so every Claude trading session opens wit
 overnight signal history already in context. Execution stays 100% manual in ThinkTrader.
 
     TradingView (Pine v6, alert webhooks)
-        -> http://2.24.130.64/tv-signal   (nginx, port 80 — TV requirement)
-        -> FastAPI receiver 127.0.0.1:8091 (systemd: tv-receiver)
+        -> https://tv-signal.srv1695304.hstgr.cloud/tv-signal  (Traefik, port 443 — TV requirement)
+        -> FastAPI receiver, Docker container (labeled for Traefik auto-discovery)
         -> tv_signals.jsonl  -> git push  -> read by Claude at session start
 
 ## Automation split
