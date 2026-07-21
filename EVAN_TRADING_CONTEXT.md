@@ -1275,3 +1275,67 @@ Revert #15 caught pre-operations (previous=41750592). All operation responses la
 XAUUSD 1oz buy 4064.13 | SL 4069.13 (LOCKED +R82 min) | TP 4090 | +R298 floating. Nothing else open, no pendings. Balance R6,968.27, equity ~R7,266. Session closed P&L -R427; floating book turns the session green if TP fills (+R425 -> session ≈ -R2).
 
 Document version: 2.7 — July 21, 2026 (tick 44)
+
+---
+
+## UPDATE — July 21, 2026 (tick 45 — AUTO-TICK SYSTEM BUILT + PINE DAY-1 REVIEW, ~20:05 UTC)
+
+### What this is
+Full automation of the tick 33 flow: TradingView signal → VPS receiver → **tick_runner.py
+(new, host systemd service) tiers the signal → spawns headless `claude -p` → Claude analyzes
+and (in execute mode) places on demo 41829612**. Live 42805520 stays air-gapped/manual forever.
+Default mode is **advise** (full tick, would-be ticket recorded, nothing placed) until Evan
+flips auto_mode.json after reviewing the dry run.
+
+### The tier design (Evan's "important signals immediately, noise never, fewer tokens")
+| Tier | Events | Cost | Behaviour |
+|---|---|---|---|
+| DROP | TEST_*, *_EXPIRED, XAUUSD1! (all 4 futures events were basis noise) | zero | logged in jsonl only |
+| LOG→shelf | SWEEP_LOW/HIGH | zero | receiver-side detector: 2+ sweeps same level in 4h = defended-shelf signature → promotes to Tier 1 (the EURUSD 1.1403 double-sweep pattern, detected for free) |
+| Tier 1 | HL_RECLAIM, LL_BREAKDOWN, LEVEL hits | haiku, ≤12 turns, read-only, ≤4 MCP calls, target <60s | verdict NO_ACTION or ESCALATE_TIER2 |
+| Tier 2 | SPRING_*, PULLBACK_TAG_*, armed-ticket LEVEL hits, escalations | sonnet, ≤45 turns | full protocol, execution authority in execute mode |
+Speed fixes: signals batch per run (7 of 20 day-1 gaps were <60s — one session per impulse,
+not three); Tier 1 reads **session_snapshot.json** instead of re-deriving H4 structure
+(Tier 2 refreshes the snapshot at exit); auto runs are BANNED from reading this file's
+history — CLAUDE.md + AUTO_TICK_PROTOCOL.md + snapshot only. This closes the between-turn
+gap that cost money twice today (tick 43 missed checkpoint, tick 40 stale springs).
+
+### Shipped (this commit)
+- tv-pipeline/runner/tick_runner.py + tiers.json (hot-reload) + tv-tick-runner.service
+- AUTO_TICK_PROTOCOL.md (tier contracts, 5-step routing per order, error contract)
+- session_snapshot.json (seeded), auto_mode.json (=advise), .claude/settings.json (scoped
+  tool allowlist — no dangerously-skip-permissions on a box that touches money)
+- **enforcer v3.1**: Rule 17 is now CODE — optional --entry/--direction/--session_high/
+  --session_low/--breakout_confirmed; blocks buys in top 15% / sells in bottom 15% of range.
+  Tested: blocks, exception passes, old invocations unaffected. Two casualties before
+  codification (EURUSD 25 Jun, WTI 21 Jul); auto ticks must always supply the args.
+- **Pine v3** (sprung_ladder_signals_v3_auto.pine): direction-explicit events, short-side
+  mirrors (LL_BREAKDOWN/SWEEP_HIGH/SPRING_SHORT), **PULLBACK_TAG_LONG/_SHORT** (fires on the
+  retest → the Rule-17-legal entry; automates the tick 37/38 armed-ticket flow), payload
+  gains level/extreme/range_pos/vol_mult/h1_atr, 5-min per-event cooldown, springWindow
+  default 1. Runner understands v2 names until the paste happens.
+- tv-pipeline/SIGNAL_REVIEW_2026-07-21.md — day-1 scorecard. Verdict: SPRING 1-for-1
+  (the gold winner), HL_RECLAIM finds real trends at unenterable prices (retest is the
+  entry — BTC proved it), 19% of traffic was removable futures noise.
+- **RECORD CORRECTION**: tick 39's "webhook strips direction" was a misdiagnosis. The
+  receiver strips nothing — deployed v2 pine never sent direction/level/extreme, and has
+  no high-side sweep logic at all. Fix is in Pine v3, receiver untouched.
+- **CLAUDE.md de-staled**: accounts table fixed (#43019560 was listed as live — actual live
+  is air-gapped 42805520), dead July-1 sandbox git-branch constraint removed, AUTO MODE
+  section added. tick_counter.txt was desynced at 38 → set to 45.
+
+### Operational decisions taken (Evan to ratify or reverse)
+1. The proposed 10-min SPRING staleness rule is now operational **in the auto path only**
+  (runner tags stale springs "information only, no entry"). Attended sessions unchanged.
+2. XAUUSD1! futures chart dropped from the signal set (ignore-listed + not in v3 rollout).
+3. Kill switch = AUTOTRADE_OFF file at repo root (creatable from phone via GitHub).
+4. Notifications via ntfy topic in tiers.json — every run's verdict + cost lands on the phone.
+
+### Remaining manual steps (in deploy_auto.sh output)
+On VPS: `cd /root/trading-context && git pull && bash tv-pipeline/deploy/deploy_auto.sh`,
+then one-time `claude` login + `claude mcp add` ThinkTrader + /mcp OAuth (demo-only grant),
+smoke test, ntfy subscribe, paste Pine v3 on spot charts, review advise-mode ticks, flip to
+execute. Note: sustained headless automation should run on an API key rather than
+subscription auth — check current terms before it runs hot.
+
+Document version: 2.8 — July 21, 2026 (tick 45)

@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "updated_utc": "2026-07-21T19:58:00+00:00",
+  "updated_by": "tick 45 manual seed — every Tier 2 run refreshes this at exit",
+  "balance": {"value": 6968.27, "queried_utc": "2026-07-21T18:20:00+00:00", "note": "HISTORICAL — tick 36 rule: always live-query before use"},
+  "session_start_balance": 7394.99,
+  "open_positions": [
+    {"id": 109826749, "symbol": "XAUUSD", "dir": "BUY", "size": "1oz", "entry": 4064.13, "sl": 4069.13, "tp": 4090, "note": "Rule 14 LOCKED — guaranteed min +R82; SL never moves below 4069.13"}
+  ],
+  "h4_verdicts": {
+    "XAUUSD": {"trend": "BULL", "asof": "2026-07-21T18:30:00+00:00", "swings": "3999.82 -> 4043.65 HLs, 4028/4040 highs broken"},
+    "USDJPY": {"trend": "BULL", "asof": "2026-07-21T18:20:00+00:00", "swings": "162.406 -> 163.211 unbroken staircase"},
+    "BTCUSD": {"trend": "BULL", "asof": "2026-07-21T14:20:00+00:00", "swings": "62,458 -> 63,693 -> 65,004 HLs"}
+  },
+  "session_ranges": {},
+  "armed_tickets": [],
+  "watch_levels": [
+    {"symbol": "XAUUSD", "zone": "4060-4063", "note": "spring level pullback zone (tick 40); TP wall 4090"},
+    {"symbol": "EURUSD", "level": 1.1403, "note": "double-sweep defended-shelf candidate (tick 44) — scout decision is EVAN'S, never auto-deploy"}
+  ],
+  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current."
+}

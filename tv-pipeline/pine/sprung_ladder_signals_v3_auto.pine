@@ -1,0 +1,174 @@
+//@version=6
+// SPRUNG LADDER SIGNALS v3 AUTO — tick 45 (21 Jul 2026)
+// Changes vs v2 (see tv-pipeline/SIGNAL_REVIEW_2026-07-21.md):
+//   - Direction-explicit events: SWEEP_LOW/SWEEP_HIGH, SPRING_LONG/SPRING_SHORT
+//   - Short-side mirrors added: LL_BREAKDOWN, SWEEP_HIGH, SPRING_SHORT
+//   - PULLBACK_TAG_LONG/_SHORT: fires on the RETEST of a broken level -> the
+//     Rule-17-legal entry moment (BTC 66,700 fill proved the pattern)
+//   - Payload: level, extreme, range_pos (day range 0-1), vol_mult, h1_atr
+//   - Per-event cooldown (default 5 min) kills same-impulse duplicate spam
+//   - springWindow default 1 (on 15m charts, 1 bar ~= the protocol's 15-min reclaim)
+// Do NOT run this on futures charts (XAUUSD1!) — spot only.
+indicator("Sprung Ladder Signals v3 AUTO", "SLS3", overlay=true)
+
+// ---------- Inputs ----------
+mode          = input.string("Auto", "Shelf mode", options=["Auto","Manual"])
+shelfIn       = input.float(0.0,  "Manual shelf level (Manual mode only)")
+pivLen        = input.int(5,      "Auto shelf pivot strength", minval=2)
+springWindow  = input.int(1,      "Spring reclaim window (bars)", minval=1)
+lvl1          = input.float(0.0,  "Alert level 1 (0 = off)")
+lvl2          = input.float(0.0,  "Alert level 2 (0 = off)")
+hlLen         = input.int(2,      "HL/LH pivot strength", minval=1)
+hiLen         = input.int(20,     "Breakout lookback (bars)", minval=5)
+cooldownMin   = input.int(5,      "Per-event cooldown (minutes)", minval=0)
+retestTolPct  = input.float(0.05, "Pullback tag tolerance (% of price)", step=0.01)
+retestWinBars = input.int(12,     "Pullback tag window (bars)", minval=1)
+
+// ---------- Context (all ta.* hoisted to global scope — CW10002-safe) ----------
+h1atr      = request.security(syminfo.tickerid, "60", ta.atr(14), lookahead=barmerge.lookahead_off)
+volSma     = ta.sma(volume, 20)
+volMult    = volSma > 0 ? volume / volSma : 1.0
+newDay     = ta.change(time("D")) != 0
+var float dayHi = na
+var float dayLo = na
+dayHi := newDay ? high : math.max(nz(dayHi, high), high)
+dayLo := newDay ? low  : math.min(nz(dayLo, low), low)
+rngPos = dayHi > dayLo ? (close - dayLo) / (dayHi - dayLo) : 0.5
+
+// ---------- Payload + cooldown ----------
+var evLast = map.new<string, int>()
+f_ok(string ev) =>
+    int last = map.get(evLast, ev)
+    bool ok = na(last) or (timenow - last) >= cooldownMin * 60000
+    if ok
+        map.put(evLast, ev, timenow)
+    ok
+
+f_send(string ev, float level, float extreme) =>
+    if f_ok(ev)
+        string lv = na(level)   ? "null" : str.tostring(level)
+        string ex = na(extreme) ? "null" : str.tostring(extreme)
+        string p1 = '{"event":"' + ev + '","symbol":"' + syminfo.ticker + '","tf":"' + timeframe.period + '"'
+        string p2 = ',"price":' + str.tostring(close) + ',"level":' + lv + ',"extreme":' + ex
+        string p3 = ',"range_pos":' + str.tostring(rngPos, "#.###") + ',"vol_mult":' + str.tostring(volMult, "#.##")
+        string p4 = ',"h1_atr":' + str.tostring(h1atr, "#.######") + ',"t":' + str.tostring(timenow) + '}'
+        alert(p1 + p2 + p3 + p4, alert.freq_once_per_bar_close)
+
+// ---------- Shelves (auto = last confirmed pivots; manual = input both sides) ----------
+autoPl = ta.pivotlow(low, pivLen, pivLen)
+autoPh = ta.pivothigh(high, pivLen, pivLen)
+var float shelfLow  = na
+var float shelfHigh = na
+if not na(autoPl)
+    shelfLow := autoPl
+if not na(autoPh)
+    shelfHigh := autoPh
+float useLow  = mode == "Auto" ? shelfLow  : (shelfIn > 0 ? shelfIn : na)
+float useHigh = mode == "Auto" ? shelfHigh : na
+
+// ---------- SWEEP_LOW -> SPRING_LONG ----------
+sweepLo = not na(useLow) and low < useLow and close > useLow
+var float sweepLoBarHigh = na
+var int   sweepLoBar     = na
+var float sweepLoExtreme = na
+if sweepLo
+    sweepLoBarHigh := high
+    sweepLoBar     := bar_index
+    sweepLoExtreme := low
+crossSweepLoHigh = ta.crossover(close, sweepLoBarHigh)
+springLong = not na(sweepLoBar) and (bar_index - sweepLoBar) <= springWindow and crossSweepLoHigh
+if springLong
+    sweepLoBar := na
+
+// ---------- SWEEP_HIGH -> SPRING_SHORT (mirror) ----------
+sweepHi = not na(useHigh) and high > useHigh and close < useHigh
+var float sweepHiBarLow  = na
+var int   sweepHiBar     = na
+var float sweepHiExtreme = na
+if sweepHi
+    sweepHiBarLow  := low
+    sweepHiBar     := bar_index
+    sweepHiExtreme := high
+crossSweepHiLow = ta.crossunder(close, sweepHiBarLow)
+springShort = not na(sweepHiBar) and (bar_index - sweepHiBar) <= springWindow and crossSweepHiLow
+if springShort
+    sweepHiBar := na
+
+// ---------- HL_RECLAIM / LL_BREAKDOWN ----------
+pl  = ta.pivotlow(low, hlLen, hlLen)
+ph  = ta.pivothigh(high, hlLen, hlLen)
+var float lastPivotLow  = na
+var float lastPivotHigh = na
+if not na(pl)
+    lastPivotLow := pl
+if not na(ph)
+    lastPivotHigh := ph
+recentHigh  = ta.highest(high, hiLen)[1]
+recentLow   = ta.lowest(low, hiLen)[1]
+crossRecHi  = ta.crossover(close, recentHigh)
+crossRecLo  = ta.crossunder(close, recentLow)
+hlReclaim   = not na(lastPivotLow)  and low  > lastPivotLow  and crossRecHi
+llBreakdown = not na(lastPivotHigh) and high < lastPivotHigh and crossRecLo
+
+// ---------- PULLBACK_TAG (retest of the broken level = Rule-17-legal entry moment) ----------
+var float tagLvlL = na
+var int   tagBarL = na
+var float tagPivL = na
+if hlReclaim
+    tagLvlL := recentHigh
+    tagBarL := bar_index
+    tagPivL := lastPivotLow
+tolL = na(tagLvlL) ? na : tagLvlL * retestTolPct / 100.0
+pullbackLong = not na(tagBarL) and bar_index > tagBarL and (bar_index - tagBarL) <= retestWinBars and low <= tagLvlL + tolL and close > tagPivL
+if pullbackLong or (not na(tagBarL) and (bar_index - tagBarL) > retestWinBars)
+    tagBarL := na
+
+var float tagLvlS = na
+var int   tagBarS = na
+var float tagPivS = na
+if llBreakdown
+    tagLvlS := recentLow
+    tagBarS := bar_index
+    tagPivS := lastPivotHigh
+tolS = na(tagLvlS) ? na : tagLvlS * retestTolPct / 100.0
+pullbackShort = not na(tagBarS) and bar_index > tagBarS and (bar_index - tagBarS) <= retestWinBars and high >= tagLvlS - tolS and close < tagPivS
+if pullbackShort or (not na(tagBarS) and (bar_index - tagBarS) > retestWinBars)
+    tagBarS := na
+
+// ---------- Optional manual levels ----------
+crossLvl1 = ta.cross(close, lvl1)
+crossLvl2 = ta.cross(close, lvl2)
+
+// ---------- Visuals ----------
+plotshape(sweepLo,       "SWEEP_LOW",     shape.triangleup,   location.belowbar, color.orange, size=size.small)
+plotshape(sweepHi,       "SWEEP_HIGH",    shape.triangledown, location.abovebar, color.orange, size=size.small)
+plotshape(springLong,    "SPRING_LONG",   shape.labelup,      location.belowbar, color.green,  size=size.small)
+plotshape(springShort,   "SPRING_SHORT",  shape.labeldown,    location.abovebar, color.red,    size=size.small)
+plotshape(hlReclaim,     "HL_RECLAIM",    shape.diamond,      location.belowbar, color.aqua,   size=size.tiny)
+plotshape(llBreakdown,   "LL_BREAKDOWN",  shape.diamond,      location.abovebar, color.fuchsia,size=size.tiny)
+plotshape(pullbackLong,  "PB_TAG_LONG",   shape.circle,       location.belowbar, color.lime,   size=size.tiny)
+plotshape(pullbackShort, "PB_TAG_SHORT",  shape.circle,       location.abovebar, color.maroon, size=size.tiny)
+plot(useLow,  "Shelf low",  color.new(color.yellow, 30), 2, plot.style_linebr)
+plot(useHigh, "Shelf high", color.new(color.silver, 30), 2, plot.style_linebr)
+
+// ---------- Fire (one TV alert per chart: 'Any alert() function call') ----------
+if sweepLo
+    f_send("SWEEP_LOW", useLow, sweepLoExtreme)
+if sweepHi
+    f_send("SWEEP_HIGH", useHigh, sweepHiExtreme)
+if springLong
+    f_send("SPRING_LONG", useLow, sweepLoExtreme)
+if springShort
+    f_send("SPRING_SHORT", useHigh, sweepHiExtreme)
+if hlReclaim
+    f_send("HL_RECLAIM", recentHigh, lastPivotLow)
+if llBreakdown
+    f_send("LL_BREAKDOWN", recentLow, lastPivotHigh)
+if pullbackLong
+    f_send("PULLBACK_TAG_LONG", tagLvlL, tagPivL)
+if pullbackShort
+    f_send("PULLBACK_TAG_SHORT", tagLvlS, tagPivS)
+if lvl1 > 0 and crossLvl1
+    f_send("LEVEL1_HIT", lvl1, na)
+if lvl2 > 0 and crossLvl2
+    f_send("LEVEL2_HIT", lvl2, na)

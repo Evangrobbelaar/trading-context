@@ -1,0 +1,15 @@
+{
+  "_comment": "Hot-reloaded every loop. Edit + push from anywhere; takes effect on the next signal.",
+  "ignore_symbols": ["XAUUSD1!"],
+  "drop_events": ["TEST_SWEEP"],
+  "drop_event_suffixes": ["_EXPIRED"],
+  "log_only_events": ["SWEEP_LOW", "SWEEP_HIGH"],
+  "tier1_events": ["HL_RECLAIM", "LL_BREAKDOWN", "LEVEL1_HIT", "LEVEL2_HIT"],
+  "tier2_events": ["SPRING_LONG", "SPRING_SHORT", "PULLBACK_TAG_LONG", "PULLBACK_TAG_SHORT"],
+  "armed_ticket_promote_events": ["LEVEL1_HIT", "LEVEL2_HIT", "PULLBACK_TAG_LONG", "PULLBACK_TAG_SHORT"],
+  "shelf_promote": {"window_min": 240, "tolerance_pct": 0.05, "min_count": 2},
+  "spring_max_exec_age_min": 10,
+  "tier1": {"model": "haiku", "max_turns": 12, "timeout_s": 240},
+  "tier2": {"model": "sonnet", "max_turns": 45, "timeout_s": 900},
+  "ntfy_topic": "evan-tv-ticks-x9k4q2"
+}

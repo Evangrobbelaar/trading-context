@@ -1,0 +1,19 @@
+[Unit]
+Description=TV signal -> tiered Claude Code tick runner
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+Environment=HOME=/root
+Environment=TV_REPO_DIR=/root/trading-context
+Environment=TV_RUNNER_DIR=/root/tv-runner
+ExecStart=/usr/bin/python3 /root/trading-context/tv-pipeline/runner/tick_runner.py
+Restart=always
+RestartSec=5
+StandardOutput=append:/root/tv-runner/runner.log
+StandardError=append:/root/tv-runner/runner.log
+
+[Install]
+WantedBy=multi-user.target

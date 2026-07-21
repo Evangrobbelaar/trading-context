@@ -92,6 +92,14 @@ def main():
     p.add_argument("--reclaimed_15min", action="store_true")
     p.add_argument("--m5_close", action="store_true")
     p.add_argument("--sl_below_sweep", action="store_true")
+    # Rule 17 session-range gate (v3.1, tick 45) — binds only when all four supplied.
+    # Auto ticks MUST supply these; attended sessions unchanged if omitted.
+    p.add_argument("--entry", type=float, default=None)
+    p.add_argument("--direction", choices=["buy", "sell"], default=None)
+    p.add_argument("--session_high", type=float, default=None)
+    p.add_argument("--session_low", type=float, default=None)
+    p.add_argument("--breakout_confirmed", action="store_true",
+                   help="attest: confirmed H1 close beyond the session range (Rule 17 exception)")
     # verdict recording
     p.add_argument("--record_verdict", default=None, metavar="INSTRUMENT")
     args = p.parse_args()
@@ -148,6 +156,20 @@ def main():
         elif not args.news_clear:
             blocks.append("NEWS: high-impact event within 2h for this instrument (--news_clear not set).")
 
+    # 7. RULE 17 — SESSION RANGE POSITION (v3.1, tick 45; two casualties before codification:
+    #    EURUSD 25 Jun top-1% entry, WTI 21 Jul top-4.3% entry). Binds only when args supplied.
+    if (args.entry is not None and args.direction and
+            args.session_high is not None and args.session_low is not None):
+        rng = args.session_high - args.session_low
+        if rng > 0:
+            pos = (args.entry - args.session_low) / rng
+            if args.direction == "buy" and pos >= 0.85 and not args.breakout_confirmed:
+                blocks.append(f"RULE 17: BUY at {pos*100:.1f}% of session range (top 15%). "
+                              f"Wait for the pullback, or attest --breakout_confirmed (H1 close beyond range).")
+            if args.direction == "sell" and pos <= 0.15 and not args.breakout_confirmed:
+                blocks.append(f"RULE 17: SELL at {pos*100:.1f}% of session range (bottom 15%). "
+                              f"Wait for the pullback, or attest --breakout_confirmed (H1 close beyond range).")
+
     # SCOUT MODE
     if args.mode == "scout":
         if args.lots is None or args.min_lots is None or args.lots > args.min_lots:
@@ -182,7 +204,7 @@ def main():
     audit = {"ts": now_utc.isoformat(), "verdict": verdict, "mode": args.mode,
              "instrument": args.instrument, "account_id": args.account_id,
              "balance": args.balance, "risk_amount": args.risk_amount,
-             "blocks": blocks, "version": "v3"}
+             "blocks": blocks, "version": "v3.1"}
     with open(AUDIT_FILE, "a") as f:
         f.write(json.dumps(audit) + "\n")
 
@@ -190,7 +212,7 @@ def main():
         print("BLOCKED:")
         for b in blocks: print(f"  - {b}")
         return 1
-    print(f"PASS — {args.mode} on {args.instrument} cleared (v3).")
+    print(f"PASS — {args.mode} on {args.instrument} cleared (v3.1).")
     return 0
 
 if __name__ == "__main__":

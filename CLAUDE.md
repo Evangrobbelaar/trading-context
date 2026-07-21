@@ -17,11 +17,13 @@ If you skip this, Evan will say "read your context first."
 
 | Account | Type | Use |
 |---|---|---|
-| **#41829612** | DEMO ZAR | **DEFAULT — use this unless told otherwise** |
-| #43019560 | LIVE ZAR | LIVE — only touch if Evan says "live account" explicitly in this session |
-| #41810679 | DEMO ZAR | Old demo — swing positions only (NVIDIA, Intel, AMD) |
+| **#41829612** | DEMO ZAR | **DEFAULT — the only account Claude trades** |
+| #41750592 | DEMO ZAR | R78k demo — NEVER trade, ever (MCP revert bug target) |
+| #41810679 | DEMO ZAR | Old demo — [SWING] positions only, never close without protocol |
+| #42805520 | LIVE ZAR | **AIR-GAPPED — not in the MCP grant by design (tick 30). Manual placement by Evan forever. Claude only ever computes advisory pre-flights for it.** |
 
-**NEVER touch #43019560 without explicit "live account" instruction in the current session.**
+(#43019560 was listed as live here until tick 45 — that was stale. The funded live
+account is 42805520 and Claude cannot and must not reach it.)
 
 ---
 
@@ -38,15 +40,22 @@ If you skip this, you are reading the wrong account.
 
 ---
 
-## GIT BRANCH CONSTRAINT
+## GIT
 
-**All pushes go to `claude/overnight-trading-monitor-1adpqx` only.**
-Never push to a different branch without explicit permission.
+Branch: **main**. Remote: `https://github.com/Evangrobbelaar/trading-context`.
+(The old `claude/overnight-trading-monitor-1adpqx` branch + localhost proxy remote in this
+section were leftovers from a July 1 sandbox session — removed tick 45.)
+Commit and push before ending any turn that modified files.
 
-Remote: `http://127.0.0.1:41729/git/Evangrobbelaar/trading-context`
-GitHub: `https://github.com/evangrobbelaar/trading-context`
+---
 
-Stop hook `~/.claude/stop-hook-git-check.sh` fires on uncommitted changes — commit and push before ending any turn that modified files.
+## AUTO MODE (headless runs spawned by tick_runner.py)
+
+If your prompt starts with "AUTO TICK", you are an unattended session:
+**AUTO_TICK_PROTOCOL.md governs and its output contract replaces CHANGE 4's ping format.**
+Absolutes: demo 41829612 only, mode advise/execute respected, Rule 22 market-only,
+balances live-queried, enforcer exit 0 with Rule 17 range args before any order,
+no reading of EVAN_TRADING_CONTEXT.md history (snapshot + protocol only).
 
 ---
 

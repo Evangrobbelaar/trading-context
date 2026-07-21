@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__thinktrader",
+      "Bash(python3 enforcer.py:*)",
+      "Bash(python3 session_logger.py:*)",
+      "Bash(git:*)",
+      "Bash(date:*)",
+      "Bash(cat:*)",
+      "Bash(tail:*)",
+      "Read",
+      "Edit",
+      "Write",
+      "WebSearch"
+    ]
+  }
+}
