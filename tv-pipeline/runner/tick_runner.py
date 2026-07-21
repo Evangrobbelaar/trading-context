@@ -247,9 +247,13 @@ def run_claude(tier, batch, notes, c):
     t = c["tier2" if tier == 2 else "tier1"]
     run_mode = mode()
     prompt = build_prompt(tier, batch, notes, run_mode)
+    # --permission-mode dontAsk (tick 48): headless-correct baseline. Pre-approved tools
+    # (settings.json allow rules) run normally; anything else is DENIED rather than
+    # silently hanging on a prompt no human can answer. Deny rules apply in every mode.
     cmd = ["claude", "-p", prompt,
            "--model", t["model"],
            "--max-turns", str(t["max_turns"]),
+           "--permission-mode", "dontAsk",
            "--output-format", "json"]
     log(f"spawning tier{tier} ({t['model']}, mode={run_mode}, batch={len(batch)})")
     started = time.time()
