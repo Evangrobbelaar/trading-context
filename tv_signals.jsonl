@@ -3,3 +3,4 @@
 {"event": "SWEEP", "symbol": "GOLD", "tf": "15", "price": 4059.768, "t": 1784639700202, "received_utc": "2026-07-21T13:15:00.847294+00:00"}
 {"price": 29000.5, "t": 1784640412993, "tf": "15", "symbol": "US100", "event": "TEST_SWEEP", "received_utc": "2026-07-21T13:26:50.709060+00:00"}
 {"event": "HL_RECLAIM", "symbol": "USOIL", "tf": "15", "price": 84.59, "t": 1784640600173, "received_utc": "2026-07-21T13:30:00.794555+00:00"}
+{"event": "HL_RECLAIM", "symbol": "USDJPY", "tf": "15", "price": 162.83, "t": 1784641506355, "received_utc": "2026-07-21T13:45:21.144998+00:00"}
