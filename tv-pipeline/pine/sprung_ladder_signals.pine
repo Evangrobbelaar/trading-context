@@ -1,0 +1,53 @@
+//@version=6
+indicator("Sprung Ladder Signals v1", "SLS", overlay=true)
+
+// ---------- Inputs (set from the gear icon, no code edits needed) ----------
+shelf         = input.float(0.0, "Sprung Ladder shelf level (0 = off)")
+springWindow  = input.int(3,     "Spring reclaim window (bars)", minval=1)
+lvl1          = input.float(0.0, "Alert level 1 (0 = off)")
+lvl2          = input.float(0.0, "Alert level 2 (0 = off)")
+hlLen         = input.int(2,     "Higher-low pivot strength", minval=1)
+hiLen         = input.int(20,    "Session-high lookback (bars)", minval=5)
+
+// ---------- Webhook payload helper ----------
+f_fire(ev) =>
+    alert('{"event":"' + ev + '","symbol":"' + syminfo.ticker + '","tf":"' + timeframe.period + '","price":' + str.tostring(close) + ',"t":' + str.tostring(timenow) + '}', alert.freq_once_per_bar_close)
+
+// ---------- SWEEP: pokes below a defended shelf, closes back above ----------
+sweep = shelf > 0 and low < shelf and close > shelf
+var float sweepHigh = na
+var int   sweepBar  = na
+if sweep
+    sweepHigh := high
+    sweepBar  := bar_index
+
+// ---------- SPRING: reclaim of the sweep bar's high within the window ----------
+spring = not na(sweepBar) and (bar_index - sweepBar) <= springWindow and ta.crossover(close, sweepHigh)
+if spring
+    sweepBar := na
+
+// ---------- HL_RECLAIM: shallow pullback holds above prior pivot low, breaks recent high ----------
+pl = ta.pivotlow(low, hlLen, hlLen)
+var float lastPivotLow = na
+if not na(pl)
+    lastPivotLow := pl
+recentHigh = ta.highest(high, hiLen)[1]
+hlReclaim  = not na(lastPivotLow) and low > lastPivotLow and ta.crossover(close, recentHigh)
+
+// ---------- Visuals ----------
+plotshape(sweep,     "SWEEP",      shape.triangleup, location.belowbar, color.orange, size=size.small)
+plotshape(spring,    "SPRING",     shape.labelup,    location.belowbar, color.green,  size=size.small)
+plotshape(hlReclaim, "HL_RECLAIM", shape.diamond,    location.belowbar, color.aqua,   size=size.tiny)
+plot(shelf > 0 ? shelf : na, "Shelf", color.new(color.yellow, 30), 2, plot.style_linebr)
+
+// ---------- Fire webhooks (one TV alert: 'Any alert() function call') ----------
+if sweep
+    f_fire("SWEEP")
+if spring
+    f_fire("SPRING")
+if hlReclaim
+    f_fire("HL_RECLAIM")
+if lvl1 > 0 and ta.cross(close, lvl1)
+    f_fire("LEVEL1_HIT")
+if lvl2 > 0 and ta.cross(close, lvl2)
+    f_fire("LEVEL2_HIT")
