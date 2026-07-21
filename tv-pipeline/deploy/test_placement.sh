@@ -13,6 +13,11 @@ set -euo pipefail
 cd /root/trading-context
 
 echo "== ORDER PATH TEST — demo 41829612, min size, immediate close =="
+# tick 49: the live ThinkTrader server on this box is 'claude' (synced from claude.ai),
+# NOT the standalone 'thinktrader' entry. Verify before spending a run:
+if ! claude mcp list 2>/dev/null | grep -q "claude:.*Connected"; then
+  echo "ABORT: no connected ThinkTrader MCP server found. Run 'claude mcp list' first."; exit 1
+fi
 echo "Cost: the spread on 0.01 lots GBPUSD (~R2). Exposure: seconds."
 read -p "Proceed? [y/N] " ok
 [ "$ok" = "y" ] || { echo "aborted"; exit 0; }
@@ -20,6 +25,7 @@ read -p "Proceed? [y/N] " ok
 claude -p "SYSTEM PLUMBING TEST — not a trading decision, do not analyze market structure.
 
 Execute these steps in order and report each result:
+0. Use ThinkTrader tools from the CONNECTED server (prefix mcp__claude__). Ignore any 'thinktrader' server showing as failed — dead duplicate.
 1. switch_trading_account to 41829612. Report the 'previous' and 'current' fields verbatim (we are counting MCP reverts).
 2. get_account_info — report live balance.
 3. get_symbol_price GBPUSD — report bid/ask. Then get_symbol_history GBPUSD M5 last 5 candles — this specifically tests the permission fix; report whether it succeeded or was denied.

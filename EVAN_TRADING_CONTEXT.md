@@ -1433,3 +1433,43 @@ to Rule 17's spring/reclaim case here. No enforcer call made since no order was 
 **Bookkeeping:** session_snapshot.json refreshed (live balance re-queried, open positions
 confirmed unchanged, XAGUSD session range + watch_level added, tool-gap note carried
 forward). tick_counter.txt → 48.
+
+## tick 49 — MCP DUPLICATE RESOLVED + ADVISE-MODE GUARDRAIL WAS NEVER ARMED (21 Jul, ~21:15 UTC)
+
+`claude mcp list` on the VPS:
+```
+claude.ai claude:  https://mcp.thinktrader.com/v1/mcp  - Connected
+thinktrader:       https://mcp.thinktrader.com/v1/mcp  - Failed to connect
+```
+- LIVE server is **`claude`**, synced automatically from Evan's claude.ai connectors
+  (with Gmail/Drive/Crypto.com). Tools = `mcp__claude__*`. No OAuth was ever required —
+  that is why auto ticks 46/47 pulled real balances and positions.
+- tick 45's `claude mcp add thinktrader` made a redundant unauthorized duplicate.
+  test_placement.sh named its tools and correctly REFUSED to fabricate results. Remove it.
+- The `get_symbol_history` denials in ticks 46/47 are fully explained: allowlist named
+  `mcp__thinktrader__*` (dead) while execution ran on `mcp__claude__*`.
+
+### SAFETY FINDING — the advise-mode guardrail was not armed
+tick 47 claimed advise mode was "structurally enforced by a deny-list." It was not: the deny
+rules named `mcp__thinktrader__create_market_order` — a server that does not exist here. The
+live `mcp__claude__*` order tools were neither allowed nor denied. Runs stayed NO_ACTION by
+protocol compliance alone — precisely the prompt-only enforcement the deny-list was meant to
+replace. **A guardrail keyed to the wrong identifier is not a weaker guardrail; it is no
+guardrail, and it reads as armed in the config.** Same error class as tick 39's webhook
+misdiagnosis: confident conclusion about the wrong component.
+FIXED: both settings files enumerate BOTH prefixes — 19 read tools, 9 order tools, 3
+never-allowed bulk tools, `defaultMode: dontAsk` set in-file as well as on the CLI.
+Advise = order tools denied on the LIVE server (verified). Execute = allowed, with
+close_all/cancel_all denied in every mode (Claude Code deny rules apply even under bypass).
+
+### Bypass-permissions decision (Evan asked; recommendation recorded)
+NOT adopted here: (1) the VPS also hosts ClockPay with real Hyper Meat payroll data — an
+unattended root agent with unrestricted bash is a different risk class to a laptop; (2)
+TradingView webhook payloads flow verbatim into Claude's prompt, so the allowlist bounds
+prompt-injection blast radius; (3) Claude Code refuses --dangerously-skip-permissions as root
+and headless bypass needs prior interactive acceptance, so it likely would not run in the
+systemd service at all. `--permission-mode dontAsk` (tick 48) is the documented
+headless-correct alternative and is the runner default.
+
+Still open: two no-SL positions (USDJPY 1000u @163.209, EURUSD 5000u @1.1401) unstopped on
+41829612. Order-path plumbing test still unverified.
