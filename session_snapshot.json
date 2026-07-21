@@ -1,29 +1,30 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-21T20:41:44+00:00",
-  "updated_by": "tick 46 (AUTO TIER2) — every Tier 2 run refreshes this at exit",
-  "balance": {"value": 7290.79, "queried_utc": "2026-07-21T20:41:44+00:00", "note": "live-queried this run (tick 36 rule)"},
+  "updated_utc": "2026-07-21T20:45:02+00:00",
+  "updated_by": "tick 47 (AUTO TIER2) — every Tier 2 run refreshes this at exit",
+  "balance": {"value": 7290.79, "queried_utc": "2026-07-21T20:45:02+00:00", "note": "live-queried this run (tick 36 rule)"},
   "session_start_balance": 7394.99,
   "open_positions": [
-    {"id": 109827820, "symbol": "USDJPY", "dir": "BUY", "units": 1000, "entry": 163.209, "sl": 0, "tp": 0, "pl": 0, "note": "NOT in prior snapshot — discovered live this tick. NO STOP LOSS SET — Rule 2 violation on the book, flagged for Evan, cannot modify in advise mode"},
-    {"id": 109827829, "symbol": "EURUSD", "dir": "SELL", "units": 5000, "entry": 1.1401, "sl": 0, "tp": 1.1377, "pl": -2.47, "note": "NOT in prior snapshot — discovered live this tick. NO STOP LOSS SET — Rule 2 violation on the book, flagged for Evan, cannot modify in advise mode"}
+    {"id": 109827820, "symbol": "USDJPY", "dir": "BUY", "units": 1000, "entry": 163.209, "sl": 0, "tp": 0, "pl": 0, "note": "unchanged since tick 46. NO STOP LOSS SET — Rule 2 violation on the book, flagged again, cannot modify in advise mode"},
+    {"id": 109827829, "symbol": "EURUSD", "dir": "SELL", "units": 5000, "entry": 1.1401, "sl": 0, "tp": 1.1377, "pl": -2.47, "note": "unchanged since tick 46. NO STOP LOSS SET — Rule 2 violation on the book, flagged again, cannot modify in advise mode"}
   ],
-  "closed_since_last_snapshot": [
-    {"id": 109826749, "symbol": "XAUUSD", "note": "Rule-14-locked BUY from tick 45 snapshot no longer appears in live open_positions — closed (TP/SL or manual) between 19:58 and 20:41 UTC. Outcome not queryable (get_symbol_history blocked this run); reconcile from broker history next session."}
-  ],
+  "closed_since_last_snapshot": [],
   "h4_verdicts": {
-    "XAUUSD": {"trend": "BULL", "asof": "2026-07-21T18:30:00+00:00", "swings": "3999.82 -> 4043.65 HLs, 4028/4040 highs broken", "note": "not refreshed this tick — get_symbol_history permission-blocked, carried forward from tick 45"},
+    "XAUUSD": {"trend": "BULL", "asof": "2026-07-21T18:30:00+00:00", "swings": "3999.82 -> 4043.65 HLs, 4028/4040 highs broken", "note": "not refreshed this tick — get_symbol_history still permission-blocked, carried forward from tick 45"},
     "USDJPY": {"trend": "BULL", "asof": "2026-07-21T18:20:00+00:00", "swings": "162.406 -> 163.211 unbroken staircase"},
-    "BTCUSD": {"trend": "BULL", "asof": "2026-07-21T14:20:00+00:00", "swings": "62,458 -> 63,693 -> 65,004 HLs"}
+    "BTCUSD": {"trend": "BULL", "asof": "2026-07-21T14:20:00+00:00", "swings": "62,458 -> 63,693 -> 65,004 HLs"},
+    "XAGUSD": {"trend": "UNKNOWN", "asof": "2026-07-21T20:45:02+00:00", "note": "no H4 verdict on file; get_symbol_history permission-blocked so it could not be established this tick either"}
   },
   "session_ranges": {
-    "XAUUSD": {"low": 3999.82, "high": 4087.08, "range": 87.26, "top_15pct_cutoff": 4073.99, "bottom_15pct_cutoff": 4012.9, "asof": "2026-07-21T20:41:44+00:00", "source": "get_symbol_price high/low field"}
+    "XAUUSD": {"low": 3999.82, "high": 4087.08, "range": 87.26, "top_15pct_cutoff": 4073.99, "bottom_15pct_cutoff": 4012.9, "asof": "2026-07-21T20:41:44+00:00", "source": "get_symbol_price high/low field"},
+    "XAGUSD": {"low": 56.085, "high": 59.225, "range": 3.14, "top_15pct_cutoff": 58.754, "bottom_15pct_cutoff": 56.556, "asof": "2026-07-21T20:45:02+00:00", "source": "get_symbol_price high/low field"}
   },
   "armed_tickets": [],
   "watch_levels": [
     {"symbol": "XAUUSD", "zone": "4060-4063", "note": "spring level pullback zone (tick 40); TP wall 4090"},
     {"symbol": "EURUSD", "level": 1.1403, "note": "double-sweep defended-shelf candidate (tick 44) — scout decision is EVAN'S, never auto-deploy"},
-    {"symbol": "XAUUSD", "note": "tick 46: HL_RECLAIM fired at 4075.0, price now 4080.63 — sits in TOP 15% of session range (cutoff 4073.99). Rule 17 blocks BUY here unless H1 breakout-close confirmed; could not verify (tool blocked). Re-check next tick with history access restored."}
+    {"symbol": "XAUUSD", "note": "tick 46: HL_RECLAIM fired at 4075.0 — sat in TOP 15% of session range, Rule 17 blocked. Re-check with history access restored."},
+    {"symbol": "XAGUSD", "note": "tick 47: SPRING fired at 58.821 (M15) — falls in TOP 15% of day range (cutoff 58.754, day range 56.085-59.225). Rule 17 blocks a BUY here; also no H4 verdict available (history tool blocked). NO_ACTION."}
   ],
-  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick 46: mcp__claude_ai_claude__get_symbol_history is permission-blocked in this headless session (no human to grant) — H4/H1/M15/M5 candle analysis unavailable; only get_symbol_price (bid/ask/day-high/day-low) worked. Flag for Evan to pre-authorize this tool for auto-tick runs."
+  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick 47: mcp__claude_ai_claude__get_symbol_history is STILL permission-blocked in this headless session (no human to grant) for the second consecutive tick — H4/H1/M15/M5 candle analysis unavailable; only get_symbol_price (bid/ask/day-high/day-low) worked. Flag for Evan to pre-authorize this tool for auto-tick runs. Both no-SL positions (USDJPY 109827820, EURUSD 109827829) remain open and unmodifiable in advise mode — needs manual Evan action."
 }

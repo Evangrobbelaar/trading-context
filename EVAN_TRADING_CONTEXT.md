@@ -1404,3 +1404,32 @@ from tick 45 snapshot.
 **Bookkeeping:** session_snapshot.json refreshed (live balance, real open positions, closed
 XAUUSD noted, session range recorded, watch_levels updated, tool-gap note added).
 tick_counter.txt → 47.
+
+## tick 47 (this run) — AUTO TIER2, advise mode, 20:45:02 UTC
+
+Signal: SILVER SPRING @58.821 (M15).
+
+**Account/balance:** switched to 41829612, verified. Live balance R7,290.79, equity
+R7,288.32 (queried this run).
+
+**Open-position guard:** USDJPY BUY 109827820 and EURUSD SELL 109827829 are both still open,
+unchanged since tick 46, both still zero stop-loss — Rule 2 violation remains live on the
+book. `get_symbol_history` is permission-blocked for the second consecutive tick, so no M5
+structure read was possible for either position; nothing could be modified in advise mode
+regardless. Recommended action for Evan: manually set stops on both immediately.
+
+**News:** WebSearch found no scheduled high-impact release (NFP/CPI/FOMC) in the fired
+window; silver tape is running on an Iran de-escalation / AI-demand-supply-deficit narrative
+with Fed hike odds ticking up (55%, Sept). Attesting news_clear — no blackout event.
+
+**Decision on the signal — NO_ACTION (WOULD-NOT-PLACE):** two independent blockers. (1) No
+H4 verdict exists for XAGUSD and `get_symbol_history` is still permission-blocked, so the
+H4 trend gate (CHANGE 5 step 2) cannot be confirmed — no shortcuts per protocol. (2) Even
+setting that aside, Rule 17 check using day high/low from get_symbol_price (low 56.085, high
+59.225, range 3.14) puts the signal price 58.821 inside the **top 15% of range** (cutoff
+58.754) — a SPRING-implied BUY there is blocked outright, no breakout-close exception applies
+to Rule 17's spring/reclaim case here. No enforcer call made since no order was being placed.
+
+**Bookkeeping:** session_snapshot.json refreshed (live balance re-queried, open positions
+confirmed unchanged, XAGUSD session range + watch_level added, tool-gap note carried
+forward). tick_counter.txt → 48.
