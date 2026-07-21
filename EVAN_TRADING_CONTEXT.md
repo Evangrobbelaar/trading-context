@@ -1128,3 +1128,9 @@ Any balance used in a calculation must come from a live query in the current ses
 - LESSON: a decision level placed 0.117 above the hard stop is too thin to be actionable on a fast tape. It needs to sit far enough above the stop that acting on it saves something real, or it is just a stop with extra steps.
 
 Document version: 2.5 — July 21, 2026 (tick 36)
+
+## tick 37 — USDJPY placed (21 Jul, 14:07 UTC)
+#909873785 USDJPY Buy Limit 0.15L @ 162.800 | SL 162.640 | TP 163.050 | R242 / 3.30% | enforcer PASS exit 0 | accountId 41829612 verified on order response + pending book.
+Limit rather than market: price had run to 162.901 by placement time; a market fill there gave 26.1p risk against 14.9p reward = 0.57:1.
+Evan's note, recorded: tick 33 ("Evan places all orders by hand") and tick 34 ("MCP placement permitted on demo 41829612") contradict each other, and Claude kept issuing manual tickets for demo trades it was cleared to place. Tick 34 is the later rule and governs. Demo = Claude places. Live = Evan places.
+WTI #109825975: pierced 83.952, reclaimed, now -R99. Stop untouched, position alive.
