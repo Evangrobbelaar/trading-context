@@ -30,3 +30,4 @@
 {"event": "SPRING", "symbol": "EURUSD", "tf": "15", "price": 1.1401, "t": 1784670300258, "received_utc": "2026-07-21T21:45:01.033879+00:00"}
 {"event": "SWEEP", "symbol": "GBPUSD", "tf": "15", "price": 1.33756, "t": 1784672110226, "received_utc": "2026-07-21T22:15:10.706804+00:00"}
 {"event": "SPRING", "symbol": "GBPUSD", "tf": "15", "price": 1.33768, "t": 1784673000669, "received_utc": "2026-07-21T22:30:04.040830+00:00"}
+{"event": "HL_RECLAIM", "symbol": "USOIL", "tf": "15", "price": 84.86, "t": 1784677511145, "received_utc": "2026-07-21T23:45:11.840615+00:00"}
