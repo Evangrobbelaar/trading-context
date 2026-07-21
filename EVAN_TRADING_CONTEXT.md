@@ -1161,3 +1161,19 @@ TV events 14:15:00-06 UTC (6 seconds apart): SWEEP SILVER 58.845 | SWEEP EURUSD 
 - Aggregate worst-case: WTI R207 + BTC R171 + XAU pending R296 (+ USDJPY R242 if alive) = R674-R916 = 9.2-12.5% of R7,338. Cap 25% clear. Session P&L -R57 on balance vs session start.
 - Routing: reverts #9 and #10 today (both switches this trigger returned previous=41750592). Mirror counts shifted 2+2 -> 3+1 across the trigger, consistent with our BTC fill being mirrored. Hypothesis A still standing.
 - WTI #109825975: -R129 at check, spot 84.07, SL 83.87 (20c away). Oil is the one instrument NOT paid by today's flow (metals got the bid). Rule 5 flag from tick 36 still standing; stop doing its job. If 83.87 goes, it goes for R207 as designed.
+
+## tick 40 — RULE 22: TRADES NOT ORDERS (Evan's call, 21 Jul ~15:05 UTC)
+
+**RULE 22 — MARKET-ONLY EXECUTION**
+1. ALL entries are live MARKET orders. If a market entry at current price fails any hard rule (Rule 17, Rule 18 stop geometry, 5% cap, 1.2 R:R), the answer is NO TRADE — not a resting limit, not a forced worse ticket. Wait for price to come to a rule-passing zone and market-fill there, in session.
+2. Resting pending orders are permitted ONLY as Sprung Ladder Phase-1 SCOUTS (they are pendings by design). Strike remains a market order per Phase 4.
+3. This supersedes the old carve-out ("limits when adding to a profitable position") and the tick 37/38/39 limit-with-justification pattern. Adds to winners are market orders too.
+
+**Why this is also mechanically right (discovered same session):** get_position_by_id returns false "not found" for LIVE pendings — tick 37's USDJPY 162.800 and tick 39's XAUUSD 4058 both read as vanished but cancel_pending_orders_by_symbol found and killed BOTH (cancelled:1 each). Resting orders on this MCP are alive but unreadable; market fills persist verifiably. Pendings were an operational blind spot, not just a style choice. (Reframes tick 29's "vanished" 4,063 pending — likely alive-unqueryable too; app history could confirm.)
+
+**Actions under the new rule this tick:**
+- Cancelled XAUUSD 4058 pending + USDJPY 162.800 pending (book now has ZERO resting orders).
+- Gold market re-entry evaluated at ask 4072.17 and REJECTED: SL 4040 = 32pts = 7.2% (cap); shallow SL 4056 gives 1.10:1 to TP 4090 (R:R fail). Chasing +28pts into the 4084.25 day-high wall = no trade. Cost of cancelling = zero (price never touched 4058). Next chance: break of 4084.25 -> market buy first pullback, in session, full checks.
+- Mirror warnings decoded: "2 pendings on 41750592" were OUR two live pendings mislabeled — further hypothesis-A evidence. Revert #11 caught this tick.
+- Book: WTI #109825975 recovered to -R40 (spot 84.35, 83.99 reclaim held — Rule 5 flag -> WATCH). BTC #109873865 flat at 66,699 entry, SL 66,180 / TP 67,500, momentum checkpoint 67,000.
+- App-check list unchanged for Evan: identify the pre-existing stray on 41750592; confirm XAU/USDJPY pendings show CANCELLED in app history.
