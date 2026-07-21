@@ -1048,3 +1048,13 @@ Tick 29's blanket order-placement halt is **narrowed, not lifted**, at Evan's in
   Any step returning 41750592 -> stop, place nothing further, reconcile in the app.
 - **Revert count this session: 3.** Every switch call returned previous=41750592. The bug is active, not dormant.
 - **Still open from tick 29:** in-app reconciliation of USDJPY 0.05L / XAUUSD pending / NAS100 0.12u plus the pre-existing stray on 41750592. Narrowing the halt does not close this.
+
+### Trade placed under tick 34 (first MCP order since the tick 29 halt)
+- **#109825975 WTI Buy 21 bbl (0.21L)** | fill 84.470 | SL 83.870 | TP 85.000 | risk R207 = 2.82% | enforcer v3 PASS exit 0.
+- Sent at 84.393, filled 84.470 — **0.077 slippage** widened the stop 0.523 -> 0.600 and pushed risk above the R181/2.46% that was pre-flighted. Watch whether WTI slippage is habitual; if so, pre-flight with a slippage buffer.
+- TP 85.000 against a 0.600 stop = **0.88:1** as filled. Sub-1:1. Correction options logged: 85.370 (1.5:1) or 85.670 (2:1), breakeven stop at 85.070.
+- Structure at entry: M15 staircase off 82.074; higher lows 83.905 (13:25) and 83.987 (13:40) both intact. SL 83.870 sits below BOTH per Rule 18 rather than in the bait zone between them.
+
+### ROUTING — FIRST APP-VERIFIED DATA POINT (supports hypothesis A)
+Evan confirmed **in the platform UI** that #109825975 sits on 41829612 — matching what MCP labelled at every step (switch, order response, position query). This is the first ground-truth check since tick 29 and it favours **hypothesis A: orders execute where the labels say; the warnings mirror-mislabel the account.** Not conclusive on one sample. Still open: the three morning tickets (USDJPY 0.05L / XAUUSD pending / NAS100 0.12u) and the pre-existing stray on 41750592.
+- Revert count this session: **4.** Pre-order switch caught it every time. The switch-and-verify step is doing real work — keep it.

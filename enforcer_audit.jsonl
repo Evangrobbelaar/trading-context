@@ -78,3 +78,4 @@
 {"ts": "2026-07-21T13:21:02.601133+00:00", "verdict": "PASS", "mode": "strike", "instrument": "XAUUSD", "account_id": "41829612", "balance": 7338.36, "risk_amount": 124.29, "blocks": [], "version": "v3"}
 {"ts": "2026-07-21T13:33:41.865318+00:00", "verdict": "PASS", "mode": "general", "instrument": "WTI", "account_id": "41829612", "balance": 7338.36, "risk_amount": 184.13, "blocks": [], "version": "v3"}
 {"ts": "2026-07-21T13:33:41.905419+00:00", "verdict": "BLOCKED", "mode": "general", "instrument": "WTI", "account_id": "42805520", "balance": 250.0, "risk_amount": 4.6, "blocks": ["ACCOUNT LOCK: 42805520 is not 41829612. 41750592 is permanently off-limits.", "SESSION MAX LOSS: balance 250.00 <= 50% of session start 7394.99."], "version": "v3"}
+{"ts": "2026-07-21T13:42:00.617206+00:00", "verdict": "PASS", "mode": "general", "instrument": "WTI", "account_id": "41829612", "balance": 7338.36, "risk_amount": 180.56, "blocks": [], "version": "v3"}
