@@ -32,7 +32,7 @@ account is 42805520 and Claude cannot and must not reach it.)
 The ThinkMarkets MCP **always reconnects to account #41750592**, not your account.
 
 **Every single tick, before anything else:**
-1. Call `mcp__claude__switch_trading_account("41829612")`
+1. Call `switch_trading_account("41829612")` (tool prefix varies by MCP server name: `mcp__claude__*` in chat, `mcp__thinktrader__*` on the VPS)
 2. Verify the response shows `"current": "41829612"`
 3. Only then pull prices or positions
 
@@ -211,7 +211,7 @@ Run in this order. No shortcuts:
 
 ## CHANGE 3 — MID-TRADE STRUCTURE MONITOR (every tick with open positions)
 
-1. Pull last 10 M5 candles for each open trade (use `mcp__claude__get_symbol_history`)
+1. Pull last 10 M5 candles for each open trade (use the MCP get_symbol_history tool)
 2. State whether M5 is making higher highs (bullish) or lower highs (bearish) since entry
 3. M5 structure reversed against trade AND P&L positive → flag Rule 13 manual close
 4. M5 structure reversed against trade AND P&L negative → flag Rule 5 cut

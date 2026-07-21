@@ -71,6 +71,7 @@ def cfg():
                  ["LEVEL1_HIT", "LEVEL2_HIT", "PULLBACK_TAG_LONG", "PULLBACK_TAG_SHORT"])
     c.setdefault("shelf_promote", {"window_min": 240, "tolerance_pct": 0.05, "min_count": 2})
     c.setdefault("spring_max_exec_age_min", 10)
+    c.setdefault("max_signal_age_min", 30)
     c.setdefault("tier1", {"model": "haiku", "max_turns": 12, "timeout_s": 240})
     c.setdefault("tier2", {"model": "sonnet", "max_turns": 45, "timeout_s": 900})
     c.setdefault("ntfy_topic", "")
@@ -93,12 +94,21 @@ def read_new_lines():
     """Return (new_complete_lines, new_offset)."""
     if not SIGNALS.exists():
         return [], 0
+    size = SIGNALS.stat().st_size
+    if not CURSOR.exists():
+        # COLD START (tick 46 fix): seed the cursor at EOF. Without this the first
+        # loop after a deploy/reboot replays the entire day's backlog as one batch
+        # — observed 20:13 UTC 21 Jul: 11 stale signals spawned a Tier 2 run.
+        # History belongs in the file, not in a live trading decision.
+        CURSOR.parent.mkdir(parents=True, exist_ok=True)
+        CURSOR.write_text(str(size))
+        log(f"cold start: cursor seeded at EOF ({size} bytes) — backlog skipped")
+        return [], size
     offset = 0
     try:
         offset = int(CURSOR.read_text().strip())
     except Exception:
         pass
-    size = SIGNALS.stat().st_size
     if size < offset:          # file rotated/reset
         offset = 0
     if size == offset:
@@ -168,6 +178,23 @@ def classify(sig, c, armed_symbols):
     if ev in c["tier1_events"]:
         return 1, None
     return 1, f"unknown event {ev} — assess"   # fail toward a cheap look, not silence
+
+
+def drop_stale(batch, c):
+    """Hard age gate (tick 46): a signal older than max_signal_age_min never spawns a
+    session. Separate from the SPRING-specific note — this drops the signal entirely."""
+    cutoff_ms = c["max_signal_age_min"] * 60000
+    now_ms = int(time.time() * 1000)
+    fresh, dropped = [], []
+    for s in batch:
+        t = s.get("t")
+        if isinstance(t, (int, float)) and (now_ms - t) > cutoff_ms:
+            dropped.append(f"{canon_event(s)} {s.get('symbol')} ({(now_ms-t)/60000:.0f}min old)")
+        else:
+            fresh.append(s)
+    if dropped:
+        log(f"dropped {len(dropped)} stale: {', '.join(dropped[:5])}")
+    return fresh
 
 
 def staleness_notes(batch, c):
@@ -281,6 +308,10 @@ def main():
                 continue
             snapshot = load_json(SNAPSHOT, {})
             armed = {str(a.get("symbol", "")) for a in snapshot.get("armed_tickets", [])}
+            batch = drop_stale(batch, c)
+            if not batch:
+                CURSOR.write_text(str(new_offset))
+                continue
             tiered = [(classify(s, c, armed), s) for s in batch]
             notes = [n for ((tier, n), _) in tiered if n]
             actionable = [s for ((tier, _), s) in tiered if tier >= 1]

@@ -1339,3 +1339,33 @@ execute. Note: sustained headless automation should run on an API key rather tha
 subscription auth — check current terms before it runs hot.
 
 Document version: 2.8 — July 21, 2026 (tick 45)
+
+## tick 46 — AUTO-TICK COLD-START BUG FOUND ON DEPLOY (21 Jul, 20:13-20:40 UTC)
+
+VPS deploy succeeded: Node 22.23.1, npm 10.9.8, claude 2.1.216, tv-tick-runner ACTIVE,
+receiver healthy. Claude Code auth was ALREADY present on the box (banner: Sonnet 5 ·
+Claude Pro) — no login needed.
+
+**BUG (fixed this tick):** on first start the cursor file did not exist, so the runner read
+tv_signals.jsonl from byte 0 and spawned a Tier 2 session on the entire day's 11 actionable
+backlog signals (20:13:20). It wrote nothing — no commit, no snapshot change, no enforcer
+line — because the ThinkTrader MCP is not yet connected on the VPS, so the run failed at the
+account-switch step and exited. Harmless this time; in execute mode with MCP live, a reboot
+would have replayed a day of dead signals as live trading input.
+- FIX 1: cold start seeds the cursor at EOF — backlog is never replayed.
+- FIX 2: hard age gate `max_signal_age_min` (default 30) — any signal older than that is
+  dropped before tiering, not just annotated. Separate from the 10-min SPRING note.
+- Verified against the real 25-signal file: cold start = 0 spawns; 45-min-old signals = 0 kept.
+
+**Tier routing measured on day-1 data (the token answer):** 14/25 zero-token (TEST, futures,
+plain sweeps), 8/25 Tier 1 haiku (HL_RECLAIMs + the promoted EURUSD shelf sweep), 3/25 Tier 2
+sonnet (the three springs, incl. the GOLD spring that produced the day's winning trade).
+56% of traffic costs nothing; 12% gets a full session.
+
+**Still outstanding:** ThinkTrader MCP not yet added on the VPS (`claude mcp add`) — this is
+the only thing between here and a working end-to-end test. CLAUDE.md MCP tool references
+de-hardcoded (server name differs: mcp__claude__* in chat, mcp__thinktrader__* on the VPS).
+
+**Plan-limit note:** the box runs Claude Pro. Tier 2 = sonnet up to 45 turns; a busy signal
+day could hit subscription limits mid-session. Watch the first live day's usage; API-key
+billing remains the cleaner path for sustained unattended running.
