@@ -72,3 +72,5 @@
 {"ts": "2026-07-21T07:13:39.057434+00:00", "verdict": "PASS", "mode": "general", "instrument": "NAS100", "account_id": "41829612", "balance": 7394.99, "risk_amount": 315.6, "blocks": [], "version": "v3"}
 {"ts": "2026-07-21T07:18:20.853690+00:00", "verdict": "PASS", "mode": "general", "instrument": "XAUUSD", "account_id": "41829612", "balance": 7394.99, "risk_amount": 329.0, "blocks": [], "version": "v3"}
 {"ts": "2026-07-21T07:18:20.893006+00:00", "verdict": "PASS", "mode": "general", "instrument": "USDJPY", "account_id": "41829612", "balance": 7394.99, "risk_amount": 101.0, "blocks": [], "version": "v3"}
+{"ts": "2026-07-21T08:35:17.602054+00:00", "verdict": "BLOCKED", "mode": "general", "instrument": "NAS100", "account_id": "41829612", "balance": 260.0, "risk_amount": 12.6, "blocks": ["SESSION MAX LOSS: balance 260.00 <= 50% of session start 7394.99."], "version": "v3"}
+{"ts": "2026-07-21T08:35:17.638983+00:00", "verdict": "BLOCKED", "mode": "general", "instrument": "NAS100", "account_id": "41829612", "balance": 260.0, "risk_amount": 9.84, "blocks": ["SESSION MAX LOSS: balance 260.00 <= 50% of session start 7394.99."], "version": "v3"}

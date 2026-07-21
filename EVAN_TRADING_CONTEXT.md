@@ -1009,3 +1009,12 @@ Two hypotheses fit all data: (A) our orders are on 41829612 as every order respo
 - LIVE (42805520, R250): manual placement forever. Live enforcer = ADVISORY PRE-FLIGHT: Claude computes ticket numbers + runs enforcer.py against live balance, Evan types the order in the app. Today's live ticket review was the prototype of this flow.
 - Stray position on 41750592 (pre-existing today): leading hypothesis = an earlier session's silently misrouted order — the revert bug's labels may have lied before today without detection. Evan to identify in app and reconcile.
 - 41810679 (old practice demo, NVIDIA [SWING]) listed in grant but per Evan only 2 demos are real going forward — swing-lock section flagged possibly stale pending his confirmation.
+
+---
+
+## UPDATE — July 21, 2026 (tick 32 — TV PIPELINE LIVE)
+
+- tv-pipeline deployed by Claude Code: Docker container behind Traefik at https://tv-signal.srv1695304.hstgr.cloud/tv-signal (real Let's Encrypt cert). VPS reality differed from spec: Traefik owns 80/443 (not nginx), host 8091 occupied by claude-github-proxy (untouched), /root/trading-context freshly cloned. End-to-end verified twice (TEST_SWEEP commits on GitHub).
+- **NEW SESSION-START RULE:** every trading session, after reading this file, also read the tail of tv_signals.jsonl (last ~20 lines) — overnight SWEEP/SPRING/HL_RECLAIM/LEVEL_HIT events from TradingView land there automatically.
+- Remaining manual step (Evan): paste Pine script into TradingView + create the one alert with the webhook URL. Until done, tv_signals.jsonl only contains test events.
+- Security follow-ups (Evan's list): VPS root password appeared in Claude Code transcript — change it, prefer SSH keys; VPS git push currently uses the broad OAuth token (Evan's call after fine-grained PAT 403'd) — revisit/rotate when convenient.
