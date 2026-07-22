@@ -2260,3 +2260,36 @@ on a confirmed closed M15 below 1.33631. Cleanest with-trend short structure see
 shelf so far — watch for a closed ≥60% bear M15 off a retest of 1.33697-1.337035.
 session_snapshot.json updated (balance/equity, GBPUSD h4_verdict + session_range refresh,
 1 new tick69 watch_levels note). tick_counter.txt -> 69. session_logger.py tick69 logged.
+
+## AUTO TICK 70 — 2026-07-22T12:00:22Z (14:00 SAST) — Tier2, mode=learn
+Signal: GOLD SPRING_LONG 4122.47 (level 4113.1, extreme 4112.47, 12:00:06Z, 15m tf) — a
+reversal off the same spring low that produced tick68's rejected short, this time breaking
+UP through the 4109-4123 chop ceiling.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612.
+Anomaly re-checked: still RESOLVED (standing rule) — same 2 WTI EVAN_MANUAL positions
+(109830351 20u@87.242 SL85.973 pl-196.70; 109830436 10u@87.574 NO-SL pl-153.04) + 1 NVIDIA
+pending (909875988), no new foreign activity. Balance R6831.39 unchanged, equity drifted
+6563.13->6481.67 (WTI floating loss widened to -R349.72 combined). WTI M5 checked (open-
+position guard): choppy 86.38-87.18, no clean break, current 86.70 still below both
+entries, logged only per standing rule (Evan's positions, not touched).
+GOLD: H4 BULL confirmed, swing low 4076.88 still unbroken — this long is WITH trend, no
+Rule3 issue. Fresh M15 pulled (07:15-12:00): the 4109-4123 chop held all morning with a
+double rejection at 4122.45/4123.07, then 11:45 swept to 4112.6 (spring extreme 4112.47,
+the signal print), and the 12:00 bar reversed hard — O4115.26 H4123.06 L4114.88 C4122.53,
+~89% bull body — breaking back above the 4122-4123 ceiling. Live price at read time had
+already run further to 4125.97/4126.16. Rule17: entry ~4126 = range_pos 0.76 of the
+4076.88-4141.75 range, clear of the top-15pct cutoff (4132.02) — passes clean. BUT the
+12:00 reversal bar is still forming/unclosed — Change5 step5 requires a confirmed CLOSED
+trigger bar, same standard applied ticks 53/55/56/58 against forming breakout bars — not
+met. Separately, R:R fails on visible structure: proper Rule18 SL sits below the 4112.47
+spring extreme + 3-5pt buffer (~4108), ~17-18pt risk from ~4126 entry, vs only ~15-16pt
+reward to the session high 4141.75 (no confirmed resistance beyond it to justify a farther
+TP) — R:R ≈ 0.9:1, under Rule9's 1.2:1 floor. Neither gate is learn-mode-downgradable
+(only Rule17/H4-counter-trend/scout-uncertainty are). News: WebSearch found no high-impact
+USD/gold event in the 12:00-14:00 UTC window (next scheduled: jobless claims Jul 23, PMI
+Jul 24, FOMC Jul 29) — attested news_clear, moot since blocked on trigger/R:R. No enforcer
+run, nothing placed/would-placed. NO_ACTION. Watch for a CLOSED M15 bar holding above 4123
+with room, or a pullback that improves the R:R, before treating this move as tradeable.
+session_snapshot.json updated (balance/equity, WTI pl refresh, XAUUSD h4_verdict +
+session_range refresh, 1 new tick70 watch_levels note). tick_counter.txt -> 70.
+session_logger.py tick70 logged.
