@@ -2382,3 +2382,37 @@ short) or a reclaim back above 1.33799/1.33903 (invalidates this bearish read).
 session_snapshot.json updated (balance/equity, WTI/NVIDIA pl refresh, GBPUSD h4_verdict
 + session_range refresh, 1 new tick73 watch_levels note).
 tick_counter.txt -> 73. session_logger.py tick73 logged.
+
+## AUTO TICK 74 — 2026-07-22T16:22:02Z (18:22 SAST) — Tier2, mode=learn
+Signals: USOIL PULLBACK_TAG_SHORT/SWEEP_LOW/SWEEP 86.26 (16:15Z, 15m tf);
+GBPUSD LL_BREAKDOWN 1.336665 + PULLBACK_TAG_SHORT 1.33664 (level 1.336815,
+extreme 1.33761), 16:17-16:18Z, 1min tf.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed
+41829612. Live balance R6411.59 unchanged, equity 6380.59->6381.56 (WTI no-SL
+pl worsened -304.86->-324.06 on a pullback off the 16:15 local high 85.75 to
+85.567; NVIDIA improved +274.67->+295.02, fresh local high 214.06 — both
+EVAN_MANUAL, logged only, not touched; anomaly_status still RESOLVED, no new
+foreign activity).
+USOIL: pre-blocked before any structure check — USOIL/WTI Crude is on the
+CLAUDE.md INSTRUMENTS TO AVOID list, same standing block as tick54. Also no
+live price feed under the "USOIL" symbol name (broker uses "WTI"). NO_ACTION.
+GBPUSD: direct continuation of tick73's break — the last CLOSED M15 bar is
+still tick73's 16:15 bar (89% bear body), nothing new closed since; the fresh
+signals are intrabar (1min tf) continuation as price drifted to 1.33657/1.33669.
+Recomputed R:R at current price and found it WORSE than tick73: Rule2 15pip
+SL floor from live entry (~1.33807) vs reward to the nearest genuine support
+(session low 1.33545, no shelf between there and here per tick73's Jul17+
+history check) = only ~11.2pips — R:R ~0.75:1 (was ~0.9:1 last tick), still
+under Rule9's hard 1.2:1 minimum, not learn-mode-downgradable. Rule17 clear
+(range_pos 0.28, mid-range). News: WebSearch found no new high-impact
+GBP/USD/oil release in the 16:20-18:20Z window, consistent with tick73's
+UK-CPI-already-printed finding — attested news_clear, moot since blocked on
+R:R. No enforcer run, nothing placed/would-placed.
+NO_ACTION on both signals. Structural note: as GBPUSD price grinds toward the
+session-low target with a fixed pip-floor SL, R:R mechanically degrades each
+tick — this shelf will not become tradeable by waiting at the current
+price/level combination; needs either a break of 1.33545 (opens a fresh
+target) or a bounce restoring distance back toward 1.3379+/1.33903.
+session_snapshot.json updated (balance/equity, WTI/NVIDIA pl refresh, GBPUSD
+h4_verdict + session_range refresh, 2 new tick74 watch_levels notes).
+tick_counter.txt -> 74. session_logger.py tick74 logged.
