@@ -1961,3 +1961,36 @@ Bookkeeping: session_snapshot.json updated (balance, XAUUSD h4_verdict + session
 to 4076.88-4141.75, new watch_levels note). tick_counter.txt -> 62. Session P&L =
 7162.94 - 7394.99 = -R232.05, ~unchanged from tick 61 (spread drift only, no fills).
 session_logger.py tick 62 logged.
+
+## tick 61 — ORDER PATH TEST **PASS** — SYSTEM IS LIVE (22 Jul, 07:42 UTC / 09:42 SAST)
+
+test_placement.sh green end to end on demo 41829612:
+- switch_trading_account: `previous:"41750592"` -> `current:"41829612"` — **MCP revert #17**,
+  caught and corrected. The bug fires on essentially every fresh session; switch+verify is
+  load-bearing, not ceremonial.
+- balance R7,164.09; GBPUSD 1.33765/1.33775
+- **get_symbol_history succeeded** — the tick-50 prefix fix (`mcp__claude_ai_claude__`) is
+  confirmed working in a real run. Full M5 structure analysis is available to auto ticks
+  again, which ticks 46-59 did not have.
+- enforcer v3.1: `PASS — general on GBPUSD cleared` EXIT:0
+- BUY 0.01L GBPUSD @1.33788, SL 1.33525, orderId **109830028**
+- order response accountId `"41829612"` verbatim; position confirmed on-account
+- closed @1.33781, realized **-R1.1549** (spread only); `trades: []` after — book flat
+- Run correctly flagged its own skipped session_logger/audit step as a scoped deviation
+  rather than silently omitting it.
+
+**Every link in the chain is now proven: TradingView -> receiver -> git -> runner -> tier
+classifier -> headless Claude -> enforcer gate -> order -> account verification -> close.**
+The only previously-untested component, the write path, works.
+
+### STATE: ARMED AND LIVE
+mode=execute, execute permissions granted, runner active, London session open. The next
+signal that clears the rules will place a real demo trade with no human in the loop.
+
+### TWO ITEMS OUTSTANDING
+1. **Pine v3 still not deployed** — v2 keeps firing HL_RECLAIM at 20-bar-range highs, which
+   Rule 17 blocks by construction. Until v3's PULLBACK_TAG events are live, the system will
+   keep refusing the most common long setup for a structurally correct reason.
+2. **PER_TRADE_RISK_PCT = 0.05 unchanged.** Live, unattended, London open. tick 54's
+   enforcer-cleared ticket was R306.56 on one trade. Recommendation on record: 0.02 before
+   the first autonomous fill.
