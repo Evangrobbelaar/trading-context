@@ -32,3 +32,4 @@
 {"event": "SPRING", "symbol": "GBPUSD", "tf": "15", "price": 1.33768, "t": 1784673000669, "received_utc": "2026-07-21T22:30:04.040830+00:00"}
 {"event": "HL_RECLAIM", "symbol": "USOIL", "tf": "15", "price": 84.86, "t": 1784677511145, "received_utc": "2026-07-21T23:45:11.840615+00:00"}
 {"event": "HL_RECLAIM", "symbol": "BTCUSD", "tf": "15", "price": 66518.68, "t": 1784678401025, "received_utc": "2026-07-22T00:00:12.337652+00:00"}
+{"event": "HL_RECLAIM", "symbol": "GBPUSD", "tf": "15", "price": 1.33864, "t": 1784680200757, "received_utc": "2026-07-22T00:30:05.455994+00:00"}
