@@ -53,3 +53,4 @@
 {"event": "HL_RECLAIM", "symbol": "EURUSD", "tf": "15", "price": 1.14112, "t": 1784700901023, "received_utc": "2026-07-22T06:15:06.516234+00:00"}
 {"event": "SPRING", "symbol": "USDJPY", "tf": "15", "price": 163.107, "t": 1784701800127, "received_utc": "2026-07-22T06:30:00.965767+00:00"}
 {"event": "HL_RECLAIM", "symbol": "USOIL", "tf": "15", "price": 86.02, "t": 1784701802107, "received_utc": "2026-07-22T06:30:11.767669+00:00"}
+{"event": "HL_RECLAIM", "symbol": "XAUUSD1!", "tf": "15", "price": 4138.1, "t": 1784703611995, "received_utc": "2026-07-22T07:00:23.155957+00:00"}
