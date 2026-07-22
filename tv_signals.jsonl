@@ -194,3 +194,4 @@
 {"event": "HL_RECLAIM", "symbol": "XAUUSD1!", "tf": "15", "price": 4161, "t": 1784728803178, "received_utc": "2026-07-22T14:00:24.852952+00:00"}
 {"event": "SWEEP", "symbol": "BTCUSD", "tf": "15", "price": 65910.51, "t": 1784728801126, "received_utc": "2026-07-22T14:00:31.910519+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "GBPUSD", "tf": "1", "price": 1.338755, "level": 1.338955, "extreme": 1.338965, "range_pos": 0.806, "vol_mult": 1, "h1_atr": 0.001248, "t": 1784728920982, "received_utc": "2026-07-22T14:02:02.886270+00:00"}
+{"event": "SWEEP_LOW", "symbol": "GBPUSD", "tf": "1", "price": 1.338555, "level": 1.3384, "extreme": 1.33838, "range_pos": 0.757, "vol_mult": 1, "h1_atr": 0.001267, "t": 1784729220707, "received_utc": "2026-07-22T14:07:02.596078+00:00"}
