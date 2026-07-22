@@ -2119,3 +2119,38 @@ unparseable as JSON). tick_counter.txt -> 65. session_logger.py tick65 logged.
 order not placed by this system, one WTI position with zero stop loss. Please confirm
 whether this is your own manual activity or something else, and clear the zero-SL
 exposure. Auto-tick will keep freezing new order placement on this account until then.**
+
+## AUTO TICK 66 — 2026-07-22T11:30 UTC (13:30 SAST, LDN session) — ANOMALY RE-VERIFIED, STILL PRESENT (3rd consecutive tick)
+Signals: LL_BREAKDOWN GBPUSD @1.336635 (1m, level 1.33668, fired 11:26:01 UTC) +
+PULLBACK_TAG_SHORT GBPUSD @1.33639 (1m, level 1.33668, range_pos 0.006, fired 11:27:01
+UTC) — continuing breakdown on the same 1.3366-1.3369 shelf, 7th+ sweep/breakdown event
+in ~2h. Tier1 escalated per standing pattern on this shelf.
+
+Per tick64/65's explicit instruction, re-verified the foreign-activity anomaly FIRST,
+before any GBPUSD analysis: switch_trading_account caught the usual revert to 41750592,
+confirmed 41829612. get_account_info/get_open_positions/get_pending_orders re-pulled.
+
+**Result: anomaly is STABLE, still UNRESOLVED, 3rd consecutive re-verification.** Same 2
+open WTI positions, same order IDs as tick64/65 (109830351: 20u @87.242, SL 85.973,
+floating -R174.93; 109830436: 10u @87.574, **still NO STOP LOSS**, floating -R142.15),
+same 1 pending NVIDIA Buy 2u @204.95 limit order (909875988). No new foreign fills, no
+new realized closes since tick65 — balance flat at R6831.39 (equity drifted
+6522.81->6512.83 on floating P&L only, not new activity).
+
+GBPUSD read (for the record): breakdown still extending, live bid/ask 1.33658/1.33668,
+session low ticked to 1.33631 (range 1.33631-1.33947). H4 still BEAR, with-trend short
+technically valid, but M15 last closed bars still show no clean 60%+ bear rejection
+trigger. Rule17 range_pos ~0, still deep in the bottom-15pct band (warning-only in learn
+mode, moot regardless).
+
+**Decision: freeze maintained.** Did not act on GBPUSD, did not attempt to close or
+modify the foreign WTI/NVIDIA positions myself — that remains Evan's call. No enforcer
+run, nothing placed/would-placed. session_snapshot.json updated (balance/equity,
+open_positions pl refresh, GBPUSD h4_verdict + session_range refresh, new tick66
+watch_levels note). tick_counter.txt -> 66. session_logger.py tick66 logged.
+
+**EVAN: the tick64 anomaly remains unresolved after 3 consecutive re-verifications —
+same 2 WTI positions and 1 NVIDIA pending order not placed by this system, one WTI
+position still with zero stop loss. Please confirm whether this is your own manual
+activity or something else, and clear the zero-SL exposure. Auto-tick will keep freezing
+new order placement on this account until then.**
