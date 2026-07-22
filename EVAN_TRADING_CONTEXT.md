@@ -2234,3 +2234,29 @@ news. No enforcer run, nothing placed/would-placed on any symbol.
 session_snapshot.json updated (balance/equity, WTI pl refresh, XAUUSD/GBPUSD/EURUSD
 h4_verdicts + session_ranges refresh, 3 new tick68 watch_levels notes). tick_counter.txt ->
 68. session_logger.py tick68 logged.
+
+## AUTO TICK 69 — 2026-07-22T11:53Z (13:53 SAST) — Tier2, mode=learn
+Signal: GBPUSD SPRING_SHORT 1.33682 (level 1.33697, extreme 1.337035, 11:51:01Z) preceded
+by SWEEP_HIGH 1.33693 (level 1.33697, extreme 1.33699, 11:48:02Z), both 1m tf — upthrust at
+the top of the standing 1.3363-1.337 shelf.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612.
+Anomaly re-checked: still RESOLVED (standing rule) — same 2 WTI EVAN_MANUAL positions
+(109830351 20u@87.242 SL85.973 pl-142.05; 109830436 10u@87.574 NO-SL pl-125.74) + 1 NVIDIA
+pending (909875988), no new foreign activity. Balance R6831.39 unchanged, equity drifted
+6625.33->6563.13 (WTI floating loss widened to -R267.79 combined). WTI M5 checked (open-
+position guard): choppy, no clean break, logged only per standing rule (Evan's positions).
+GBPUSD: fresh H1 shows a clean lower-high/lower-low sequence since the 08:00 1.33947 peak —
+H4 BEAR confirmed. This short is WITH trend (first time on this shelf, unlike ticks 64-68's
+counter-trend longs — no Rule3 exception needed). M1 shows the sweep to 1.337035 rejecting,
+3 straight down-closing bars. But last CLOSED M15 (11:30-11:45, O1.33685 H1.337 L1.33631
+C1.33653) is only ~46% bear body — wicked the 1.33631 armed floor, did not close below it;
+current M15 bar still forming. Change5 step5's closed 60%+ rejection-bar trigger is NOT met
+(not a learn-mode-downgradable rule). Entry (~1.3367) also computes range_pos 0.142, inside
+Rule17's bottom-15pct band (warn-only in learn mode, moot). News: WebSearch found UK CPI
+already printed ~06:00Z (~5h50m prior); only other item is US crude/gasoline inventories,
+not GBP-relevant/not on blocklist — attested news_clear, moot since blocked on trigger.
+No enforcer run, nothing placed/would-placed. NO_ACTION. Armed ticket unchanged: short only
+on a confirmed closed M15 below 1.33631. Cleanest with-trend short structure seen on this
+shelf so far — watch for a closed ≥60% bear M15 off a retest of 1.33697-1.337035.
+session_snapshot.json updated (balance/equity, GBPUSD h4_verdict + session_range refresh,
+1 new tick69 watch_levels note). tick_counter.txt -> 69. session_logger.py tick69 logged.
