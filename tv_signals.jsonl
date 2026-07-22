@@ -128,3 +128,4 @@
 {"event": "SWEEP_LOW", "symbol": "GBPUSD", "tf": "15", "price": 1.33704, "level": 1.33693, "extreme": 1.33654, "range_pos": 0.224, "vol_mult": 0.93, "h1_atr": 0.001092, "t": 1784722500141, "received_utc": "2026-07-22T12:15:02.179476+00:00"}
 {"event": "SWEEP", "symbol": "GBPUSD", "tf": "15", "price": 1.33704, "t": 1784722500164, "received_utc": "2026-07-22T12:15:04.147012+00:00"}
 {"event": "HL_RECLAIM", "symbol": "GOLD", "tf": "15", "price": 4126.967, "level": 4123.06, "extreme": 4112.47, "range_pos": 0.777, "vol_mult": 1.08, "h1_atr": 12.494521, "t": 1784722500130, "received_utc": "2026-07-22T12:15:05.686021+00:00"}
+{"event": "HL_RECLAIM", "symbol": "GBPUSD", "tf": "1", "price": 1.33704, "level": 1.337035, "extreme": 1.33666, "range_pos": 0.211, "vol_mult": 1, "h1_atr": 0.001091, "t": 1784722500837, "received_utc": "2026-07-22T12:15:07.268719+00:00"}
