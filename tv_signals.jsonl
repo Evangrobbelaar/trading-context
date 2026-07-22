@@ -169,3 +169,4 @@
 {"event": "SPRING", "symbol": "SILVER", "tf": "15", "price": 59.4911, "t": 1784727000136, "received_utc": "2026-07-22T13:30:02.548206+00:00"}
 {"event": "SPRING_LONG", "symbol": "GOLD", "tf": "15", "price": 4131.6, "level": 4113.1, "extreme": 4112.55, "range_pos": 0.847, "vol_mult": 1.19, "h1_atr": 14.719504, "t": 1784727000207, "received_utc": "2026-07-22T13:30:04.442594+00:00"}
 {"event": "SWEEP_LOW", "symbol": "GBPUSD", "tf": "15", "price": 1.33765, "level": 1.33693, "extreme": 1.33639, "range_pos": 0.545, "vol_mult": 1.17, "h1_atr": 0.001251, "t": 1784727000188, "received_utc": "2026-07-22T13:30:06.057669+00:00"}
+{"event": "SWEEP", "symbol": "GBPUSD", "tf": "15", "price": 1.33765, "t": 1784727000175, "received_utc": "2026-07-22T13:30:07.631382+00:00"}
