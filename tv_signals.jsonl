@@ -66,3 +66,4 @@
 {"event": "PULLBACK_TAG_SHORT", "symbol": "GOLD", "tf": "15", "price": 4114.608, "level": 4110.81, "extreme": 4135.3, "range_pos": 0.591, "vol_mult": 1.05, "h1_atr": 13.69568, "t": 1784708100321, "received_utc": "2026-07-22T08:15:01.862538+00:00"}
 {"event": "SWEEP", "symbol": "USDJPY", "tf": "15", "price": 163.054, "t": 1784708100379, "received_utc": "2026-07-22T08:15:03.820452+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "EURUSD", "tf": "15", "price": 1.14053, "level": 1.14099, "extreme": 1.14102, "range_pos": 0.432, "vol_mult": 1.69, "h1_atr": 0.00067, "t": 1784708100398, "received_utc": "2026-07-22T08:15:05.482514+00:00"}
+{"event": "SWEEP_LOW", "symbol": "EURUSD", "tf": "15", "price": 1.14083, "level": 1.14055, "extreme": 1.1404, "range_pos": 0.564, "vol_mult": 1.15, "h1_atr": 0.000678, "t": 1784709000572, "received_utc": "2026-07-22T08:30:08.596302+00:00"}
