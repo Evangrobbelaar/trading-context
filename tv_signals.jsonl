@@ -248,3 +248,4 @@
 {"event": "SWEEP_LOW", "symbol": "GBPUSD", "tf": "1", "price": 1.33718, "level": 1.33712, "extreme": 1.33708, "range_pos": 0.419, "vol_mult": 1, "h1_atr": 0.001243, "t": 1784740981727, "received_utc": "2026-07-22T17:23:02.918524+00:00"}
 {"event": "SPRING_LONG", "symbol": "GBPUSD", "tf": "1", "price": 1.337255, "level": 1.33712, "extreme": 1.33708, "range_pos": 0.437, "vol_mult": 1, "h1_atr": 0.001243, "t": 1784741040356, "received_utc": "2026-07-22T17:24:01.653959+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "GBPUSD", "tf": "1", "price": 1.3373, "level": 1.337315, "extreme": 1.337345, "range_pos": 0.448, "vol_mult": 1, "h1_atr": 0.001243, "t": 1784741282683, "received_utc": "2026-07-22T17:28:04.131439+00:00"}
+{"event": "SPRING_SHORT", "symbol": "GBPUSD", "tf": "1", "price": 1.337265, "level": 1.337315, "extreme": 1.33735, "range_pos": 0.44, "vol_mult": 1, "h1_atr": 0.001243, "t": 1784741460296, "received_utc": "2026-07-22T17:31:02.795123+00:00"}
