@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-22T17:15:18Z",
-  "updated_by": "auto_tick_77_tier2",
+  "updated_utc": "2026-07-22T17:17:55Z",
+  "updated_by": "auto_tick_78_tier2",
   "balance": {
     "value": 6411.59,
-    "equity": 6420.69,
-    "queried_utc": "2026-07-22T17:15:18Z",
-    "note": "live-queried this run. Balance unchanged from last realized close; equity 6393.53->6420.69 on floating P&L: WTI improved -315.12->-248.73 (EVAN_MANUAL, still no SL, M5 bounced off 85.554 low to 86.074), NVIDIA eased +294.79->+268.42 (EVAN_MANUAL), BTCUSD [LEARN] long floating worsened +1.43->-10.58 (mild lower-high sequence forming post-entry, prior swing low 66116.99 not yet broken, not a confirmed Rule5 reversal, SL/TP intact, watching)."
+    "equity": 6422.29,
+    "queried_utc": "2026-07-22T17:17:55Z",
+    "note": "live-queried this run. Balance unchanged from last realized close; equity 6420.69->6422.29 on floating P&L: WTI improved -248.73->-240.18 (EVAN_MANUAL, still no SL, M5 continued the bounce off 85.554 low, 17:10/17:15 closes 85.969/86.074), NVIDIA improved +268.42->+272.01 (EVAN_MANUAL), BTCUSD [LEARN] worsened -10.58->-22.22 (declining-highs sequence continues but the 66116.99 swing low still NOT broken — 17:00 bar wicked to 66117.04 and bounced, 17:15 low 66131.06 well clear — not a confirmed Rule5 reversal, SL/TP intact, watching)."
   },
   "session_start_balance": 7394.99,
   "open_positions": [
@@ -18,9 +18,9 @@
       "price": 87.574,
       "stopLoss": 0,
       "takeProfit": 87.963,
-      "pl": -248.73,
+      "pl": -240.18,
       "openTime_utc": "2026-07-22T10:02:05Z",
-      "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 10u @87.574, TP 87.963, **STILL NO STOP LOSS** — uncapped downside. Evan's position to manage; flagged every tick until an SL exists or it is closed. pl refreshed tick77 (-315.12->-248.73); M5 bounced off 85.554 low (16:50 bar) to a fresh local high 86.074 (17:15 close), higher-high/higher-low bounce forming but still well below entry 87.574.",
+      "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 10u @87.574, TP 87.963, **STILL NO STOP LOSS** — uncapped downside. Evan's position to manage; flagged every tick until an SL exists or it is closed. pl refreshed tick78 (-248.73->-240.18); M5 bounce off 85.554 low continues, 17:10/17:15 closes 85.969/86.074, higher-high/higher-low sequence intact but still well below entry 87.574.",
       "origin": "EVAN_MANUAL"
     },
     {
@@ -31,9 +31,9 @@
       "price": 204.95,
       "stopLoss": 197.72,
       "takeProfit": 221.01,
-      "pl": 268.42,
+      "pl": 272.01,
       "openTime_utc": "2026-07-22T11:41:49Z",
-      "note": "EVAN_MANUAL. Not this system's instrument universe, not touched. pl refreshed tick77 (+294.79->+268.42).",
+      "note": "EVAN_MANUAL. Not this system's instrument universe, not touched. pl refreshed tick78 (+268.42->+272.01).",
       "origin": "EVAN_MANUAL"
     },
     {
@@ -44,9 +44,9 @@
       "price": 66171.46,
       "stopLoss": 65860,
       "takeProfit": 66690,
-      "pl": -10.58,
+      "pl": -22.22,
       "openTime_utc": "2026-07-22T16:49:49Z",
-      "note": "[LEARN] tick75 auto entry on HL_RECLAIM (M15) signal. H4 verdict was stale/uncertain (see h4_verdicts.BTCUSD) so trend gate downgraded to WARN per learn-mode rules; entry taken on clean M15 structure reclaim above local resistance after bounce off session low 65499.86. SL below 16:30 M15 swing low (65882.2) w/ buffer. TP near recent H4 swing high (66683.83). R:R ~1.66:1 on fill. Enforcer PASS (learn), risk ~R50, min lot (0.01). pl refreshed tick77 (+1.43->-10.58); M5 since entry shows a declining-highs sequence (66255.81->66195.71->66234.61->66223.34->66170.98) with a pullback low 66131.06 (17:15) that has NOT yet broken the 66116.99 (16:55/17:00) double-bottom low — lower-highs forming but no confirmed lower-low break, so CHANGE3's 'structure reversed' bar not clearly met yet. P&L now marginally negative. Not flagging Rule5 cut this tick (reversal not confirmed, loss trivial, SL/TP intact with plenty of room). Watch next tick — if 66116.99 breaks with P&L still negative, that is the Rule5 trigger.",
+      "note": "[LEARN] tick75 auto entry on HL_RECLAIM (M15) signal. H4 verdict was stale/uncertain (see h4_verdicts.BTCUSD) so trend gate downgraded to WARN per learn-mode rules; entry taken on clean M15 structure reclaim above local resistance after bounce off session low 65499.86. SL below 16:30 M15 swing low (65882.2) w/ buffer. TP near recent H4 swing high (66683.83). R:R ~1.66:1 on fill. Enforcer PASS (learn), risk ~R50, min lot (0.01). pl refreshed tick78 (-10.58->-22.22); M5 since entry still shows a mildly declining-highs sequence but the 66116.99 double-bottom low remains UNBROKEN — 17:00 bar wicked to 66117.04 and reclaimed to close 66189.77, 17:05 high pushed back up to 66234.61, 17:15 low only 66131.06. No confirmed lower-low, so CHANGE3's 'structure reversed' bar still not met. Not flagging Rule5 cut this tick (reversal not confirmed, loss still small, SL/TP intact with plenty of room). Watch next tick — if 66116.99 breaks with P&L still negative, that is the Rule5 trigger.",
       "origin": "AUTO_LEARN"
     }
   ],
@@ -124,9 +124,9 @@
     },
     "GBPUSD": {
       "trend": "CHOP (unconfirmed either way) — bouncing inside the 1.3365-1.3382 compression zone",
-      "asof": "2026-07-22T16:57:37+00:00",
-      "swings": "14:00 bull reversal topped at 15:00's 1.33903, failed by 16:00 (closed 1.33757); 16:15 bar broke down hard (89% bear body) to 1.33675, tick73/74 pushed the low further to 1.33657/1.33664; since then price has recovered back to 1.3373/1.3374 (16:30 bar bounced off 1.3365 low, ~38% bull body; 16:45 bar closed marginally red, mid-range). No clean directional swing sequence since the 14:00 reversal — alternating ~15-20pip swings inside 1.3365-1.3382.",
-      "note": "refreshed tick 76 — PULLBACK_TAG_LONG fired 1.33707 (level 1.337075, extreme 1.336875, range_pos 0.392) at 16:57:03Z, tagging the bounce off the 1.3365-1.336875 sweep low back toward 1.3374. Same standing pattern as tick67's HL_RECLAIM ('the bounce not to sell into, and not a valid long either'): H4/H1 genuinely CHOP since the 14:00 reversal, no confirmed trend to be with or against, so this isn't a learn-mode H4-downgrade case, just no valid trend structure (same standard as EURUSD CHOP calls ticks 63/68). M15 trigger not met: last 3 closed bars are 16:15 (89% bear), 16:30 (~38% bull, weak), 16:45 (marginal bear, closed mid-range) — no clean 60%+ bull rejection bar. R:R fails regardless: structural SL below the 1.3365 swing low + buffer (~1.3360) = ~14pip risk from ~1.3374 entry; nearest resistance is the same 1.3380-1.3382 chop ceiling that has rejected price repeatedly per ticks72-74 (~6-8pip reward) — R:R ≈0.5:1, even using the more generous 1.33887 target (~15pips) only reaches ≈1.07:1, still under Rule9's 1.2:1 floor, not learn-mode-downgradable. Rule17 clear (range_pos 0.392, mid-range) — moot. News: WebSearch confirmed UK CPI YoY already printed ~06:00Z (~11h prior); only other item is US crude/gasoline/distillate inventories (not GBP-relevant, not blocklisted) — attested news_clear, moot since blocked on trigger/R:R. No enforcer run, nothing placed/would-placed. NO_ACTION."
+      "asof": "2026-07-22T17:17:00+00:00",
+      "swings": "14:00 bull reversal topped at 15:00's 1.33903, failed by 16:00 (closed 1.33757); 16:15 bar broke down hard (89% bear body) to 1.33675; since then price has chopped 1.3365-1.3374 for over an hour with no clean directional close. Latest closed M15 (17:00): O1.33697 H1.33736 L1.33681 C1.33725, ~51% bull body — another mid-range close, not a break either way.",
+      "note": "refreshed tick 78 — SWEEP_LOW fired 1.337225 (level 1.33712, extreme 1.33707, range_pos 0.43) at 17:16:04Z, dispatcher-flagged shelf signature (6 sweeps at ~1.33712 within 240min, Sprung Ladder Phase-1 candidate — Evan-scout-only per standing tick44/51/52/59 policy regardless of read). Same standing CHOP verdict as ticks 63/68/72/73/76: H4/H1 still genuinely no-trend since the 14:00 reversal failed, so no gate to pass or fail with/against. Note: the 17:00-18:00 H1 bar's endpoint read (L1.3365) is stale/inconsistent with the fresher M15 series underneath it (L1.33681-1.33703) — same H1-lag data-quality flag seen ticks 56/59/60; trusted M15. M15 trigger not met: last CLOSED bar (17:00) only ~51% bull body, not a clean 60%+ rejection/reclaim bar; the 17:15 bar containing the signal print is still forming. R:R fails regardless: Rule2 15pip SL floor from ~1.33725 entry = ~1.3358, reward to the 1.3380-1.3382 chop ceiling ~7.5pips, R:R ≈0.5:1; even the generous 1.33903 target (~17.8pips) only reaches ≈1.19:1, still just under Rule9's 1.2:1 floor. News: fresh WebSearch confirmed UK CPI YoY already printed today (this morning's release, well outside the 2h window); only other calendar item is US crude/gasoline/distillate inventories (not GBP-relevant, not blocklisted) — attested news_clear, moot since blocked on trigger/R:R. No enforcer run, nothing placed/would-placed. NO_ACTION."
     }
   },
   "session_ranges": {
@@ -172,8 +172,8 @@
       "range": 0.00402,
       "top_15pct_cutoff": 1.338867,
       "bottom_15pct_cutoff": 1.336053,
-      "asof": "2026-07-22T16:57:37+00:00",
-      "source": "get_symbol_price live bid 1.33728/ask 1.3374, tick76. Range unchanged from tick73/74 (1.33545-1.33947). Entry ~1.3374 = range_pos 0.392, mid-range, clear of both Rule17 bands — moot anyway since blocked on M15-trigger/R:R grounds, not Rule17."
+      "asof": "2026-07-22T17:17:55+00:00",
+      "source": "get_symbol_price live bid 1.33714/ask 1.33725, tick78. Range unchanged from tick73/74 (1.33545-1.33947). Entry ~1.33725 = range_pos ~0.43, mid-range, clear of both Rule17 bands — moot anyway since blocked on M15-trigger/R:R grounds, not Rule17."
     },
     "BTCUSD": {
       "high": 66683.83,
@@ -353,9 +353,19 @@
       "symbol": "USOIL",
       "note": "tick 77 (mode=learn): SPRING_LONG fired 86.66 (level 85.78, extreme 86.11, range_pos 0.532) at 17:15:02Z + companion SPRING tag 17:15:03Z, 15m tf. Pre-blocked before any structure check, same standing rule as ticks 54/74: USOIL/WTI Crude is on CLAUDE.md's INSTRUMENTS TO AVOID list (too news/spread driven; use BRENT instead). Also reconfirmed no live price feed under the 'USOIL' symbol on this broker (get_symbol_price errored again) — only 'WTI' is tradable, which is Evan's own open manual position, not this signal's instrument. No enforcer run, nothing placed/would-placed. NO_ACTION.",
       "set_utc": "2026-07-22T17:15:03Z"
+    },
+    {
+      "symbol": "USOIL",
+      "note": "tick 78 (mode=learn): companion SPRING tag re-fired 86.66 at 17:15:03Z, part of the same batch as tick77's SPRING_LONG. Same standing block: USOIL on CLAUDE.md's INSTRUMENTS TO AVOID list, no live USOIL price feed on this broker. No enforcer run, nothing placed/would-placed. NO_ACTION, no re-analysis needed.",
+      "set_utc": "2026-07-22T17:15:03Z"
+    },
+    {
+      "symbol": "GBPUSD",
+      "note": "tick 78 (mode=learn): SWEEP_LOW fired 1.337225 (level 1.33712, extreme 1.33707, range_pos 0.43) at 17:16:04Z, dispatcher-flagged shelf signature (6 sweeps at ~1.33712 within 240min, Sprung Ladder Phase-1 candidate). Full re-check (see h4_verdicts.GBPUSD): H4 still genuine CHOP since the 14:00 reversal failed, no trend to be with/against; last closed M15 (17:00) only ~51% bull body, not a clean trigger; R:R fails even generously (~1.19:1 best case vs Rule9's 1.2:1 floor). News fresh-checked, clear, moot. Sprung Ladder scout deployment on this shelf remains Evan-only regardless of read (standing tick44/51/52/59 policy). No enforcer run, nothing placed/would-placed. NO_ACTION. Same watch condition as tick76: need a confirmed closed M15/H1 break above ~1.3382-1.339 or below 1.3365/1.33545 before this shelf becomes tradeable either direction.",
+      "set_utc": "2026-07-22T17:16:04Z"
     }
   ],
-  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick77 TIER2: USOIL SPRING_LONG (15m) escalated from t1 / spawned direct as t2. Pre-blocked before structure/H4 analysis: USOIL is on CLAUDE.md's Instruments-to-Avoid list (same standing block as ticks 54/74), and the broker has no USOIL price feed (WTI is the tradable CFD, and that symbol is already Evan's manual position, not this signal). No enforcer run, nothing placed/would-placed. Open-position guard: WTI (EVAN_MANUAL, no SL) pl improved -315.12->-248.73, M5 bounced off 85.554 to a fresh local high 86.074 (17:15), still well below entry 87.574, not touched (Evan's position); NVIDIA (EVAN_MANUAL) pl eased +294.79->+268.42, not touched; BTCUSD [LEARN] pl slipped +1.43->-10.58, M5 showing a declining-highs sequence but the 66116.99 swing low has NOT yet broken — reversal not confirmed, Rule5 cut not flagged this tick, SL/TP intact, watch next tick. No enforcer run, nothing placed/would-placed. Live balance R6411.59 / equity R6420.69. Session P&L (balance basis) R-983.40 vs session_start_balance R7394.99, unchanged this tick (no realized closes).",
+  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick78 TIER2: signal batch SPRING USOIL (companion tag, same event as tick77) + SWEEP_LOW GBPUSD 1.337225. USOIL pre-blocked (Instruments-to-Avoid, same standing rule as ticks 54/74/77), no re-analysis. GBPUSD SWEEP_LOW is part of the flagged 6x-sweep shelf signature (Sprung Ladder Phase-1 candidate, Evan-scout-only) but evaluated on ordinary Change5 merits regardless: H4 still CHOP, M15 trigger not met, R:R fails (~1.19:1 best case) — NO_ACTION, consistent with ticks 63/68/72/73/76 on the same shelf. No enforcer run, nothing placed/would-placed. Open-position guard: WTI (EVAN_MANUAL, no SL) pl improved -248.73->-240.18, M5 bounce off 85.554 continues (17:10/17:15 closes 85.969/86.074), still well below entry 87.574, not touched; NVIDIA (EVAN_MANUAL) pl improved +268.42->+272.01, not touched; BTCUSD [LEARN] pl worsened -10.58->-22.22, declining-highs sequence continues but the 66116.99 double-bottom low remains UNBROKEN (17:00 wicked to 66117.04 and reclaimed) — reversal not confirmed, Rule5 cut not flagged, SL/TP intact, watch next tick. Live balance R6411.59 / equity R6422.29. Session P&L (balance basis) R-983.40 vs session_start_balance R7394.99, unchanged this tick (no realized closes).",
   "anomaly_status": {
     "state": "RESOLVED",
     "resolved_utc": "2026-07-22T11:47:00Z",

@@ -2533,3 +2533,12 @@ SL 65860/TP 66690 intact with room. Watch next tick — a break of
 session_snapshot.json updated (balance/equity refresh, WTI/NVIDIA/BTCUSD
 pl refresh, new tick77 watch_levels note). tick_counter.txt -> 77.
 session_logger.py tick77 logged.
+
+## AUTO TICK 78 — 2026-07-22T17:17:55Z (LDN, mode=learn)
+Signals: SPRING USOIL 86.66 (companion tag, same event as tick77) | SWEEP_LOW GBPUSD 1.337225 (level 1.33712, extreme 1.33707, range_pos 0.43) — dispatcher-flagged 6x-sweep shelf signature, Sprung Ladder Phase-1 candidate.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Balance R6411.59 / equity R6422.29 (live-queried).
+USOIL: pre-blocked, Instruments-to-Avoid list (standing rule, same as ticks 54/74/77). No live USOIL feed on broker anyway. NO_ACTION.
+GBPUSD: full Change5 re-check. H4 still genuine CHOP since 14:00 reversal failed (no trend to be with/against). Last closed M15 (17:00) only ~51% bull body — trigger not met. R:R fails: Rule2 15pip SL floor vs ~7.5pip reward to 1.3380-1.3382 ceiling (~0.5:1), even generous 1.33903 target only ~1.19:1, under Rule9's 1.2:1 floor. Sprung Ladder scout deployment on this shelf remains Evan-only regardless (standing tick44/51/52/59 policy). News fresh-checked (WebSearch): UK CPI already printed this morning, only other item is US crude/gasoline/distillate inventories (not blocklisted) — attested clear, moot since blocked on trigger/R:R. No enforcer run. NO_ACTION.
+Open-position guard: WTI (EVAN_MANUAL, still no SL) pl -248.73→-240.18, M5 bounce off 85.554 continues (85.969/86.074 closes), not touched. NVIDIA (EVAN_MANUAL) pl +268.42→+272.01, not touched. BTCUSD [LEARN] pl -10.58→-22.22, declining-highs sequence continues but 66116.99 double-bottom low still unbroken (17:00 wicked to 66117.04, reclaimed) — Rule5 cut not flagged, SL/TP intact, watching.
+Session P&L (balance basis): R-983.40 vs start R7394.99, unchanged this tick (no realized closes).
+No orders placed or would-placed. Snapshot/tick_counter/session_log updated, committing.
