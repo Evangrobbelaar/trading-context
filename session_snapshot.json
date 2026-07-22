@@ -1,11 +1,12 @@
 {
  "schema": 1,
- "updated_utc": "2026-07-22T11:47:00Z",
- "updated_by": "interactive session \u2014 Evan resolved tick64 anomaly",
+ "updated_utc": "2026-07-22T11:43:00Z",
+ "updated_by": "tick 67 (AUTO TIER2 learn) \u2014 HL_RECLAIM GBPUSD, freeze-status re-verified clear (anomaly RESOLVED per Evan), NO_ACTION on the reclaim, armed short ticket unchanged",
  "balance": {
   "value": 6831.39,
-  "equity": 6414.07,
-  "queried_utc": "2026-07-22T11:47:00Z"
+  "equity": 6688.64,
+  "queried_utc": "2026-07-22T11:43:00Z",
+  "note": "live-queried this run (tick36 rule). Balance unchanged from the 11:47Z interactive snapshot (no new realized closes). Equity improved 6414.07->6688.64 \u2014 WTI floating loss narrowed (combined -R142.75 vs -R413.85 at 11:47Z) as WTI bounced."
  },
  "session_start_balance": 7394.99,
  "open_positions": [
@@ -17,9 +18,9 @@
    "price": 87.242,
    "stopLoss": 85.973,
    "takeProfit": 87.954,
-   "pl": -239.45,
+   "pl": -58.68,
    "openTime_utc": "2026-07-22T09:19:47Z",
-   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 20u @87.242, SL 85.973, TP 87.954. Not placed by this system; counts toward aggregate risk + Rule 20. Has a structural stop.",
+   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 20u @87.242, SL 85.973, TP 87.954. Not placed by this system; counts toward aggregate risk + Rule 20. Has a structural stop. pl refreshed tick67.",
    "origin": "EVAN_MANUAL"
   },
   {
@@ -30,9 +31,9 @@
    "price": 87.574,
    "stopLoss": 0,
    "takeProfit": 87.963,
-   "pl": -174.4,
+   "pl": -84.07,
    "openTime_utc": "2026-07-22T10:02:05Z",
-   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 10u @87.574, TP 87.963, **STILL NO STOP LOSS** \u2014 uncapped downside. Evan's position to manage; flagged every tick until an SL exists or it is closed.",
+   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 10u @87.574, TP 87.963, **STILL NO STOP LOSS** \u2014 uncapped downside. Evan's position to manage; flagged every tick until an SL exists or it is closed. pl refreshed tick67.",
    "origin": "EVAN_MANUAL"
   }
  ],
@@ -99,10 +100,10 @@
    "note": "refreshed tick 63 \u2014 stale tick52 BEAR verdict discarded (12hrs old, overnight structure has since reversed to a rally then rejection); current read is CHOP, not a tradeable trend either way. Same 1.14099 shelf flagged Sprung Ladder Phase-1 candidate (4 sweeps/240min) and Evan-scout-only per tick44/51/52 notes \u2014 still applies, moot given the chop anyway."
   },
   "GBPUSD": {
-   "trend": "BEAR (breakdown extending)",
-   "asof": "2026-07-22T11:30:01+00:00",
-   "swings": "Breakdown continuing: fresh LL_BREAKDOWN fired 1.336635 (11:26:01 UTC, level 1.33668) + PULLBACK_TAG_SHORT fired 1.33639 (11:27:01 UTC, range_pos 0.006) \u2014 7th+ breakdown/sweep event on this 1.3366-1.3369 shelf in ~2h. Live price 1.33658/1.33668, session low ticked to 1.33631.",
-   "note": "refreshed tick 66 \u2014 trend read unchanged (BEAR, with-trend short), still no clean M15 rejection trigger confirmed. Rule17 range_pos still ~0 (bottom-15pct band), warning-only in learn mode. MOOT this tick: order placement remains frozen pending Evan's review of the tick64 foreign-activity anomaly (still present, re-verified this tick, 3rd consecutive re-verification)."
+   "trend": "BEAR (breakdown stalling \u2014 shelf defended 7x, now bouncing)",
+   "asof": "2026-07-22T11:43:00+00:00",
+   "swings": "The 11:30 M15 bar wicked to fresh session low 1.33631 then closed 1.33653 (46% body, no clean bear rejection). Since then price has reclaimed: HL_RECLAIM fired 1.336955 (11:40:11 UTC, level 1.336935, extreme 1.33655, range_pos 0.184). Live bid/ask 1.33641/1.33652 \u2014 back inside the 1.3366-1.3369 shelf band, 7th breakdown attempt on this shelf rejected.",
+   "note": "refreshed tick 67 \u2014 H4 still BEAR but the shelf keeps holding; this is the bounce, not a break. Counter-trend long NOT valid (no confirmed HL + broken H4 swing high). With-trend short NOT valid here either \u2014 this is a reclaim, not a rejection, and the standing armed instruction (set 11:47Z) explicitly says do not sell into the bounce. NO_ACTION. Armed ticket unchanged: short only on a confirmed closed M15 below 1.33631."
   }
  },
  "session_ranges": {
@@ -148,8 +149,8 @@
    "range": 0.00316,
    "top_15pct_cutoff": 1.338996,
    "bottom_15pct_cutoff": 1.336784,
-   "asof": "2026-07-22T11:30:01+00:00",
-   "source": "get_symbol_price live bid 1.33658/ask 1.33668, low 1.33631, tick 66 \u2014 range/cutoffs recalculated. Moot this tick, frozen on anomaly."
+   "asof": "2026-07-22T11:43:00+00:00",
+   "source": "get_symbol_price live bid 1.33641/ask 1.33652, low/high unchanged (1.33631/1.33947), tick 67. Moot \u2014 blocked on structure (bounce, not rejection), not Rule17."
   }
  },
  "armed_tickets": [],
@@ -259,9 +260,13 @@
    "level": 84.018,
    "note": "Today's WTI session low. If revisited: pos 109830351 stops out ~-R834 total; pos 109830436 (no SL) would run to roughly -R890. Combined ~-R1,725 = ~25% of the R6,831 balance. This is the account's dominant risk, not the GBPUSD scout.",
    "set_utc": "2026-07-22T11:47:00Z"
+  },
+  {
+   "symbol": "GBPUSD",
+   "note": "tick 67 (mode=learn): HL_RECLAIM fired 1.336955 (11:40:11 UTC, level 1.336935, extreme 1.33655, range_pos 0.184). Tier1 escalated for freeze-status verification. Freeze status re-verified: anomaly_status is RESOLVED (Evan confirmed 11:47Z), standing rule applies \u2014 did not re-freeze. Live re-check: switch_trading_account caught the usual revert to 41750592, confirmed 41829612; balance R6831.39, equity R6688.64 (WTI floating loss narrowed to -R142.75 combined from -R413.85, both EVAN_MANUAL, unchanged orderIds, no new foreign activity). GBPUSD: this HL_RECLAIM IS the bounce the 11:47Z armed note said not to sell into \u2014 price reclaimed off the 1.33655 extreme back toward the shelf, live 1.33641/1.33652. Not a valid counter-trend long (H4 still BEAR, no confirmed HL + broken H4 swing high). Not a valid with-trend short either (this is a reclaim, not a rejection; standing instruction explicit). News: WebSearch found UK CPI YoY was today's scheduled release but already printed ~06:00 UTC (~5h40m prior, outside the 2h window); only other item is US crude/gasoline inventories (not GBP-relevant, not on the blocklist) \u2014 attested news_clear, moot since blocked on structure anyway. No enforcer run, nothing placed/would-placed. NO_ACTION. Armed ticket unchanged: short only on a confirmed closed M15 below 1.33631."
   }
  ],
- "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick 66: ANOMALY from tick64 RE-VERIFIED and still present for the 3rd consecutive tick, unchanged (same 2 WTI positions incl. zero-SL one, same pending NVIDIA order, no new foreign activity, no new realized closes since tick65). Freeze on new order placement maintained pending Evan's review \u2014 this system did not attempt to close/modify the foreign positions itself, that is Evan's call. GBPUSD LL_BREAKDOWN + PULLBACK_TAG_SHORT continuing (fresh session low 1.33631) analyzed and recorded but not acted on. Live balance R6831.39 / equity R6512.83. Session P&L (balance basis) R-563.60 vs session_start_balance R7394.99, unchanged from tick65 (still includes the foreign activity's realized losses).",
+ "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick 67: anomaly_status remains RESOLVED (standing rule \u2014 EVAN_MANUAL WTI/NVIDIA positions logged, not frozen). HL_RECLAIM GBPUSD (1.336955) analyzed \u2014 this is the shelf's bounce off the 1.33631 low, not a valid entry either direction; NO_ACTION, armed short-below-1.33631 ticket carried forward unchanged. Live balance R6831.39 / equity R6688.64 (WTI floating loss narrowed since 11:47Z). Session P&L (balance basis) R-563.60 vs session_start_balance R7394.99, unchanged (no new realized closes this tick).",
  "anomaly_status": {
   "state": "RESOLVED",
   "resolved_utc": "2026-07-22T11:47:00Z",

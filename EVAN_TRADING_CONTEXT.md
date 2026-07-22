@@ -2188,3 +2188,19 @@ WTI live 86.878. Both Evan-manual longs are underwater and widening (-R239.45 an
 - Combined revisit-the-low scenario ≈ -R1,725 = ~25% of the R6,831 balance.
 This dwarfs any R24 minimum-lot scout decision. Left untouched — Evan's positions, Evan's
 call — but flagged as the dominant risk on the account.
+
+## AUTO TICK 67 — 2026-07-22T11:43Z (13:43 SAST) — Tier2, mode=learn
+Signal: HL_RECLAIM GBPUSD 1.336955 (11:40:11Z, level 1.336935, extreme 1.33655, range_pos
+0.184). Tier1 escalated for freeze-status verification.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612.
+anomaly_status re-checked: RESOLVED (Evan confirmed 11:47Z) — standing rule applied, did
+NOT re-freeze. Live balance R6831.39, equity R6688.64 — WTI floating loss narrowed to
+-R142.75 combined (from -R413.85), both EVAN_MANUAL positions unchanged (same orderIds,
+no new foreign activity).
+GBPUSD read: this HL_RECLAIM is the shelf's bounce off the 1.33631 low — exactly what the
+11:47Z armed note said not to sell into. Not a valid counter-trend long either (H4 still
+BEAR, no confirmed HL + broken H4 swing high). News: UK CPI already printed ~06:00Z,
+outside 2h window — news_clear, moot since blocked on structure. No enforcer run, nothing
+placed/would-placed.
+DECISION: NO_ACTION. Armed ticket carried forward unchanged: short only on a confirmed
+closed M15 below 1.33631.
