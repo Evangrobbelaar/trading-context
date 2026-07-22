@@ -86,3 +86,4 @@
 {"ts": "2026-07-21T14:37:31.584344+00:00", "verdict": "PASS", "mode": "general", "instrument": "XAUUSD", "account_id": "41829612", "balance": 7338.36, "risk_amount": 249.4, "blocks": [], "version": "v3"}
 {"ts": "2026-07-22T01:22:52.537257+00:00", "verdict": "PASS", "mode": "general", "instrument": "USDJPY", "account_id": "41829612", "balance": 7164.09, "risk_amount": 306.56, "blocks": [], "version": "v3.1"}
 {"ts": "2026-07-22T07:42:06.486624+00:00", "verdict": "PASS", "mode": "general", "instrument": "GBPUSD", "account_id": "41829612", "balance": 7164.09, "risk_amount": 40.0, "blocks": [], "version": "v3.1"}
+{"ts": "2026-07-22T11:40:58.319833+00:00", "verdict": "PASS", "mode": "general", "instrument": "GBPUSD", "account_id": "41829612", "balance": 6831.39, "risk_amount": 24.0, "blocks": [], "version": "v3.1"}

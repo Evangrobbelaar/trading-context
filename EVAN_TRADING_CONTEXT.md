@@ -2154,3 +2154,37 @@ same 2 WTI positions and 1 NVIDIA pending order not placed by this system, one W
 position still with zero stop loss. Please confirm whether this is your own manual
 activity or something else, and clear the zero-SL exposure. Auto-tick will keep freezing
 new order placement on this account until then.**
+
+## ANOMALY RESOLVED — 2026-07-22T11:47 UTC (13:47 SAST) — interactive session, not an auto tick
+**Evan confirmed the tick64/65/66 "foreign trading activity" was his own manual trading.**
+The 2 WTI positions, the NVIDIA pending order, and the three 09:12-10:28 UTC closes are all
+Evan's. No second actor, no compromised account. **Foreign-activity freeze LIFTED.**
+
+STANDING RULE ADDED: Evan trades 41829612 manually alongside the auto-tick system. Manual
+fills are expected and are NOT an integrity anomaly. Log them as EVAN_MANUAL, include them
+in aggregate risk and Rule 20 correlation, but do NOT freeze order placement for them.
+Freeze only for activity Evan has not accounted for.
+
+**GBPUSD — freeze lifted, but the trade was NOT placed, for a separate reason.**
+Re-ran the setup live at 11:45Z. The tick64-66 signals (LL_BREAKDOWN 1.336635,
+PULLBACK_TAG_SHORT 1.33639) have FAILED to follow through. Live bid 1.33689 — ~5.5 pips
+ABOVE the breakdown print and back inside the shelf. The 11:30 M15 bar wicked to 1.33631
+but closed 1.33653 (body/range 46%, still no 60%+ bear rejection trigger) and price has
+since recovered above it. Last 10 M15 bars are an ~8-pip chop band (closes 1.33653-1.33705)
+with the 1.3366-1.3369 shelf now rejecting its 7th breakdown attempt in 2h.
+Enforcer v3.1 --learn returned PASS exit 0 (Rule 17 now genuinely clears too: range_pos
+~18%, above the 15% band). So this was NOT an enforcer block — it is a structure call:
+selling here is selling into a bounce off a repeatedly-defended shelf, a worse entry than
+the signal offered, and the signals are ~20min stale on a 1-min timeframe.
+**ARMED instead: short only on a closed M15 below 1.33631. Nothing placed this run.**
+
+**OPEN RISK — the real exposure (flagged for Evan's decision):**
+WTI live 86.878. Both Evan-manual longs are underwater and widening (-R239.45 and -R174.40,
+-R413.85 combined, up from -R317 at tick66).
+- 109830351: Buy 20u @87.242, SL 85.973 — capped, ~-R834 if stopped.
+- 109830436: Buy 10u @87.574, **NO STOP LOSS** — uncapped. WTI's own session low today is
+  84.018, i.e. price has already traded 2.86 pts below current *today*. A revisit puts this
+  position near -R890 with nothing to stop it.
+- Combined revisit-the-low scenario ≈ -R1,725 = ~25% of the R6,831 balance.
+This dwarfs any R24 minimum-lot scout decision. Left untouched — Evan's positions, Evan's
+call — but flagged as the dominant risk on the account.
