@@ -2035,3 +2035,53 @@ Bookkeeping: session_snapshot.json updated (balance, USDJPY + EURUSD h4_verdicts
 EURUSD session_range reset to 1.13924-1.1418, two new watch_levels notes). tick_counter.txt
 -> 63. Session P&L = 7162.94 - 7394.99 = -R232.05, unchanged from tick 62 (book flat, no
 fills). session_logger.py tick 63 logged.
+
+## AUTO TICK 64 — 2026-07-22T11:20 UTC (13:20 SAST, LDN session) — ANOMALY FLAGGED
+Signals: LL_BREAKDOWN GBPUSD @1.336795 (1m, level 1.33685, fired 11:19:01 UTC) |
+PULLBACK_TAG_SHORT GBPUSD @1.33669 (1m, fired 11:20:01 UTC). Tier1 escalated: "H4 verdict
+stale (229min), reversal formed tick 60 now broken by LL; fresh H4 read needed."
+
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612.
+
+**ANOMALY — foreign trading activity discovered on 41829612, not placed by this system:**
+- 2 OPEN WTI positions: 20u @87.242 (SL 85.973, TP 87.954, floating -R177.86) and 10u
+  @87.574 (**NO STOP LOSS**, TP 87.963, floating -R143.60). WTI is on the CLAUDE.md
+  avoid-list; both are Limit-type fills (this system is Rule22 market-only).
+- 1 PENDING order: NVIDIA Buy 2u @204.95 (Limit) — NVIDIA is not in this system's
+  instrument universe at all (equities, not FX/Gold/Oil/Crypto/indices).
+- 3 REALIZED closes since tick63 (08:26 UTC), none logged anywhere in this repo:
+  GBPUSD Sell 5000u -R26.37 (09:22-10:14 UTC), WTI Buy 20u -R285.88 via its own SL
+  (09:17-10:28 UTC), NVIDIA Buy 2u -R19.45 (09:13-09:59 UTC).
+- Balance dropped R331.55 (7162.94 -> 6831.39) purely from these realized closes —
+  this system placed zero trades in that window (git log shows only signal-ingest
+  commits, tick_counter was still 63, session_log/snapshot show book flat at tick63).
+- The zero-SL open WTI position is a direct violation of the hard rule "every position
+  must have a structural stop loss, no SL = no trade, in any mode" (AUTO_TICK_PROTOCOL.md
+  LEARN MODE section) — this system did not place it, but it exists on the account.
+
+This looks like a second, uncoordinated actor (manual or another automated process)
+trading account 41829612 outside this repo's tracking. Live balance R6831.39 / equity
+R6509.43 (queried this run, tick36 rule).
+
+GBPUSD fresh H4 read (done regardless, for the record): tick60's reversal attempt
+(HH 1.33892 broke 1.33868/1.33803, HL 1.33772 above 1.33645) has now FAILED — the
+08:00-12:00 H4 bar undercut that higher-low with a fresh 1.33688 low, then H1 extended
+to 1.33655 (10:45 bar), and the fired LL_BREAKDOWN/PULLBACK_TAG_SHORT confirm the
+breakdown. A short here would now be WITH trend again (Rule3 exception from tick60 is
+moot/reversed). But: M15 trigger not clean (no closed 60%+ bear-body rejection bar
+coincides with the 1min signals), and Rule17 range_pos 0.031-0.066 sits deep in the
+bottom-15pct band (session range unchanged 1.33645-1.33947, cutoff 1.336903) — hard
+block outside learn mode, warning-only in learn mode. News: WebSearch confirms UK CPI
+YoY already printed ~06:00 UTC today, 5h20m prior — outside the 2h window, no block.
+
+**Decision: froze ALL order placement this tick regardless of the GBPUSD read.** Cannot
+safely evaluate Rule20 correlation, true aggregate risk, or margin headroom while an
+unexplained second actor is actively trading this account. No enforcer run, nothing
+placed, nothing would-placed. session_snapshot.json updated with full anomaly detail
+(open_positions, pending_orders_foreign, closed_since_last_snapshot all flagged
+ANOMALOUS) and refreshed GBPUSD h4_verdicts. tick_counter.txt -> 64.
+
+**EVAN: please confirm whether you (or another process) placed the WTI/NVIDIA/GBPUSD
+trades between ~09:12-10:28 UTC today. The 10-unit WTI position currently has NO stop
+loss.** Next tick must re-verify no further foreign activity before resuming normal
+auto-tick analysis on this account.
