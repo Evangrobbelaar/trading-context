@@ -34,3 +34,4 @@
 {"event": "HL_RECLAIM", "symbol": "BTCUSD", "tf": "15", "price": 66518.68, "t": 1784678401025, "received_utc": "2026-07-22T00:00:12.337652+00:00"}
 {"event": "HL_RECLAIM", "symbol": "GBPUSD", "tf": "15", "price": 1.33864, "t": 1784680200757, "received_utc": "2026-07-22T00:30:05.455994+00:00"}
 {"event": "HL_RECLAIM", "symbol": "EURUSD", "tf": "15", "price": 1.14069, "t": 1784680201986, "received_utc": "2026-07-22T00:30:12.590799+00:00"}
+{"event": "HL_RECLAIM", "symbol": "EURUSD", "tf": "15", "price": 1.14069, "t": 1784680201986, "received_utc": "2026-07-22T00:30:18.795911+00:00"}
