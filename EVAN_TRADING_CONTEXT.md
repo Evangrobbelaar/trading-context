@@ -1619,3 +1619,59 @@ prints above 4087.08, the Rule 17 exception is satisfied and this setup can be r
 **Bookkeeping:** session_snapshot.json refreshed (balance re-confirmed live, H4/range asof
 bumped to 01:15:43Z, watch_levels appended). tick_counter.txt -> 53. Session P&L =
 7164.09 - 7394.99 = -R230.90, unchanged from tick 52. session_logger.py tick 53 logged.
+
+## tick 54 — AUTO TIER2, execute mode (22 Jul, 01:19-01:22 UTC / 03:19-03:22 SAST)
+
+Signals: GOLD HL_RECLAIM 4121.231 (duplicate re-print of tick 53's signal), USOIL HL_RECLAIM
+85.25, USDJPY 2x SWEEP 163.136/163.137 (01:00 + 01:15) — shelf-signature flag on the runner.
+
+**Account/balance:** switched to 41829612, verified `"current":"41829612"` (no revert this
+tick). Live balance R7,164.09, equity R7,164.09, zero open positions (confirmed via
+get_open_positions) — book flat, matches snapshot.
+
+**GOLD:** exact duplicate of the 4121.231 print already handled tick 53 (Rule 17 top-15pct
+block, H1 02:00 candle still not closed). No re-analysis needed. NO_ACTION.
+
+**USOIL:** pre-blocked before any structure work — USOIL/WTI is on the CLAUDE.md
+INSTRUMENTS TO AVOID list ("too news/spread driven — use BRENT instead"). NO_ACTION.
+
+**USDJPY — full CHANGE5 sequence, fresh pull:**
+- H4: unbroken higher-highs/higher-lows since 162.406 (21 Jul 00:00 low) through 163.23
+  (21 Jul 20:00 high) — BULL confirmed, refreshed (prior snapshot verdict was 7h stale).
+- Structure: the 163.139 shelf (tick-43's HL_RECLAIM level) got swept to session low
+  163.023 across the 00:15-00:30 M15 bars, then reclaimed — live bid/ask 163.157/163.170
+  now trading back above the shelf.
+- M15 trigger: 00:45 bar (163.055->163.14->163.045->163.112) is a 60%+ bull-body reversal
+  bar off the sweep low, followed by two more bull-closing continuation bars (01:00, 01:15).
+- Rule 17: entry ~163.170 sits at 75.8% of session range (163.023-163.217, top cutoff
+  163.188) — clear of the top-15pct block, no breakout exception needed.
+- News: one WebSearch, no scheduled high-impact release found in the next 2h (BoJ's 25bp
+  hike already happened/priced in; thin Asian calendar). Attested news_checked + news_clear.
+
+**Plan (fully specified, enforcer-cleared):** BUY USDJPY 0.08L, entry ~163.170, SL 162.770
+(40 pips — beyond the 163.023 sweep low, satisfies Rule 15 Asian-session minimum), TP
+163.770 (60 pips, R:R 1.5:1), risk R306.56 (4.28% of balance, aggregate 4.28% with book
+flat). Enforcer: `python3 enforcer.py --account demo --account_id 41829612 --balance
+7164.09 --instrument USDJPY --risk_amount 306.56 --open_pending_risk 0 --news_checked
+--news_clear --entry 163.170 --direction buy --session_high 163.217 --session_low
+163.023` → **PASS, exit 0**.
+
+**NOT PLACED — structural tool gap, not a policy call:** this session's MCP grant
+(`mcp__claude_ai_claude__*`) contains only read tools (get_account_info, get_open_positions,
+get_symbol_price, get_symbol_history, get_close_positions, get_position_by_id,
+get_pending_orders, get_positions_by_symbol, get_future_margin, get_symbol_info,
+get_trading_instrument, get_all_trading_instruments, get_trading_session_times,
+get_margin_requirement, switch_trading_account, list_authorized_accounts,
+reconnect_connection). No create_market_order or any order-mutation tool exists in this
+session at all — mode=execute per auto_mode.json, but the capability to execute is absent
+from the grant. Per the enforcer absolute (never force a trade through) this is treated as
+a hard stop, recorded as WOULD-PLACE. **EVAN: check the claude.ai connector's tool
+scope/grant for this server — order-mutation tools appear to be missing entirely, not just
+denied.** The ticket above is fully analyzed and enforcer-cleared, ready to fire once the
+tool is available; it will need a fresh price/range check at that time since USDJPY is
+moving.
+
+**Bookkeeping:** session_snapshot.json refreshed (balance re-confirmed live, USDJPY H4
+verdict + session range added fresh, watch_levels appended for GOLD dup/USOIL/USDJPY).
+tick_counter.txt -> 54. Session P&L = 7164.09 - 7394.99 = -R230.90, unchanged from tick 53
+(no fills). session_logger.py tick 54 logged.
