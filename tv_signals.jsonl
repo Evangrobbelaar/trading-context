@@ -44,3 +44,4 @@
 {"event": "SPRING", "symbol": "USDJPY", "tf": "15", "price": 163.164, "t": 1784683800348, "received_utc": "2026-07-22T01:30:03.598930+00:00"}
 {"event": "HL_RECLAIM", "symbol": "GOLD", "tf": "15", "price": 4124.197, "t": 1784687400187, "received_utc": "2026-07-22T02:30:01.251724+00:00"}
 {"event": "HL_RECLAIM", "symbol": "EURUSD", "tf": "15", "price": 1.14078, "t": 1784687400376, "received_utc": "2026-07-22T02:30:04.457245+00:00"}
+{"event": "SWEEP", "symbol": "BTCUSD", "tf": "15", "price": 66292.9, "t": 1784693700751, "received_utc": "2026-07-22T04:15:04.131865+00:00"}
