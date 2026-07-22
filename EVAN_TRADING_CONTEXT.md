@@ -2322,3 +2322,34 @@ holding above 4123 with room, or a pullback that improves R:R.
 session_snapshot.json updated (balance/equity, WTI pl refresh, NVIDIA pending->open
 transition, XAUUSD h4_verdict asof refresh, 1 new tick71 watch_levels note).
 tick_counter.txt -> 71. session_logger.py tick71 logged.
+
+## AUTO TICK 72 — 2026-07-22T16:10:03Z (18:10 SAST) — Tier2, mode=learn
+Signal: PULLBACK_TAG_SHORT, GBPUSD, 1.33723 (level 1.337315, extreme 1.337645,
+range_pos 0.431), 16:10:02Z, 1min tf.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612.
+Live balance R6411.59 / equity R6333.47. Anomaly check surfaced a real change: WTI
+109830351 (20u@87.242, SL85.973, EVAN_MANUAL) hit its stop and closed -R419.96 since
+tick71 — matches the balance drop exactly, expected per the anomaly_status RESOLVED
+standing rule, not foreign activity. Remaining WTI 109830436 (10u, still NO STOP LOSS)
+pl worsened to -340.39; NVIDIA (909875988) swung to +261.61 (was -14.17). Both
+EVAN_MANUAL, logged only, not touched.
+GBPUSD H4/H1 re-pulled fresh since tick69's read (11:53Z) is now 4h+ stale: the
+08:00-13:00 lower-high/lower-low BEAR staircase that made tick69's short "with-trend"
+was broken by a violent 14:00 UTC H1 reversal bar (O1.33588 H1.33887 L1.33588 C1.33863,
+~85% bull body), closing back above every H1 swing high since 08:00 except the session
+peak (1.33947). Price has since compressed 1.3371-1.3379 for over an hour with no clean
+directional close. H4 downgraded BEAR -> UNCERTAIN/CHOP. Not a learn-mode-eligible
+counter-trend case (that requires a structurally clean counter-trend read, not genuine
+chop) — same standard as EURUSD's CHOP calls (ticks 63/68). M15 trigger also absent: no
+closed 60%+ bear rejection bar in the recent bars (16:00 bar closed net bullish).
+Rule17 moot: session range recalculated (new low 1.33545 since tick69's 1.3363), entry
+range_pos ~0.44, mid-range, not blocked anyway. News: WebSearch found UK CPI YoY already
+printed ~06:00 UTC (10h+ prior, outside window); only other item is US crude/gasoline/
+distillate inventories (not GBP-relevant, not on the blocklist) — attested news_clear,
+moot since blocked on structure. No enforcer run, nothing placed/would-placed.
+NO_ACTION. Retired the stale tick66 armed ticket (short below 1.33631) — price has
+since traded well above that level (up to 1.33903) and the shelf context is gone.
+session_snapshot.json updated (balance/equity, WTI close + pl refresh, NVIDIA pl,
+GBPUSD h4_verdict + session_range refresh, tick66 armed ticket retired, 1 new tick72
+watch_levels note).
+tick_counter.txt -> 72. session_logger.py tick72 logged.
