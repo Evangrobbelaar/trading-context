@@ -1675,3 +1675,41 @@ moving.
 verdict + session range added fresh, watch_levels appended for GOLD dup/USOIL/USDJPY).
 tick_counter.txt -> 54. Session P&L = 7164.09 - 7394.99 = -R230.90, unchanged from tick 53
 (no fills). session_logger.py tick 54 logged.
+
+## tick 55 — AUTO TIER2, execute mode (22 Jul, 01:30 UTC / 03:30 SAST)
+
+Signal: SPRING USDJPY 163.164 (15m) — continuation of the 163.023 sweep/reclaim sequence
+already fully analyzed at tick 54 (2x SWEEP -> M15 rejection bar -> bull continuation).
+
+**Routing:** switch_trading_account previous=41750592 -> current=41829612 (revert bug fired
+again, caught as always). Live balance R7,164.09, equity R7,164.09, zero open positions
+(confirmed via get_open_positions) — book flat, matches snapshot, no CHANGE 3 guard needed.
+
+**Fresh structure pull:** H4 unbroken HH/HL staircase since 162.406 still intact through
+163.23/163.233 — BULL confirmed, no change from tick 54. M15/H1: the 00:15-00:30 sweep to
+163.023 and reclaim (tick 54's rejection bar + continuation) has kept grinding higher —
+live bid/ask now 163.182/163.195, up from 163.157/163.170 only ~15min earlier.
+
+**Rule 17 — the decisive check:** session range unchanged (163.023-163.217, range 0.194,
+top-15pct cutoff 163.188). Buy-side entry (ask) has drifted from 163.170 (75.8% of range,
+clear) at tick 54 to 163.195 (88.7% of range) now — price crossed the cutoff and is inside
+the banned top-15pct band. Checked the H1 breakout-close exception: last closed H1 bar
+(00:00-01:00) closed 163.182, below session high 163.217; the current forming H1 bar
+(01:00-02:00) hasn't printed above 163.217 either. No confirmed breakout close — exception
+NOT met.
+
+**News:** one WebSearch, no scheduled high-impact USD/JPY release found within 2h (BoJ
+already priced, thin Asian calendar) — attested news_checked + news_clear, but moot since
+Rule 17 blocks before the enforcer step.
+
+**Decision: NO_ACTION.** Rule 17 blocks this BUY pre-enforcer — no enforcer run. Also
+reconfirmed via ToolSearch that no order-mutation tool (create_market_order or equivalent)
+exists in this session's grant, same structural gap as tick 54 — moot here since Rule 17
+already blocks, but noted for continuity. Underlying trend is still healthy bullish
+structure; watch either a pullback back under 163.188 (re-enters tradeable zone) or a
+confirmed H1 close above 163.217 (satisfies the Rule 17 exception) as the unlock condition.
+
+**Bookkeeping:** session_snapshot.json refreshed (balance re-confirmed live, USDJPY H4/range
+asof bumped, watch_levels appended). tick_counter.txt -> 55. Session P&L =
+7164.09 - 7394.99 = -R230.90, unchanged from tick 54 (no fills). session_logger.py tick 55
+logged.
