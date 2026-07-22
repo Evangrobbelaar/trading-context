@@ -185,3 +185,4 @@
 {"event": "PULLBACK_TAG_SHORT", "symbol": "USOIL", "tf": "15", "price": 86.83, "level": 86.53, "extreme": 87.76, "range_pos": 0.573, "vol_mult": 1.16, "h1_atr": 0.901642, "t": 1784727900325, "received_utc": "2026-07-22T13:45:10.264890+00:00"}
 {"event": "HL_RECLAIM", "symbol": "GBPUSD", "tf": "15", "price": 1.33863, "t": 1784727900329, "received_utc": "2026-07-22T13:45:11.873715+00:00"}
 {"event": "SPRING_LONG", "symbol": "GBPUSD", "tf": "15", "price": 1.33863, "level": 1.33693, "extreme": 1.33639, "range_pos": 0.786, "vol_mult": 1.51, "h1_atr": 0.001321, "t": 1784727900452, "received_utc": "2026-07-22T13:45:12.263429+00:00"}
+{"event": "HL_RECLAIM", "symbol": "GOLD", "tf": "15", "price": 4142.47, "t": 1784727900440, "received_utc": "2026-07-22T13:45:14.000873+00:00"}
