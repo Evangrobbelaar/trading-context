@@ -275,3 +275,4 @@
 {"event": "SWEEP", "symbol": "SILVER", "tf": "15", "price": 59.8547, "t": 1784752200150, "received_utc": "2026-07-22T20:30:01.049022+00:00"}
 {"event": "SWEEP_LOW", "symbol": "SILVER", "tf": "15", "price": 59.8547, "level": 59.7307, "extreme": 59.6627, "range_pos": 0.519, "vol_mult": 0.67, "h1_atr": 0.461151, "t": 1784752200202, "received_utc": "2026-07-22T20:30:03.041678+00:00"}
 {"event": "SWEEP_LOW", "symbol": "SILVER", "tf": "15", "price": 59.8547, "level": 59.7307, "extreme": 59.6627, "range_pos": 0.519, "vol_mult": 0.67, "h1_atr": 0.461151, "t": 1784752200202, "received_utc": "2026-07-22T20:30:12.218774+00:00"}
+{"event": "SWEEP_LOW", "symbol": "XAUUSD", "tf": "1", "price": 4129.42, "level": 4129.02, "extreme": 4128.42, "range_pos": 0.589, "vol_mult": 1.54, "h1_atr": 14.424009, "t": 1784753220599, "received_utc": "2026-07-22T20:47:01.358517+00:00"}
