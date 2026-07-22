@@ -98,6 +98,10 @@ def main():
     p.add_argument("--direction", choices=["buy", "sell"], default=None)
     p.add_argument("--session_high", type=float, default=None)
     p.add_argument("--session_low", type=float, default=None)
+    p.add_argument("--learn", action="store_true",
+                   help="LEARN mode: discretionary gates (Rule 17) downgrade to warnings and are "
+                        "recorded as counterfactuals. Hard gates (account, market hours, session "
+                        "max loss, news, stop geometry) still block. Forces minimum size upstream.")
     p.add_argument("--breakout_confirmed", action="store_true",
                    help="attest: confirmed H1 close beyond the session range (Rule 17 exception)")
     # verdict recording
@@ -121,6 +125,7 @@ def main():
         print("BLOCKED: --balance and --account_id are required."); return 1
 
     blocks = []
+    warns = []
 
     # 3. ACCOUNT LOCK
     if str(args.account_id) != ALLOWED_ACCOUNT:
@@ -164,10 +169,12 @@ def main():
         if rng > 0:
             pos = (args.entry - args.session_low) / rng
             if args.direction == "buy" and pos >= 0.85 and not args.breakout_confirmed:
-                blocks.append(f"RULE 17: BUY at {pos*100:.1f}% of session range (top 15%). "
+                (warns if args.learn else blocks).append(
+                    f"RULE 17{' [LEARN-OVERRIDE]' if args.learn else ''}: BUY at {pos*100:.1f}% of session range (top 15%). "
                               f"Wait for the pullback, or attest --breakout_confirmed (H1 close beyond range).")
             if args.direction == "sell" and pos <= 0.15 and not args.breakout_confirmed:
-                blocks.append(f"RULE 17: SELL at {pos*100:.1f}% of session range (bottom 15%). "
+                (warns if args.learn else blocks).append(
+                    f"RULE 17{' [LEARN-OVERRIDE]' if args.learn else ''}: SELL at {pos*100:.1f}% of session range (bottom 15%). "
                               f"Wait for the pullback, or attest --breakout_confirmed (H1 close beyond range).")
 
     # SCOUT MODE
@@ -208,6 +215,9 @@ def main():
     with open(AUDIT_FILE, "a") as f:
         f.write(json.dumps(audit) + "\n")
 
+    if warns:
+        for w in warns:
+            print(f"WARN: {w}")
     if blocks:
         print("BLOCKED:")
         for b in blocks: print(f"  - {b}")

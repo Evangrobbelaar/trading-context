@@ -23,6 +23,37 @@ watching. Exit codes and this protocol are the only backstop — there is no hum
 
 ---
 
+## LEARN MODE (MODE=learn) — data-gathering lane, minimum size
+Purpose: the ruleset was refusing ~95% of signals, so the system generated no outcome data.
+LEARN mode trades often and cheaply to build that data, and — critically — tags every fill so
+the counterfactuals are measurable later.
+
+**Downgraded to warnings (take the trade, record the override):**
+- Rule 17 session-range position (pass `--learn` to enforcer.py; it prints WARN and exits 0)
+- H4 trend gate when the setup is counter-trend but structurally clean
+- Sprung Ladder scout-gate "not yet defended" uncertainty
+- H4 verdict staleness / "uncertain" verdicts
+
+**STILL HARD BLOCKS in learn mode — never overridden:**
+- Wrong account (41829612 only), any 41750592 response
+- Market hours, session max-loss 50%
+- News: high-impact event within 2h, or unattested news scan
+- **Every position MUST have a structural stop loss.** No SL = no trade, in any mode.
+- Suspected intervention / disorderly tape (e.g. today's BoJ USDJPY spike) — a broken tape
+  teaches nothing except how to lose on a gap.
+- Rule 20 correlation: still no stacking of the same directional theme.
+
+**Size: ALWAYS minimum lot (0.01L / broker minimum). Never scale up in learn mode.**
+Risk per trade should land near R15-R40, not R300. This is the whole point: frequent cheap
+observations, not conviction bets.
+
+**Tag every entry `[LEARN]`** in the tick record and note which gates were overridden. After
+a sample of ~20 fills we compare `[LEARN]` trades that overrode Rule 17 against those that
+did not, and let the P&L settle whether Rule 17 earns its keep — with outcomes rather than
+argument. Ticks 51-63 give us the refusal side of that ledger already.
+
+---
+
 ## TIER 1 — FAST LANE (read-only triage, target < 60s)
 Purpose: decide cheaply whether this signal deserves a full session. **You cannot place,
 modify, or write anything.** Max 4 MCP calls.
