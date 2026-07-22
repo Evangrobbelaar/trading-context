@@ -1713,3 +1713,43 @@ confirmed H1 close above 163.217 (satisfies the Rule 17 exception) as the unlock
 asof bumped, watch_levels appended). tick_counter.txt -> 55. Session P&L =
 7164.09 - 7394.99 = -R230.90, unchanged from tick 54 (no fills). session_logger.py tick 55
 logged.
+
+---
+
+### Tick 56 — AUTO TIER2 (execute mode) — 2026-07-22T02:31:34Z
+
+**Signal:** GOLD/XAUUSD HL_RECLAIM @ 4124.197 (M15), tier1-escalated (H4 BULL confirmed,
+new session high, Rule 17 exception unverifiable at tier1).
+
+**Routing:** switch_trading_account(41829612) — caught the reconnect-to-41750592 bug again,
+confirmed current=41829612. get_account_info: balance/equity R7164.09, no open positions
+(book flat, matches snapshot, no CHANGE 3 guard needed).
+
+**Structure:** H4 sequence intact — 4043.65 -> 4087.08(20:00 swing high, broken) -> fresh
+impulse continuing to intrabar high 4126.83. BULL confirmed off H1/M15 bars. Note: the H4
+history endpoint returned a stale 00:00 bar (high only 4086.31) that disagreed with the
+H1/M15 bars showing price already past 4123 — a data-quality lag on that endpoint, worked
+around by reading H1/M15 directly since they agreed with each other.
+
+**Rule 17 — decisive check:** session range now 4076.88-4126.83 (range 49.95, top-15pct
+cutoff 4119.34). Live ask 4126.83 / signal price 4124.197 both sit at ~90-100% of range —
+deep in the banned top-15pct band, more extended than ticks 53-55's instances of the same
+setup. H1 breakout-close exception checked: last fully closed H1 bar (01:00-02:00 UTC)
+closed 4097.51; the 02:00-03:00 bar is still forming. No closed H1 candle exists above the
+fresh session high — exception NOT met. This is the same recurring structural trap noted
+ticks 46/53/54/55: an HL_RECLAIM into fresh session highs is self-referentially always in
+the top 15% until an H1 candle closes above its own still-forming high.
+
+**News:** one WebSearch, no high-impact USD/gold event within 2h of 02:30 UTC (UK CPI is on
+today's calendar but outside this window) — attested news_checked+news_clear, moot since
+Rule 17 blocks pre-enforcer.
+
+**Decision: NO_ACTION.** Rule 17 blocks this BUY before the enforcer step — no enforcer
+run, nothing placed. Re-confirmed via ToolSearch that no order-mutation tool
+(create_market_order or equivalent) exists in this session's grant, same structural gap as
+ticks 54-55 — moot here since Rule 17 already blocks, noted for continuity.
+
+**Bookkeeping:** session_snapshot.json refreshed (balance re-confirmed live, XAUUSD H4/range
+asof bumped, watch_levels appended, data-quality flag noted). tick_counter.txt -> 56.
+Session P&L = 7164.09 - 7394.99 = -R230.90, unchanged from tick 55 (no fills). session_logger.py
+tick 56 logged.
