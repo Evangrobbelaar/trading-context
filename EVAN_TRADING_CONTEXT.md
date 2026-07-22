@@ -2416,3 +2416,46 @@ target) or a bounce restoring distance back toward 1.3379+/1.33903.
 session_snapshot.json updated (balance/equity, WTI/NVIDIA pl refresh, GBPUSD
 h4_verdict + session_range refresh, 2 new tick74 watch_levels notes).
 tick_counter.txt -> 74. session_logger.py tick74 logged.
+
+---
+## TICK 75 — AUTO TIER2 — 2026-07-22T16:45-16:49Z — MODE=learn
+Signal: BTCUSD HL_RECLAIM (M15, price 66263.14, 16:45:09Z). Escalated from t1:
+with-trend signal aligned to prior BULL H4 verdict, but that verdict was stale
+(asof 7/21 14:20) and flagged for refresh.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed
+41829612 (re-verified again immediately before order placement, 5-step routing
+procedure). Live balance R6411.59 (unchanged), equity 6381.56->6353.13 (WTI
+no-SL pl worsened -324.06->-327.38, EVAN_MANUAL; NVIDIA eased +295.02->+269.97,
+EVAN_MANUAL; both logged only, not touched, anomaly_status still RESOLVED).
+H4 refresh: pulled H4/H1/M15 history. Broader trend up from 63693 base, but
+7/21 16:00 swing high (66905) was followed by a corrective lower-highs/
+lower-lows sequence through 7/22 (66905->66714->66525->66683->66368->66104,
+lows 66062->66162->66122->65647->65788->65499.86 session low). Neither 66683
+nor 66905 has been reclaimed yet, so this is NOT a clean confirmed bull
+continuation — verdict recorded as BULL_CORRECTIVE/uncertain. Learn-mode WARNs
+(not hard blocks) on: H4 verdict staleness, and H4 trend ambiguity given
+counter-trend-vs-continuation is genuinely unclear. M15 structure itself was
+clean: strong reclaim off the 65499.86 session low, 16:45 bar (O65980.72
+H66347.82 L65968.83 C66247.42) broke back above the 65647-66143 chop zone with
+a large bull body.
+News: WebSearch for BTC — no scheduled high-impact macro event in the 2h
+window; only routine commentary (Fear&Greed 33, Satsuma Technology BTC
+liquidation headline) and a quantum-readiness-fund announcement, both sizing
+inputs not blocks. Attested news_clear.
+Rule17: session_high 66683.83 / session_low 65499.86, entry ~66223 ask ->
+range_pos ~0.61 (mid-range), not triggered either side.
+Rule20: existing book is WTI Buy + NVIDIA Buy, both EVAN_MANUAL, different
+asset classes/instruments from a BTC long — no directional stacking.
+Enforcer: `python3 enforcer.py --account demo --account_id 41829612 --balance
+6411.59 --instrument BTCUSD --risk_amount 58.90 --open_pending_risk 534
+--news_checked --news_clear --entry 66223.72 --direction buy --session_high
+66683.83 --session_low 65499.86 --learn` -> PASS (v3.1), EXIT:0.
+Order: create_market_order BTCUSD Buy 0.01 lot (min lot, [LEARN] tag). Filled
+66171.46, SL 65860 (structural, below 16:30 M15 swing low 65882.2 + buffer),
+TP 66690 (near 7/22 04:00 H4 swing high 66683.83). R:R on fill ~1.66:1.
+orderId 109833006, orderIdStopLoss 909877154, orderIdTakeProfit 909877155.
+Post-order account/position check confirmed fill sits on 41829612 alongside
+existing WTI/NVIDIA EVAN_MANUAL positions.
+session_snapshot.json updated (balance/equity refresh, new BTCUSD [LEARN]
+position, BTCUSD h4_verdict + session_range added).
+tick_counter.txt -> 75. session_logger.py tick75 logged.

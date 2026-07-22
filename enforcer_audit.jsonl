@@ -87,3 +87,4 @@
 {"ts": "2026-07-22T01:22:52.537257+00:00", "verdict": "PASS", "mode": "general", "instrument": "USDJPY", "account_id": "41829612", "balance": 7164.09, "risk_amount": 306.56, "blocks": [], "version": "v3.1"}
 {"ts": "2026-07-22T07:42:06.486624+00:00", "verdict": "PASS", "mode": "general", "instrument": "GBPUSD", "account_id": "41829612", "balance": 7164.09, "risk_amount": 40.0, "blocks": [], "version": "v3.1"}
 {"ts": "2026-07-22T11:40:58.319833+00:00", "verdict": "PASS", "mode": "general", "instrument": "GBPUSD", "account_id": "41829612", "balance": 6831.39, "risk_amount": 24.0, "blocks": [], "version": "v3.1"}
+{"ts": "2026-07-22T16:49:36.113993+00:00", "verdict": "PASS", "mode": "general", "instrument": "BTCUSD", "account_id": "41829612", "balance": 6411.59, "risk_amount": 58.9, "blocks": [], "version": "v3.1"}
