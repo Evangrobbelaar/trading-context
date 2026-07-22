@@ -1883,3 +1883,22 @@ directly).
 verdict updated to reflect the newly-met Rule 3 exception, session range + watch_levels note
 updated). tick_counter.txt -> 60. Session P&L = 7164.09 - 7394.99 = -R230.90, unchanged from
 tick 59 (no fills). session_logger.py tick 60 logged.
+
+## AUTO TICK 61 — 2026-07-22T07:36 UTC (09:36 SAST, LDN session)
+Signal: SPRING USDJPY @163.13 (15m, fired 07:30:05 UTC).
+Routing: switch_trading_account caught usual revert to 41750592, confirmed on 41829612.
+Balance R7164.09 / equity R7164.09 (live-queried), book flat, no open positions.
+Fresh price pull (162.92/162.932) was ~20 pips below the 07:30 M15 close (163.127) —
+sanity check via M1 history found a single 07:31 bar O163.129 H163.129 L162.659 C162.90 on
+25.1M volume (vs 4-8M/min normal) — a 47-pip range-in-one-minute move, settling 162.85-162.92
+over the next 4 bars. WebSearch confirmed 162.84 is a widely-flagged multi-decade-high/BOJ
+intervention threshold under active market watch — spike punching through it on anomalous
+volume reads as a suspected intervention event, not organic structure. This invalidates the
+SPRING (bullish reclaim) thesis — price crashed through/below the signal print instead of
+confirming it. Rule 11/12 spirit: never chase the spike, wait for M15 compression. Blocked
+pre-enforcer on volatility/news grounds — no enforcer run, no order attempted (order-mutation
+tool-grant gap also still confirmed absent, moot). H4 USDJPY downgraded BULL->UNCERTAIN
+pending 08:00 UTC H4 close. Decision: NO_ACTION.
+Bookkeeping: session_snapshot.json updated (balance, USDJPY h4_verdict + session_range reset
+to 162.659-163.217, new watch_levels note). tick_counter.txt -> 61. Session P&L unchanged at
+-R230.90. session_logger.py tick 61 logged.
