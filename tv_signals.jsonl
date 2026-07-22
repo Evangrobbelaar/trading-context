@@ -186,3 +186,4 @@
 {"event": "HL_RECLAIM", "symbol": "GBPUSD", "tf": "15", "price": 1.33863, "t": 1784727900329, "received_utc": "2026-07-22T13:45:11.873715+00:00"}
 {"event": "SPRING_LONG", "symbol": "GBPUSD", "tf": "15", "price": 1.33863, "level": 1.33693, "extreme": 1.33639, "range_pos": 0.786, "vol_mult": 1.51, "h1_atr": 0.001321, "t": 1784727900452, "received_utc": "2026-07-22T13:45:12.263429+00:00"}
 {"event": "HL_RECLAIM", "symbol": "GOLD", "tf": "15", "price": 4142.47, "t": 1784727900440, "received_utc": "2026-07-22T13:45:14.000873+00:00"}
+{"event": "HL_RECLAIM", "symbol": "SILVER", "tf": "15", "price": 59.9921, "level": 59.628, "extreme": 58.874, "range_pos": 0.934, "vol_mult": 2.01, "h1_atr": 0.469728, "t": 1784727900845, "received_utc": "2026-07-22T13:45:15.805045+00:00"}
