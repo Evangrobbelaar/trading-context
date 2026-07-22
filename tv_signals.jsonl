@@ -47,3 +47,4 @@
 {"event": "SWEEP", "symbol": "BTCUSD", "tf": "15", "price": 66292.9, "t": 1784693700751, "received_utc": "2026-07-22T04:15:04.131865+00:00"}
 {"event": "SPRING", "symbol": "BTCUSD", "tf": "15", "price": 66321.15, "t": 1784694608474, "received_utc": "2026-07-22T04:30:14.221352+00:00"}
 {"event": "SWEEP", "symbol": "SILVER", "tf": "15", "price": 59.499, "t": 1784698200317, "received_utc": "2026-07-22T05:30:01.944987+00:00"}
+{"event": "SWEEP", "symbol": "SILVER", "tf": "15", "price": 59.6592, "t": 1784699100224, "received_utc": "2026-07-22T05:45:01.063610+00:00"}
