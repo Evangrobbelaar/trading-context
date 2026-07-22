@@ -1,25 +1,22 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-21T21:35:53+00:00",
-  "updated_by": "tick 51 (AUTO TIER2) — every Tier 2 run refreshes this at exit",
-  "balance": {"value": 7164.09, "queried_utc": "2026-07-21T21:35:53+00:00", "note": "live-queried this run (tick 36 rule); equity == balance, no open positions"},
+  "updated_utc": "2026-07-22T01:15:43+00:00",
+  "updated_by": "tick 53 (AUTO TIER2 execute) — every Tier 2 run refreshes this at exit",
+  "balance": {"value": 7164.09, "queried_utc": "2026-07-22T01:15:43+00:00", "note": "live-queried this run (tick 36 rule); equity == balance, no open positions"},
   "session_start_balance": 7394.99,
   "open_positions": [],
-  "closed_since_last_snapshot": [
-    {"id": 109827820, "symbol": "USDJPY", "dir": "BUY", "units": 1000, "entry": 163.209, "sl": 163.146, "tp": 163.272, "closePrice": 163.127, "pl": -8.28, "closeTime_utc": "2026-07-21T21:00:00+00:00", "note": "hit its stop loss — SL WAS set (163.146) despite tick46/47 flag saying no SL; that flag was stale"},
-    {"id": 109827829, "symbol": "EURUSD", "dir": "SELL", "units": 5000, "entry": 1.1401, "sl": 0, "tp": 1.1377, "closePrice": 1.13985, "pl": 20.58, "closeTime_utc": "2026-07-21T20:58:48+00:00", "note": "closed manually (closeOrderId differs from the TP order, price 1.13985 never reached TP 1.1377) — genuinely had no SL, Rule 2 violation, but closed for small profit before it mattered"}
-  ],
+  "closed_since_last_snapshot": [],
   "h4_verdicts": {
-    "XAUUSD": {"trend": "BULL", "asof": "2026-07-21T18:30:00+00:00", "swings": "3999.82 -> 4043.65 HLs, 4028/4040 highs broken", "note": "not refreshed this tick, carried forward"},
+    "XAUUSD": {"trend": "BULL", "asof": "2026-07-22T01:15:43+00:00", "swings": "H4 sequence 4043.65(08:00 low) -> higher highs 4084.25 -> 4087.08(20:00) -> fresh break to session high 4121.88 intrabar (01:00 H4 bar still forming); prior H4 swing high 4087.08 now broken", "note": "refreshed tick 53"},
     "USDJPY": {"trend": "BULL", "asof": "2026-07-21T18:20:00+00:00", "swings": "162.406 -> 163.211 unbroken staircase", "note": "not refreshed this tick, carried forward"},
     "BTCUSD": {"trend": "BULL", "asof": "2026-07-21T14:20:00+00:00", "swings": "62,458 -> 63,693 -> 65,004 HLs", "note": "not refreshed this tick, carried forward"},
     "XAGUSD": {"trend": "UNKNOWN", "asof": "2026-07-21T20:45:02+00:00", "note": "no H4 verdict on file, carried forward"},
-    "EURUSD": {"trend": "BEAR", "asof": "2026-07-21T21:35:53+00:00", "swings": "H4 closes lower-high/lower-low for 36h straight: highs 1.14492->1.1445->1.14296->1.14201->1.14104, lows 1.14337->1.14021->1.13983, fresh intrabar low 1.13924 at time of check"}
+    "EURUSD": {"trend": "BEAR", "asof": "2026-07-21T21:45:35+00:00", "swings": "reconfirmed tick 52: H4 20:00 bar (partial) high 1.14104 low 1.13983, lower than 16:00 bar (1.14201/1.14022); M15 intrabar low retested exactly 1.13924 at 21:15 then reclaimed to 1.13998 by 21:45 — still no break of prior H4 swing high, no higher-low confirmed"}
   },
   "session_ranges": {
-    "XAUUSD": {"low": 3999.82, "high": 4087.08, "range": 87.26, "top_15pct_cutoff": 4073.99, "bottom_15pct_cutoff": 4012.9, "asof": "2026-07-21T20:41:44+00:00", "source": "get_symbol_price high/low field"},
+    "XAUUSD": {"low": 4076.88, "high": 4121.88, "range": 45.0, "top_15pct_cutoff": 4115.13, "bottom_15pct_cutoff": 4083.63, "asof": "2026-07-22T01:15:43+00:00", "source": "get_symbol_price high/low field, refreshed tick 53"},
     "XAGUSD": {"low": 56.085, "high": 59.225, "range": 3.14, "top_15pct_cutoff": 58.754, "bottom_15pct_cutoff": 56.556, "asof": "2026-07-21T20:45:02+00:00", "source": "get_symbol_price high/low field"},
-    "EURUSD": {"low": 1.13924, "high": 1.14283, "range": 0.00359, "top_15pct_cutoff": 1.142291, "bottom_15pct_cutoff": 1.139779, "asof": "2026-07-21T21:35:53+00:00", "source": "today's H4 bars + get_symbol_price intrabar low"}
+    "EURUSD": {"low": 1.13924, "high": 1.14283, "range": 0.00359, "top_15pct_cutoff": 1.142291, "bottom_15pct_cutoff": 1.139779, "asof": "2026-07-21T21:45:35+00:00", "source": "today's H4 bars + get_symbol_price intrabar low, unchanged tick 52"}
   },
   "armed_tickets": [],
   "watch_levels": [
@@ -27,7 +24,9 @@
     {"symbol": "EURUSD", "level": 1.1403, "note": "double-sweep defended-shelf candidate (tick 44) — scout decision is EVAN'S, never auto-deploy"},
     {"symbol": "XAUUSD", "note": "tick 46: HL_RECLAIM fired at 4075.0 — sat in TOP 15% of session range, Rule 17 blocked. Re-check with history access restored."},
     {"symbol": "XAGUSD", "note": "tick 47: SPRING fired at 58.821 (M15) — falls in TOP 15% of day range (cutoff 58.754, day range 56.085-59.225). Rule 17 blocks a BUY here; also no H4 verdict available (history tool blocked). NO_ACTION."},
-    {"symbol": "EURUSD", "note": "tick 51: 3rd SWEEP at ~1.1399 in 240min (prior sweeps 1.1403 tick44, 1.14032 19:30 UTC) — Sprung Ladder Phase-1 shelf signature. H4 is now confirmed BEAR (fresh lower low 1.13924, no higher-low reclaim yet) so a spring/reclaim LONG here is counter-trend and Rule 3 requires a confirmed higher low + broken prior H4 swing high first — neither present. Also scout deployment on this level is Evan-only per tick44 note. NO_ACTION, watch only."}
+    {"symbol": "EURUSD", "note": "tick 51: 3rd SWEEP at ~1.1399 in 240min (prior sweeps 1.1403 tick44, 1.14032 19:30 UTC) — Sprung Ladder Phase-1 shelf signature. H4 is now confirmed BEAR (fresh lower low 1.13924, no higher-low reclaim yet) so a spring/reclaim LONG here is counter-trend and Rule 3 requires a confirmed higher low + broken prior H4 swing high first — neither present. Also scout deployment on this level is Evan-only per tick44 note. NO_ACTION, watch only."},
+    {"symbol": "EURUSD", "note": "tick 52 (mode=execute): SPRING fired 1.1401 (15m), the reclaim leg of the same 1.1399-1.1403 shelf sequence. Re-checked H4 fresh (bear intact, no swing-high break, no confirmed higher low) — Rule 3 still blocks this as a counter-trend long. Evan-only scout note (tick44) still applies regardless of execute mode. No enforcer run (no order attempted). NO_ACTION, watch only."},
+    {"symbol": "XAUUSD", "note": "tick 53 (mode=execute): HL_RECLAIM fired 4121.231 (15m). H4 BULL confirmed, fresh break above prior swing high 4087.08 to session high 4121.88 — trend gate passes. But price sits above top-15pct cutoff 4115.13 (range 4076.88-4121.88) — Rule 17 blocks BUY. H1 breakout-close exception checked and NOT met: the 01:00-02:00 H1 candle is still forming (not closed) at signal time. No enforcer run (no order attempted). NO_ACTION. Same self-referential top-15pct trap as tick 46 — a HL_RECLAIM into fresh session highs will always sit in the top 15pct until a closed H1 candle confirms the breakout; watch for next H1 close (02:00 UTC) above 4087.08 as the unlock condition."}
   ],
-  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick 51: get_symbol_history now WORKS (settings.json/.execute.json conflict from a stale unresolved git stash was found and cleaned up this tick; the deny-list is confirmed live — the 12 order-mutation tools disconnected from this session's tool list as expected in advise mode). Both previously-flagged no-SL positions (USDJPY 109827820, EURUSD 109827829) are now closed — see closed_since_last_snapshot. Book is flat on 41829612."
+  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick 53: XAUUSD HL_RECLAIM blocked pre-enforcer by Rule 17 (top 15pct of range, no confirmed closed H1 breakout candle yet). Book remains flat on 41829612, balance R7164.09 unchanged tick 52->53. Session P&L R-230.90 vs session_start_balance R7394.99."
 }

@@ -1556,3 +1556,66 @@ Phase 1 — so even if structure had qualified, deployment stays manual. No enfo
 **Bookkeeping:** session_snapshot.json refreshed (balance R7164.09 live-queried, open_positions
 now empty, two closes logged, EURUSD H4 verdict + session range added, watch_levels updated).
 tick_counter.txt -> 51. Session P&L = 7164.09 - 7394.99 (session_start_balance) = -R230.90.
+
+## tick 52 — AUTO TIER2 execute (21 Jul, 21:45 UTC / 23:45 SAST)
+
+**First execute-mode Tier 2 run** (auto_mode.json flipped 21:44:11Z). Routing verified:
+switch_trading_account previous=41750592 -> current=41829612 (revert bug fired again,
+caught as always). Live balance R7164.09, equity R7164.09, 0 open positions — book still
+flat, unchanged from tick 51.
+
+**Signal:** SPRING EURUSD 1.1401 (15m) — the reclaim leg of the same 1.1399-1.1403 shelf
+that's been swept 3x this session (tick44, 19:30 UTC, tick51's 1.1399 sweep). M15 shows the
+sweep low (1.13924, printed again at 21:15) reclaimed to 1.13998 by the 21:45 bar — cosmetically
+a Sprung-Ladder Phase-3 spring shape, but no scouts are armed on this level (armed_tickets
+empty) so there is no strike to trigger anyway.
+
+**News:** WebSearch clear — ECB decision still days out, no US high-impact data this half
+of the day.
+
+**H4 re-check (EURUSD):** still confirmed BEAR. 20:00 H4 bar (partial) printed a lower high
+(1.14104) and lower low (1.13983, with the M15 intrabar wick to 1.13924) versus the 16:00 bar
+(1.14201/1.14022). No break of the prior H4 swing high, no confirmed higher low yet.
+
+**Decision: NO_ACTION**, execute mode notwithstanding. Rule 3's counter-trend gate blocks a
+long here (needs confirmed higher low + broken prior H4 swing high — neither present), and
+this exact level was already flagged tick44 as Evan-only for scout deployment regardless of
+mode. No enforcer run (no order path taken).
+
+**Bookkeeping:** session_snapshot.json refreshed (balance re-confirmed live, H4/range asof
+bumped, watch_levels appended, closed_since_last_snapshot cleared — both prior closes already
+booked at tick 51). tick_counter.txt -> 52. Session P&L = 7164.09 - 7394.99 = -R230.90,
+unchanged from tick 51.
+
+## tick 53 — AUTO TIER2 execute (22 Jul, 01:15 UTC / 03:15 SAST)
+
+Routing verified: switch_trading_account previous=41750592 -> current=41829612 (revert bug
+fired again, caught as always). Live balance R7164.09, equity R7164.09, 0 open positions —
+book still flat, unchanged from tick 52.
+
+**Signal:** HL_RECLAIM GOLD (XAUUSD) 4121.231 (15m), escalated from Tier 1 for the Rule 17
+top-15pct edge case + unverified H1 breakout exception.
+
+**H4 re-check (XAUUSD):** BULL confirmed — H4 sequence of higher highs continues
+(4084.25 -> 4087.08 -> fresh session high 4121.88), and price just broke the prior H4 swing
+high (4087.08). Trend gate passes; this is a WITH-trend signal.
+
+**Rule 17 check:** session range refreshed live (low 4076.88, high 4121.88, range 45.0) ->
+top-15pct cutoff 4115.13. Current price 4117-4121 sits above the cutoff, i.e. inside the
+banned top 15pct for a BUY. Checked the exception (confirmed H1 breakout candle close): the
+01:00-02:00 H1 candle is still forming at signal time (only 15min elapsed), not closed. Prior
+closed H1 bar (00:00-01:00) closed at 4080.90, below 4087.08 — no breakout close on record
+yet. Exception NOT met.
+
+**News:** WebSearch — no confirmed high-impact USD/gold event within 2h of 01:15 UTC;
+attest clear.
+
+**Decision: NO_ACTION.** Rule 17 blocks the BUY pre-enforcer (no exception satisfied). No
+enforcer run, nothing placed, execute mode notwithstanding. Same self-referential top-15pct
+trap flagged at tick 46 — a HL_RECLAIM into fresh session highs will keep sitting in the top
+15pct until a closed H1 candle confirms the breakout. Watch the 02:00 UTC H1 close: if it
+prints above 4087.08, the Rule 17 exception is satisfied and this setup can be re-evaluated.
+
+**Bookkeeping:** session_snapshot.json refreshed (balance re-confirmed live, H4/range asof
+bumped to 01:15:43Z, watch_levels appended). tick_counter.txt -> 53. Session P&L =
+7164.09 - 7394.99 = -R230.90, unchanged from tick 52. session_logger.py tick 53 logged.
