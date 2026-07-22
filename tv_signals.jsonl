@@ -56,3 +56,4 @@
 {"event": "HL_RECLAIM", "symbol": "XAUUSD1!", "tf": "15", "price": 4138.1, "t": 1784703611995, "received_utc": "2026-07-22T07:00:23.155957+00:00"}
 {"event": "SWEEP", "symbol": "GBPUSD", "tf": "15", "price": 1.33844, "t": 1784704500421, "received_utc": "2026-07-22T07:15:02.825790+00:00"}
 {"event": "SWEEP", "symbol": "USDJPY", "tf": "15", "price": 163.083, "t": 1784704500437, "received_utc": "2026-07-22T07:15:04.646033+00:00"}
+{"event": "HL_RECLAIM", "symbol": "USOIL", "tf": "15", "price": 86.46, "t": 1784704503730, "received_utc": "2026-07-22T07:15:11.728721+00:00"}
