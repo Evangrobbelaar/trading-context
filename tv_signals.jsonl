@@ -213,3 +213,4 @@
 {"event": "LL_BREAKDOWN", "symbol": "GBPUSD", "tf": "1", "price": 1.337825, "level": 1.33783, "extreme": 1.33814, "range_pos": 0.577, "vol_mult": 1, "h1_atr": 0.001315, "t": 1784731621875, "received_utc": "2026-07-22T14:47:03.788329+00:00"}
 {"event": "PULLBACK_TAG_SHORT", "symbol": "GBPUSD", "tf": "1", "price": 1.33781, "level": 1.33783, "extreme": 1.33814, "range_pos": 0.574, "vol_mult": 1, "h1_atr": 0.001322, "t": 1784731681047, "received_utc": "2026-07-22T14:48:03.507633+00:00"}
 {"event": "SWEEP_LOW", "symbol": "GBPUSD", "tf": "1", "price": 1.337855, "level": 1.33783, "extreme": 1.3378, "range_pos": 0.585, "vol_mult": 1, "h1_atr": 0.001322, "t": 1784731740790, "received_utc": "2026-07-22T14:49:02.582870+00:00"}
+{"event": "SWEEP_LOW", "symbol": "GBPUSD", "tf": "1", "price": 1.337855, "level": 1.33783, "extreme": 1.3378, "range_pos": 0.585, "vol_mult": 1, "h1_atr": 0.001322, "t": 1784731740790, "received_utc": "2026-07-22T14:49:08.508310+00:00"}
