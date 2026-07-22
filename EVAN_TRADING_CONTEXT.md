@@ -2502,3 +2502,34 @@ No enforcer run, nothing placed/would-placed. NO_ACTION.
 session_snapshot.json updated (balance/equity refresh, WTI/NVIDIA/BTCUSD pl
 refresh, GBPUSD h4_verdict + session_range refresh, new tick76 watch_levels
 note). tick_counter.txt -> 76. session_logger.py tick76 logged.
+
+---
+## AUTO TICK 77 — 2026-07-22T17:15:18Z (mode=learn, Tier2)
+Signal: SPRING_LONG USOIL (15m) 86.66, level 85.78, extreme 86.11,
+range_pos 0.532, at 17:15:02Z (+ companion SPRING tag 17:15:03Z).
+Routing: switch_trading_account caught the usual revert to 41750592,
+confirmed 41829612. Balance R6411.59 / equity R6420.69 (live-queried).
+USOIL pre-blocked before any structure/H4 check: on CLAUDE.md's
+Instruments-to-Avoid list (too news/spread driven, use BRENT instead) —
+same standing block as ticks 54/74. Also reconfirmed no live price feed
+under 'USOIL' on this broker (get_symbol_price errored); only 'WTI' is
+tradable, and that symbol is already Evan's own manual position, not
+this signal's instrument. No enforcer run, nothing placed/would-placed.
+NO_ACTION.
+Open-position guard:
+WTI (EVAN_MANUAL, no SL) pl improved -315.12->-248.73; M5 bounced off
+85.554 (16:50 low) to a fresh local high 86.074 (17:15 close),
+higher-high/higher-low forming, still well below entry 87.574. Not
+touched (Evan's position).
+NVIDIA (EVAN_MANUAL) pl eased +294.79->+268.42, not touched.
+BTCUSD [LEARN] (tick75 entry) pl slipped +1.43->-10.58; M5 shows a
+declining-highs sequence (66255.81->66195.71->66234.61->66223.34->
+66170.98) with a pullback low 66131.06 (17:15) that has NOT broken the
+66116.99 (16:55/17:00) double-bottom — lower-highs forming but no
+confirmed lower-low break yet, so CHANGE3's reversal bar not clearly
+met. P&L only marginally negative. Not flagging Rule5 cut this tick;
+SL 65860/TP 66690 intact with room. Watch next tick — a break of
+66116.99 with P&L still negative is the Rule5 trigger.
+session_snapshot.json updated (balance/equity refresh, WTI/NVIDIA/BTCUSD
+pl refresh, new tick77 watch_levels note). tick_counter.txt -> 77.
+session_logger.py tick77 logged.
