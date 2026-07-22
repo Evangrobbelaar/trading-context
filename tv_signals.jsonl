@@ -154,3 +154,4 @@
 {"event": "SWEEP", "symbol": "USOIL", "tf": "15", "price": 87.21, "t": 1784725200254, "received_utc": "2026-07-22T13:00:07.679315+00:00"}
 {"event": "SWEEP_LOW", "symbol": "USOIL", "tf": "15", "price": 87.21, "level": 86.9, "extreme": 86.69, "range_pos": 0.664, "vol_mult": 2.11, "h1_atr": 0.874846, "t": 1784725200871, "received_utc": "2026-07-22T13:00:10.044642+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "SILVER", "tf": "15", "price": 59.0362, "level": 59.0549, "extreme": 59.552, "range_pos": 0.261, "vol_mult": 1.42, "h1_atr": 0.421046, "t": 1784725201287, "received_utc": "2026-07-22T13:00:13.752410+00:00"}
+{"event": "SWEEP_HIGH", "symbol": "GOLD", "tf": "15", "price": 4112.825, "level": 4122.38, "extreme": 4127.68, "range_pos": 0.564, "vol_mult": 1.29, "h1_atr": 14.120235, "t": 1784725201153, "received_utc": "2026-07-22T13:00:20.771194+00:00"}
