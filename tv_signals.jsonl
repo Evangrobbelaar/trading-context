@@ -161,3 +161,4 @@
 {"event": "SWEEP_LOW", "symbol": "SILVER", "tf": "15", "price": 59.396, "level": 59.0549, "extreme": 58.9804, "range_pos": 0.538, "vol_mult": 1.61, "h1_atr": 0.420871, "t": 1784726100187, "received_utc": "2026-07-22T13:15:04.304767+00:00"}
 {"event": "PULLBACK_TAG_SHORT", "symbol": "SILVER", "tf": "15", "price": 59.396, "level": 59.0549, "extreme": 59.552, "range_pos": 0.538, "vol_mult": 1.61, "h1_atr": 0.420871, "t": 1784726100187, "received_utc": "2026-07-22T13:15:05.849781+00:00"}
 {"event": "SWEEP_LOW", "symbol": "GOLD", "tf": "15", "price": 4125.67, "level": 4113.1, "extreme": 4112.55, "range_pos": 0.758, "vol_mult": 1.31, "h1_atr": 14.060218, "t": 1784726100232, "received_utc": "2026-07-22T13:15:07.436076+00:00"}
+{"event": "PULLBACK_TAG_SHORT", "symbol": "GBPUSD", "tf": "15", "price": 1.33656, "level": 1.33635, "extreme": 1.33746, "range_pos": 0.278, "vol_mult": 1.2, "h1_atr": 0.001164, "t": 1784726100292, "received_utc": "2026-07-22T13:15:09.025808+00:00"}
