@@ -255,3 +255,4 @@
 {"event": "HL_RECLAIM", "symbol": "USDJPY", "tf": "15", "price": 163.161, "t": 1784742301350, "received_utc": "2026-07-22T17:45:07.315078+00:00"}
 {"event": "HL_RECLAIM", "symbol": "GBPUSD", "tf": "1", "price": 1.3373, "level": 1.33728, "extreme": 1.337065, "range_pos": 0.448, "vol_mult": 1, "h1_atr": 0.001256, "t": 1784742722993, "received_utc": "2026-07-22T17:52:03.554920+00:00"}
 {"event": "PULLBACK_TAG_LONG", "symbol": "GBPUSD", "tf": "1", "price": 1.337255, "level": 1.33728, "extreme": 1.337065, "range_pos": 0.437, "vol_mult": 1, "h1_atr": 0.001256, "t": 1784742781036, "received_utc": "2026-07-22T17:53:02.713130+00:00"}
+{"event": "LL_BREAKDOWN", "symbol": "GBPUSD", "tf": "1", "price": 1.33697, "level": 1.33698, "extreme": 1.33716, "range_pos": 0.367, "vol_mult": 1, "h1_atr": 0.001191, "t": 1784743800287, "received_utc": "2026-07-22T18:10:02.593470+00:00"}
