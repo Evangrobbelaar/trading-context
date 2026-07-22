@@ -120,3 +120,4 @@
 {"event": "SPRING_SHORT", "symbol": "GOLD", "tf": "15", "price": 4115.72, "level": 4122.38, "extreme": 4123, "range_pos": 0.608, "vol_mult": 1.03, "h1_atr": 13.009594, "t": 1784720700251, "received_utc": "2026-07-22T11:45:02.355402+00:00"}
 {"event": "SWEEP_LOW", "symbol": "GOLD", "tf": "15", "price": 4115.72, "level": 4113.1, "extreme": 4112.47, "range_pos": 0.608, "vol_mult": 1.03, "h1_atr": 13.009594, "t": 1784720700251, "received_utc": "2026-07-22T11:45:03.961798+00:00"}
 {"event": "SPRING", "symbol": "EURUSD", "tf": "15", "price": 1.14053, "t": 1784720700868, "received_utc": "2026-07-22T11:45:09.465731+00:00"}
+{"event": "SWEEP_HIGH", "symbol": "GBPUSD", "tf": "1", "price": 1.33693, "level": 1.33697, "extreme": 1.33699, "range_pos": 0.176, "vol_mult": 1, "h1_atr": 0.001138, "t": 1784720880932, "received_utc": "2026-07-22T11:48:02.802587+00:00"}
