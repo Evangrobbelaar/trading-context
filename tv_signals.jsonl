@@ -85,3 +85,4 @@
 {"event": "HL_RECLAIM", "symbol": "USOIL", "tf": "15", "price": 88.45, "t": 1784714400179, "received_utc": "2026-07-22T10:00:20.134960+00:00"}
 {"event": "PULLBACK_TAG_LONG", "symbol": "USOIL", "tf": "15", "price": 87.82, "level": 88.25, "extreme": 87.13, "range_pos": 0.811, "vol_mult": 1.31, "h1_atr": 0.781566, "t": 1784715300266, "received_utc": "2026-07-22T10:15:01.601839+00:00"}
 {"event": "SWEEP_LOW", "symbol": "GBPUSD", "tf": "15", "price": 1.33708, "level": 1.33693, "extreme": 1.33664, "range_pos": 0.237, "vol_mult": 1.03, "h1_atr": 0.001134, "t": 1784715300318, "received_utc": "2026-07-22T10:15:03.786264+00:00"}
+{"event": "SWEEP_HIGH", "symbol": "GBPUSD", "tf": "1", "price": 1.337105, "level": 1.33714, "extreme": 1.337235, "range_pos": 0.154, "vol_mult": 1, "h1_atr": 0.001135, "t": 1784715300554, "received_utc": "2026-07-22T10:15:05.536763+00:00"}
