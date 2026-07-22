@@ -49,3 +49,4 @@
 {"event": "SWEEP", "symbol": "SILVER", "tf": "15", "price": 59.499, "t": 1784698200317, "received_utc": "2026-07-22T05:30:01.944987+00:00"}
 {"event": "SWEEP", "symbol": "SILVER", "tf": "15", "price": 59.6592, "t": 1784699100224, "received_utc": "2026-07-22T05:45:01.063610+00:00"}
 {"event": "SWEEP", "symbol": "USDJPY", "tf": "15", "price": 163.081, "t": 1784700900189, "received_utc": "2026-07-22T06:15:00.948292+00:00"}
+{"event": "SWEEP", "symbol": "GBPUSD", "tf": "15", "price": 1.33839, "t": 1784700900517, "received_utc": "2026-07-22T06:15:02.615412+00:00"}
