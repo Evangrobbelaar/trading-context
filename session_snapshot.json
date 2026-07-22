@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "updated_utc": "2026-07-22T11:43:00Z",
- "updated_by": "tick 67 (AUTO TIER2 learn) \u2014 HL_RECLAIM GBPUSD, freeze-status re-verified clear (anomaly RESOLVED per Evan), NO_ACTION on the reclaim, armed short ticket unchanged",
+ "updated_utc": "2026-07-22T11:46:00Z",
+ "updated_by": "tick 68 (AUTO TIER2 learn) \u2014 GBPUSD PULLBACK_TAG_LONG+SWEEP_LOW (shelf bounce continues, 12x sweep signature), GOLD SPRING_SHORT (counter-trend short, clean upthrust-reject structure but fails Rule9 R:R\u22651.2 on visible support), EURUSD SPRING (still CHOP). All NO_ACTION.",
  "balance": {
   "value": 6831.39,
-  "equity": 6688.64,
-  "queried_utc": "2026-07-22T11:43:00Z",
-  "note": "live-queried this run (tick36 rule). Balance unchanged from the 11:47Z interactive snapshot (no new realized closes). Equity improved 6414.07->6688.64 \u2014 WTI floating loss narrowed (combined -R142.75 vs -R413.85 at 11:47Z) as WTI bounced."
+  "equity": 6625.33,
+  "queried_utc": "2026-07-22T11:46:00Z",
+  "note": "live-queried this run (tick36 rule). Balance unchanged (no new realized closes). Equity drifted 6688.64->6625.33 \u2014 combined WTI floating loss widened slightly to -R203.59 (-R99.24 + -R104.35), both EVAN_MANUAL, same orderIds, no new foreign activity."
  },
  "session_start_balance": 7394.99,
  "open_positions": [
@@ -18,9 +18,9 @@
    "price": 87.242,
    "stopLoss": 85.973,
    "takeProfit": 87.954,
-   "pl": -58.68,
+   "pl": -99.24,
    "openTime_utc": "2026-07-22T09:19:47Z",
-   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 20u @87.242, SL 85.973, TP 87.954. Not placed by this system; counts toward aggregate risk + Rule 20. Has a structural stop. pl refreshed tick67.",
+   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 20u @87.242, SL 85.973, TP 87.954. Not placed by this system; counts toward aggregate risk + Rule 20. Has a structural stop. pl refreshed tick68.",
    "origin": "EVAN_MANUAL"
   },
   {
@@ -31,9 +31,9 @@
    "price": 87.574,
    "stopLoss": 0,
    "takeProfit": 87.963,
-   "pl": -84.07,
+   "pl": -104.35,
    "openTime_utc": "2026-07-22T10:02:05Z",
-   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 10u @87.574, TP 87.963, **STILL NO STOP LOSS** \u2014 uncapped downside. Evan's position to manage; flagged every tick until an SL exists or it is closed. pl refreshed tick67.",
+   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 10u @87.574, TP 87.963, **STILL NO STOP LOSS** \u2014 uncapped downside. Evan's position to manage; flagged every tick until an SL exists or it is closed. pl refreshed tick68.",
    "origin": "EVAN_MANUAL"
   }
  ],
@@ -71,10 +71,10 @@
  ],
  "h4_verdicts": {
   "XAUUSD": {
-   "trend": "BULL (structure intact, sharp pullback in progress \u2014 reassess next tick)",
-   "asof": "2026-07-22T08:17:33+00:00",
-   "swings": "H4 sequence of swing lows has been rising cleanly all session: 4043.65 -> 4054.33 -> 4066.72 -> 4076.72 -> 4076.88(04:00 bar) \u2014 impulse ran to fresh highs 4131.07 close / 4141.75 intrabar (04:00-08:00 H4 bar). Current H4 bar (08:00-12:00, 15min old) opened 4131.06 and has already dropped to low 4109.35 (interim close 4110.74) \u2014 a sharp reversal candle, but price remains well ABOVE the last confirmed H4 swing low 4076.88, so H4 structure is NOT broken. Separately, H1 shows 4 consecutive lower lows since the 04:00 H1 bar (4129.31->4124.78->4123.11->4113.33->4109.35) and a lower-high sequence off 4141.75 \u2014 a real short-term structure shift, but it does not yet satisfy Rule3's 'broken prior H4 swing low' bar.",
-   "note": "refreshed tick 62 \u2014 LL_BREAKDOWN (08:00, level 4110.81) and PULLBACK_TAG_SHORT (08:15, price 4114.608) both fired against this H4 BULL read; blocked as counter-trend per Rule3/CHANGE5 step3 since the H4 swing low (4076.88) is unbroken. Watch for an H4-bar close below 4076.88 or a clean break to confirm trend flip \u2014 until then treat further SHORT signals here as counter-trend."
+   "trend": "BULL (swing low 4076.88 still unbroken) but 4hrs of chop 4109-4123 since the 07:00 reversal \u2014 momentum stalled, not confirmed bear",
+   "asof": "2026-07-22T11:45:00+00:00",
+   "swings": "H4 04:00 bar ran to 4141.75 intrabar/4131.07 close. Since then H4 closes: 05:00 4126.99, 06:00 4130.93, 07:00 4116.38 (sharp drop), 08:00 4110.74, 09:00 4118.28, 10:00 4114.95, 11:00 4117.48 (forming) \u2014 four hours of rangebound chop between ~4109 and ~4123, well above the last confirmed H4 swing low 4076.88. Within that chop: double rejection at 4122.45(09:30)/4123.07(11:30) followed by breakdown through 4113.1 to 4112.6 (11:45 bar, SPRING_SHORT/SWEEP_LOW signals) \u2014 a clean short-term upthrust-reject shape, but still counter to the unbroken larger H4 swing low.",
+   "note": "refreshed tick 68 \u2014 SPRING_SHORT (4115.72) + SWEEP_LOW (4113.1) fired. Structure is a genuine double-top-reject short setup (counter-trend vs H4 BULL, downgradable to warning in learn mode), but SL must sit above the 4123 extreme (+3-5pt buffer, ~4126-4128) giving ~11-13pt risk, while the nearest confirmed support (session low region ~4109-4110) is only ~5-6pts away \u2014 R:R ~0.5:1, fails Rule9 min 1.2:1 on visible structure (no confirmed support closer to the 4076.88 session low to justify a farther TP). NO_ACTION on R:R grounds, not H4 gate. Watch for either an H4 close below 4076.88 (confirms real trend flip, unlocks a short with room) or a break/hold above 4123 (resumes BULL continuation)."
   },
   "USDJPY": {
    "trend": "UNCERTAIN (post-intervention-spike, only 1 M15 compression bar + 1 reclaim bar so far)",
@@ -94,16 +94,16 @@
    "note": "no H4 verdict on file, carried forward"
   },
   "EURUSD": {
-   "trend": "CHOP (no clean H4 read \u2014 overnight H1 grind up 1.1398->1.1418 then rejected)",
-   "asof": "2026-07-22T08:23:00+00:00",
-   "swings": "H1 01:00-07:00 shows a steady rising higher-low/higher-high staircase (lows 1.13984->1.14007->1.14039->1.14045->1.14051->1.14067, highs climbing to 1.14134), but the 08:00 H1 bar spiked to a new high 1.1418 then reversed hard to 1.1403, closing mid-range (1.14089) \u2014 a large reversal bar breaking the immediate H1 higher-low. M15 last 3 closed bars are pure whipsaw: 07:45 bearish reject from 1.1418 down to 1.14052 (60%+ bear body), 08:00 bullish reclaim off swept low 1.1403 up to 1.14089 (~77% bull body), 08:15 bearish again \u2014 swept 1.14099/1.14102 (the flagged shelf) then rejected to close 1.14048 near the low.",
-   "note": "refreshed tick 63 \u2014 stale tick52 BEAR verdict discarded (12hrs old, overnight structure has since reversed to a rally then rejection); current read is CHOP, not a tradeable trend either way. Same 1.14099 shelf flagged Sprung Ladder Phase-1 candidate (4 sweeps/240min) and Evan-scout-only per tick44/51/52 notes \u2014 still applies, moot given the chop anyway."
+   "trend": "CHOP (still no clean H4 read \u2014 grinding sideways in a ~1.1400-1.1413 band all morning)",
+   "asof": "2026-07-22T11:45:00+00:00",
+   "swings": "M15 09:00-11:45: steady grind down from 1.14113 to ~1.14025-1.14047, tight ~9-pip band, no clean directional swing sequence. SPRING fired 1.14053 (11:45 bar, O1.14037 H1.14062 L1.1403 C1.14047) \u2014 a minor bounce inside the same chop, not a break of any defined structure.",
+   "note": "refreshed tick 68 \u2014 SPRING signal is noise within ongoing CHOP, no H4 gate to pass or fail against. NO_ACTION, watch only. Same 1.14099 shelf remains Evan-scout-only per tick44/51/52 notes."
   },
   "GBPUSD": {
-   "trend": "BEAR (breakdown stalling \u2014 shelf defended 7x, now bouncing)",
-   "asof": "2026-07-22T11:43:00+00:00",
-   "swings": "The 11:30 M15 bar wicked to fresh session low 1.33631 then closed 1.33653 (46% body, no clean bear rejection). Since then price has reclaimed: HL_RECLAIM fired 1.336955 (11:40:11 UTC, level 1.336935, extreme 1.33655, range_pos 0.184). Live bid/ask 1.33641/1.33652 \u2014 back inside the 1.3366-1.3369 shelf band, 7th breakdown attempt on this shelf rejected.",
-   "note": "refreshed tick 67 \u2014 H4 still BEAR but the shelf keeps holding; this is the bounce, not a break. Counter-trend long NOT valid (no confirmed HL + broken H4 swing high). With-trend short NOT valid here either \u2014 this is a reclaim, not a rejection, and the standing armed instruction (set 11:47Z) explicitly says do not sell into the bounce. NO_ACTION. Armed ticket unchanged: short only on a confirmed closed M15 below 1.33631."
+   "trend": "BEAR (breakdown stalling \u2014 shelf defended 8x+, now bouncing)",
+   "asof": "2026-07-22T11:46:00+00:00",
+   "swings": "M1 bars 11:32-11:46 continue chopping the 1.3363-1.3369 shelf: 11:44 wicked to 1.3363 (closed 1.33637), 11:45 wicked to 1.33635 (closed 1.3367), 11:46 closed 1.33678. PULLBACK_TAG_LONG (1.3368) and SWEEP_LOW (1.336645) both fired inside this same chop. No closed candle has traded below the 1.33631 armed floor.",
+   "note": "refreshed tick 68 \u2014 12x sweep signature per dispatcher (Sprung Ladder Phase-1 candidate, Evan-scout-only regardless of read). Still the bounce, not the break. Armed ticket unchanged: short only on a confirmed closed M15 below 1.33631. NO_ACTION."
   }
  },
  "session_ranges": {
@@ -113,8 +113,8 @@
    "range": 64.87,
    "top_15pct_cutoff": 4132.02,
    "bottom_15pct_cutoff": 4086.61,
-   "asof": "2026-07-22T08:17:33+00:00",
-   "source": "get_symbol_price high/low field, refreshed tick 62; moot this tick since blocked pre-enforcer on H4 trend gate, not Rule17"
+   "asof": "2026-07-22T11:45:00+00:00",
+   "source": "get_symbol_price high/low field, unchanged range since tick62, tick 68 — SPRING_SHORT range_pos 0.608 (mid-range, nowhere near Rule17 bands); moot this tick since blocked on Rule9 R:R, not Rule17"
   },
   "XAGUSD": {
    "low": 56.085,
@@ -132,7 +132,7 @@
    "top_15pct_cutoff": 1.141416,
    "bottom_15pct_cutoff": 1.139624,
    "asof": "2026-07-22T08:23:00+00:00",
-   "source": "get_symbol_price high/low field, tick 63 \u2014 refreshed, replaces stale tick52 entry (high dropped from 1.14283 to 1.1418, broker session rolled); moot this tick since blocked on CHOP/no-trend read, not Rule17"
+   "source": "get_symbol_price high/low field, tick 63, unchanged tick68 \u2014 moot since blocked on CHOP/no-trend read, not Rule17"
   },
   "USDJPY": {
    "low": 162.659,
@@ -149,8 +149,8 @@
    "range": 0.00316,
    "top_15pct_cutoff": 1.338996,
    "bottom_15pct_cutoff": 1.336784,
-   "asof": "2026-07-22T11:43:00+00:00",
-   "source": "get_symbol_price live bid 1.33641/ask 1.33652, low/high unchanged (1.33631/1.33947), tick 67. Moot \u2014 blocked on structure (bounce, not rejection), not Rule17."
+   "asof": "2026-07-22T11:46:00+00:00",
+   "source": "get_symbol_price live bid 1.33663/ask 1.33673, low/high unchanged (1.33631/1.33947), tick 68. Moot \u2014 blocked on structure (bounce, not rejection), not Rule17."
   }
  },
  "armed_tickets": [],
@@ -262,11 +262,29 @@
    "set_utc": "2026-07-22T11:47:00Z"
   },
   {
+   "symbol": "XAUUSD",
+   "level": 4123,
+   "note": "tick 68: SPRING_SHORT (4115.72, level 4122.38, extreme 4123) + SWEEP_LOW (4113.1/4112.47) fired — double-top-reject short structure at the 4122-4123 shelf, clean and counter-trend-eligible in learn mode, but NO_ACTION because SL (above 4123+buffer, ~4126-4128) gives ~11-13pt risk vs only ~5-6pt to nearest support (~4109-4110) — R:R ~0.5:1, fails Rule9 min 1.2:1. Would need either a tighter valid SL or confirmed deeper support before this becomes tradeable.",
+   "set_utc": "2026-07-22T11:46:00Z"
+  },
+  {
    "symbol": "GBPUSD",
    "note": "tick 67 (mode=learn): HL_RECLAIM fired 1.336955 (11:40:11 UTC, level 1.336935, extreme 1.33655, range_pos 0.184). Tier1 escalated for freeze-status verification. Freeze status re-verified: anomaly_status is RESOLVED (Evan confirmed 11:47Z), standing rule applies \u2014 did not re-freeze. Live re-check: switch_trading_account caught the usual revert to 41750592, confirmed 41829612; balance R6831.39, equity R6688.64 (WTI floating loss narrowed to -R142.75 combined from -R413.85, both EVAN_MANUAL, unchanged orderIds, no new foreign activity). GBPUSD: this HL_RECLAIM IS the bounce the 11:47Z armed note said not to sell into \u2014 price reclaimed off the 1.33655 extreme back toward the shelf, live 1.33641/1.33652. Not a valid counter-trend long (H4 still BEAR, no confirmed HL + broken H4 swing high). Not a valid with-trend short either (this is a reclaim, not a rejection; standing instruction explicit). News: WebSearch found UK CPI YoY was today's scheduled release but already printed ~06:00 UTC (~5h40m prior, outside the 2h window); only other item is US crude/gasoline inventories (not GBP-relevant, not on the blocklist) \u2014 attested news_clear, moot since blocked on structure anyway. No enforcer run, nothing placed/would-placed. NO_ACTION. Armed ticket unchanged: short only on a confirmed closed M15 below 1.33631."
+  },
+  {
+   "symbol": "GBPUSD",
+   "note": "tick 68 (mode=learn): PULLBACK_TAG_LONG fired 1.3368 (11:41:02Z) + SWEEP_LOW fired 1.336645 (11:43:01Z), both 1min tf, dispatcher flagged 12x sweep signature on the ~1.33655 shelf in 240min (Sprung Ladder Phase-1 candidate, Evan-scout-only per standing policy regardless of read). Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Anomaly re-checked: still RESOLVED (standing rule), same 2 WTI EVAN_MANUAL positions + 1 NVIDIA pending, no new foreign activity. Balance R6831.39 unchanged, equity drifted 6688.64->6625.33 (WTI floating loss widened slightly to -R203.59 combined). Pulled fresh M1 series (11:32-11:46): price continues chopping 1.3363-1.3369, wicking to 1.3363/1.33635 on the 11:44/11:45 bars but closing back above each time (1.33637, 1.3367) \u2014 no closed candle has traded below the 1.33631 armed floor. Same bounce, not a break. News: WebSearch found no high-impact USD/GBP event inside the 11:45-13:45 UTC window (UK CPI already printed ~06:00Z) \u2014 attested news_clear, moot since blocked on structure. No enforcer run, nothing placed/would-placed. NO_ACTION. Armed ticket unchanged: short only on a confirmed closed M15 below 1.33631."
+  },
+  {
+   "symbol": "XAUUSD",
+   "note": "tick 68 (mode=learn): SPRING_SHORT fired 4115.72 (level 4122.38, extreme 4123) at 11:45:02Z, immediately followed by SWEEP_LOW 4115.72 (level 4113.1, extreme 4112.47) at 11:45:03Z. Pulled fresh M15 (16 bars back to 08:00) and H1 (8 bars back to 04:00): H4/H1 swing-low sequence from earlier this session (\u20264076.72->4076.88) remains unbroken, so the larger H4 read is still technically BULL, but the last 4 hours (07:00-11:00) have been pure chop between ~4109 and ~4123 \u2014 momentum stalled, not a confirmed downtrend. Within that chop: clean double-top-reject structure \u2014 highs rejected at 4122.45 (09:30) and 4123.07 (11:30), now breaking down through the 4113.1 interim support to a fresh local low 4112.6 (11:45 bar, 44% bear body \u2014 not a clean 60%+ rejection bar either). This counter-trend short is learn-mode-eligible (H4 gate downgradable when structurally clean), so evaluated on its own merits: SL must sit beyond the 4123 extreme + 3-5pt buffer (Rule18) \u2248 4126-4128, i.e. ~11-13pt risk from ~4115 entry; nearest confirmed support is only ~4109-4110, ~5-6pt away \u2014 R:R \u2248 0.5:1, fails Rule9's hard 1.2:1 minimum (not a rule learn mode downgrades). No enforcer run (blocked pre-enforcer on R:R, not H4/Rule17). News: WebSearch found no FOMC/NFP/CPI/GDP/PCE/ADP/JOLTS/PMI in the 11:45-13:45 UTC window \u2014 attested news_clear, moot. NO_ACTION. Watch for either an H4 close below 4076.88 (real trend flip, would unlock a short with proper room) or price reclaiming back above 4123 (resumes BULL continuation, invalidates the short read)."
+  },
+  {
+   "symbol": "EURUSD",
+   "note": "tick 68 (mode=learn): SPRING fired 1.14053 (15m) at 11:45:09Z. Pulled fresh M15 (12 bars, 09:00-11:45): price has ground down from 1.14113 to a tight 1.1400-1.1413 band all morning with no clean directional swing sequence \u2014 confirms the standing CHOP verdict, not a tradeable trend either way. The SPRING print (O1.14037 H1.14062 L1.1403 C1.14047) is a minor bounce inside that same chop, not a break of defined structure. No H4 gate to pass or fail against (CHOP = no trend to be counter to or with), so this isn't a learn-mode override case, just no valid setup. News: WebSearch found no high-impact EUR/USD event in the 11:45-13:45 UTC window (ZEW-tier items only, not on the blocklist) \u2014 attested news_clear, moot. No enforcer run, nothing placed/would-placed. NO_ACTION. Same 1.14099 shelf remains Evan-scout-only per tick44/51/52 notes, still moot given the chop."
   }
  ],
- "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick 67: anomaly_status remains RESOLVED (standing rule \u2014 EVAN_MANUAL WTI/NVIDIA positions logged, not frozen). HL_RECLAIM GBPUSD (1.336955) analyzed \u2014 this is the shelf's bounce off the 1.33631 low, not a valid entry either direction; NO_ACTION, armed short-below-1.33631 ticket carried forward unchanged. Live balance R6831.39 / equity R6688.64 (WTI floating loss narrowed since 11:47Z). Session P&L (balance basis) R-563.60 vs session_start_balance R7394.99, unchanged (no new realized closes this tick).",
+ "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick 68: anomaly_status remains RESOLVED (standing rule \u2014 EVAN_MANUAL WTI/NVIDIA positions logged, not frozen, no new foreign activity). GBPUSD PULLBACK_TAG_LONG+SWEEP_LOW \u2014 shelf bounce continues (12x sweep signature), no closed candle below 1.33631, NO_ACTION, armed short ticket unchanged. GOLD SPRING_SHORT+SWEEP_LOW \u2014 clean counter-trend double-top-reject structure but fails Rule9 R:R\u22651.2 on visible support, NO_ACTION. EURUSD SPRING \u2014 still CHOP, no valid setup, NO_ACTION. Live balance R6831.39 / equity R6625.33 (WTI floating loss widened slightly to -R203.59 combined since tick67). Session P&L (balance basis) R-563.60 vs session_start_balance R7394.99, unchanged (no new realized closes this tick).",
  "anomaly_status": {
   "state": "RESOLVED",
   "resolved_utc": "2026-07-22T11:47:00Z",

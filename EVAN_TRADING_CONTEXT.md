@@ -2204,3 +2204,33 @@ outside 2h window — news_clear, moot since blocked on structure. No enforcer r
 placed/would-placed.
 DECISION: NO_ACTION. Armed ticket carried forward unchanged: short only on a confirmed
 closed M15 below 1.33631.
+
+## AUTO TICK 68 — 2026-07-22T11:46Z (13:46 SAST) — Tier2, mode=learn
+Signals: GBPUSD PULLBACK_TAG_LONG 1.3368 (11:41:02Z) + SWEEP_LOW 1.336645 (11:43:01Z), 1m tf,
+12x-sweep shelf signature (~1.33655, 240min, Sprung Ladder Phase-1 candidate). GOLD
+SPRING_SHORT 4115.72 (level 4122.38, extreme 4123) + SWEEP_LOW 4113.1 (extreme 4112.47),
+15m tf. EURUSD SPRING 1.14053, 15m tf.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612.
+Anomaly re-checked: still RESOLVED (standing rule) — same 2 WTI EVAN_MANUAL positions
+(109830351 20u@87.242 SL85.973 pl-99.24; 109830436 10u@87.574 NO-SL pl-104.35) + 1 NVIDIA
+pending (909875988), no new foreign activity. Balance R6831.39 unchanged, equity drifted
+6688.64->6625.33 (WTI floating loss widened slightly to -R203.59 combined).
+GBPUSD: fresh M1 (11:32-11:46) shows continued 1.3363-1.3369 chop; 11:44/11:45 bars wicked
+to 1.3363/1.33635 but closed back above (1.33637/1.3367) — no closed candle below the
+1.33631 armed floor. Same bounce, not a break. NO_ACTION, armed ticket unchanged.
+GOLD: fresh M15/H1 pulled. H4 swing-low sequence (…4076.88) still technically unbroken so
+H4 read stays BULL, but 07:00-11:00 has been pure 4109-4123 chop — momentum stalled. Within
+that chop: clean double-top-reject at 4122.45(09:30)/4123.07(11:30) breaking down through
+4113.1 to 4112.6. Counter-trend short, learn-mode-eligible on H4 grounds, but SL beyond the
+4123 extreme (+3-5pt buffer) ≈ 4126-4128 = ~11-13pt risk, vs only ~5-6pt to nearest support
+(~4109-4110) — R:R ≈ 0.5:1, fails Rule9's hard 1.2:1 minimum (not downgraded in learn mode).
+No enforcer run (blocked pre-enforcer on R:R). NO_ACTION.
+EURUSD: fresh M15 confirms ongoing CHOP (tight 1.1400-1.1413 band, no directional swings).
+SPRING is noise within the chop, no H4 gate to pass/fail against. NO_ACTION.
+News: one WebSearch covering GBP/USD/Gold/EUR for the 11:45-13:45 UTC window — UK CPI
+already printed ~06:00Z (~5h45m prior), no other high-impact release flagged — attested
+news_clear across all three, moot in each case since blocked on structure/R:R rather than
+news. No enforcer run, nothing placed/would-placed on any symbol.
+session_snapshot.json updated (balance/equity, WTI pl refresh, XAUUSD/GBPUSD/EURUSD
+h4_verdicts + session_ranges refresh, 3 new tick68 watch_levels notes). tick_counter.txt ->
+68. session_logger.py tick68 logged.
