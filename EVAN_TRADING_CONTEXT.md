@@ -2459,3 +2459,46 @@ existing WTI/NVIDIA EVAN_MANUAL positions.
 session_snapshot.json updated (balance/equity refresh, new BTCUSD [LEARN]
 position, BTCUSD h4_verdict + session_range added).
 tick_counter.txt -> 75. session_logger.py tick75 logged.
+
+---
+## TICK 76 — AUTO TIER2 — 2026-07-22T16:57Z — MODE=learn
+Signal: GBPUSD PULLBACK_TAG_LONG (1min, price 1.33707, level 1.337075, extreme
+1.336875, range_pos 0.392, received 16:57:03Z). Tagging the bounce off the
+tick73/74 sweep low back toward 1.3374.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed
+41829612. Live balance R6411.59 (unchanged), equity 6353.13->6393.53 on
+floating P&L only.
+Open-position guard: WTI (EVAN_MANUAL, no SL) pl improved -324.06->-315.12,
+M5 ran to a local high 85.954 (16:40) then pulled back to 85.615 (16:55
+close), still chopping 85.4-85.95, well below entry 87.574 — logged only, not
+touched. NVIDIA (EVAN_MANUAL) pl flat +294.79, not touched, out of universe.
+BTCUSD [LEARN] (tick75 entry) pl improved -2.11->+1.43; M5 ran to 66347.82
+(16:40 high) then pulled back to 66116.99 (16:55 close) — an early
+lower-high/lower-low forming, but only ~7min/2 bars post-entry, too soon to
+call a reversal against the trade; SL 65860/TP 66690 already govern risk, no
+Rule5/13/14 action taken (not at +R80, not negative).
+GBPUSD fresh H4/H1/M15 pulled: the 14:00 bull reversal (tick72) topped at
+15:00's 1.33903 and failed by 16:00 (closed 1.33757); 16:15 broke down hard
+(89% bear body) to 1.33675, tick73/74 pushed the low further to
+1.33657/1.33664; since then price recovered back to 1.3373/1.3374 (16:30
+bounced off 1.3365, ~38% bull body; 16:45 closed marginally red, mid-range).
+No clean directional swing sequence since the 14:00 reversal — genuine CHOP,
+same standard as EURUSD ticks 63/68, not a learn-mode H4-downgrade case since
+there is no trend to be counter to.
+M15 trigger: NOT MET. Last 3 closed bars — 16:15 (89% bear), 16:30 (~38%
+bull, weak), 16:45 (marginal bear, mid-range close) — no clean 60%+ bull
+rejection bar.
+R:R: structural SL below the 1.3365 swing low + buffer (~1.3360) = ~14pip
+risk from ~1.3374 entry; nearest resistance is the same 1.3380-1.3382 chop
+ceiling that has rejected price repeatedly (ticks72-74), ~6-8pip reward —
+R:R ≈0.5:1; even the more generous 1.33887 target (~15pips) only reaches
+≈1.07:1 — under Rule9's 1.2:1 floor, not learn-mode-downgradable.
+Rule17: range_pos 0.392, mid-range, clear of both bands — moot.
+News: WebSearch confirmed UK CPI YoY already printed ~06:00Z (~11h prior);
+only other item is US crude/gasoline/distillate inventories (not
+GBP-relevant, not blocklisted) — attested news_clear, moot since blocked on
+trigger/R:R.
+No enforcer run, nothing placed/would-placed. NO_ACTION.
+session_snapshot.json updated (balance/equity refresh, WTI/NVIDIA/BTCUSD pl
+refresh, GBPUSD h4_verdict + session_range refresh, new tick76 watch_levels
+note). tick_counter.txt -> 76. session_logger.py tick76 logged.
