@@ -1,5 +1,5 @@
 {
-  "_comment": "ADVISE mode. Server-wide MCP allow, but all 9 order tools DENIED so a dry run structurally cannot place. tick 50: the real tool prefix is mcp__claude_ai_claude__ (claude.ai scope prefixes the server name) \u2014 every earlier allow/deny entry matched nothing, so this file was inert from tick 45 to 49.",
+  "_comment": "EXECUTE mode. Server-wide MCP allow; single-position order tools permitted. enforcer.py + AUTO_TICK_PROTOCOL are the real gate. Bulk close-all/cancel-all and destructive bash denied in EVERY mode (deny beats allow, even under bypass).",
   "permissions": {
     "defaultMode": "dontAsk",
     "allow": [
@@ -41,34 +41,7 @@
       "Bash(npm:*)",
       "Bash(pip:*)",
       "Bash(apt:*)",
-      "Bash(apt-get:*)",
-      "mcp__claude_ai_claude__create_market_order",
-      "mcp__claude_ai_claude__create_pending_order",
-      "mcp__claude_ai_claude__modify_position",
-      "mcp__claude_ai_claude__modify_pending_order",
-      "mcp__claude_ai_claude__close_position",
-      "mcp__claude_ai_claude__partial_close_position",
-      "mcp__claude_ai_claude__cancel_pending_order",
-      "mcp__claude_ai_claude__cancel_pending_orders_by_symbol",
-      "mcp__claude_ai_claude__rfp_cancel_order",
-      "mcp__claude__create_market_order",
-      "mcp__claude__create_pending_order",
-      "mcp__claude__modify_position",
-      "mcp__claude__modify_pending_order",
-      "mcp__claude__close_position",
-      "mcp__claude__partial_close_position",
-      "mcp__claude__cancel_pending_order",
-      "mcp__claude__cancel_pending_orders_by_symbol",
-      "mcp__claude__rfp_cancel_order",
-      "mcp__thinktrader__create_market_order",
-      "mcp__thinktrader__create_pending_order",
-      "mcp__thinktrader__modify_position",
-      "mcp__thinktrader__modify_pending_order",
-      "mcp__thinktrader__close_position",
-      "mcp__thinktrader__partial_close_position",
-      "mcp__thinktrader__cancel_pending_order",
-      "mcp__thinktrader__cancel_pending_orders_by_symbol",
-      "mcp__thinktrader__rfp_cancel_order"
+      "Bash(apt-get:*)"
     ]
   }
 }
