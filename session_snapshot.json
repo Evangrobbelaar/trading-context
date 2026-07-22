@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "updated_utc": "2026-07-22T12:00:22Z",
- "updated_by": "tick 70 (AUTO TIER2 learn) \u2014 GOLD SPRING_LONG at 4122.47 (level 4113.1, extreme 4112.47), with-trend vs confirmed H4 BULL, Rule17 clean (range_pos 0.76), but M15 trigger bar still forming (not closed) and structural R:R \u2248 0.9:1 fails Rule9 1.2:1 minimum. NO_ACTION.",
+ "updated_utc": "2026-07-22T12:03:58Z",
+ "updated_by": "tick 71 (AUTO TIER2 learn) \u2014 GOLD SPRING (companion echo of tick70's SPRING_LONG, same 4122.47 print) \u2014 re-checked fresh: M15 12:00 bar still forming (not closed), R:R still ~0.9-1.0:1 vs required 1.2:1. NO_ACTION, unchanged from tick70. Also note: symbol \"GOLD\" resolves to BARRICK (mining stock) on this broker, not XAUUSD \u2014 use XAUUSD for gold spot going forward.",
  "balance": {
   "value": 6831.39,
-  "equity": 6481.67,
-  "queried_utc": "2026-07-22T12:00:22Z",
-  "note": "live-queried this run (tick36 rule). Balance unchanged (no new realized closes). Equity drifted 6563.13->6481.67 \u2014 combined WTI floating loss widened to -R349.72 (-R196.70 + -R153.04), both EVAN_MANUAL, same orderIds (109830351, 109830436), no new foreign activity, pending NVIDIA order 909875988 unchanged."
+  "equity": 6544.05,
+  "queried_utc": "2026-07-22T12:03:58Z",
+  "note": "live-queried this run (tick36 rule). Balance unchanged (no new realized closes). Equity 6481.67->6544.05 \u2014 combined WTI floating loss narrowed slightly to -R273.18 (-R145.65 + -R127.53), both EVAN_MANUAL, same orderIds (109830351, 109830436), no new foreign activity. NVIDIA pending order 909875988 has FILLED (now an open position, Buy 2u @204.95, SL197.72, TP221.01, pl-14.17) \u2014 expected fill of Evan's own resting order, not new foreign activity."
  },
  "session_start_balance": 7394.99,
  "open_positions": [
@@ -18,9 +18,9 @@
    "price": 87.242,
    "stopLoss": 85.973,
    "takeProfit": 87.954,
-   "pl": -196.70,
+   "pl": -145.65,
    "openTime_utc": "2026-07-22T09:19:47Z",
-   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 20u @87.242, SL 85.973, TP 87.954. Not placed by this system; counts toward aggregate risk + Rule 20. Has a structural stop. pl refreshed tick70.",
+   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 20u @87.242, SL 85.973, TP 87.954. Not placed by this system; counts toward aggregate risk + Rule 20. Has a structural stop. pl refreshed tick71.",
    "origin": "EVAN_MANUAL"
   },
   {
@@ -31,9 +31,22 @@
    "price": 87.574,
    "stopLoss": 0,
    "takeProfit": 87.963,
-   "pl": -153.04,
+   "pl": -127.53,
    "openTime_utc": "2026-07-22T10:02:05Z",
-   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 10u @87.574, TP 87.963, **STILL NO STOP LOSS** \u2014 uncapped downside. Evan's position to manage; flagged every tick until an SL exists or it is closed. pl refreshed tick70.",
+   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 10u @87.574, TP 87.963, **STILL NO STOP LOSS** \u2014 uncapped downside. Evan's position to manage; flagged every tick until an SL exists or it is closed. pl refreshed tick71.",
+   "origin": "EVAN_MANUAL"
+  },
+  {
+   "symbol": "NVIDIA",
+   "orderId": "909875988",
+   "side": "Buy",
+   "units": 2,
+   "price": 204.95,
+   "stopLoss": 197.72,
+   "takeProfit": 221.01,
+   "pl": -14.17,
+   "openTime_utc": "2026-07-22T11:41:49Z",
+   "note": "EVAN_MANUAL. Was a resting pending limit order (see pending_orders_evan_manual, tick64-70), FILLED as of tick71 \u2014 not this system's instrument universe, not touched.",
    "origin": "EVAN_MANUAL"
   }
  ],
@@ -72,7 +85,7 @@
  "h4_verdicts": {
   "XAUUSD": {
    "trend": "BULL (swing low 4076.88 still unbroken) \u2014 12:00 bar broke back above the 4109-4123 chop ceiling, momentum resuming upward",
-   "asof": "2026-07-22T12:00:22+00:00",
+   "asof": "2026-07-22T12:03:58+00:00",
    "swings": "H4 04:00 bar ran to 4141.75 intrabar/4131.07 close. Chop 4109-4123 held 07:00-11:45 (double rejection 4122.45/4123.07). 11:45 bar swept to 4112.6 (spring extreme 4112.47, the SPRING_SHORT/SWEEP_LOW print), then the 12:00 bar reversed hard: O4115.26 H4123.06 L4114.88 C4122.53 (~89% bull body) \u2014 this is the SPRING_LONG signal bar (price 4122.47, level 4113.1). Live price at read time had already run further to 4125.97/4126.16, through the 4122-4123 ceiling that rejected price twice earlier.",
    "note": "refreshed tick 70 \u2014 SPRING_LONG fired 4122.47 (level 4113.1, extreme 4112.47). With-trend long vs confirmed H4 BULL (swing low 4076.88 unbroken), no Rule3 issue. Rule17 clean: entry ~4126 = range_pos 0.76 of 4076.88-4141.75, nowhere near top-15pct cutoff 4132.02. BUT the 12:00 reversal bar is still forming (not closed) \u2014 Change5 step5 requires a confirmed closed rejection/reclaim bar, not a live/in-progress one (same standard applied ticks 53/55/56/58 against forming breakout bars). Also R:R fails on visible structure: proper SL sits below the 4112.47 spring extreme + 3-5pt buffer (~4108), ~17-18pt risk from ~4126 entry, vs only ~15-16pt reward to session high 4141.75 (no confirmed resistance beyond it to justify a farther TP) \u2014 R:R \u2248 0.9:1, under Rule9's 1.2:1 floor. Neither gate is learn-mode-downgradable. NO_ACTION on M15-trigger + R:R grounds, not H4/Rule17. Watch for a CLOSED M15 bar holding above 4123 with room, or a deeper pullback that improves R:R before chasing this move."
   },
@@ -273,6 +286,11 @@
    "set_utc": "2026-07-22T12:00:22Z"
   },
   {
+   "symbol": "XAUUSD",
+   "note": "tick 71 (mode=learn): plain \"SPRING\" event fired 4122.47 at 12:00:11Z — a companion/duplicate tag of tick70's SPRING_LONG (same price, 5s apart), not a new signal. Re-pulled fresh: current time 12:03:58Z means the 12:00-12:15 M15 bar is still only ~4min in, definitionally unclosed — same Change5 step5 blocker as tick70. Live price 4124.94/4125.13 (up slightly from tick70's 4125.97/4126.16 read... broadly flat/consolidating just above the 4123 ceiling). R:R recomputed at current price: SL ~4108 (below 4112.47 extreme + buffer) = ~17pt risk from ~4125 entry, TP session high 4141.75 = ~16.6pt reward — R:R ~0.98:1, still fails Rule9 1.2:1. No enforcer run (blocked pre-enforcer on trigger/R:R). Also discovered mid-tick: broker symbol \"GOLD\" maps to BARRICK (mining stock), not the metal — always use \"XAUUSD\" for gold spot on this MCP. NO_ACTION, unchanged thesis from tick70. Same watch condition: closed M15 bar holding above 4123, or a pullback improving R:R.",
+   "set_utc": "2026-07-22T12:03:58Z"
+  },
+  {
    "symbol": "GBPUSD",
    "note": "tick 67 (mode=learn): HL_RECLAIM fired 1.336955 (11:40:11 UTC, level 1.336935, extreme 1.33655, range_pos 0.184). Tier1 escalated for freeze-status verification. Freeze status re-verified: anomaly_status is RESOLVED (Evan confirmed 11:47Z), standing rule applies \u2014 did not re-freeze. Live re-check: switch_trading_account caught the usual revert to 41750592, confirmed 41829612; balance R6831.39, equity R6688.64 (WTI floating loss narrowed to -R142.75 combined from -R413.85, both EVAN_MANUAL, unchanged orderIds, no new foreign activity). GBPUSD: this HL_RECLAIM IS the bounce the 11:47Z armed note said not to sell into \u2014 price reclaimed off the 1.33655 extreme back toward the shelf, live 1.33641/1.33652. Not a valid counter-trend long (H4 still BEAR, no confirmed HL + broken H4 swing high). Not a valid with-trend short either (this is a reclaim, not a rejection; standing instruction explicit). News: WebSearch found UK CPI YoY was today's scheduled release but already printed ~06:00 UTC (~5h40m prior, outside the 2h window); only other item is US crude/gasoline inventories (not GBP-relevant, not on the blocklist) \u2014 attested news_clear, moot since blocked on structure anyway. No enforcer run, nothing placed/would-placed. NO_ACTION. Armed ticket unchanged: short only on a confirmed closed M15 below 1.33631."
   },
@@ -293,22 +311,12 @@
    "note": "tick 69 (mode=learn): SPRING_SHORT fired 1.33682 (level 1.33697, extreme 1.337035) at 11:51:01Z, preceded by SWEEP_HIGH 1.33693 (level 1.33697, extreme 1.33699) at 11:48:02Z \u2014 both 1min tf. Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Anomaly re-checked: still RESOLVED (standing rule), same 2 WTI EVAN_MANUAL positions (109830351, 109830436) + 1 NVIDIA pending (909875988), no new foreign activity. Balance R6831.39 unchanged, equity drifted 6625.33->6563.13 (WTI floating loss widened to -R267.79 combined). This is an upthrust-reject at the TOP of the 1.3363-1.337 shelf, WITH the confirmed H4 BEAR trend (H1 clean lower-high/lower-low sequence since 08:00 1.33947 peak) \u2014 unlike every prior long attempt on this shelf (ticks 64-68), no Rule3 counter-trend exception needed here. Pulled fresh M1 (11:34-11:53) and M15 (16 bars): price did sweep to 1.337035 then reject, 3 straight down-closing M1 bars followed (1.33676->1.33668->1.33658), but the last CLOSED M15 bar (11:30-11:45, O1.33685 H1.337 L1.33631 C1.33653) is only ~46% bear body \u2014 wicked the 1.33631 armed floor but did not close below it \u2014 and the current M15 bar (11:45-12:00) is still forming. Change5 step5's 60%+ closed rejection-bar standard is NOT met; this is not in the learn-mode downgrade list (only Rule17/H4-counter-trend/scout-uncertainty are), so it still hard-blocks. Separately, entry (~1.3367 bid) computes to range_pos 0.142 (matches signal's own field) \u2014 inside Rule17's bottom-15pct band (cutoff 1.336776 of 1.3363-1.33947), which would warn-only in learn mode but is moot since already blocked on trigger. News: WebSearch found UK CPI YoY already printed ~06:00 UTC (5h50m prior, outside window); only other GBP/USD-adjacent item is US crude/gasoline/distillate inventories (not GBP-relevant, not on the NFP/CPI/FOMC/GDP/PCE/ADP/JOLTS/PMI blocklist) \u2014 attested news_clear, moot. Checked WTI (Evan's manual positions) M5 structure for the mandatory open-position guard: choppy, no clean directional break, current price 86.752/86.767 still below both entries (87.242, 87.574); logged only, not touched per standing anomaly-resolution rule (Evan's positions). No enforcer run, nothing placed/would-placed. NO_ACTION. Armed ticket unchanged: short only on a confirmed closed M15 below 1.33631. This upthrust-reject setup is otherwise the cleanest with-trend GBPUSD short structure seen this session \u2014 watch for a closed M15 bear body \u226560% off a retest of 1.33697-1.337035, or the existing bottom-floor break, whichever confirms first."
   }
  ],
- "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick 70: anomaly_status remains RESOLVED (standing rule \u2014 EVAN_MANUAL WTI/NVIDIA positions logged, not frozen, no new foreign activity, same orderIds). GOLD SPRING_LONG at 4122.47 \u2014 with-trend vs confirmed H4 BULL, Rule17 clean (range_pos 0.76), but blocked on unclosed M15 trigger bar + Rule9 R:R (~0.9:1 vs required 1.2:1). NO_ACTION. Live balance R6831.39 / equity R6481.67 (WTI floating loss widened to -R349.72 combined since tick69). Session P&L (balance basis) R-563.60 vs session_start_balance R7394.99, unchanged (no new realized closes this tick).",
+ "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick 71: anomaly_status remains RESOLVED (standing rule \u2014 EVAN_MANUAL WTI/NVIDIA positions logged, not frozen). NVIDIA pending order 909875988 FILLED this tick (now an open position, moved out of pending_orders_evan_manual into open_positions) \u2014 expected fill, not new foreign activity. GOLD plain-SPRING echo of tick70's SPRING_LONG at 4122.47 \u2014 re-checked, still blocked on unclosed M15 trigger bar + Rule9 R:R (~0.98:1 vs required 1.2:1). NO_ACTION, unchanged from tick70. Discovered broker symbol \"GOLD\" = BARRICK stock, not gold spot \u2014 use XAUUSD. Live balance R6831.39 / equity R6544.05 (WTI floating loss narrowed to -R273.18 combined). Session P&L (balance basis) R-563.60 vs session_start_balance R7394.99, unchanged (no new realized closes this tick).",
  "anomaly_status": {
   "state": "RESOLVED",
   "resolved_utc": "2026-07-22T11:47:00Z",
   "resolution": "Evan confirmed in interactive session that the WTI/NVIDIA/GBPUSD activity from ~09:12-10:28 UTC was his own manual trading, not a second/compromised actor. Foreign-activity freeze LIFTED. Auto-tick must NOT re-freeze order placement on account 41829612 for these positions.",
   "standing_rule": "Manual trades placed by Evan on 41829612 are expected and do not constitute an integrity anomaly. Log them as EVAN_MANUAL in the book, include them in Rule 20 correlation and aggregate-risk maths, but do not freeze placement. Only freeze if activity appears that Evan has not accounted for."
  },
- "pending_orders_evan_manual": [
-  {
-   "symbol": "NVIDIA",
-   "orderId": "909875988",
-   "side": "Buy",
-   "units": 2,
-   "price": 204.95,
-   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). NVIDIA Buy 2u @204.95 Limit \u2014 outside this system's instrument universe; Evan's order, left untouched.",
-   "origin": "EVAN_MANUAL"
-  }
- ]
+ "pending_orders_evan_manual": []
 }

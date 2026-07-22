@@ -2293,3 +2293,32 @@ with room, or a pullback that improves the R:R, before treating this move as tra
 session_snapshot.json updated (balance/equity, WTI pl refresh, XAUUSD h4_verdict +
 session_range refresh, 1 new tick70 watch_levels note). tick_counter.txt -> 70.
 session_logger.py tick70 logged.
+
+## AUTO TICK 71 — 2026-07-22T12:03:58Z (14:03 SAST) — Tier2, mode=learn
+Signal: plain "SPRING" event, GOLD, 4122.47, 12:00:11Z — a companion/duplicate tag fired
+5s after tick70's SPRING_LONG at the same price, not a new signal.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612.
+Anomaly re-checked: still RESOLVED (standing rule) — same 2 WTI EVAN_MANUAL positions
+(109830351 20u@87.242 SL85.973 pl-145.65; 109830436 10u@87.574 NO-SL pl-127.53), no new
+foreign activity. NVIDIA pending order 909875988 FILLED this tick (Buy 2u@204.95,
+SL197.72, TP221.01, pl-14.17) — expected fill of Evan's own resting order, not a new
+anomaly; moved from pending to open in the snapshot. Balance R6831.39 unchanged, equity
+6481.67->6544.05 (WTI floating loss narrowed to -R273.18 combined).
+Tool note: queried symbol "GOLD" first per the signal's own field name — it resolved to
+BARRICK (a gold-mining stock), not the metal. Re-queried XAUUSD for the correct instrument;
+flagging this so future ticks use XAUUSD directly for gold spot rather than "GOLD".
+GOLD/XAUUSD: H4 BULL confirmed, swing low 4076.88 unbroken, same read as tick70. Fresh M15
+pulled: the 12:00-12:15 bar (O4115.26 H4123.06 L4114.88 C4122.53) is unchanged from tick70's
+read and, at 12:03:58Z, is only ~4min old — still definitionally unclosed. Live price
+4124.94/4125.13. Rule17: range_pos ~0.76, clear of top-15pct cutoff (4132.02), passes.
+Change5 step5 still fails (no confirmed closed trigger bar). R:R recomputed at current
+price: SL ~4108 (below 4112.47 spring extreme + 3-5pt buffer) = ~17pt risk from ~4125
+entry; TP session high 4141.75 = ~16.6pt reward — R:R ~0.98:1, still under Rule9's 1.2:1
+floor. Neither gate is learn-mode-downgradable. News: WebSearch found no high-impact
+USD/gold event in the next 2h (next scheduled: jobless claims Jul 23, PMI Jul 24, FOMC
+Jul 29) — attested news_clear, moot since blocked on trigger/R:R. No enforcer run, nothing
+placed/would-placed. NO_ACTION, thesis unchanged from tick70. Watch for a CLOSED M15 bar
+holding above 4123 with room, or a pullback that improves R:R.
+session_snapshot.json updated (balance/equity, WTI pl refresh, NVIDIA pending->open
+transition, XAUUSD h4_verdict asof refresh, 1 new tick71 watch_levels note).
+tick_counter.txt -> 71. session_logger.py tick71 logged.
