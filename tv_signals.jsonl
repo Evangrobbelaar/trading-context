@@ -272,3 +272,4 @@
 {"event": "SWEEP_LOW", "symbol": "SILVER", "tf": "15", "price": 59.7392, "level": 59.7307, "extreme": 59.7032, "range_pos": 0.467, "vol_mult": 0.68, "h1_atr": 0.45655, "t": 1784749500309, "received_utc": "2026-07-22T19:45:03.947095+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "SILVER", "tf": "15", "price": 59.6385, "level": 59.7032, "extreme": 59.948, "range_pos": 0.422, "vol_mult": 0.97, "h1_atr": 0.469686, "t": 1784750400224, "received_utc": "2026-07-22T20:00:01.344474+00:00"}
 {"event": "PULLBACK_TAG_SHORT", "symbol": "SILVER", "tf": "15", "price": 59.695, "level": 59.7032, "extreme": 59.948, "range_pos": 0.447, "vol_mult": 1.18, "h1_atr": 0.44908, "t": 1784751300171, "received_utc": "2026-07-22T20:15:01.331442+00:00"}
+{"event": "SWEEP", "symbol": "SILVER", "tf": "15", "price": 59.8547, "t": 1784752200150, "received_utc": "2026-07-22T20:30:01.049022+00:00"}
