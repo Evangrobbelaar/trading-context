@@ -237,3 +237,4 @@
 {"event": "PULLBACK_TAG_SHORT", "symbol": "GBPUSD", "tf": "1", "price": 1.33664, "level": 1.336815, "extreme": 1.33761, "range_pos": 0.286, "vol_mult": 1, "h1_atr": 0.001306, "t": 1784737081670, "received_utc": "2026-07-22T16:18:03.872971+00:00"}
 {"event": "SWEEP", "symbol": "USOIL", "tf": "15", "price": 86.39, "t": 1784737800118, "received_utc": "2026-07-22T16:30:01.134595+00:00"}
 {"event": "SWEEP_LOW", "symbol": "USOIL", "tf": "15", "price": 86.39, "level": 86.14, "extreme": 86.11, "range_pos": 0.468, "vol_mult": 0.42, "h1_atr": 0.907948, "t": 1784737800168, "received_utc": "2026-07-22T16:30:02.859319+00:00"}
+{"event": "HL_RECLAIM", "symbol": "BTCUSD", "tf": "15", "price": 66263.14, "t": 1784738701667, "received_utc": "2026-07-22T16:45:09.747824+00:00"}
