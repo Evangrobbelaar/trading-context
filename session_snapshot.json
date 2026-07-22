@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "updated_utc": "2026-07-22T16:10:03Z",
- "updated_by": "tick 72 (AUTO TIER2 learn) \u2014 GBPUSD PULLBACK_TAG_SHORT 1.33723 (level 1.337315). NO_ACTION: H4 downgraded BEAR->UNCERTAIN/CHOP after a 14:00 UTC H1 reversal bar (1.33588->1.33863, ~85% bull body) broke the whole 08:00-13:00 lower-high/lower-low bear sequence; price now consolidating 1.3371-1.3379 with no clean M15 trigger. Also discovered WTI position 109830351 (20u, SL85.973) hit its stop and closed -R419.96 (EVAN_MANUAL) since tick71.",
+ "updated_utc": "2026-07-22T16:14:45Z",
+ "updated_by": "tick 73 (AUTO TIER2 learn) \u2014 GBPUSD PULLBACK_TAG_SHORT/LL_BREAKDOWN/SWEEP_LOW 1.33722-1.33723 (level 1.337315, extreme 1.337645). Fresh M15 16:15 bar closed 1.33682 (89% bear body), breaking the 1.3371-1.3379 compression tick72 flagged \u2014 clean trigger, structure reasserting bearish. NO_ACTION anyway: R:R fails. Minimum Rule2 SL (15pips, structural extreme+buffer) leaves only ~13.7pips reward to the nearest real support (session low 1.33545, no deeper structure on record) = ~0.9:1, under Rule9's 1.2:1 floor (not learn-mode-downgradable). No enforcer run.",
  "balance": {
   "value": 6411.59,
-  "equity": 6333.47,
-  "queried_utc": "2026-07-22T16:10:14Z",
-  "note": "live-queried this run (tick36 rule). Balance dropped 6831.39->6411.59 (-419.80, matches the 109830351 WTI stop-out at -419.96 net of tiny spread/rounding) \u2014 EVAN_MANUAL, expected per anomaly_status RESOLVED standing rule, not foreign activity. Remaining WTI 109830436 (no SL) pl worsened to -340.39. NVIDIA 909875988 pl swung to +261.61 (was -14.17) \u2014 not this system's instrument, not touched."
+  "equity": 6380.59,
+  "queried_utc": "2026-07-22T16:14:50Z",
+  "note": "live-queried this run (tick36 rule). Balance unchanged from tick72 (6411.59, no new fills/closes). Equity drifted 6333.47->6380.59 on floating P&L only: WTI 109830436 (no SL) pl improved -340.39->-304.86 (bounced off M5 lows), NVIDIA 909875988 pl improved +261.61->+274.67. Both EVAN_MANUAL, logged only, not touched."
  },
  "session_start_balance": 7394.99,
  "open_positions": [
@@ -18,9 +18,9 @@
    "price": 87.574,
    "stopLoss": 0,
    "takeProfit": 87.963,
-   "pl": -340.39,
+   "pl": -304.86,
    "openTime_utc": "2026-07-22T10:02:05Z",
-   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 10u @87.574, TP 87.963, **STILL NO STOP LOSS** \u2014 uncapped downside. Evan's position to manage; flagged every tick until an SL exists or it is closed. pl refreshed tick72; M5 shows a steady decline 86.26->85.29 since 15:25 with only a minor bounce to ~85.51 in the last 3 bars.",
+   "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z). WTI, Buy 10u @87.574, TP 87.963, **STILL NO STOP LOSS** \u2014 uncapped downside. Evan's position to manage; flagged every tick until an SL exists or it is closed. pl refreshed tick73 (-340.39->-304.86); M5 continued the decline to a fresh low 85.22 (15:50 bar) then bounced/chopped 85.29-85.75 through 16:15.",
    "origin": "EVAN_MANUAL"
   },
   {
@@ -31,9 +31,9 @@
    "price": 204.95,
    "stopLoss": 197.72,
    "takeProfit": 221.01,
-   "pl": 261.61,
+   "pl": 274.67,
    "openTime_utc": "2026-07-22T11:41:49Z",
-   "note": "EVAN_MANUAL. Not this system's instrument universe, not touched. pl swung positive tick72 (was -14.17 tick71).",
+   "note": "EVAN_MANUAL. Not this system's instrument universe, not touched. pl refreshed tick73 (+261.61->+274.67); M5 continues higher highs 211.65->213.5 since 15:40.",
    "origin": "EVAN_MANUAL"
   }
  ],
@@ -110,10 +110,10 @@
    "note": "refreshed tick 68 \u2014 SPRING signal is noise within ongoing CHOP, no H4 gate to pass or fail against. NO_ACTION, watch only. Same 1.14099 shelf remains Evan-scout-only per tick44/51/52 notes."
   },
   "GBPUSD": {
-   "trend": "UNCERTAIN/CHOP (clean BEAR staircase broken by a sharp H1 reversal)",
-   "asof": "2026-07-22T16:10:14+00:00",
-   "swings": "H1 continued the confirmed BEAR staircase through 13:00 (new session low 1.33545), but the 14:00 H1 bar reversed violently: O1.33588 H1.33887 L1.33588 C1.33863 (~85% bull body), closing back above every H1 swing high since 08:00 except the 08:00 peak itself (1.33947). 15:00 gave back some of that (H1.33903 C1.33735) and price has since compressed 1.3371-1.3379 for over an hour (15:15-16:10 M15 bars all overlap this band, no clean directional close). Current M15 (16:00 bar): O1.3375 H1.33799 L1.3373 C1.33757 \u2014 net bullish close, not a bear rejection bar.",
-   "note": "refreshed tick 72 \u2014 PULLBACK_TAG_SHORT fired 1.33723 (level 1.337315, extreme 1.337645, range_pos 0.431). Re-ran H4/H1 fresh since the last read (tick69, 11:53Z) is now 4h+ stale: the 08:00-13:00 lower-high/lower-low bear sequence that made tick69's short 'with-trend' has been broken by the 14:00 reversal bar. This is not a clean counter-trend setup (which learn mode would downgrade) \u2014 it's genuine chop/no-trend, same standard as the EURUSD CHOP calls (ticks 63/68). M15 trigger also absent: no closed 60%+ bear rejection bar in the last several bars. NO_ACTION on structure grounds, pre-enforcer. Rule17 moot (range_pos 0.43, mid-range, not blocked anyway). Retiring the stale tick66 armed ticket (short below 1.33631) \u2014 price has since traded well above that level (up to 1.33903) and the setup that produced it no longer holds; watch levels below updated accordingly."
+   "trend": "BEAR reasserting (unconfirmed) \u2014 14:00 bull reversal failed to sustain",
+   "asof": "2026-07-22T16:14:50+00:00",
+   "swings": "14:00 reversal topped at 15:00's 1.33903 (only a marginal higher-high vs 14:00's 1.33887, and well below the 08:00 session peak 1.33947), then failed: 15:00 closed 1.33735 near its low, 16:00 closed 1.33757 (weak), and the 16:15 M15 bar broke down hard (O1.33756 H1.33758 L1.33675 C1.33682, ~89% bear body) through the entire 1.3371-1.3379 compression band tick72 flagged. Live bid/ask 1.33682/1.33693, at/through the break level.",
+   "note": "refreshed tick 73 \u2014 PULLBACK_TAG_SHORT/LL_BREAKDOWN/SWEEP_LOW fired 1.33722-1.33723 (level 1.337315, extreme 1.337645) at 16:09-16:10Z; price continued down after the print into the fresh 16:15 closed bear bar. Clean M15 trigger (89% bear body, closed) \u2014 Change5 step5 satisfied. H4/H1 leaning bearish again (fresh LH+LL forming) but only 1 bar old, not yet a confirmed multi-swing BEAR; learn-mode-eligible as counter-trend-or-not either way. BLOCKED ON R:R, not H4/Rule17/trigger: minimum viable SL per Rule2 floor (15 pips, beyond the 1.337645 extreme + buffer) = 1.33832, entry ~1.33682 = 15pips risk; nearest genuine support is the session low 1.33545 (H4 history back to Jul17 shows no shelf between there and current price, clean monotonic decline since Jul20) = only 13.7pips reward \u2014 R:R \u22480.9:1, under Rule9's hard 1.2:1 floor (not on the learn-mode downgrade list). News: WebSearch confirmed UK CPI already printed ~06:00Z (10h+ prior), only other item is US crude/gasoline/distillate inventories (not GBP-relevant, not blocklisted) \u2014 attested news_clear, moot since blocked on R:R. No enforcer run, nothing placed/would-placed. NO_ACTION. Watch for either a confirmed H4 close below 1.33545 (opens room for a proper R:R short with the next level as target) or price reclaiming back above 1.33799/1.33903 (invalidates this bearish read)."
   }
  },
  "session_ranges": {
@@ -159,8 +159,8 @@
    "range": 0.00402,
    "top_15pct_cutoff": 1.338867,
    "bottom_15pct_cutoff": 1.336053,
-   "asof": "2026-07-22T16:10:14+00:00",
-   "source": "get_symbol_price live bid 1.33695/ask 1.33707, tick72. New session low 1.33545 (13:00 bar) since tick69's 1.3363. Entry ~1.33723 = range_pos ~0.44, mid-range, clear of both Rule17 bands \u2014 moot anyway since blocked on H4/M15 structure grounds, not Rule17."
+   "asof": "2026-07-22T16:14:50+00:00",
+   "source": "get_symbol_price live bid 1.33682/ask 1.33693, tick73. Range unchanged from tick72 (1.33545-1.33947). Entry ~1.33682 = range_pos ~0.34, mid-range, clear of both Rule17 bands \u2014 moot anyway since blocked on R:R grounds, not Rule17."
   }
  },
  "armed_tickets": [],
@@ -311,9 +311,13 @@
   {
    "symbol": "GBPUSD",
    "note": "tick 72 (mode=learn): PULLBACK_TAG_SHORT fired 1.33723 (level 1.337315, extreme 1.337645, range_pos 0.431) at 16:10:02Z. Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Live balance R6411.59/equity R6333.47 \u2014 discovered WTI 109830351 (20u, SL85.973) closed via its own stop since tick71, -R419.96 realized (EVAN_MANUAL, matches the balance drop, not foreign activity per anomaly_status RESOLVED standing rule); remaining WTI 109830436 (no SL) pl worsened to -340.39, NVIDIA swung to +261.61 \u2014 both logged only, not touched. Fresh GBPUSD H4/H1 pulled since tick69's read is 4h+ stale: the 08:00-13:00 lower-high/lower-low BEAR staircase was broken by a violent 14:00 H1 reversal bar (1.33588->1.33863, ~85% bull body) that closed back above every H1 swing high since 08:00 bar except the session's 1.33947 peak. Price has since compressed 1.3371-1.3379 for over an hour with no clean directional close \u2014 downgraded H4 to UNCERTAIN/CHOP. This is not a learn-mode-eligible counter-trend case (that requires a structurally clean counter-trend read); it's genuine no-trend chop, same standard as EURUSD's CHOP calls (ticks 63/68). M15 trigger also absent: last several bars show no closed 60%+ bear rejection body (16:00 bar closed net bullish). Rule17 moot: entry range_pos ~0.44 (session range recalculated 1.33545-1.33947 \u2014 new low since tick69), mid-range, not blocked anyway. News: WebSearch found UK CPI YoY already printed ~06:00 UTC (10h+ prior); only other item is US crude/gasoline/distillate inventories (not GBP-relevant, not on the NFP/CPI/FOMC/GDP/PCE/ADP/JOLTS/PMI blocklist) \u2014 attested news_clear, moot since blocked on structure. No enforcer run, nothing placed/would-placed. NO_ACTION. Retired the stale tick66 armed ticket (short below 1.33631) \u2014 price has since traded well above that level and the shelf context is gone. Watch for the 1.3371-1.3379 compression to resolve either direction with a confirmed closed M15/H1 break before treating GBPUSD as tradeable again."
+  },
+  {
+   "symbol": "GBPUSD",
+   "note": "tick 73 (mode=learn): PULLBACK_TAG_SHORT + LL_BREAKDOWN + SWEEP_LOW fired 1.33722-1.33723 (level 1.337315, extreme 1.337645) at 16:09:04-16:10:10Z, 1min tf, continuation of tick72's compression zone. Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Live balance R6411.59 unchanged, equity 6333.47->6380.59 (WTI no-SL pl improved -340.39->-304.86, NVIDIA improved +261.61->+274.67, both EVAN_MANUAL, logged only, not touched \u2014 anomaly_status still RESOLVED, no new foreign activity). Fresh GBPUSD M15/H1/H4 pulled: the 14:00 bull reversal tick72 flagged has now failed \u2014 15:00 made only a marginal higher-high (1.33903, still below the 1.33947 session peak) then closed weak (1.33735), 16:00 closed 1.33757, and the fresh 16:15 M15 bar broke down hard (O1.33756 H1.33758 L1.33675 C1.33682, ~89% bear body) through the whole 1.3371-1.3379 band \u2014 a clean, closed Change5-step5-qualifying rejection trigger. H4/H1 leaning BEAR again (fresh LH/LL forming) but only 1 bar old, not a confirmed multi-swing trend yet. Pulled H4 history back to Jul17 to check for a deeper support below the session low: found none \u2014 clean monotonic decline since Jul20, no shelf between 1.33545 and current price. This is the actual blocker: minimum viable SL per Rule2's forex floor (15 pips, placed beyond the 1.337645 extreme + buffer = 1.33832) gives 15pips risk from ~1.33682 entry, but the nearest real target (session low 1.33545) is only 13.7pips away \u2014 R:R ~0.9:1, under Rule9's hard 1.2:1 minimum (not learn-mode-downgradable, unlike Rule17/H4-countertrend/scout-uncertainty). News: WebSearch confirmed UK CPI already printed ~06:00Z (10h+ prior), only other item is US crude/gasoline/distillate inventories (not GBP-relevant, not blocklisted) \u2014 attested news_clear, moot since blocked on R:R. No enforcer run, nothing placed/would-placed. NO_ACTION. Watch for a confirmed H4 close below 1.33545 (would open room for a proper-R:R short with the next level as target) or a reclaim back above 1.33799/1.33903 (invalidates this bearish read)."
   }
  ],
- "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick 72: anomaly_status remains RESOLVED (standing rule \u2014 EVAN_MANUAL WTI/NVIDIA positions logged, not frozen). WTI 109830351 hit its SL and closed -R419.96 since tick71 (EVAN_MANUAL, expected). GBPUSD H4 downgraded BEAR->UNCERTAIN/CHOP after a sharp 14:00Z H1 reversal broke the bear staircase tick69 relied on; stale tick66 armed ticket (short below 1.33631) retired. Live balance R6411.59 / equity R6333.47. Session P&L (balance basis) R-983.40 vs session_start_balance R7394.99 (widened from R-563.60 at tick71, driven entirely by the EVAN_MANUAL WTI stop-out, not this system's activity).",
+ "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick 73: anomaly_status remains RESOLVED (standing rule \u2014 EVAN_MANUAL WTI/NVIDIA positions logged, not frozen, both pl improved on floating basis). GBPUSD H4 now leaning BEAR again after the 14:00Z reversal failed and a clean 89% bear M15 bar broke the compression \u2014 but NO_ACTION on R:R grounds (Rule9, ~0.9:1, no support closer than the session low). Live balance R6411.59 / equity R6380.59 (balance unchanged, equity improved on WTI/NVIDIA floating P&L). Session P&L (balance basis) R-983.40 vs session_start_balance R7394.99, unchanged from tick72 (no new realized activity this tick).",
  "anomaly_status": {
   "state": "RESOLVED",
   "resolved_utc": "2026-07-22T11:47:00Z",

@@ -2353,3 +2353,32 @@ session_snapshot.json updated (balance/equity, WTI close + pl refresh, NVIDIA pl
 GBPUSD h4_verdict + session_range refresh, tick66 armed ticket retired, 1 new tick72
 watch_levels note).
 tick_counter.txt -> 72. session_logger.py tick72 logged.
+
+## AUTO TICK 73 — 2026-07-22T16:14:45Z (18:14 SAST) — Tier2, mode=learn
+Signal: PULLBACK_TAG_SHORT + LL_BREAKDOWN + SWEEP_LOW, GBPUSD, 1.33722-1.33723
+(level 1.337315, extreme 1.337645), 16:09-16:10Z, 1min tf.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612.
+Live balance R6411.59 unchanged, equity 6333.47->6380.59 (WTI no-SL pl improved
+-340.39->-304.86, NVIDIA improved +261.61->+274.67, both EVAN_MANUAL, logged only,
+not touched; anomaly_status still RESOLVED, no new foreign activity).
+GBPUSD: the 14:00 bull reversal tick72 flagged has now failed — 15:00 made only a
+marginal higher-high (1.33903, still below the 1.33947 session peak) then closed weak
+(1.33735), 16:00 closed 1.33757, and the fresh 16:15 M15 bar broke down hard
+(O1.33756 H1.33758 L1.33675 C1.33682, ~89% bear body) through the whole 1.3371-1.3379
+compression band — a clean, closed Change5-step5 rejection trigger. H4/H1 leaning BEAR
+again (fresh LH/LL forming) but only 1 bar old, not a confirmed multi-swing trend.
+Pulled H4 history back to Jul17 checking for support below the session low: none found —
+clean monotonic decline since Jul20, no shelf between 1.33545 and current price.
+BLOCKED ON R:R: minimum viable SL per Rule2's forex floor (15 pips, beyond the 1.337645
+extreme + buffer = 1.33832) gives 15 pips risk from ~1.33682 entry, but the nearest real
+target (session low 1.33545) is only 13.7 pips away — R:R ~0.9:1, under Rule9's hard
+1.2:1 minimum (not learn-mode-downgradable, unlike Rule17/H4-countertrend/scout-
+uncertainty). News: WebSearch confirmed UK CPI already printed ~06:00Z (10h+ prior),
+only other item is US crude/gasoline/distillate inventories (not GBP-relevant, not
+blocklisted) — attested news_clear, moot since blocked on R:R. No enforcer run, nothing
+placed/would-placed.
+NO_ACTION. Watch for a confirmed H4 close below 1.33545 (opens room for a proper-R:R
+short) or a reclaim back above 1.33799/1.33903 (invalidates this bearish read).
+session_snapshot.json updated (balance/equity, WTI/NVIDIA pl refresh, GBPUSD h4_verdict
++ session_range refresh, 1 new tick73 watch_levels note).
+tick_counter.txt -> 73. session_logger.py tick73 logged.
