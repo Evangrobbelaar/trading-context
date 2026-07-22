@@ -1994,3 +1994,44 @@ signal that clears the rules will place a real demo trade with no human in the l
 2. **PER_TRADE_RISK_PCT = 0.05 unchanged.** Live, unattended, London open. tick 54's
    enforcer-cleared ticket was R306.56 on one trade. Recommendation on record: 0.02 before
    the first autonomous fill.
+
+## AUTO TICK 63 — 2026-07-22T08:21 UTC (10:21 SAST, LDN session)
+Signals: SWEEP USDJPY @163.054 (15m, fired 08:15:03 UTC) | SWEEP_HIGH EURUSD @1.14053
+(level 1.14099, extreme 1.14102, range_pos 0.432, vol_mult 1.69, fired 08:15:05 UTC).
+Dispatcher flagged both as Sprung Ladder Phase-1 shelf signatures (USDJPY 3 sweeps
+~163.054/240min "recovering post-intervention spike"; EURUSD 4 sweeps ~1.14099/240min).
+Routing: switch_trading_account caught usual revert to 41750592, confirmed on 41829612.
+Balance R7162.94 / equity R7162.94 (live-queried), book flat, no open positions to manage.
+
+USDJPY: pulled clean UTC-aligned M15 series. The 07:45 spike bar (O163.129 H163.129
+L162.659 C162.938, ~25.1M vol) broke every prior H4 swing low this session. Since: 08:00
+bar compressed tight (162.937-162.97-162.896-162.938) then 08:15 bar reclaimed bullishly
+(162.939->163.054 high->163.051 close, ~75% bull body) — the signal print itself. Live
+163.099/163.112, Rule17 would pass (~81% of range, clear of top-15pct cutoff 163.133) but
+moot: only one compression bar + one reclaim bar exist since the spike closed (~35min
+digestion) — tick61 explicitly said don't trust structure for "the next tick or two" until
+digested, and this is that window. H4 gate: UNCERTAIN, not confirmed BULL. Also this shelf
+IS the Sprung Ladder pattern itself (STRATEGY_SPRUNG_LADDER.md) — scouts are Evan-only/never
+auto-deployed regardless of setup quality, moot regardless of H4 read. No enforcer run.
+NO_ACTION.
+
+EURUSD: fresh H1/M15 pulled. H1 01:00-07:00 shows a clean rising higher-low/higher-high
+staircase, but the 08:00 H1 bar spiked to a new high 1.1418 then reversed hard to 1.1403,
+closing mid-range — breaking the immediate uptrend. M15 last 3 closed bars are pure
+whipsaw: 07:45 bearish reject from 1.1418->1.14052 (60%+ bear body), 08:00 bullish reclaim
+off swept low 1.1403->1.14089 (~77% bull body), 08:15 bearish again — swept 1.14099/1.14102
+then rejected to close 1.14048 near the low (this signal). Stale tick52 H4 BEAR verdict
+(12hrs old) discarded; fresh read is CHOP — no clean directional confluence either way. Same
+1.14099 shelf zone flagged Evan-scout-only since tick44/51/52 — still applies, moot given
+the chop anyway. No enforcer run. NO_ACTION.
+
+News: WebSearch found no FOMC/NFP/CPI/GDP/PCE/ADP/JOLTS/PMI within 2h of 08:15-10:15 UTC
+(next FOMC 2026-07-29); EU ZEW is medium-tier only, not a blocker; broader context is
+Middle East oil-driven USD strength/JPY weakness (macro backdrop, not a 2h news block).
+Attested news_clear for both symbols, moot since both blocked pre-enforcer on structure.
+
+Decision: NO_ACTION both. Nothing placed, nothing to manage (book flat).
+Bookkeeping: session_snapshot.json updated (balance, USDJPY + EURUSD h4_verdicts refreshed,
+EURUSD session_range reset to 1.13924-1.1418, two new watch_levels notes). tick_counter.txt
+-> 63. Session P&L = 7162.94 - 7394.99 = -R232.05, unchanged from tick 62 (book flat, no
+fills). session_logger.py tick 63 logged.
