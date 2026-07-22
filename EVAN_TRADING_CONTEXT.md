@@ -2542,3 +2542,34 @@ GBPUSD: full Change5 re-check. H4 still genuine CHOP since 14:00 reversal failed
 Open-position guard: WTI (EVAN_MANUAL, still no SL) pl -248.73→-240.18, M5 bounce off 85.554 continues (85.969/86.074 closes), not touched. NVIDIA (EVAN_MANUAL) pl +268.42→+272.01, not touched. BTCUSD [LEARN] pl -10.58→-22.22, declining-highs sequence continues but 66116.99 double-bottom low still unbroken (17:00 wicked to 66117.04, reclaimed) — Rule5 cut not flagged, SL/TP intact, watching.
 Session P&L (balance basis): R-983.40 vs start R7394.99, unchanged this tick (no realized closes).
 No orders placed or would-placed. Snapshot/tick_counter/session_log updated, committing.
+
+---
+## AUTO TICK 79 — 2026-07-22T23:01:15Z (ASIAN, mode=learn)
+Signal: WTI PULLBACK_TAG_LONG (30m tf) 88.902, level 88.819, extreme 87.17, range_pos 0.588, at 23:01:03Z.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612.
+WTI pre-blocked before any structure check — same standing Instruments-to-Avoid rule as
+ticks 54/74/77/78 (too news/spread driven, use BRENT instead). This signal used the "WTI"
+symbol directly rather than "USOIL" — same tradable instrument, same block. No enforcer run,
+nothing placed/would-placed. NO_ACTION.
+Reconciliation: no Tier2 fired between tick78 (17:21:45Z) and this tick (~5h40m gap). Live
+account pull found the tracked book completely changed — get_open_positions no longer showed
+WTI/NVIDIA/BTCUSD, and a new TESLA Sell 2u position appeared. Pulled get_close_positions to
+reconcile before treating this as an anomaly: 3 closes realized in the gap — BTCUSD [LEARN]
+(tick75 entry) hit its own SL (65860) at 18:22:24Z for -R51.95, the first realized [LEARN]
+outcome this session (clean 1.66:1 entry, no rule overrides, lost as designed); NVIDIA
+(EVAN_MANUAL) closed manually at 19:22:53Z for +R270.94 (short of its 221.01 TP); WTI
+(EVAN_MANUAL, the position flagged every tick since ~54 for having NO stop loss) closed
+manually at 19:28:07Z for -R203.28, finally resolving that standing flag. Net realized
++R15.71 matches the live balance delta from tick78 (6411.59->6427.42) within rounding — no
+unexplained shortfall, no fresh anomaly. New position: TESLA EVAN_MANUAL Sell 2u @357.82,
+SL374.22/TP339.12, opened 22:17:44Z — same signature as the earlier NVIDIA manual equity
+trade (Limit order, out of this bot's instrument universe). Logged per the standing
+anomaly_status.RESOLVED rule (Evan's manual trades are expected, not a freeze trigger), not
+touched.
+Open-position guard: TESLA (EVAN_MANUAL) pl -35.13, out of universe, not touched.
+Live balance R6427.42 / equity R6392.29. Session P&L (balance basis) R-967.57 vs
+session_start_balance R7394.99 (improved from -983.40 at tick78 on the net-positive gap
+closes).
+session_snapshot.json updated (balance/equity, open_positions replaced with TESLA, 3 new
+closed_since_last_snapshot entries, stale WTI risk watch_level dropped, new tick79
+watch_levels note). tick_counter.txt -> 79. session_logger.py tick79 logged.
