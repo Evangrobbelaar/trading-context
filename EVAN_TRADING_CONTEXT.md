@@ -1773,3 +1773,36 @@ nothing placed.
 **Bookkeeping:** session_snapshot.json refreshed (balance re-confirmed live, BTCUSD
 watch_levels note appended). tick_counter.txt -> 57. Session P&L = 7164.09 - 7394.99 =
 -R230.90, unchanged from tick 56 (no fills). session_logger.py tick 57 logged.
+
+---
+
+## AUTO TICK 58 — 2026-07-22T06:30:20+00:00 (Tier 2, mode=execute)
+
+**Signal:** SPRING USDJPY 163.107 (M15) fired 06:30:00 UTC = 08:30 SAST — past the Asian
+window, now inside LDN session. Continuation of the tick54 163.023 shelf: price drifted up
+through tick55's top-15pct block, then sold off again intrabar to a fresh M15 low 163.048
+before reclaiming to ~163.106-163.12.
+
+**Routing:** switch_trading_account -> 41829612 confirmed (caught the usual revert-to-
+41750592 reconnect bug on the first call). Live balance/equity R7164.09, open_positions
+empty — book flat, no CHANGE3 guard needed.
+
+**Analysis:** H4 gate PASS — BULL structure intact, current forming H4 bar (04:00-08:00)
+dipped to 163.023 then reclaimed, no swing-high break. Rule 17 PASS — entry ~163.12 sits at
+~50% of session range (163.023-163.217, top cutoff 163.188), clear of the top-15pct band
+this time. M15 trigger FAIL — last closed M15 bar (06:15, O163.083 H163.089 L163.048
+C163.078) is marginally red (close<open) despite closing 73% up in-range; does not meet the
+clean 60%+ bull-body rejection-bar standard. The 06:30 bar showing the reclaim is the signal
+bar itself, not yet closed. News: WebSearch found no flagged high-impact USD/JPY release in
+the 2h window — attested news_clear, moot since blocked pre-enforcer.
+
+**Decision: NO_ACTION.** No enforcer run (blocked pre-enforcer on trigger quality). Order-
+mutation tool-grant gap (no create_market_order/place_order tool in this session's MCP
+grant, re-confirmed via ToolSearch) also still present — moot here regardless. Watch for a
+clean closed bull rejection bar off the 163.048/163.023 zone while still inside the Rule17
+window.
+
+**Bookkeeping:** session_snapshot.json refreshed (balance re-confirmed live, USDJPY h4
+verdict + session range + watch_levels note updated). tick_counter.txt -> 58. Session P&L =
+7164.09 - 7394.99 = -R230.90, unchanged from tick 57 (no fills). session_logger.py tick 58
+logged.
