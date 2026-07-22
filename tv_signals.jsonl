@@ -51,3 +51,4 @@
 {"event": "SWEEP", "symbol": "USDJPY", "tf": "15", "price": 163.081, "t": 1784700900189, "received_utc": "2026-07-22T06:15:00.948292+00:00"}
 {"event": "SWEEP", "symbol": "GBPUSD", "tf": "15", "price": 1.33839, "t": 1784700900517, "received_utc": "2026-07-22T06:15:02.615412+00:00"}
 {"event": "HL_RECLAIM", "symbol": "EURUSD", "tf": "15", "price": 1.14112, "t": 1784700901023, "received_utc": "2026-07-22T06:15:06.516234+00:00"}
+{"event": "SPRING", "symbol": "USDJPY", "tf": "15", "price": 163.107, "t": 1784701800127, "received_utc": "2026-07-22T06:30:00.965767+00:00"}
