@@ -231,3 +231,4 @@
 {"event": "PULLBACK_TAG_SHORT", "symbol": "GBPUSD", "tf": "1", "price": 1.33723, "level": 1.337315, "extreme": 1.337645, "range_pos": 0.431, "vol_mult": 1, "h1_atr": 0.001268, "t": 1784736600445, "received_utc": "2026-07-22T16:10:02.640511+00:00"}
 {"event": "PULLBACK_TAG_SHORT", "symbol": "GBPUSD", "tf": "1", "price": 1.33723, "level": 1.337315, "extreme": 1.337645, "range_pos": 0.431, "vol_mult": 1, "h1_atr": 0.001268, "t": 1784736600445, "received_utc": "2026-07-22T16:10:10.781485+00:00"}
 {"event": "PULLBACK_TAG_SHORT", "symbol": "USOIL", "tf": "15", "price": 86.26, "level": 86.14, "extreme": 87.33, "range_pos": 0.436, "vol_mult": 0.68, "h1_atr": 0.902233, "t": 1784736900548, "received_utc": "2026-07-22T16:15:03.776105+00:00"}
+{"event": "SWEEP_LOW", "symbol": "USOIL", "tf": "15", "price": 86.26, "level": 86.14, "extreme": 85.92, "range_pos": 0.436, "vol_mult": 0.68, "h1_atr": 0.902233, "t": 1784736900548, "received_utc": "2026-07-22T16:15:05.402032+00:00"}
