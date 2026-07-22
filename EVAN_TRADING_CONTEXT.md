@@ -1936,3 +1936,28 @@ by Evan at a screen is a different proposition from 5% placed unattended at 03:1
 Recommendation: 0.02 before the first live auto-fill. Not changed without Evan's word.
 
 Book flat, balance R7,164.09, session -R230.90. Both no-SL positions closed before tick 51.
+
+## AUTO TICK 62 — 2026-07-22T08:17 UTC (10:17 SAST, LDN session)
+Signal: PULLBACK_TAG_SHORT GOLD @4114.608 (15m, fired 08:15:01 UTC), tagging the 4110.81
+level that LL_BREAKDOWN broke 15min earlier (08:00:07, price 4110.58).
+Routing: switch_trading_account caught usual revert to 41750592, confirmed on 41829612.
+Balance R7162.94 / equity R7162.94 (live-queried), book flat, no open positions.
+create_market_order (and the other order-mutation tools) now confirmed present in the MCP
+grant — the ticks54-61 tool-grant gap is resolved — moot this tick since the trade never
+reached enforcer.
+H4 gate: XAUUSD H4 swing lows have risen cleanly all session (4043.65->4054.33->4066.72->
+4076.72->4076.88), impulse ran to 4131.07 close / 4141.75 intrabar high (04:00-08:00 H4 bar)
+— H4 trend BULL, structurally intact. The new 08:00-12:00 H4 bar (15min old) has dropped hard
+from open 4131.06 to low 4109.35 (interim close 4110.74), and H1 shows 4 consecutive lower
+lows since the 04:00 bar (4129.31->4124.78->4123.11->4113.33->4109.35) plus a lower-high
+sequence off 4141.75 — a genuine short-term structure shift, but price (4114.6-4114.89)
+remains well above the last confirmed H4 swing low (4076.88). Rule 3's counter-trend-short
+exception (confirmed lower high + broken prior H4 swing low) is NOT met. Per CHANGE5 step3
+this SHORT is counter-trend with no exception satisfied -> BLOCKED, no exceptions.
+News: WebSearch found no FOMC/NFP/CPI within 2h of 08:15-10:15 UTC (next FOMC is 2026-07-29)
+— attested news_clear, moot since blocked pre-H4-gate. Rule17 moot (range_pos 0.591,
+mid-range). No enforcer run, no order attempted. Decision: NO_ACTION.
+Bookkeeping: session_snapshot.json updated (balance, XAUUSD h4_verdict + session_range reset
+to 4076.88-4141.75, new watch_levels note). tick_counter.txt -> 62. Session P&L =
+7162.94 - 7394.99 = -R232.05, ~unchanged from tick 61 (spread drift only, no fills).
+session_logger.py tick 62 logged.
