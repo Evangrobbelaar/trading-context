@@ -69,3 +69,4 @@
 {"event": "SWEEP_LOW", "symbol": "EURUSD", "tf": "15", "price": 1.14083, "level": 1.14055, "extreme": 1.1404, "range_pos": 0.564, "vol_mult": 1.15, "h1_atr": 0.000678, "t": 1784709000572, "received_utc": "2026-07-22T08:30:08.596302+00:00"}
 {"event": "SWEEP", "symbol": "EURUSD", "tf": "15", "price": 1.14084, "t": 1784709001221, "received_utc": "2026-07-22T08:30:11.050268+00:00"}
 {"event": "SPRING", "symbol": "USDJPY", "tf": "15", "price": 163.073, "t": 1784709003972, "received_utc": "2026-07-22T08:30:14.030174+00:00"}
+{"event": "SPRING_LONG", "symbol": "EURUSD", "tf": "15", "price": 1.14112, "level": 1.14055, "extreme": 1.1404, "range_pos": 0.692, "vol_mult": 1.39, "h1_atr": 0.000693, "t": 1784709901049, "received_utc": "2026-07-22T08:45:06.548744+00:00"}
