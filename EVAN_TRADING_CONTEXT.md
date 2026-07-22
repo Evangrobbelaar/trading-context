@@ -2573,3 +2573,34 @@ closes).
 session_snapshot.json updated (balance/equity, open_positions replaced with TESLA, 3 new
 closed_since_last_snapshot entries, stale WTI risk watch_level dropped, new tick79
 watch_levels note). tick_counter.txt -> 79. session_logger.py tick79 logged.
+
+---
+
+## AUTO TICK 80 — 2026-07-22T23:30:27Z (mode=learn, Tier2)
+
+Signal: SPRING_LONG EURUSD 1.14102 (30m tf, level 1.14062, extreme 1.1406, vol_mult 0.31).
+
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612.
+Live balance R6427.42 / equity R6402.81 (unchanged balance from tick79; TESLA EVAN_MANUAL
+floating loss narrowed -35.13 -> -23.30, not touched, not this bot's instrument).
+
+H4/H1 fresh read: with-trend long — uptrend intact since 7/22 00:00 low 1.13924, broke
+above prior H4 swing high 1.1418 (16:00 bar ran to 1.14212). M15 trigger MET: two closed
+60%+ bull-body reclaim bars (23:00, 23:15) off the 1.1406 double-sweep, matching the
+signal's level/extreme almost exactly. Rule17 clean: signal's self-reported range_pos 0.913
+is a narrow pattern-window stat, not the session range — recomputed vs fresh session
+high/low (1.13924-1.14212) gives range_pos ~0.62, mid-range, clear of both bands.
+
+BLOCKED ON R:R: it's 01:30 SAST (Asian session) — Rule15 doubles EURUSD's Rule2 SL floor to
+25-35 pips. Nearest resistance/target (1.14212, today's H4 high) is only ~11 pips from
+entry ~1.14102. R:R = 0.31-0.44:1, fails Rule9's hard 1.2:1 floor — not a learn-mode
+downgradable gate (only Rule17/H4-countertrend/scout-uncertainty are).
+
+News: WebSearch confirmed ECB rate decision/press conference Jul 23 ~12:15 UTC — ~12.75h
+out, well outside the 2h window. Attested news_clear, moot since blocked on R:R.
+
+No enforcer run, nothing placed/would-placed. NO_ACTION.
+
+session_snapshot.json updated (balance/equity re-verified, TESLA pl refreshed, EURUSD
+h4_verdict/session_range refreshed off stale CHOP read, new tick80 watch_levels note).
+tick_counter.txt -> 80. session_logger.py tick80 logged.

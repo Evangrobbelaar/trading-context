@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-22T23:01:15Z",
-  "updated_by": "auto_tick_79_tier2",
+  "updated_utc": "2026-07-22T23:30:27Z",
+  "updated_by": "auto_tick_80_tier2",
   "balance": {
     "value": 6427.42,
-    "equity": 6392.29,
-    "queried_utc": "2026-07-22T23:01:15Z",
-    "note": "live-queried this run. Balance +15.83 vs tick78 (6411.59->6427.42) from 3 realized closes during the 17:21-23:01Z gap (no Tier2 escalations fired in that window): BTCUSD [LEARN] SL hit -51.95, NVIDIA EVAN_MANUAL manual close +270.94, WTI EVAN_MANUAL (the flagged no-SL position) manual close -203.28, net +15.71 (matches balance delta within rounding). Equity 6392.29 reflects a new open TESLA EVAN_MANUAL Sell 2u floating -35.13, not previously tracked."
+    "equity": 6402.81,
+    "queried_utc": "2026-07-22T23:30:27Z",
+    "note": "live-queried this run. Balance unchanged from tick79 (no realized closes since). Equity 6402.81 vs tick79's 6392.29 reflects TESLA EVAN_MANUAL floating loss narrowing (-35.13 -> -23.30)."
   },
   "session_start_balance": 7394.99,
   "open_positions": [
@@ -18,9 +18,9 @@
       "price": 357.82,
       "stopLoss": 374.22,
       "takeProfit": 339.12,
-      "pl": -35.13,
+      "pl": -23.30,
       "openTime_utc": "2026-07-22T22:17:44Z",
-      "note": "EVAN_MANUAL. New position discovered tick79, opened between ticks (22:17:44Z, no Tier2 fired in that window). Same signature as prior NVIDIA manual equity trades (Limit order, out of this bot's instrument universe). Not this system's instrument, not touched, treated as expected manual activity per the standing anomaly_status.RESOLVED rule (no freeze).",
+      "note": "EVAN_MANUAL. Discovered tick79, opened between ticks (22:17:44Z). Same signature as prior NVIDIA manual equity trades (Limit order, out of this bot's instrument universe). Not this system's instrument, not touched, treated as expected manual activity per the standing anomaly_status.RESOLVED rule (no freeze). pl re-checked tick80, unchanged position.",
       "origin": "EVAN_MANUAL"
     }
   ],
@@ -121,10 +121,10 @@
       "note": "no H4 verdict on file, carried forward"
     },
     "EURUSD": {
-      "trend": "CHOP (still no clean H4 read \u2014 grinding sideways in a ~1.1400-1.1413 band all morning)",
-      "asof": "2026-07-22T11:45:00+00:00",
-      "swings": "M15 09:00-11:45: steady grind down from 1.14113 to ~1.14025-1.14047, tight ~9-pip band, no clean directional swing sequence. SPRING fired 1.14053 (11:45 bar, O1.14037 H1.14062 L1.1403 C1.14047) \u2014 a minor bounce inside the same chop, not a break of any defined structure.",
-      "note": "refreshed tick 68 \u2014 SPRING signal is noise within ongoing CHOP, no H4 gate to pass or fail against. NO_ACTION, watch only. Same 1.14099 shelf remains Evan-scout-only per tick44/51/52 notes."
+      "trend": "BULL (short-term) \u2014 higher lows since 7/22 00:00 low 1.13924, broke above prior H4 swing high 1.1418 (08:00 bar) with the 16:00 bar running to 1.14212",
+      "asof": "2026-07-22T23:30:27+00:00",
+      "swings": "H4: 00:00 low 1.13924 (session low) -> 04:00 low 1.13984 -> 08:00 high 1.1418/low 1.1403 -> 12:00 low 1.14 (minor undercut) -> 16:00 high 1.14212 (fresh HH, closed 1.14133) -> 20:00-24:00 bar forming, dipped to 1.14045 (21:15 M15) then reclaimed. M15 22:45-23:15: swept 1.14057/1.1406 twice (matches signal level 1.14062/extreme 1.1406), then two closed bull-body reclaim bars: 23:00 (O1.1406 C1.14077, 81% bull body) and 23:15 (O1.14078 C1.14089, 69% bull body).",
+      "note": "refreshed tick 80 \u2014 SPRING_LONG fired 1.14102 (30m tf, level 1.14062, extreme 1.1406, vol_mult 0.31 = thin). With-trend long (uptrend since 00:00 low intact, no swing-low break) \u2014 no Rule3 issue. Signal's own range_pos 0.913 is a narrow pattern-window stat, not the session range; recomputed vs fresh session high/low (1.13924-1.14212) gives range_pos ~0.62, mid-range, clear of both Rule17 bands regardless. M15 trigger MET: two closed 60%+ bull-body reclaim bars off the 1.1406 sweep. BLOCKED ON R:R: it's 01:30 SAST (Asian session) \u2014 Rule15 doubles EURUSD's Rule2 SL floor to 25-35 pips; nearest resistance/target (1.14212, this session's H4 high) is only ~11 pips from entry ~1.14102. Best case R:R \u2248 11/25 = 0.44:1, worst case 11/35=0.31:1 \u2014 fails Rule9's 1.2:1 floor hard, not a learn-mode-downgradable gate. News: WebSearch found ECB rate decision/press conference Jul 23 (~12:15 UTC decision), ~12.75h away \u2014 well outside the 2h window, attested news_clear, moot since blocked on R:R. No enforcer run, nothing placed/would-placed. NO_ACTION. Watch for either a deeper pullback that widens room to the next real resistance (improves R:R) or London-session open (07:00 SAST) reverting Rule15 to the tighter 15-25pip floor, which would make this same structure tradeable."
     },
     "GBPUSD": {
       "trend": "CHOP (unconfirmed either way) \u2014 bouncing inside the 1.3365-1.3382 compression zone",
@@ -154,12 +154,12 @@
     },
     "EURUSD": {
       "low": 1.13924,
-      "high": 1.1418,
-      "range": 0.00256,
-      "top_15pct_cutoff": 1.141416,
-      "bottom_15pct_cutoff": 1.139624,
-      "asof": "2026-07-22T08:23:00+00:00",
-      "source": "get_symbol_price high/low field, tick 63, unchanged tick68 \u2014 moot since blocked on CHOP/no-trend read, not Rule17"
+      "high": 1.14212,
+      "range": 0.00288,
+      "top_15pct_cutoff": 1.141688,
+      "bottom_15pct_cutoff": 1.139672,
+      "asof": "2026-07-22T23:30:27+00:00",
+      "source": "get_symbol_history H4 (7/22 bars), tick80 \u2014 entry ~1.14102 = range_pos ~0.62, mid-range, clear of both bands; moot since blocked on R:R (Asian-session Rule15), not Rule17"
     },
     "USDJPY": {
       "low": 162.659,
@@ -366,9 +366,14 @@
       "symbol": "WTI",
       "note": "tick79 (mode=learn): PULLBACK_TAG_LONG fired 88.902 (level 88.819, extreme 87.17, range_pos 0.588, 30m tf) at 23:01:03Z. Pre-blocked before any structure check, same standing rule as ticks 54/74/77/78: WTI/USOIL Crude is on CLAUDE.md's Instruments-to-Avoid list (too news/spread driven; use BRENT instead). Note: this signal used symbol 'WTI' directly (not 'USOIL' like earlier signals) \u2014 same tradable instrument, same block applies regardless of alias. The EVAN_MANUAL WTI position this symbol was previously entangled with (no-SL flag) closed manually at 19:28:07Z, so this is now a clean instrument-avoidance block only, no position overlap. No enforcer run, nothing placed/would-placed. NO_ACTION.",
       "set_utc": "2026-07-22T23:01:15Z"
+    },
+    {
+      "symbol": "EURUSD",
+      "note": "tick80 (mode=learn): SPRING_LONG fired 1.14102 (30m tf, level 1.14062, extreme 1.1406, range_pos 0.913 self-reported, vol_mult 0.31) at 23:30:27Z. See h4_verdicts.EURUSD for full read: with-trend long (H4/H1 uptrend since 7/22 00:00 low 1.13924 intact, broke above prior swing high 1.1418), M15 trigger met (two closed 60%+ bull reclaim bars off the 1.1406 sweep), Rule17 clean on recomputed session range (~0.62, signal's own 0.913 was a narrow pattern-window stat not the session range). BLOCKED ON R:R: Asian session (01:30 SAST) \u2014 Rule15 widens EURUSD SL floor to 25-35 pips vs only ~11 pips of room to the nearest resistance (1.14212) \u2014 R:R 0.31-0.44:1, fails Rule9's 1.2:1 floor, not learn-mode-downgradable. News: WebSearch found ECB decision Jul 23 ~12:15 UTC, ~12.75h out, outside 2h window \u2014 attested news_clear, moot. TESLA EVAN_MANUAL position re-checked (pl -23.30, improved from -35.13), not touched, not this bot's instrument. No enforcer run, nothing placed/would-placed. NO_ACTION. Watch for either a deeper pullback widening reward-room, or London open (07:00 SAST) reverting the SL floor to 15-25pips, which would flip this same structure tradeable.",
+      "set_utc": "2026-07-22T23:30:27Z"
     }
   ],
-  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick79 TIER2: signal PULLBACK_TAG_LONG WTI 88.902 (23:01:03Z). WTI pre-blocked, Instruments-to-Avoid standing rule (same as ticks 54/74/77/78) \u2014 NO_ACTION, no enforcer run. Reconciliation gap: no Tier2 fired between tick78 (17:21:45Z) and tick79 (23:01Z); get_close_positions turned up 3 realized closes in that window \u2014 BTCUSD [LEARN] SL hit -R51.95 (18:22:24Z), NVIDIA EVAN_MANUAL manual close +R270.94 (19:22:53Z), WTI EVAN_MANUAL (the long-flagged no-SL position) manual close -R203.28 (19:28:07Z), net +R15.71, matching the live balance delta from tick78 (6411.59->6427.42) within rounding \u2014 no unexplained shortfall. New open position discovered: TESLA EVAN_MANUAL Sell 2u @357.82 opened 22:17:44Z (same manual-equity signature as the earlier NVIDIA trade, out of this bot's instrument universe) \u2014 logged per the standing anomaly_status.RESOLVED rule (Evan's own manual trades are expected, not a freeze trigger), not touched. Live balance R6427.42 / equity R6392.29. Session P&L (balance basis) R-967.57 vs session_start_balance R7394.99 (improved from -983.40 at tick78 on the net-positive realized closes).",
+  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick80 TIER2: signal SPRING_LONG EURUSD 1.14102 (23:30:27Z). Clean with-trend structure and M15 trigger but blocked on R:R \u2014 Asian-session Rule15 SL floor (25-35pips) vs only ~11pips of room to next resistance \u2014 NO_ACTION, no enforcer run. Balance R6427.42 / equity R6402.81 (unchanged balance from tick79, TESLA EVAN_MANUAL floating loss narrowed -35.13->-23.30, not touched). Session P&L (balance basis) R-967.57 vs session_start_balance R7394.99, unchanged from tick79 (no realized closes this tick).",
   "anomaly_status": {
     "state": "RESOLVED",
     "resolved_utc": "2026-07-22T11:47:00Z",
