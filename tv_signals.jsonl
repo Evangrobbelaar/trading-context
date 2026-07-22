@@ -136,3 +136,4 @@
 {"event": "PULLBACK_TAG_LONG", "symbol": "GOLD", "tf": "15", "price": 4132.55, "level": 4123.06, "extreme": 4112.47, "range_pos": 0.861, "vol_mult": 1.16, "h1_atr": 12.902378, "t": 1784723400166, "received_utc": "2026-07-22T12:30:01.149134+00:00"}
 {"event": "SWEEP", "symbol": "BTCUSD", "tf": "15", "price": 65841.64, "t": 1784723401469, "received_utc": "2026-07-22T12:30:09.122211+00:00"}
 {"event": "HL_RECLAIM", "symbol": "XAUUSD1!", "tf": "15", "price": 4145.2, "t": 1784723439156, "received_utc": "2026-07-22T12:30:39.618714+00:00"}
+{"event": "SWEEP_HIGH", "symbol": "GBPUSD", "tf": "1", "price": 1.337045, "level": 1.33705, "extreme": 1.33707, "range_pos": 0.213, "vol_mult": 1, "h1_atr": 0.001092, "t": 1784723461601, "received_utc": "2026-07-22T12:31:03.869987+00:00"}
