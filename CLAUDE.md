@@ -291,10 +291,26 @@ After news: wait for M15 compression + double bottom/top before entering (Rule 1
 
 ## INSTRUMENTS TO AVOID
 
-- WTI Crude — too news/spread driven (use BRENT instead)
-- BTCUSD / ETHUSD — $15 spread, random spikes, no clean structure (London/NY only per Rule 16)
-- GER40 overnight — wide spread, no liquidity
-- NAS100 at 0.01 lots — R1.30/pt, not worth it (use at 1+ lot when account > R5,000)
+SOURCE OF TRUTH (23 Jul 2026): this list is now enforced in code, not prose.
+The machine-readable version lives in `tv-pipeline/runner/tiers.json` under
+`instrument_policy`, keyed by BROKER symbol, and the auto-tick runner blocks
+matching signals BEFORE spawning a session. Keep the two in sync — edit the
+JSON, mirror the human summary here.
+
+- WTI Crude — too news/spread driven (use BRENT instead). status: blocked.
+  Note: to trade oil, make BRENT alerts in TradingView. Do NOT remap USOIL->BRENT
+  in the pipeline — a signal's level/extreme were computed on the source chart
+  and do not transfer to a different contract.
+- BTCUSD / ETHUSD — wide spread, random spikes. status: session_limited,
+  blocked 00:00–07:00 SAST (Rule 16 Asian crypto ban). Tradeable London/NY.
+- GER40 overnight — wide spread, no liquidity. status: session_limited 22:00–07:00 SAST.
+- NAS100 — UNBLOCKED 23 Jul 2026 (was: "not worth it at 0.01 lots, use at 1+ lot
+  when account > R5,000"). Balance R6,427 clears that bar. status: ok. Sizing
+  caveat stands: do NOT trade NAS100 at 0.01 lots (R1.30/pt) — 1+ lot only.
+
+### Alias map (TV alert name -> broker symbol), also in tiers.json:
+USOIL->WTI, GOLD->XAUUSD, SILVER->XAGUSD, US100->NAS100. XAUUSD1! stays IGNORED
+(futures continuous ≠ spot). Broker names verified via get_symbols 23 Jul 2026.
 
 ---
 

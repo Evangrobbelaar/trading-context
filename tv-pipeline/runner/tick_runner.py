@@ -61,6 +61,9 @@ def load_json(path, default):
 def cfg():
     c = load_json(TIERS_FILE, {})
     c.setdefault("ignore_symbols", ["XAUUSD1!"])
+    c.setdefault("symbol_map", {"USOIL": "WTI", "GOLD": "XAUUSD",
+                                "SILVER": "XAGUSD", "US100": "NAS100"})
+    c.setdefault("instrument_policy", {})
     c.setdefault("drop_events", ["TEST_SWEEP"])
     c.setdefault("drop_event_suffixes", ["_EXPIRED"])
     c.setdefault("log_only_events", ["SWEEP_LOW", "SWEEP_HIGH"])
@@ -138,6 +141,48 @@ def canon_event(sig):
     return BACKCOMPAT.get(ev, ev)
 
 
+def canon_symbol(sig, c):
+    """TV alert symbol -> broker symbol (naming reconciliation only).
+
+    Added 23 Jul 2026. Root cause: 67 of 279 signals over 21-22 Jul fired on
+    tickers the execution layer could not resolve — USOIL (broker calls it WTI,
+    get_symbol_price errored every time), plus gold split three ways across
+    GOLD / XAUUSD / XAUUSD1!. Every one was a guaranteed NO_ACTION regardless of
+    setup quality.
+
+    This maps SAME-INSTRUMENT alias names ONLY. It must never map across
+    contracts (USOIL->BRENT, spot->futures): the signal's price/level/extreme
+    were measured on the source chart and do not transfer.
+    """
+    raw = str(sig.get("symbol", ""))
+    return c.get("symbol_map", {}).get(raw, raw)
+
+
+def policy_check(sym, c, now=None):
+    """Return a block reason for a broker symbol, or None if tradeable.
+
+    Replaces per-tick prose interpretation of CLAUDE.md's INSTRUMENTS TO AVOID.
+    """
+    p = c.get("instrument_policy", {}).get(sym)
+    if not p:
+        return None
+    status = p.get("status", "ok")
+    if status == "blocked":
+        return f"POLICY BLOCK {sym}: {p.get('reason', 'on instrument policy list')}"
+    if status == "session_limited":
+        window = p.get("blocked_sast_hours")
+        if not window:
+            return None
+        now = now or datetime.now(timezone.utc)
+        hour = (now.hour + 2) % 24          # SAST = UTC+2
+        lo, hi = window
+        inside = (lo <= hour < hi) if lo < hi else (hour >= lo or hour < hi)
+        if inside:
+            return (f"POLICY BLOCK {sym}: {p.get('reason', 'session restricted')} "
+                    f"(SAST {hour:02d}h inside blocked window {lo:02d}-{hi:02d})")
+    return None
+
+
 def shelf_check(sig, c):
     """Track SWEEP_* levels; return note if a defended-shelf signature formed."""
     sp = c["shelf_promote"]
@@ -163,11 +208,18 @@ def shelf_check(sig, c):
 
 def classify(sig, c, armed_symbols):
     """Return (tier:int 0..2, note:str|None). 0 = no Claude."""
-    ev, sym = canon_event(sig), str(sig.get("symbol", ""))
+    ev = canon_event(sig)
+    raw_sym = str(sig.get("symbol", ""))
+    sym = canon_symbol(sig, c)          # broker symbol, post-alias-map
     if ev in c["drop_events"] or any(ev.endswith(s) for s in c["drop_event_suffixes"]):
         return 0, None
-    if sym in c["ignore_symbols"]:
-        return 0, f"ignored symbol {sym}"
+    if raw_sym in c["ignore_symbols"] or sym in c["ignore_symbols"]:
+        return 0, f"ignored symbol {raw_sym}"
+    pol = policy_check(sym, c)
+    if pol:
+        # Drop before spawn: no Claude session, no tokens. This is the fix for
+        # WTI/BTCUSD-in-Asian-hours burning a full tick to reach NO_ACTION.
+        return 0, pol
     if ev in c["log_only_events"]:
         note = shelf_check(sig, c)
         return (1, note) if note else (0, None)
@@ -328,6 +380,14 @@ def main():
             tiered = [(classify(s, c, armed), s) for s in batch]
             notes = [n for ((tier, n), _) in tiered if n]
             actionable = [s for ((tier, _), s) in tiered if tier >= 1]
+            # Resolve alias -> broker symbol on the exact objects going to Claude,
+            # so the session trades WTI/XAUUSD/etc. instead of the unresolvable
+            # alert name. Original preserved as _tv_symbol for traceability.
+            for s in actionable:
+                bsym = canon_symbol(s, c)
+                if bsym != s.get("symbol"):
+                    s["_tv_symbol"] = s.get("symbol")
+                    s["symbol"] = bsym
             top = max((tier for ((tier, _), _) in tiered), default=0)
             if top == 0:
                 CURSOR.write_text(str(new_offset))
