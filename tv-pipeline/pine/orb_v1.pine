@@ -1,0 +1,205 @@
+//@version=6
+// ═══════════════════════════════════════════════════════════════════════
+// ORB v1 — Opening Range Breakout  (London + New York)
+// Built 23 Jul 2026 to Evan's spec: max 3h hold, 2 intraday trades/day.
+//
+// EVIDENCE BASE
+//   Zarattini & Aziz (2023) "Can Day Trading Really Be Profitable?" — 5-min
+//     ORB on QQQ, 2016-2023, spanning two bear markets.
+//   Zarattini, Barbon & Aziz (2024), Swiss Finance Institute WP 24-98 —
+//     7,000+ US stocks. Restricting to "Stocks in Play" (abnormal relative
+//     volume from news) materially improved results net of costs.
+//   QuantConnect independent replication: ~2.4 Sharpe, beta ~0.
+//   5-minute opening range was the best-performing duration tested.
+//   Earlier: Holmberg/Lonnbark/Lundstrom (2013) Financ Res Lett 10:27-33;
+//     Crabel (1990) on volatility breakout across futures.
+//
+// WHY THIS FITS *THIS* SYSTEM — the decisive point:
+//   Every measured failure on this pipeline is latency. Tick cadence 22 Jul:
+//   median 8min, MEAN 39min, max 248min, 36% of gaps >15min. The Sprung
+//   Ladder needed a reclaim inside 15min and died on that.
+//   ORB fires on a CLOCK. The range completes at open+N whether anyone is
+//   watching or not. Schedule the tick at 09:05 / 15:35 SAST and latency
+//   stops being a variable.
+//
+// HONEST LIMITS — read before sizing up:
+//   * Published on US EQUITIES. Evan trades FX/index/commodity CFDs. The
+//     microstructure differs; treat FX results as unproven until measured.
+//   * Headline returns in the QQQ paper lean on leverage. Leverage is
+//     symmetric. It is not part of the edge.
+//   * The "Stocks in Play" relative-volume filter drove much of the edge.
+//     FX has no reliable volume. Expect PLAIN ORB on FX to be weaker.
+//     Best mapped instruments here: NAS100 (direct QQQ analogue), SPX500,
+//     GER40, and single stocks (TSLA/NVDA) where real volume exists.
+//   * Spread matters at this frequency. Measured 23 Jul as % of daily range:
+//     NAS100 0.36%, BRENT 0.53%, WTI 0.64%, EURUSD 2.92%. Indices are the
+//     cheap end. EURUSD is 8x costlier than NAS100 to trade this way.
+//   * Published edges decay. This needs its own forward sample like anything
+//     else — 30 closed trades minimum before any sizing conversation.
+//
+// ALERT SETUP: condition "Any alert() function call", webhook to the VPS
+// receiver. Run on a 1m or 5m chart so the range builds correctly.
+// ═══════════════════════════════════════════════════════════════════════
+indicator("ORB v1 — Opening Range Breakout", overlay = true,
+     max_lines_count = 200, max_labels_count = 200, max_boxes_count = 200)
+
+// ─── Inputs ────────────────────────────────────────────────────────────
+gS = "Sessions (exchange time of the symbol)"
+useLDN   = input.bool(true,  "Trade London open",        group = gS)
+ldnOpen  = input.session("0800-0805", "London OR window", group = gS)
+useNY    = input.bool(true,  "Trade New York open",      group = gS)
+nyOpen   = input.session("0930-0935", "New York OR window", group = gS)
+
+gE = "Entry / exit"
+maxHoldMin = input.int(180, "Max hold (minutes)",       group = gE, minval = 15)
+rrTarget   = input.float(2.0, "Target R:R",             group = gE, step = 0.1)
+buffTicks  = input.int(2,   "Breakout buffer (ticks)",  group = gE, minval = 0)
+useFirstDir= input.bool(true, "Require first-bar direction agree", group = gE,
+     tooltip = "Zarattini/Aziz QQQ variant: only take the side the opening bar closed on.")
+
+gQ = "Quality filters"
+useRVol   = input.bool(true,  "Require relative volume", group = gQ,
+     tooltip = "Stocks-in-Play proxy. Turn OFF for FX — no reliable volume.")
+rvolLen   = input.int(20,     "RVol lookback (days)",    group = gQ, minval = 5)
+rvolMin   = input.float(1.5,  "Min relative volume",     group = gQ, step = 0.1)
+atrLen    = input.int(14,     "ATR length",              group = gQ, minval = 2)
+minRangeATR = input.float(0.15, "Min OR size (x ATR)",   group = gQ, step = 0.05,
+     tooltip = "Rejects dead opens where the range is noise.")
+maxRangeATR = input.float(2.0,  "Max OR size (x ATR)",   group = gQ, step = 0.1,
+     tooltip = "Rejects gap/news chaos where the stop would be absurd.")
+
+// ─── Session state ─────────────────────────────────────────────────────
+inLDN = useLDN and not na(time(timeframe.period, ldnOpen))
+inNY  = useNY  and not na(time(timeframe.period, nyOpen))
+inOR  = inLDN or inNY
+
+newLDN = inLDN and not inLDN[1]
+newNY  = inNY  and not inNY[1]
+newOR  = newLDN or newNY
+endOR  = (not inLDN and inLDN[1]) or (not inNY and inNY[1])
+
+atr = ta.atr(atrLen)
+
+var float orHi   = na
+var float orLo   = na
+var float orOpen = na
+var int   orEndT = na
+var string orTag = ""
+var bool  armed  = false
+var bool  firedL = false
+var bool  firedS = false
+var float rvol   = na
+
+// Relative volume: today's OR volume vs the average OR volume of prior days.
+var float orVol     = na
+var float orVolPrev = na
+
+if newOR
+    orHi   := high
+    orLo   := low
+    orOpen := open
+    orVol  := nz(volume)
+    orTag  := newLDN ? "LONDON" : "NEWYORK"
+    armed  := false
+    firedL := false
+    firedS := false
+else if inOR
+    orHi  := math.max(orHi, high)
+    orLo  := math.min(orLo, low)
+    orVol := orVol + nz(volume)
+
+// ─── Range completes — this is the SCHEDULED moment ────────────────────
+orSize    = orHi - orLo
+sizeOk    = not na(orSize) and not na(atr) and atr > 0 and
+             orSize >= minRangeATR * atr and orSize <= maxRangeATR * atr
+rvolOk    = not useRVol or na(orVolPrev) or orVolPrev <= 0 or
+             (orVol / orVolPrev) >= rvolMin
+firstBull = not na(orOpen) and close > orOpen
+firstBear = not na(orOpen) and close < orOpen
+
+if endOR
+    rvol    := na(orVolPrev) or orVolPrev <= 0 ? na : orVol / orVolPrev
+    orVolPrev := na(orVolPrev) ? orVol : (orVolPrev * (rvolLen - 1) + orVol) / rvolLen
+    orEndT  := time
+    armed   := sizeOk and rvolOk
+
+buf     = buffTicks * syminfo.mintick
+trigL   = orHi + buf
+trigS   = orLo - buf
+slL     = orLo
+slS     = orHi
+tpL     = trigL + rrTarget * (trigL - slL)
+tpS     = trigS - rrTarget * (slS - trigS)
+expiry  = na(orEndT) ? na : orEndT + maxHoldMin * 60 * 1000
+
+f(x) => str.tostring(x, format.mintick)
+
+// Emit the PLAN the instant the range closes, not when price arrives.
+// This is what lets the executor rest a stop order and stop caring about
+// tick latency. Both sides go out; the executor picks per first-bar filter.
+if endOR and armed
+    alert('{"strategy":"ORB","v":"1.0","event":"OR_COMPLETE"' +
+       ',"symbol":"'   + syminfo.ticker   + '"' +
+       ',"tickerid":"' + syminfo.tickerid + '"' +
+       ',"exchange":"' + syminfo.prefix   + '"' +
+       ',"session":"'  + orTag            + '"' +
+       ',"tf":"'       + timeframe.period + '"' +
+       ',"or_hi":'     + f(orHi) +
+       ',"or_lo":'     + f(orLo) +
+       ',"or_size_atr":' + str.tostring(orSize / atr, "#.##") +
+       ',"long_entry":' + f(trigL) + ',"long_sl":' + f(slL) + ',"long_tp":' + f(tpL) +
+       ',"short_entry":' + f(trigS) + ',"short_sl":' + f(slS) + ',"short_tp":' + f(tpS) +
+       ',"first_bar_dir":"' + (firstBull ? "UP" : firstBear ? "DOWN" : "FLAT") + '"' +
+       ',"require_first_dir":' + (useFirstDir ? "true" : "false") +
+       ',"rvol":'      + (na(rvol) ? "null" : str.tostring(rvol, "#.##")) +
+       ',"atr":'       + f(atr) +
+       ',"rr":'        + str.tostring(rrTarget, "#.##") +
+       ',"max_hold_min":' + str.tostring(maxHoldMin) +
+       ',"expires_ms":'   + str.tostring(expiry) +
+       ',"t":'         + str.tostring(timenow) + '}',
+       alert.freq_once_per_bar_close)
+
+// Confirmation that price actually took the level — useful for the log even
+// though the resting order will already have filled.
+sameDay = not na(orEndT) and dayofmonth(time) == dayofmonth(orEndT)
+liveWin = sameDay and not na(expiry) and time <= expiry
+okL = liveWin and armed and not firedL and (not useFirstDir or firstBull)
+okS = liveWin and armed and not firedS and (not useFirstDir or firstBear)
+
+brkL = okL and high >= trigL
+brkS = okS and low  <= trigS
+
+if brkL and barstate.isconfirmed
+    firedL := true
+    alert('{"strategy":"ORB","v":"1.0","event":"ORB_LONG","symbol":"' + syminfo.ticker +
+       '","tickerid":"' + syminfo.tickerid + '","session":"' + orTag +
+       '","entry":' + f(trigL) + ',"sl":' + f(slL) + ',"tp":' + f(tpL) +
+       ',"expires_ms":' + str.tostring(expiry) + ',"t":' + str.tostring(timenow) + '}',
+       alert.freq_once_per_bar_close)
+
+if brkS and barstate.isconfirmed
+    firedS := true
+    alert('{"strategy":"ORB","v":"1.0","event":"ORB_SHORT","symbol":"' + syminfo.ticker +
+       '","tickerid":"' + syminfo.tickerid + '","session":"' + orTag +
+       '","entry":' + f(trigS) + ',"sl":' + f(slS) + ',"tp":' + f(tpS) +
+       ',"expires_ms":' + str.tostring(expiry) + ',"t":' + str.tostring(timenow) + '}',
+       alert.freq_once_per_bar_close)
+
+// Hard time stop — the 3h rule, emitted so the executor can flatten.
+timeUp = not na(expiry) and time >= expiry and time[1] < expiry and (firedL or firedS)
+if timeUp
+    alert('{"strategy":"ORB","v":"1.0","event":"TIME_EXIT","symbol":"' + syminfo.ticker +
+       '","tickerid":"' + syminfo.tickerid + '","session":"' + orTag +
+       '","reason":"max_hold_' + str.tostring(maxHoldMin) + 'min_reached"' +
+       ',"t":' + str.tostring(timenow) + '}', alert.freq_once_per_bar_close)
+
+// ─── Plots ─────────────────────────────────────────────────────────────
+bgcolor(inOR ? color.new(color.blue, 90) : na)
+plot(armed and liveWin ? trigL : na, "Long trigger", color.teal,   style = plot.style_linebr)
+plot(armed and liveWin ? trigS : na, "Short trigger", color.maroon, style = plot.style_linebr)
+plot(armed and liveWin ? slL   : na, "OR low",  color.new(color.gray, 40), style = plot.style_linebr)
+plot(armed and liveWin ? slS   : na, "OR high", color.new(color.gray, 40), style = plot.style_linebr)
+plotshape(brkL and barstate.isconfirmed, "Long",  shape.triangleup,
+     location.belowbar, color.teal,   size = size.small)
+plotshape(brkS and barstate.isconfirmed, "Short", shape.triangledown,
+     location.abovebar, color.maroon, size = size.small)
