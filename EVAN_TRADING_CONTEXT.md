@@ -2750,3 +2750,12 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - News: WebSearch found no scheduled high-impact EUR or JPY release in the 03:00-05:00 UTC window (ECB decision ~9h out, outside 2h window). Attested news_clear.
 - No enforcer run. Nothing placed/would-placed. NO_ACTION.
 - Snapshot updated: h4_verdicts.EURJPY added, session_ranges.EURJPY added, watch_levels appended. tick_counter -> 86.
+
+## AUTO TICK 87 — 2026-07-23T03:06:26Z (Tier 2, mode=learn)
+- Signals: HL_RECLAIM EURUSD 1.14276 (30m, level 1.14204, extreme 1.1406) + PULLBACK_TAG_LONG GBPJPY 218.344 (30m, level 218.25, extreme 218.0345), both 03:00Z.
+- Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Balance R6427.42 / equity R6389.15, unchanged from tick86. TESLA (EVAN_MANUAL, Sell 2u, pl -38.27) re-checked, untouched, not this bot's instrument.
+- EURUSD: same 1.1406 shelf as ticks80/82/83. First confirmed CLOSED M15 break of the 1.14212 resistance this sequence (02:45 bar, 93% bull body) — the prior blocker (unconfirmed breakout) is resolved. But extended H4/D1 history (pulled back to 7/13 this tick) surfaced a closer overhead cluster (1.14283/1.14296, 7/20-7/21 daily highs) sitting right at entry. BLOCKED ON R:R: Asian Rule15 SL floor (~26.6pips structural to the 1.1406 extreme) vs only ~0.7-15pips of real reward — R:R ~0.5-0.6:1, fails Rule9's 1.2:1, not learn-mode-downgradable.
+- GBPJPY: continuation of tick85's shelf, price broke the nearest step-down H4 high (218.348) but the next resistance cluster (218.393-218.409) correspondingly shrank to ~3.4-5pips away — R:R did not improve, still ~0.1-0.15:1 vs the ~37.5pip Asian SL floor.
+- News: WebSearch for EUR/GBP/JPY calendar 03:00-05:00 UTC found no date-specific high-impact hits (ECB ~9h out, outside window) — attested news_clear for both.
+- No enforcer run on either signal, nothing placed/would-placed. NO_ACTION x2.
+- Snapshot updated: h4_verdicts.EURUSD/GBPJPY refreshed, session_ranges.EURUSD/GBPJPY refreshed, watch_levels appended (GBPJPY entry superseded, EURUSD entry added). tick_counter -> 87.
