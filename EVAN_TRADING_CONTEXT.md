@@ -2834,3 +2834,14 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - **PLACED**: BUY 0.01L (1000 units) [LEARN], filled 186.514, SL 186.274, TP 186.85, orderId 109836016. Confirmed via get_open_positions that all three positions (TESLA, USDJPY, EURJPY) sit on account 41829612.
 - Balance R6,427.42 / equity R6,526.98 post-order (balance unchanged, no realized closes). Session P&L (balance basis) R-967.57 vs session_start_balance R7,394.99, unchanged.
 - Snapshot updated: h4_verdicts.EURJPY refreshed, session_ranges.EURJPY refreshed, open_positions +EURJPY, watch_levels EURJPY entry resolved/replaced (next watch: ECB 12:45 UTC could move the pair sharply — reassess position ahead of that window). tick_counter -> 94.
+
+---
+
+## AUTO TICK 95 — 2026-07-23 10:00 UTC (12:00 SAST) — LDN session — mode=learn
+- Signal: PULLBACK_TAG_LONG BRENT 98.587 (30m, level 98.707, extreme 95.743) @10:00:14Z.
+- NO_ACTION — BRENT signal/broker feed decoupling (first flagged tick81) confirmed PERSISTENT and WIDENING: broker bid/ask 93.612/93.627, session 90.635-93.88, signal fields 95.743-98.707 sit entirely above broker-visible range (~4.7-4.9pt gap, up from tick81's ~3.8-4.4pt). Not learn-mode-downgradable (data-trust block, not a discretionary gate).
+- Independent broker-native H1 check: BRENT uptrend genuinely intact and accelerating (fresh highs every bar), but straight-line grind with zero pullback structure — no independent M15 trigger available either way.
+- No enforcer run (blocked pre-enforcer, same precedent as tick81). FLAG FOR EVAN: recommend re-pointing/disabling the BRENT TV alert until feeds reconcile — gap is growing tick over tick, not converging.
+- Open-position guard: TESLA (EVAN_MANUAL) pl +187.40 (up from +99.56), untouched. USDJPY [LEARN] (109835929) chopping flat since entry, well under Rule14, Hold. EURJPY [LEARN] (109836016) dipped ~-7.5pips then recovering last 25min, SL untouched/not threatened, Hold, watch into ECB 12:45 UTC.
+- Balance R6,427.42 / equity R6,620.40 (unchanged, no realized closes). Session P&L (balance basis) R-967.57 vs session_start_balance R7,394.99, unchanged.
+- Snapshot updated: h4_verdicts.BRENT + session_ranges.BRENT refreshed, watch_levels BRENT entry escalated, open_positions notes refreshed. tick_counter -> 95.
