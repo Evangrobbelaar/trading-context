@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-23T02:32:11Z",
-  "updated_by": "auto_tick_85_tier2",
+  "updated_utc": "2026-07-23T03:00:16Z",
+  "updated_by": "auto_tick_86_tier2",
   "balance": {
     "value": 6427.42,
-    "equity": 6389.12,
-    "queried_utc": "2026-07-23T02:32:11Z",
-    "note": "live-queried this run. Balance unchanged from tick84 (no realized closes since). Equity 6389.12 flat vs tick84's 6389.13 - TESLA EVAN_MANUAL floating pl -38.30, essentially unchanged."
+    "equity": 6389.16,
+    "queried_utc": "2026-07-23T03:00:16Z",
+    "note": "live-queried this run. Balance unchanged from tick85 (no realized closes since). Equity 6389.16 flat vs tick85's 6389.12 - TESLA EVAN_MANUAL floating pl -38.26, essentially unchanged."
   },
   "session_start_balance": 7394.99,
   "open_positions": [
@@ -18,9 +18,9 @@
       "price": 357.82,
       "stopLoss": 374.22,
       "takeProfit": 339.12,
-      "pl": -38.3,
+      "pl": -38.26,
       "openTime_utc": "2026-07-22T22:17:44Z",
-      "note": "EVAN_MANUAL. Discovered tick79, opened between ticks (22:17:44Z). Same signature as prior NVIDIA manual equity trades (Limit order, out of this bot's instrument universe). Not this system's instrument, not touched, treated as expected manual activity per the standing anomaly_status.RESOLVED rule (no freeze). pl re-checked tick85 (-38.30), essentially unchanged vs tick84's -38.29, same orderId.",
+      "note": "EVAN_MANUAL. Discovered tick79, opened between ticks (22:17:44Z). Same signature as prior NVIDIA manual equity trades (Limit order, out of this bot's instrument universe). Not this system's instrument, not touched, treated as expected manual activity per the standing anomaly_status.RESOLVED rule (no freeze). pl re-checked tick86 (-38.26), essentially unchanged vs tick85's -38.30, same orderId.",
       "origin": "EVAN_MANUAL"
     }
   ],
@@ -97,6 +97,12 @@
     }
   ],
   "h4_verdicts": {
+    "EURJPY": {
+      "trend": "BULL — H4 swing low 185.287 (7/21 00:00) unbroken, clean higher-lows/higher-highs staircase since, currently breaking to a fresh multi-week high above the 30-day range ceiling (186.312, 6/16)",
+      "asof": "2026-07-23T03:00:16Z",
+      "swings": "H4 since 7/21 00:00 low 185.287: higher lows 185.4 -> 185.424 -> 185.704/185.707 -> 185.924 -> 185.875 (minor dip, still above 185.707) -> 185.956 -> 185.713 (dip, still above 185.287) -> 185.852 -> 185.995 -> 186.032 -> 185.985 (00:00 7/23, forming). Higher highs 185.524 -> 185.528 -> 185.77 -> 185.913 -> 186.026 -> 186.115 -> 186.112/186.117 -> 186.181 -> 186.053 -> 186.187/186.18 -> 186.198 (forming). Live price 186.35/186.365 has now traded through even that forming high and through the entire 30-day daily range (highest daily high in the last 30 sessions was 186.312 on 6/16) — genuine breakout to fresh multi-week highs, no visible resistance overhead in the available history.",
+      "note": "First H4 verdict on file for EURJPY (new instrument, escalated tick85/86 batch). Signal: PULLBACK_TAG_LONG fired 186.35 (30m tf, level 186.214, extreme 186.046) at 03:00:03Z, immediately following tick85's HL_RECLAIM on the same shelf 30min earlier. With-trend long vs confirmed H4 BULL — passes Change5 step3. M15 trigger MET: last CLOSED bar (02:45, O186.221 H186.324 L186.221 C186.317) is a clean ~93% bull body, breaking cleanly above the 186.214 level to a fresh high; the 03:00 bar (the signal print) is still forming but the trigger standard is already satisfied by the prior closed bar. Rule17: live ask 186.365 sits ABOVE the broker's own session high (185.985-186.349, see session_ranges.EURJPY) — range_pos >1.0, deep in/through the top-15pct band; learn-mode WARN-only, overridden and logged, not the blocker. BLOCKED ON R:R: 05:00 SAST, still inside the 00:00-07:00 Asian window, Rule15 doubles the EURJPY forex SL floor to ~30-50 pips (JPY pip=0.01). Structural SL beyond the 186.046 extreme + buffer only clears ~32-35 pips from ask 186.365 (186.365-0.35=186.015, beyond the extreme so Rule18 geometry is fine), which satisfies the Asian floor on the risk side — but there is NO defined resistance above entry to size a reward against (price already cleared the entire visible 30-day range). Best-case honest targets (nearest round number 186.50, or a 1x measured-move projection off the 186.046-186.214 base ≈186.38) give only ~10-14 pips of reward against the ~32-35 pip SL — R:R ≈0.3-0.4:1, fails Rule9's 1.2:1 floor by a wide margin. Not learn-mode-downgradable. News: WebSearch for EUR/JPY high-impact calendar around 03:00-05:00 UTC 23 Jul 2026 found no scheduled high-impact EUR or JPY release in this window (ECB decision ~12:15 UTC is ~9h out, outside the 2h window; no BoJ meeting today) — attested news_clear. No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION. Watch: a pullback that re-establishes distance-to-entry without breaking the H4 uptrend, or London open (07:00 SAST) reverting Rule15 to the normal 15-25 pip floor — either would meaningfully improve this R:R against the same breakout structure."
+    },
     "GBPJPY": {
       "trend": "CHOP/MILD BEAR LEAN — H4 swing highs stepping down since 7/20 08:00 (218.828->218.721->218.423->218.409->218.348), lows noisy inside a 217.5-218.8 band, no clean directional trend either way",
       "asof": "2026-07-23T02:32:11Z",
@@ -151,6 +157,15 @@
     }
   },
   "session_ranges": {
+    "EURJPY": {
+      "low": 185.985,
+      "high": 186.349,
+      "range": 0.364,
+      "top_15pct_cutoff": 186.294,
+      "bottom_15pct_cutoff": 186.040,
+      "asof": "2026-07-23T03:00:16Z",
+      "source": "get_symbol_price live low/high field. Entry ~186.365 (ask) is ABOVE the session high (range_pos >1.0), deep top-15pct band; learn-mode WARN only, moot since blocked on R:R not Rule17."
+    },
     "GBPJPY": {
       "low": 218.025,
       "high": 218.276,
@@ -228,6 +243,11 @@
   },
   "armed_tickets": [],
   "watch_levels": [
+    {
+      "symbol": "EURJPY",
+      "note": "tick 86: PULLBACK_TAG_LONG fired 186.35 (30m, level 186.214, extreme 186.046), continuation of tick85's HL_RECLAIM shelf. First EURJPY H4 read on file: clean BULL, swing low 185.287 unbroken, M15 trigger confirmed (closed 02:45 bar 93% bull body breaking to a fresh multi-week high above the 30-day range ceiling 186.312). Rule17 top-15pct (range_pos >1.0) learn-mode-downgradable and moot. NO_ACTION on R:R — Asian-session Rule15 SL floor (~30-35pips) is fine on the risk side but there's no defined resistance above entry to size reward against (fresh breakout, nothing overhead in visible history); best-case round-number/measured-move targets only give R:R ~0.3-0.4:1. Re-check after 07:00 SAST (Rule15 reverts to 15-25pip floor) or on a pullback that restores distance-to-entry.",
+      "set_utc": "2026-07-23T03:00:16Z"
+    },
     {
       "symbol": "GBPJPY",
       "note": "tick 85: HL_RECLAIM fired 218.2505 (30m, level 218.25, extreme 218.0345). First GBPJPY H4 read on file: mild lower-highs lean, not a clean trend either way. NO_ACTION on R:R — Asian-session Rule15 SL floor (30-50pips) pushes the real stop to ~35pips out, but nearest honest resistance (218.393-218.409 cluster) is only ~10-12pips of reward. Rule17 top-15pct (range_pos ~0.90) was learn-mode-downgradable and moot. Re-check after 07:00 SAST when Rule15 reverts to the normal 15-25pip floor — same SL would then likely clear the R:R bar against that near cluster."
@@ -443,7 +463,7 @@
       "set_utc": "2026-07-23T02:01:19Z"
     }
   ],
-  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick84 TIER2: HL_RECLAIM AUDJPY 114.327 (30m tf, level 114.18, extreme 113.98) at 02:00:05Z — Tier1 escalated as a new instrument with no H4 verdict on file. Built first-ever AUDJPY H4 read from scratch (H4/M15 history pulled): broader BULL since 7/21 low 113.587, corrective dip 7/22 (lower lows to 113.865), then a violent M15 reclaim bar (01:45-02:00, 78% bull body, vol 179.3M vs ~40-150M baseline) breaking to a fresh high 114.441. Structure alone would pass Change5 (with-trend, clean 60%+ trigger bar, Rule17 borderline-clear at range_pos ~0.84). BLOCKED ON NEWS: WebSearch found the Australian jobs report (ABS Labour Force Survey) printed 01:30 UTC today, ~30min before this signal — squarely inside the spike bar that produced the reclaim (vol/range both ~5-10x session baseline). Treated as a post-news spike chase (Rule11/12 spirit + AUTO_TICK_PROTOCOL's hard 'news within 2h' block, not learn-mode-downgradable). No enforcer run, nothing placed/would-placed. NO_ACTION. Pip value for AUDJPY at 0.01 lots calibrated this tick via get_symbol_info/get_trading_instrument (JPY-quoted, pipPos 2, roundLot 100000) + USDJPY/USDZAR cross (163.08 / 16.368) ≈ R1.00/pip — noted for future AUDJPY sizing. Balance R6427.42 / equity R6389.13 (unchanged from tick83, TESLA EVAN_MANUAL pl -38.29, flat, not touched, no anomaly). Session P&L (balance basis) R-967.57 vs session_start_balance R7394.99, unchanged (no realized closes this tick).",
+  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick86 TIER2: PULLBACK_TAG_LONG EURJPY 186.35 (30m tf, level 186.214, extreme 186.046) at 03:00:03Z, continuation of tick85's HL_RECLAIM shelf 30min earlier. First-ever EURJPY H4 read built from scratch (H4/M15/D1 history pulled): clean BULL since 7/21 00:00 swing low 185.287 (unbroken higher-lows/higher-highs staircase), currently breaking out to a fresh multi-week high — live price 186.35/186.365 has traded through the entire visible 30-day daily range (prior 30-day high was 186.312 on 6/16). With-trend long, M15 trigger MET (closed 02:45 bar 93% bull body). Rule17 top-15pct (range_pos >1.0, entry above the broker's own session high) is learn-mode-downgradable, overridden and logged, not the blocker. BLOCKED ON R:R: 05:00 SAST, still deep Asian window, Rule15 doubles the SL floor to ~30-35pips which the structural stop (beyond the 186.046 extreme) satisfies on the risk side, but there is no defined resistance above entry to size a reward against (fresh breakout, nothing overhead in history) — best-case round-number/measured-move targets give only R:R ~0.3-0.4:1, fails Rule9's 1.2:1 floor, not learn-mode-downgradable. News: WebSearch found no scheduled high-impact EUR or JPY release in the 03:00-05:00 UTC window (ECB decision ~9h out, outside 2h window; no BoJ meeting today) — attested news_clear. TESLA EVAN_MANUAL position re-checked (pl -38.26, essentially flat vs tick85's -38.30), not touched, not this bot's instrument, no anomaly. No enforcer run, nothing placed/would-placed. NO_ACTION. Balance R6427.42 / equity R6389.16 (unchanged from tick85, no realized closes this tick). Session P&L (balance basis) R-967.57 vs session_start_balance R7394.99, unchanged. tick84 TIER2: HL_RECLAIM AUDJPY 114.327 (30m tf, level 114.18, extreme 113.98) at 02:00:05Z — Tier1 escalated as a new instrument with no H4 verdict on file. Built first-ever AUDJPY H4 read from scratch (H4/M15 history pulled): broader BULL since 7/21 low 113.587, corrective dip 7/22 (lower lows to 113.865), then a violent M15 reclaim bar (01:45-02:00, 78% bull body, vol 179.3M vs ~40-150M baseline) breaking to a fresh high 114.441. Structure alone would pass Change5 (with-trend, clean 60%+ trigger bar, Rule17 borderline-clear at range_pos ~0.84). BLOCKED ON NEWS: WebSearch found the Australian jobs report (ABS Labour Force Survey) printed 01:30 UTC today, ~30min before this signal — squarely inside the spike bar that produced the reclaim (vol/range both ~5-10x session baseline). Treated as a post-news spike chase (Rule11/12 spirit + AUTO_TICK_PROTOCOL's hard 'news within 2h' block, not learn-mode-downgradable). No enforcer run, nothing placed/would-placed. NO_ACTION. Pip value for AUDJPY at 0.01 lots calibrated this tick via get_symbol_info/get_trading_instrument (JPY-quoted, pipPos 2, roundLot 100000) + USDJPY/USDZAR cross (163.08 / 16.368) ≈ R1.00/pip — noted for future AUDJPY sizing. Balance R6427.42 / equity R6389.13 (unchanged from tick83, TESLA EVAN_MANUAL pl -38.29, flat, not touched, no anomaly). Session P&L (balance basis) R-967.57 vs session_start_balance R7394.99, unchanged (no realized closes this tick).",
   "anomaly_status": {
     "state": "RESOLVED",
     "resolved_utc": "2026-07-22T11:47:00Z",

@@ -2740,3 +2740,13 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - News: WebSearch for GBP/JPY high-impact calendar events found no date-specific hits; no scheduled high-impact GBP/JPY/BoE/BoJ release known for this slot. Attested news_clear, moot since blocked on R:R.
 - No enforcer run. Nothing placed/would-placed. NO_ACTION.
 - Snapshot updated: h4_verdicts.GBPJPY added, session_ranges.GBPJPY added, watch_levels appended. tick_counter -> 85.
+
+## AUTO TICK 86 — 2026-07-23T03:00:16Z (Tier 2, mode=learn)
+- Signal: PULLBACK_TAG_LONG EURJPY 186.35 (30m, level 186.214, extreme 186.046). Continuation of tick85's HL_RECLAIM shelf 30min earlier, first EURJPY H4 verdict on file.
+- Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Balance R6427.42 / equity R6389.16, unchanged from tick85. TESLA (EVAN_MANUAL, Sell 2u, pl -38.26) re-checked, untouched, not this bot's instrument.
+- Built first-ever EURJPY H4 read (H4/M15/D1 pulled): clean BULL since 7/21 00:00 swing low 185.287 (unbroken higher-lows/higher-highs), now breaking to a fresh multi-week high — live price 186.35/186.365 has traded through the entire visible 30-day daily range (prior 30-day high 186.312, 6/16).
+- With-trend long, M15 trigger MET (closed 02:45 bar 93% bull body breaking cleanly above the 186.214 level). Rule17 top-15pct (range_pos >1.0, entry above the broker's own session high) learn-mode-downgradable, overridden and logged, not the blocker.
+- BLOCKED ON R:R: 05:00 SAST, deep Asian window, Rule15 SL floor ~30-35 pips — satisfied on the risk side by the structural SL beyond the 186.046 extreme, but no defined resistance exists above entry to size reward against (fresh breakout, nothing overhead in history). Best-case round-number/measured-move targets give only R:R ~0.3-0.4:1, fails Rule9's 1.2:1 floor, not learn-mode-downgradable.
+- News: WebSearch found no scheduled high-impact EUR or JPY release in the 03:00-05:00 UTC window (ECB decision ~9h out, outside 2h window). Attested news_clear.
+- No enforcer run. Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.EURJPY added, session_ranges.EURJPY added, watch_levels appended. tick_counter -> 86.
