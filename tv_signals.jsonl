@@ -365,3 +365,4 @@
 {"event": "LL_BREAKDOWN", "symbol": "TSLA", "tf": "30", "price": 319.51, "level": 321.58, "extreme": 378.94, "range_pos": 0.04, "vol_mult": 2.1, "h1_atr": 6.943753, "t": 1784820602725, "received_utc": "2026-07-23T15:30:21.766962+00:00"}
 {"event": "PULLBACK_TAG_LONG", "symbol": "WTI", "tf": "30", "price": 93.537, "level": 92.875, "extreme": 88.589, "range_pos": 0.959, "vol_mult": 1.59, "h1_atr": 0.879384, "t": 1784820660670, "received_utc": "2026-07-23T15:31:04.415074+00:00"}
 {"event": "PULLBACK_TAG_SHORT", "symbol": "TSLA", "tf": "30", "price": 324.59, "level": 321.58, "extreme": 378.94, "range_pos": 0.256, "vol_mult": 2.06, "h1_atr": 6.825628, "t": 1784822400996, "received_utc": "2026-07-23T16:00:19.470918+00:00"}
+{"event": "PULLBACK_TAG_LONG", "symbol": "EURGBP", "tf": "30", "price": 0.85444, "level": 0.85443, "extreme": 0.85286, "range_pos": 0.876, "vol_mult": 1.1, "h1_atr": 0.000536, "t": 1784822400892, "received_utc": "2026-07-23T16:00:24.982208+00:00"}
