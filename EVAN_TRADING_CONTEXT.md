@@ -2796,3 +2796,14 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - R:R also fails independently: Asian-buffered structural SL (beyond 113.98 extreme) ≈47-49pips risk vs only ~5pips reward to the just-broken 114.475 session high — ≈0.1:1, far under Rule9's 1.2:1 floor.
 - No enforcer run (blocked pre-enforcer on trigger + R:R). Nothing placed/would-placed. NO_ACTION.
 - Snapshot updated: h4_verdicts.AUDJPY refreshed (spike leg failing, not yet confirmed), session_ranges.AUDJPY refreshed (high now 114.475). tick_counter -> 91.
+
+## AUTO TICK 92 — 2026-07-23T08:02:17Z (Tier 2, mode=learn)
+- Signal: HL_RECLAIM EURJPY 186.583 (30m, level 186.488, extreme 186.324) at 08:00:16Z. Dispatcher escalated Tier2: "H4 BULL + M15 confirmed, London open reverted Rule15 SL floor, but overhead resistance undefined."
+- Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Balance R6,427.42 / equity R6,496.74 (live-queried), unchanged balance from tick91. TESLA (EVAN_MANUAL, Sell 2u, orderId 109834150) pl improved to +69.32 from tick91's -38.28, re-checked, untouched, not this bot's instrument.
+- H4 confirmed BULL, unbroken since 185.287 (7/21 00:00), fresh higher high on the last closed H4 bar (04:00, close 186.338). With-trend long, passes Change5 step3.
+- Session timing improvement: now 10:02 SAST, Asian window (00:00-07:00 SAST) ended ~3h ago — Rule15 doubling no longer applies, genuine improvement vs prior EURJPY ticks (86/90) which were blocked partly on the Asian SL floor.
+- BLOCKED ON M15 TRIGGER regardless: last CLOSED M15 bar (07:45, close 186.443) and last CLOSED H1 bar (07:00-08:00, close 186.443) both closed BELOW the 186.488 level — the break to 186.583+ is only visible on the still-forming 08:00-08:15 bar (~2min old at read time). Same "wait for a closed confirming bar" standard applied all session (AUDJPY t91, BRENT t81, XAUUSD t70, EURUSD t88).
+- Rule17 top-15pct (range_pos ~0.87-0.92 live) learn-mode WARN only, moot — not the blocker.
+- News: fresh WebSearch confirmed ECB rate decision today ~12:15 UTC (~4h10min out, outside the 2h window), no BoJ meeting today — attested news_clear.
+- No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.EURJPY refreshed, session_ranges.EURJPY refreshed (high now 186.659), watch_levels EURJPY entry added (supersedes tick86). tick_counter -> 92.
