@@ -2604,3 +2604,50 @@ No enforcer run, nothing placed/would-placed. NO_ACTION.
 session_snapshot.json updated (balance/equity re-verified, TESLA pl refreshed, EURUSD
 h4_verdict/session_range refreshed off stale CHOP read, new tick80 watch_levels note).
 tick_counter.txt -> 80. session_logger.py tick80 logged.
+
+---
+
+## AUTO TICK 81 — 2026-07-23T00:30:29Z (mode=learn, Tier2)
+
+Signal: PULLBACK_TAG_LONG BRENT 95.994 (30m tf, level 95.42, extreme 93.815, vol_mult 0.69).
+
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612.
+Live balance R6427.42 / equity R6389.07 (unchanged balance from tick80; TESLA EVAN_MANUAL
+floating loss widened -23.30 -> -38.35, not touched, not this bot's instrument).
+
+MAJOR DATA-INTEGRITY FINDING: live broker BRENT quote 91.894/91.909, session low/high
+90.635/92.099, and the full 48h broker M30/H4 history never traded above 92.099. The
+signal's price/level/extreme (93.815-95.994) sit ~4pts (~4.2-4.5%) above the entire
+broker-visible range — not spread noise. WebSearch confirms why: real-world Brent spiked
+>4% to a seven-week high of ~$95/bbl on 7/22 on US-Iran/Hormuz escalation (11th consecutive
+day of US strikes on Iran, plus fresh attacks on the CPC terminal on Russia's Black Sea
+coast). The TradingView chart driving this alert is tracking that real spike (95.994
+matches the ~$95 print almost exactly) — this DEMO account's BRENT feed has not caught up,
+still showing consolidation at 90-92. Confirmed via get_symbols this is not a wrong-
+symbol/contract-remap issue (only one BRENT symbol on this broker: "Brent spot in USD").
+This is the same principle as the standing USOIL->BRENT remap warning in CLAUDE.md (levels
+computed on one chart don't transfer to a different price series) except here it's a feed/
+vendor basis gap on the nominally same symbol.
+
+CONSEQUENCE: the signal's level (95.42) cannot be used as a structural reference for an
+order that would actually fill at ~91.9 — on the broker's real tradable price it is ~3.9%
+away, not a nearby retracement zone. Ran an independent read on broker-native H4/M30 data
+only (ignoring the signal's fields): genuine H4 uptrend (higher lows since 7/21: 86.459 ->
+88.279 -> 88.735 -> 89.151 -> 89.125 -> 89.496 -> 90.517 -> 89.896 -> 89.989 -> 90.492),
+peak 91.81 at 7/22 08:00, and price is right now attempting a fresh breakout to 92.099 on
+the live 00:30 M30 bar. But that bar is only ~3min old / still forming — fails Change5
+step5's confirmed-closed-trigger-bar standard regardless of which price series is trusted.
+
+Neither block (data-integrity, unconfirmed bar) is learn-mode-downgradable (only
+Rule17/H4-countertrend/scout-uncertainty are). No news block independent of the above (the
+Iran/Hormuz tape IS the news, already 4+ days priced in, not a fresh 2h-window event).
+
+No enforcer run, nothing placed/would-placed. NO_ACTION.
+
+FLAGGED FOR EVAN: worth checking whether this demo account's BRENT feed is expected to lag
+live-market spikes this much, or whether the TradingView BRENT alert should be cross-checked
+against this broker's actual quote before trusting future BRENT signal levels for sizing.
+
+session_snapshot.json updated (balance/equity re-verified, TESLA pl refreshed, new BRENT
+h4_verdict + session_range entries documenting the feed divergence, new tick81 watch_levels
+note). tick_counter.txt -> 81. session_logger.py tick81 logged.

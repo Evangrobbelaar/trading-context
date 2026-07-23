@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-22T23:30:27Z",
-  "updated_by": "auto_tick_80_tier2",
+  "updated_utc": "2026-07-23T00:30:29Z",
+  "updated_by": "auto_tick_81_tier2",
   "balance": {
     "value": 6427.42,
-    "equity": 6402.81,
-    "queried_utc": "2026-07-22T23:30:27Z",
-    "note": "live-queried this run. Balance unchanged from tick79 (no realized closes since). Equity 6402.81 vs tick79's 6392.29 reflects TESLA EVAN_MANUAL floating loss narrowing (-35.13 -> -23.30)."
+    "equity": 6389.07,
+    "queried_utc": "2026-07-23T00:30:29Z",
+    "note": "live-queried this run. Balance unchanged from tick80 (no realized closes since). Equity 6389.07 vs tick80's 6402.81 reflects TESLA EVAN_MANUAL floating loss widening (-23.30 -> -38.35)."
   },
   "session_start_balance": 7394.99,
   "open_positions": [
@@ -18,9 +18,9 @@
       "price": 357.82,
       "stopLoss": 374.22,
       "takeProfit": 339.12,
-      "pl": -23.30,
+      "pl": -38.35,
       "openTime_utc": "2026-07-22T22:17:44Z",
-      "note": "EVAN_MANUAL. Discovered tick79, opened between ticks (22:17:44Z). Same signature as prior NVIDIA manual equity trades (Limit order, out of this bot's instrument universe). Not this system's instrument, not touched, treated as expected manual activity per the standing anomaly_status.RESOLVED rule (no freeze). pl re-checked tick80, unchanged position.",
+      "note": "EVAN_MANUAL. Discovered tick79, opened between ticks (22:17:44Z). Same signature as prior NVIDIA manual equity trades (Limit order, out of this bot's instrument universe). Not this system's instrument, not touched, treated as expected manual activity per the standing anomaly_status.RESOLVED rule (no freeze). pl re-checked tick81, floating loss widened -23.30 -> -38.35, unchanged position/orderIds.",
       "origin": "EVAN_MANUAL"
     }
   ],
@@ -126,6 +126,11 @@
       "swings": "H4: 00:00 low 1.13924 (session low) -> 04:00 low 1.13984 -> 08:00 high 1.1418/low 1.1403 -> 12:00 low 1.14 (minor undercut) -> 16:00 high 1.14212 (fresh HH, closed 1.14133) -> 20:00-24:00 bar forming, dipped to 1.14045 (21:15 M15) then reclaimed. M15 22:45-23:15: swept 1.14057/1.1406 twice (matches signal level 1.14062/extreme 1.1406), then two closed bull-body reclaim bars: 23:00 (O1.1406 C1.14077, 81% bull body) and 23:15 (O1.14078 C1.14089, 69% bull body).",
       "note": "refreshed tick 80 \u2014 SPRING_LONG fired 1.14102 (30m tf, level 1.14062, extreme 1.1406, vol_mult 0.31 = thin). With-trend long (uptrend since 00:00 low intact, no swing-low break) \u2014 no Rule3 issue. Signal's own range_pos 0.913 is a narrow pattern-window stat, not the session range; recomputed vs fresh session high/low (1.13924-1.14212) gives range_pos ~0.62, mid-range, clear of both Rule17 bands regardless. M15 trigger MET: two closed 60%+ bull-body reclaim bars off the 1.1406 sweep. BLOCKED ON R:R: it's 01:30 SAST (Asian session) \u2014 Rule15 doubles EURUSD's Rule2 SL floor to 25-35 pips; nearest resistance/target (1.14212, this session's H4 high) is only ~11 pips from entry ~1.14102. Best case R:R \u2248 11/25 = 0.44:1, worst case 11/35=0.31:1 \u2014 fails Rule9's 1.2:1 floor hard, not a learn-mode-downgradable gate. News: WebSearch found ECB rate decision/press conference Jul 23 (~12:15 UTC decision), ~12.75h away \u2014 well outside the 2h window, attested news_clear, moot since blocked on R:R. No enforcer run, nothing placed/would-placed. NO_ACTION. Watch for either a deeper pullback that widens room to the next real resistance (improves R:R) or London-session open (07:00 SAST) reverting Rule15 to the tighter 15-25pip floor, which would make this same structure tradeable."
     },
+    "BRENT": {
+      "trend": "BULL on broker-native data (higher lows 7/21 12:00 86.459 -> 88.279 -> 88.735 -> 89.151 -> 89.125 -> 89.496 -> 90.517 -> 89.896 -> 89.989 -> 90.492; peak 91.81 at 7/22 08:00, pullback to ~89.9-90.7 through 7/22, now pushing a fresh high 92.099 on the forming 00:30 bar). BUT the signal's own price/level/extreme fields are NOT usable \u2014 see note.",
+      "asof": "2026-07-23T00:30:29Z",
+      "note": "tick81 (mode=learn): PULLBACK_TAG_LONG fired price 95.994 (level 95.42, extreme 93.815, 30m tf) at 00:30:15Z. MAJOR DATA-INTEGRITY FINDING: broker live BRENT quote at read time was bid/ask 91.894/91.909 (session low/high 90.635/92.099), and the broker's M30/H4 history for the last 48h never traded above 92.099 (7/21 12:00-7/23 00:30 range: 86.459-92.099). The signal's price/level/extreme (93.815-95.994) sit 3.8-4.4pts (~4.2-4.5%) above the ENTIRE broker-visible range \u2014 not a spread/rounding artifact. WebSearch confirms why: real-world Brent spiked >4% to a seven-week high of ~$95/bbl on 7/22 on US-Iran/Hormuz escalation (11th consecutive day of US strikes on Iran, plus fresh attacks on the CPC terminal on Russia's Black Sea coast) \u2014 the TradingView chart driving this alert IS tracking that real spike (95.994 matches the reported ~$95 print almost exactly). This DEMO account's 'BRENT spot in USD' feed (confirmed via get_symbols \u2014 only one BRENT symbol exists, so this isn't a wrong-symbol/contract-remap issue like the USOIL->BRENT case) is NOT tracking that same move; it shows the instrument still consolidating 90-92. This is the same standing principle as the USOIL/BRENT contract-remap warning in CLAUDE.md ('a signal's level/extreme were computed on the source chart and do not transfer to a different contract') except here it's a feed/vendor basis gap on the SAME nominal symbol, likely because this is a demo simulation feed not reflecting live news-driven spikes in real time. CONSEQUENCE: the signal's level (95.42) and extreme (93.815) cannot be used to build a structural SL/TP for an order that would actually fill on this broker at ~91.9 \u2014 treating 95.42 as 'nearby resistance' would be false; on the broker's real tradable price it is ~3.5pts/3.9% away, not a retracement zone at all. Fresh analysis run independently on broker-native H4/M30 data only (ignoring signal fields entirely): H4 uptrend genuinely intact (higher lows throughout, see trend field), and price is right now attempting a fresh breakout above the 91.81 prior high on the 00:30 M30 bar \u2014 but that bar is only ~3min old / still forming, so Change5 step5's confirmed-closed-trigger-bar standard (same standard enforced all session on XAUUSD/GBPUSD/USDJPY) is not met regardless of which price series is trusted. No enforcer run (blocked pre-enforcer on data-integrity + unconfirmed-bar grounds, neither learn-mode-downgradable \u2014 learn mode only downgrades Rule17/H4-countertrend/scout-uncertainty, not price-data trustworthiness). No news block independent of the above (the Iran/Hormuz tape IS the news, already priced in over 4 days per the search, not a fresh 2h-window event). NO_ACTION. FLAG FOR EVAN: worth checking whether this demo account's BRENT feed is expected to lag live-market spikes this much, or whether TradingView's BRENT alert should be re-pointed/cross-checked against this broker's actual quote before trusting future BRENT signals' level/extreme fields for sizing."
+    },
     "GBPUSD": {
       "trend": "CHOP (unconfirmed either way) \u2014 bouncing inside the 1.3365-1.3382 compression zone",
       "asof": "2026-07-22T17:17:00+00:00",
@@ -134,6 +139,13 @@
     }
   },
   "session_ranges": {
+    "BRENT": {
+      "low": 90.635,
+      "high": 92.099,
+      "range": 1.464,
+      "asof": "2026-07-23T00:30:29Z",
+      "source": "get_symbol_price live low/high field (broker-native, today's session). Moot this tick: NO_ACTION was on data-integrity + unconfirmed-bar grounds, not Rule17. Do NOT compute range_pos against the signal's own price/level/extreme (95.994/95.42/93.815) — those are off a different, currently-decoupled price series, see h4_verdicts.BRENT."
+    },
     "XAUUSD": {
       "low": 4076.88,
       "high": 4141.75,
@@ -371,9 +383,14 @@
       "symbol": "EURUSD",
       "note": "tick80 (mode=learn): SPRING_LONG fired 1.14102 (30m tf, level 1.14062, extreme 1.1406, range_pos 0.913 self-reported, vol_mult 0.31) at 23:30:27Z. See h4_verdicts.EURUSD for full read: with-trend long (H4/H1 uptrend since 7/22 00:00 low 1.13924 intact, broke above prior swing high 1.1418), M15 trigger met (two closed 60%+ bull reclaim bars off the 1.1406 sweep), Rule17 clean on recomputed session range (~0.62, signal's own 0.913 was a narrow pattern-window stat not the session range). BLOCKED ON R:R: Asian session (01:30 SAST) \u2014 Rule15 widens EURUSD SL floor to 25-35 pips vs only ~11 pips of room to the nearest resistance (1.14212) \u2014 R:R 0.31-0.44:1, fails Rule9's 1.2:1 floor, not learn-mode-downgradable. News: WebSearch found ECB decision Jul 23 ~12:15 UTC, ~12.75h out, outside 2h window \u2014 attested news_clear, moot. TESLA EVAN_MANUAL position re-checked (pl -23.30, improved from -35.13), not touched, not this bot's instrument. No enforcer run, nothing placed/would-placed. NO_ACTION. Watch for either a deeper pullback widening reward-room, or London open (07:00 SAST) reverting the SL floor to 15-25pips, which would flip this same structure tradeable.",
       "set_utc": "2026-07-22T23:30:27Z"
+    },
+    {
+      "symbol": "BRENT",
+      "note": "tick81 (mode=learn): PULLBACK_TAG_LONG fired 95.994 (level 95.42, extreme 93.815, 30m tf) at 00:30:15Z. See h4_verdicts.BRENT for full writeup. Headline: signal's price/level/extreme are tracking the real-world Brent spike to ~$95/bbl (US-Iran/Hormuz + CPC terminal attacks) but this DEMO account's BRENT feed is decoupled, still quoting 90.635-92.099 \u2014 a ~4pt/4.5% gap, confirmed via get_symbols (only one BRENT symbol, not a wrong-contract mapping issue). Signal's level/extreme unusable for structural SL/TP on this broker. Independent broker-native H4 read: genuine uptrend (higher lows since 7/21), fresh attempted breakout above 91.81 on the live 00:30 M30 bar, but that bar is unclosed \u2014 fails Change5 step5 regardless of price series. No enforcer run, nothing placed/would-placed. NO_ACTION. FLAGGED for Evan: check whether demo BRENT feed is expected to lag live spikes this much before trusting future BRENT signal levels.",
+      "set_utc": "2026-07-23T00:30:29Z"
     }
   ],
-  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick80 TIER2: signal SPRING_LONG EURUSD 1.14102 (23:30:27Z). Clean with-trend structure and M15 trigger but blocked on R:R \u2014 Asian-session Rule15 SL floor (25-35pips) vs only ~11pips of room to next resistance \u2014 NO_ACTION, no enforcer run. Balance R6427.42 / equity R6402.81 (unchanged balance from tick79, TESLA EVAN_MANUAL floating loss narrowed -35.13->-23.30, not touched). Session P&L (balance basis) R-967.57 vs session_start_balance R7394.99, unchanged from tick79 (no realized closes this tick).",
+  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick81 TIER2: signal PULLBACK_TAG_LONG BRENT 95.994 (00:30:15Z). Major data-integrity finding: signal price/level/extreme (93.8-96) sit ~4pts above this demo account's entire visible BRENT range (86.5-92.1 over 48h) \u2014 WebSearch confirms TV chart is tracking a real ~$95 Brent spike (Iran/Hormuz escalation) that this demo feed hasn't caught up to. Signal fields unusable for SL/TP; independent broker-native H4 read is BULL with an unconfirmed live breakout attempt. NO_ACTION, no enforcer run. Balance R6427.42 / equity R6389.07 (unchanged balance from tick80, TESLA EVAN_MANUAL floating loss widened -23.30->-38.35, not touched). Session P&L (balance basis) R-967.57 vs session_start_balance R7394.99, unchanged from tick80 (no realized closes this tick).",
   "anomaly_status": {
     "state": "RESOLVED",
     "resolved_utc": "2026-07-22T11:47:00Z",
