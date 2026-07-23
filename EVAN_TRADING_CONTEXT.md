@@ -2689,3 +2689,33 @@ No enforcer run, nothing placed/would-placed. NO_ACTION.
 session_snapshot.json updated (balance/equity re-verified, TESLA pl refreshed, EURUSD
 h4_verdict/session_range refreshed, new tick82 watch_levels note). tick_counter.txt -> 82.
 session_logger.py tick82 logged.
+
+---
+
+## AUTO TICK 83 — 2026-07-23T01:30:05Z / 01:31:03Z (mode=learn, Tier2)
+
+Batch: PULLBACK_TAG_LONG EURUSD 1.14176 (30m tf, level 1.14141, extreme 1.1406) +
+HL_RECLAIM WTI 89.514 (30m tf, level 89.327, extreme 88.296).
+
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612.
+Live balance R6427.42 / equity R6389.11 (unchanged from tick82; TESLA EVAN_MANUAL pl -38.31,
+flat, not touched, not this bot's instrument, no anomaly).
+
+WTI: pre-blocked, no structure check run. WTI is instrument_policy status=blocked in
+tv-pipeline/runner/tiers.json (too news/spread driven, use BRENT instead) — same standing
+block as ticks 54/74/77-79. NO_ACTION.
+
+EURUSD: same shelf as tick82, 30min later, price essentially unmoved. Last CLOSED M15 bar
+(01:15, O1.14168 H1.14199 L1.14166 C1.14169) wicked the session high but closed back inside
+it — the 1.14212 real resistance is still not a confirmed-closed breakout (same trap as
+tick82). Room from live ask 1.14181 to 1.14212 ~ 3.1 pips vs Rule15's Asian-session
+25-35pip EURUSD SL floor -> R:R ~ 0.1:1, fails Rule9's 1.2:1 floor hard, not
+learn-mode-downgradable. Rule17 top-15pct band downgraded to warning in learn mode, moot.
+News reused from tick82 (ECB ~10.7h out, outside 2h window) — no material time elapsed to
+warrant a fresh WebSearch, attested news_clear, moot since blocked on R:R.
+
+No enforcer run, nothing placed/would-placed. NO_ACTION on both signals.
+
+session_snapshot.json updated (balance/equity re-verified, TESLA pl refreshed, EURUSD
+h4_verdict/session_range refreshed, new tick83 watch_levels notes for EURUSD + WTI).
+tick_counter.txt -> 83. session_logger.py tick83 logged.
