@@ -1,15 +1,16 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-23T20:00:15Z",
-  "updated_by": "auto tick 106",
+  "updated_utc": "2026-07-23T21:01:13Z",
+  "updated_by": "auto tick 107",
   "balance": {
-    "value": 6730.65,
-    "equity": 6725.93,
-    "queried_utc": "2026-07-23T20:00:15Z",
-    "note": "live-queried this run via get_account_info, no fills this tick. Balance unchanged (6730.65); equity -4.72 floating (widened from -0.82 at tick105) on the still-open AUDJPY short -- price ticked back up toward/above entry on M5 but H1 structure still bearish (see h4_verdicts.AUDJPY). Session P&L -664.34 vs session_start_balance 7394.99 (balance basis, excl. floating), unchanged."
+    "value": 6708.77,
+    "equity": 6708.77,
+    "queried_utc": "2026-07-23T21:01:13Z",
+    "note": "live-queried this run via get_account_info. AUDJPY short 109839152 (tick104 entry) closed via its own SL (114.30) between tick106 and this tick -- close price 114.308, pl -R22.04, well inside the R15-R40 learn-mode band. Balance dropped from 6730.65 -> 6708.77. Equity == balance, no open positions. Session P&L -686.22 vs session_start_balance 7394.99."
   },
   "session_start_balance": 7394.99,
-  "open_positions": [
+  "open_positions": [],
+  "closed_since_last_snapshot": [
     {
       "orderId": "109839152",
       "symbol": "AUDJPY",
@@ -17,14 +18,16 @@
       "units": 1000,
       "lots": 0.01,
       "openPrice": 114.094,
+      "closePrice": 114.308,
       "stopLoss": 114.3,
       "takeProfit": 113.853,
       "openTime_utc": "2026-07-23T19:03:08Z",
+      "closeTime_utc": "2026-07-23T21:00:10Z",
+      "pl": -22.042587,
       "tag": "[LEARN]",
-      "note": "tick104: learn-mode min-lot short. H1 Rule19 momentum (3+ consecutive lower H1 highs 114.387->114.319->114.292->114.272) + M15 trigger confirmed on CLOSED 18:30 bar (O114.143 C114.116, 63% bear body, broke 114.136 shelf) with 18:45 continuation close 114.099. H4 broader-bull-vs-intraday-bearish treated as WARN (learn mode downgrade). Rule17 range_pos 0.27 clear of bottom-15pct band (cutoff 114.034) -- not a factor. News: WebSearch confirmed AUS labour survey already printed earlier session, no other high-impact AUD/JPY item in window, FOMC 7/28-29 outside window -- news_clear attested. SL 114.30 (beyond H1 swing high 114.272 +0.028 buffer, Rule18), TP 113.853, R:R 1.2:1. Risk ~R19.45 (in R15-R40 learn-mode band). Enforcer PASS (--learn) exit 0. Filled 41829612, verified post-fill. | tick105 management check: LL_BREAKDOWN re-fired 114.087 (19:30:16Z), same directional theme as this open short -- treated as reinforcing conviction, NOT a new entry (Rule20 correlation blocks stacking a second same-direction AUDJPY position). M5 since entry (19:03Z): lower lows continuing 114.081->114.071->114.06->114.058->114.056 through 19:00-19:25, last two bars (19:25/19:30) show mild stabilization (closes 114.078/114.077) but no higher-high reversal against the trade -- net structure still bearish. Floating pl ~-R0.82 (spread only, ~4% progress to TP), far under Rule13 (60% to TP) and Rule14 (+R80) thresholds. Verdict: HOLD, no SL/TP change. | tick106 management check: PULLBACK_TAG_SHORT re-fired 114.121 (20:00:09Z), same instrument/direction as this open short -- Rule20 blocks any new same-direction AUDJPY entry, position-management question only. M5 since tick105 (19:30-20:00): absolute swing low 114.056 printed 19:25, then higher-lows/higher-highs grind (114.071->114.072->114.084->114.076->114.07->114.084->114.099 lows; highs climbing to a fresh post-entry high 114.117 at 20:00) -- price (bid 114.126) now trading ABOVE entry 114.094, floating pl worsened to ~-R4.72. Initially read as a CHANGE3 Rule5-cut flag (M5 reversed + P&L negative), but escalated to H1: the Rule19 lower-high sequence is still fully intact and EXTENDING (114.387->114.319->114.292->114.272->114.187->114.117 across six H1 bars), and the forming 20:00 H1 bar tagged a fresh lower low (114.056) before this bounce -- so the M5 bounce reads as shallow consolidation (~0.5x H1 ATR) inside a still-dominant downtrend, not a confirmed structural reversal; last CLOSED M15 bar (19:45) is only a marginal ~19%-body bull candle, not a rejection trigger either. Rule10's dual condition for a dead-trade cut (hours open AND weakened structure) is not met (position ~57min old, structure not genuinely weakened on the higher timeframe). News: WebSearch re-confirmed AUS labour survey (June unemployment 4.4%, in line) already printed earlier session, no other high-impact AUD/JPY item in the 2h window, FOMC 7/28-29 still outside window -- news_clear attested (informational, no order path this tick). Verdict: HOLD, no SL/TP change (SL 114.30 / TP 113.853 both unchanged, still far from current price). Watch: if H1 prints a closed higher-high above 114.187 (invalidating Rule19's sequence) or price closes back above the 114.136 shelf on M15, treat as genuine reversal and revisit Rule5 cut."
+      "note": "SL hit between tick106 (20:00:15Z, HOLD verdict) and tick107 (21:01Z) -- no tick caught the actual reversal in real time, it closed on its own stop. Close price 114.308 sits ~0.13-0.25 beyond the max high (114.176) visible in the M5/H1 history pulled at tick107, and live spread at tick107 was an anomalous 16.5-17.2 pips (vs h1_atr ~11.8 pips) -- consistent with a spread-widening/stop-run wick not fully captured by the OHLC bar series, not a data error on our side. [LEARN] ledger note: this was a with-trend H1-momentum short (Rule19) that still lost -- not a Rule17/counter-trend override casualty."
     }
   ],
-  "closed_since_last_snapshot": [],
   "h4_verdicts": {
     "EURGBP": {
       "trend": "BULL \u2014 clean higher-lows staircase since 7/20 16:00 swing low 0.84824; fresh multi-day high 0.85433 printed since tick90 (was 0.85391), structure still intact",
@@ -49,10 +52,10 @@
       "note": "tick101 (mode=learn): HL_RECLAIM fired 218.5355 (level 218.521, extreme 218.068, range_pos 0.844, vol_mult 1.0) at 14:00:18Z. BLOCKED ON M15 TRIGGER + live fade: last CLOSED bar (13:45) is a strong bull bar but body is ~56% (0.085/0.152), marginally under Change5's 60%+ confirmation standard -- not downgradable in learn mode (only Rule17/H4-countertrend/scout-uncertainty are). Separately, live price has already round-tripped back below both the signal print and the 218.521 reclaim level within ~90sec of print -- an active failed-reclaim, same pattern as tick91's AUDJPY call. Rule17: range_pos 0.844 sits just under the top-15pct band (cutoff recomputes to ~218.532 on the extended 218.025-218.621 range) -- warn-only in learn mode, moot regardless. News: reused this tick's WebSearch scope, no new GBP/JPY high-impact item found in the 2h window -- attested news_clear. No enforcer run. Nothing placed/would-placed. NO_ACTION. Watch: a CLOSED M15 bar back above 218.526-218.621 with a clean 60%+ bull body AND price holding above 218.521 (not fading) would confirm continuation of the re-emerging uptrend."
     },
     "AUDJPY": {
-      "trend": "H1/H4 still genuinely BEARISH intraday and the Rule19 lower-high sequence is EXTENDING, not weakening -- six consecutive lower H1 highs now: 114.387(15:00)->114.319(16:00)->114.292(17:00)->114.272(18:00)->114.187(19:00)->114.117(20:00, forming). Forming 20:00 H1 bar also tagged a fresh lower low (114.056) before the current bounce. Broader multi-day bull base (113.587, 7/21) remains the stale counter-label, unchanged, still WARN-only in learn mode.",
-      "asof": "2026-07-23T20:00:15Z",
-      "swings": "M5 19:30-20:00 (post tick105): 114.071(19:30 low)->114.072(19:35 low)->114.084(19:40 low)->114.076(19:45 low)->114.07(19:50 low)->114.084(19:55 low)->114.099(20:00 low, forming), closes climbing 114.077->114.096->114.085->114.083->114.078->114.101->114.11 -- a shallow higher-low/higher-high bounce off the 19:25 absolute low (114.056), now trading back above entry (114.094) with a fresh post-entry high 114.117. But this is only ~0.5x H1 ATR (0.122) of retracement and the last CLOSED M15 bar (19:45, ~19% bull body) is not a rejection trigger -- reads as consolidation inside the still-intact H1 downtrend, not a reversal. Live bid/ask 114.126/114.143.",
-      "note": "tick106 (mode=learn): PULLBACK_TAG_SHORT re-fired 114.121 (30m tf, level 114.09, extreme 114.396, range_pos 0.29, vol_mult 0.77) at 20:00:09Z, same instrument/direction as the open tick104 short. Rule20 blocks any new same-direction position, so this was evaluated purely as position management (CHANGE3). M5 showed a reversal-shaped bounce (higher lows/highs, price back above entry, floating pl worsened to ~-R4.72) which would normally flag a Rule5 cut consideration, but escalating to H1 showed the Rule19 lower-high sequence still fully intact and extending, plus a fresh lower low on the still-forming 20:00 H1 bar -- concluded the bounce is shallow noise, not a genuine structural reversal, so no cut. Rule10's dead-trade dual condition (hours open AND weakened structure) also not met (~57min open). News: WebSearch re-confirmed AUS labour survey (June unemployment 4.4%, in line) already printed earlier session, no other high-impact AUD/JPY item in the 2h window, FOMC 7/28-29 still outside window -- news_clear attested (informational, no order path this tick). HOLD on 109839152, unchanged SL 114.30 / TP 113.853. No enforcer run (no order placed). Watch: a closed H1 higher-high above 114.187, or an M15 close back above the 114.136 shelf, would invalidate the sequence and should trigger a Rule5 cut re-look."
+      "trend": "H1 lower-high sequence just barely still intact but no longer extending cleanly: 114.387(15:00)->114.319(16:00)->114.292(17:00)->114.272(18:00)->114.187(19:00)->114.117(20:00)->114.176(21:00, forming/latest -- still below 114.187 but has erased almost all of the 20:00 pullback). Lows have stopped making fresh lows since 20:00 (114.056) and printed a higher low at 21:00 (114.112) -- the downtrend is stalling, not confirmed reversed. Broader multi-day bull base (113.587, 7/21) remains the stale counter-label, WARN-only in learn mode.",
+      "asof": "2026-07-23T21:01:13Z",
+      "swings": "Since tick106's HOLD, the position (109839152) was stopped out at 114.308 (~21:00:10Z) -- price spiked/wicked above the 114.176 high visible in the M5/H1 series to run the SL, then settled back to a 114.152 H1 close. M5 20:35-21:00 shows a steady grind up (114.144->114.163->114.155->114.168->114.164->114.154->114.152), consistent with the stop-run high being a brief excursion not held. Live bid/ask 114.13/114.295 -- spread 16.5-17.2 pips, roughly 1.4x the h1_atr (0.1178/~11.8pips) and 5-6x AUDJPY's normal spread. This wide/unstable spread, together with the SL closing 0.13-0.25 beyond the printed candle highs, reads as a disorderly-tape/thin-liquidity condition (pre-Tokyo-open dead zone, 23:01 SAST) rather than a clean structural break.",
+      "note": "tick107 (mode=learn): SPRING_LONG fired 114.182 (30m tf, level 114.136, extreme 114.122, range_pos 0.409, vol_mult 0.29) at 21:01:04Z, ~1min after 109839152 (the tick104 short) was stopped out at 114.308. This is a counter-direction (LONG) signal vs the just-closed short, so Rule20 stacking does not apply and it was evaluated as an independent fresh-entry candidate. BLOCKED: (1) learn-mode hard block -- suspected disorderly/thin-liquidity tape: live spread 16.5-17.2 pips vs h1_atr ~11.8 pips (spread alone exceeds a full average H1 range) and the just-closed SL printed 0.13-0.25 beyond any candle high in the pulled history, both pointing to an unreliable tape right now (this is a HARD block per AUTO_TICK_PROTOCOL learn-mode absolutes, not overridable); (2) H1 lower-high sequence is stalling but NOT yet broken (21:00 forming high 114.176 still < 19:00's 114.187) so this would also be a counter-trend long -- WARN-only in learn mode but a second strike against entry; (3) vol_mult 0.29 is thin (29% of average), weak confirmation for a spring reclaim. News: WebSearch found no high-impact AUD/JPY item in the 2h window (AUS labour survey already printed and in-line; JPY industrial production low-impact) -- news_clear attested. No enforcer run (blocked pre-enforcer on disorderly-tape hard block). Nothing placed/would-placed. NO_ACTION. Watch: spread normalizing back toward 2-4 pips, and/or a confirmed closed H1 higher-high above 114.187, before treating this shelf as tradeable again."
     },
     "XAUUSD": {
       "trend": "BEARISH -- fresh intraday reversal confirmed, supersedes tick70-era BULL verdict. H4 swing low 4076.88 decisively broken (price now 4048, well below). Clean lower-high/lower-low sequence since 7/22 16:00 peak (4166/4106.88). Last 3 H4 swing highs: 4141.07 (7/23 04:00) -> 4130.49 (08:00) -> 4099.46 (12:00, closing lower). Last 3 H4 swing lows: 4112.19 -> 4090.19 -> 4072.98. H1 confirms 7 consecutive lower highs 06:00-13:00 -- Rule19 momentum condition met.",
@@ -146,8 +149,8 @@
       "range": 0.519,
       "top_15pct_cutoff": 114.397,
       "bottom_15pct_cutoff": 114.034,
-      "asof": "2026-07-23T20:00:15Z",
-      "source": "get_symbol_price live low/high field, tick106. Range unchanged since tick91/103/105 (113.956/114.475). Signal range_pos 0.29 clear of bottom-15pct band (cutoff 114.034) -- not a factor, moot regardless since this tick was position-management not new-entry."
+      "asof": "2026-07-23T21:01:13Z",
+      "source": "get_symbol_price live low/high field, tick107. Range unchanged since tick91/103/105/106 (113.956/114.475). Signal range_pos 0.409 mid-range, clear of both bands -- moot regardless since blocked upstream on the disorderly-tape hard block, not Rule17."
     },
     "BRENT": {
       "low": 90.635,

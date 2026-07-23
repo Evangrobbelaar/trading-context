@@ -2951,3 +2951,15 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - No enforcer run (nothing cleared pre-enforcer gates; no new order). Nothing placed/would-placed.
 - Snapshot updated: open_positions[0] note appended with tick106 check, h4_verdicts.AUDJPY refreshed with H1 lower-high-sequence read, session_ranges.AUDJPY asof refreshed (range unchanged). tick_counter -> 106.
 - FYI for Evan: UTC 20:00 = 22:00 SAST at this tick, i.e. right at the CLAUDE.md stop-loop LDN-session-end boundary — flagging for awareness, not something this tick halted on its own (tick_runner.py's call).
+
+
+## AUTO TICK 107 — 2026-07-23T21:01:13Z (mode=learn, TIER2)
+- Signal: SPRING_LONG AUDJPY 114.182 (30m, level 114.136, extreme 114.122, range_pos 0.409, vol_mult 0.29) @21:01:04Z.
+- Routing: switch_trading_account hit the usual revert to 41750592, confirmed switched to 41829612. Live balance R6,708.77 / equity R6,708.77.
+- Open-position guard: 109839152 (AUDJPY short, tick104 entry) is GONE from get_open_positions. get_position_by_id/get_close_positions confirm it closed via its own SL at 114.308 (pl -R22.04) at ~21:00:10Z — between tick106's 20:00 HOLD verdict and this tick, so no tick caught the reversal live; it just ran its stop. Note: close price 114.308 sits 0.13-0.25 beyond the max high (114.176) in the M5/H1 history pulled this tick.
+- New signal is LONG vs the just-closed SHORT — not Rule20 stacking, evaluated as an independent fresh entry.
+- BLOCKED (hard, learn-mode disorderly-tape rule): live spread 16.5-17.2 pips vs h1_atr ~11.8 pips (spread > full average H1 range), consistent with the stop-run overshoot just observed on the same symbol — read as thin-liquidity/disorderly tape (23:01 SAST, pre-Tokyo-open dead zone), not a clean structural signal. Secondary: H1 lower-high sequence still technically intact (21:00 high 114.176 < 19:00's 114.187) so this would also be counter-trend (WARN in learn mode); vol_mult 0.29 is thin confirmation.
+- News: WebSearch — AUS labour survey already printed/in-line, JPY industrial production low-impact, no high-impact item in 2h window. news_clear attested.
+- No enforcer run (blocked pre-enforcer on disorderly-tape hard block). Nothing placed/would-placed.
+- Snapshot updated: open_positions now empty, closed_since_last_snapshot has 109839152's close record, h4_verdicts.AUDJPY and session_ranges.AUDJPY refreshed. tick_counter -> 107.
+- Watch: spread normalizing (~2-4 pips) and/or a confirmed closed H1 higher-high above 114.187 before treating AUDJPY as tradeable again.
