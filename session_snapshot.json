@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-23T03:06:26Z",
-  "updated_by": "auto_tick_87_tier2",
+  "updated_utc": "2026-07-23T03:30:32Z",
+  "updated_by": "auto_tick_88_tier2",
   "balance": {
     "value": 6427.42,
-    "equity": 6389.15,
-    "queried_utc": "2026-07-23T03:06:26Z",
-    "note": "live-queried this run. Balance unchanged from tick86 (no realized closes since). Equity 6389.15 flat vs tick86's 6389.16 - TESLA EVAN_MANUAL floating pl -38.27, essentially unchanged."
+    "equity": 6389.13,
+    "queried_utc": "2026-07-23T03:30:32Z",
+    "note": "live-queried this run. Balance unchanged from tick87 (no realized closes since). Equity 6389.13 flat vs tick87's 6389.15 - TESLA EVAN_MANUAL floating pl -38.29, essentially unchanged."
   },
   "session_start_balance": 7394.99,
   "open_positions": [
@@ -139,10 +139,10 @@
       "note": "no H4 verdict on file, carried forward"
     },
     "EURUSD": {
-      "trend": "BULL (short-term) \u2014 higher lows since 7/22 00:00 low 1.13924, cleared the 1.14212 resistance on a confirmed closed M15 bar, now pressing into the 1.14283-1.14296 daily-high cluster from 7/20-7/21",
-      "asof": "2026-07-23T03:06:26+00:00",
-      "swings": "H4: last CLOSED bar 7/22 20:00 (O1.14134 H1.14136 L1.14059 C1.14109); 7/23 00:00 bar still forming, running to session high 1.14288. M15 02:45 (O1.14198 H1.14256 L1.14198 C1.14252, ~93% bull body) closed cleanly above the 1.14212 level \u2014 first confirmed-closed breakout of this shelf sequence (ticks80/82/83 were all blocked on an unconfirmed/unclosed break of this same level). 03:00 bar (live, <2min old) extended to 1.14279. Pulled extended H4 history (back to 7/13) and D1: daily highs have actually been STEPPING DOWN 1.14492(7/20)->1.14283(7/21)->1.14212(7/22) \u2014 broader daily structure is a corrective range/mild downtrend even though this specific H4 leg since 7/22 00:00 is a clean bounce. The 1.14283 (7/21 daily high / H4 12:00 high) and 1.14296 (7/20 16:00 H4 high) levels sit essentially AT current price (0.7-2pips away), not cleared yet.",
-      "note": "tick87 (mode=learn): HL_RECLAIM fired 1.14276 (30m tf, level 1.14204, extreme 1.1406) at 03:00:05Z, continuation of the 1.1406 shelf (ticks80/82/83). With-trend long vs confirmed H4 BULL. M15 trigger MET for the first time this shelf sequence: closed 02:45 bar (93% bull body) broke and held above 1.14212. BUT extended H4/D1 history (pulled fresh this tick, not previously checked this far back) surfaces a closer overhead resistance that wasn't visible while price sat below 1.14212: the 1.14283/1.14296 cluster (7/20-7/21 H4 highs) sits right at current entry. BLOCKED ON R:R: 05:06 SAST, still deep Asian window, Rule15 EURUSD SL floor 25-35pips. Structural SL beyond the 1.1406 shelf extreme (repeatedly defended, still the deepest relevant level) + Asian buffer \u2248 1.14010, ~26.6pips risk from ask 1.14276 \u2014 satisfies the Asian floor on the risk side. Reward: nearest genuine resistance (1.14283) is ~0.7pips away (basically already there); even the farther 1.14296/1.14425 cluster is only ~2-15pips \u2014 best-case R:R \u2248 0.5-0.6:1, fails Rule9's 1.2:1 floor, not learn-mode-downgradable. Rule17 top-15pct (range_pos ~0.96 of 1.14045-1.14288) downgraded to warning in learn mode, moot, not the blocker. News: WebSearch for EUR/GBP/JPY calendar around 03:00-05:00 UTC found no date-specific high-impact hits; ECB decision ~12:15 UTC (~9h out, outside 2h window) reused from tick86 \u2014 attested news_clear. No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION. Watch: a confirmed close above the 1.14283-1.14296 cluster (opens real room to the next daily high 1.14425+), or London open (07:00 SAST) reverting Rule15 to 15-25pips against the same near-term structure."
+      "trend": "BULL (short-term) but REJECTED at the 1.14283-1.14296 daily-high cluster \u2014 last closed M15 (03:15) is a ~72% bear-body rejection bar off that exact level",
+      "asof": "2026-07-23T03:30:32+00:00",
+      "swings": "M15 fresh pull (01:45-03:30): 02:45 (O1.14198 H1.14256 L1.14198 C1.14252, 93% bull) broke 1.14212; 03:00 (O1.14251 H1.14279 L1.1425 C1.14271) extended; 03:15 (O1.14272 H1.14288 L1.14231 C1.14231, ~72% bear body) tagged the session high 1.14288 (inside the 1.14283-1.14296 cluster) and got rejected straight back down to 1.14231; 03:30 (live/forming, O1.1423 H1.14285 L1.14229 C1.14281) is attempting to reclaim but not closed. Session high still 1.14288, unchanged from tick87.",
+      "note": "tick88 (mode=learn): PULLBACK_TAG_LONG fired 1.14286 (30m tf, level 1.14204, extreme 1.1406) at 03:30:05Z, 24min after tick87's HL_RECLAIM at 1.14276 which was already flagged blocked-on-R:R against this same 1.14283/1.14296 cluster. This tick's fresh M15 pull shows that call has now been CONFIRMED by price action: the 03:15 bar tagged 1.14288 (into the cluster) and closed as a 72%-body bear rejection back to 1.14231 \u2014 Change5 step5 requires a confirmed CLOSED bull rejection/reclaim bar in trade direction; the actual closed bar is bearish. BLOCKED ON M15 TRIGGER (structure actively rejected at resistance), not just R:R this time \u2014 a long here would be buying directly into a level that just rejected price. R:R also still fails on the same math as tick87 (~26-27pip Asian SL floor vs a target that's now proven to be defended, not just nearby) \u2014 doubly blocked. Rule17 top-15pct (range_pos 0.974) learn-mode WARN only, moot. News: fresh WebSearch confirmed ECB decision today (23 Jul) but ~12:15 UTC, ~8.75h out, outside the 2h window \u2014 attested news_clear. No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed. NO_ACTION. Watch: a confirmed closed M15 bull bar back above 1.14288-1.14296 (would invalidate this rejection and reopen the long case), or a pullback that clears Asian-session R:R against the 1.14045-1.1406 shelf floor."
     },
     "BRENT": {
       "trend": "BULL on broker-native data (higher lows 7/21 12:00 86.459 -> 88.279 -> 88.735 -> 89.151 -> 89.125 -> 89.496 -> 90.517 -> 89.896 -> 89.989 -> 90.492; peak 91.81 at 7/22 08:00, pullback to ~89.9-90.7 through 7/22, now pushing a fresh high 92.099 on the forming 00:30 bar). BUT the signal's own price/level/extreme fields are NOT usable \u2014 see note.",
@@ -215,8 +215,8 @@
       "range": 0.00243,
       "top_15pct_cutoff": 1.142516,
       "bottom_15pct_cutoff": 1.140815,
-      "asof": "2026-07-23T03:06:26Z",
-      "source": "get_symbol_price live low/high field, tick87 \u2014 session high extended to 1.14288 (breakout past tick83's 1.14199). entry ~1.14276 = range_pos ~0.96, top-15pct band, warning-only in learn mode; moot since blocked on R:R (Asian-session Rule15 floor vs the 1.14283/1.14296 resistance cluster now essentially at entry), not Rule17."
+      "asof": "2026-07-23T03:30:32Z",
+      "source": "get_symbol_price live low/high field, tick88 \u2014 session high unchanged at 1.14288 (03:15 bar tagged it and got rejected). entry ~1.14286 = range_pos ~0.974, top-15pct band, warning-only in learn mode; moot since blocked on M15 trigger (confirmed bear rejection bar at this exact level), not Rule17."
     },
     "USDJPY": {
       "low": 162.659,
@@ -257,8 +257,8 @@
     },
     {
       "symbol": "EURUSD",
-      "note": "tick 87: HL_RECLAIM fired 1.14276 at 03:00:05Z, continuation of the 1.1406 shelf (ticks80/82/83). First confirmed CLOSED M15 break of the 1.14212 resistance this shelf sequence (02:45 bar, 93% bull body) — the prior blocker (unconfirmed/unclosed breakout) is resolved. But extended H4/D1 history pulled fresh this tick reveals daily highs stepping DOWN 1.14492(7/20)->1.14283(7/21)->1.14212(7/22) — a closer resistance cluster (1.14283/1.14296) sits right at current entry, unseen until now. NO_ACTION on R:R — best case ~0.5-0.6:1 vs Rule9's 1.2:1 floor. Watch for a confirmed close above 1.14283-1.14296, or London open (07:00 SAST) reverting Rule15 to 15-25pips.",
-      "set_utc": "2026-07-23T03:06:26Z"
+      "note": "tick 88 (supersedes tick87): PULLBACK_TAG_LONG fired 1.14286 at 03:30:05Z. Price tagged the 1.14283-1.14296 cluster (session high 1.14288) and the 03:15 M15 bar closed as a 72%-body BEAR rejection back to 1.14231 — the resistance is now confirmed-defended, not just nearby. NO_ACTION on M15 trigger (bearish rejection at the level, not a bull confirmation) + R:R still fails. Watch for a confirmed CLOSED bull bar back above 1.14288-1.14296, or London open (07:00 SAST) reverting Rule15 to 15-25pips against the 1.14045-1.1406 shelf floor.",
+      "set_utc": "2026-07-23T03:30:32Z"
     },
     {
       "symbol": "XAUUSD",

@@ -2759,3 +2759,12 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - News: WebSearch for EUR/GBP/JPY calendar 03:00-05:00 UTC found no date-specific high-impact hits (ECB ~9h out, outside window) — attested news_clear for both.
 - No enforcer run on either signal, nothing placed/would-placed. NO_ACTION x2.
 - Snapshot updated: h4_verdicts.EURUSD/GBPJPY refreshed, session_ranges.EURUSD/GBPJPY refreshed, watch_levels appended (GBPJPY entry superseded, EURUSD entry added). tick_counter -> 87.
+
+## AUTO TICK 88 — 2026-07-23T03:30:32Z (Tier 2, mode=learn)
+- Signal: PULLBACK_TAG_LONG EURUSD 1.14286 (30m, level 1.14204, extreme 1.1406) at 03:30:05Z — 24min after tick87's HL_RECLAIM at 1.14276, same 1.1406 shelf continuation.
+- Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Balance R6427.42 / equity R6389.13, unchanged from tick87. TESLA (EVAN_MANUAL, Sell 2u, pl -38.29) re-checked, untouched, not this bot's instrument.
+- Fresh M15 pull (01:45-03:30) confirms tick87's R:R concern: the 03:15 bar tagged the session high 1.14288 (inside the 1.14283-1.14296 resistance cluster) and closed as a ~72%-body BEAR rejection back to 1.14231. Change5 step5 requires a confirmed closed bull trigger bar; the actual closed bar is bearish.
+- BLOCKED ON M15 TRIGGER this tick (not just R:R) — the resistance is now confirmed-defended by price action, not just structurally nearby. R:R math also still fails (~26-27pip Asian SL floor vs a proven-defended target). Rule17 top-15pct (range_pos 0.974) learn-mode WARN only, moot.
+- News: fresh WebSearch confirmed ECB decision today ~12:15 UTC, ~8.75h out, outside the 2h window — attested news_clear.
+- No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.EURUSD refreshed (rejection noted), session_ranges.EURUSD refreshed, watch_levels EURUSD entry superseded. tick_counter -> 88.
