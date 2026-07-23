@@ -360,3 +360,4 @@
 {"event": "SPRING_SHORT", "symbol": "GBPJPY", "tf": "30", "price": 218.344, "level": 218.521, "extreme": 218.56, "range_pos": 0.521, "vol_mult": 1, "h1_atr": 0.200941, "t": 1784818802292, "received_utc": "2026-07-23T15:00:15.592890+00:00"}
 {"event": "HL_RECLAIM", "symbol": "WTI", "tf": "30", "price": 92.88, "level": 92.875, "extreme": 88.589, "range_pos": 0.947, "vol_mult": 1.43, "h1_atr": 0.875875, "t": 1784818861202, "received_utc": "2026-07-23T15:01:06.185625+00:00"}
 {"event": "SWEEP_LOW", "symbol": "GBPJPY", "tf": "30", "price": 218.0685, "level": 218.068, "extreme": 217.971, "range_pos": 0.148, "vol_mult": 1, "h1_atr": 0.215517, "t": 1784820601344, "received_utc": "2026-07-23T15:30:08.107381+00:00"}
+{"event": "PULLBACK_TAG_SHORT", "symbol": "SPX500", "tf": "30", "price": 7382.7, "level": 7407.6, "extreme": 7449, "range_pos": 0.009, "vol_mult": 1.38, "h1_atr": 20.897972, "t": 1784820600802, "received_utc": "2026-07-23T15:30:09.843055+00:00"}
