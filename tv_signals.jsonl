@@ -329,3 +329,4 @@
 {"event": "PULLBACK_TAG_SHORT", "symbol": "XAUUSD", "tf": "30", "price": 4085.765, "level": 4086.185, "extreme": 4099.63, "range_pos": 0.185, "vol_mult": 1.33, "h1_atr": 14.575936, "t": 1784808000297, "received_utc": "2026-07-23T12:00:13.008765+00:00"}
 {"event": "HL_RECLAIM", "symbol": "BRENT", "tf": "30", "price": 99.485, "level": 99.359, "extreme": 95.743, "range_pos": 0.945, "vol_mult": 1.42, "h1_atr": 0.98221, "t": 1784809800636, "received_utc": "2026-07-23T12:30:05.918122+00:00"}
 {"event": "SWEEP_LOW", "symbol": "AUDJPY", "tf": "30", "price": 114.244, "level": 114.227, "extreme": 114.194, "range_pos": 0.53, "vol_mult": 1.04, "h1_atr": 0.120958, "t": 1784809801099, "received_utc": "2026-07-23T12:30:09.483408+00:00"}
+{"event": "LL_BREAKDOWN", "symbol": "SPX500", "tf": "30", "price": 7444.2, "level": 7452.7, "extreme": 7486.2, "range_pos": 0.03, "vol_mult": 1.3, "h1_atr": 16.75211, "t": 1784809801779, "received_utc": "2026-07-23T12:30:11.224924+00:00"}
