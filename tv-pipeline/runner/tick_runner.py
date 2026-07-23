@@ -290,7 +290,12 @@ def build_prompt(tier, batch, notes, run_mode):
             "only; 5-step routing procedure around every order; enforcer.py exit 0 (with the "
             "Rule 17 range args) before any order; Rule 22 market-only; any balance used must "
             "be live-queried this run. In advise mode place NOTHING — record the would-be "
-            "ticket instead. Finish by updating session_snapshot.json, appending the auto "
+            "ticket instead. If this tick produces a FLAG FOR EVAN, ALSO append one JSON "
+            "line to flags.jsonl (id FLAG-NNN, opened, opened_tick, status OPEN, severity, "
+            "kind, symbols, title, detail, impact, classification, recommendation, owner, "
+            "action_required) — do not bury it only in prose. If a tick resolves an existing "
+            "flag, append a new line with the same id, status RESOLVED and a resolved_note. "
+            "Finish by updating session_snapshot.json, appending the auto "
             "tick to EVAN_TRADING_CONTEXT.md, committing and pushing, and end with the "
             "single-line T2 summary starting with 'AUTO-TICK[t2]'.")
 
