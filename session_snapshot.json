@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-23T01:32:20Z",
-  "updated_by": "auto_tick_83_tier2",
+  "updated_utc": "2026-07-23T02:01:19Z",
+  "updated_by": "auto_tick_84_tier2",
   "balance": {
     "value": 6427.42,
-    "equity": 6389.11,
-    "queried_utc": "2026-07-23T01:32:20Z",
-    "note": "live-queried this run. Balance unchanged from tick80-82 (no realized closes since). Equity 6389.11 flat vs tick82's 6389.11 - TESLA EVAN_MANUAL floating pl -38.31, unchanged."
+    "equity": 6389.13,
+    "queried_utc": "2026-07-23T02:01:19Z",
+    "note": "live-queried this run. Balance unchanged from tick83 (no realized closes since). Equity 6389.13 flat vs tick83's 6389.11 - TESLA EVAN_MANUAL floating pl -38.29, essentially unchanged."
   },
   "session_start_balance": 7394.99,
   "open_positions": [
@@ -18,9 +18,9 @@
       "price": 357.82,
       "stopLoss": 374.22,
       "takeProfit": 339.12,
-      "pl": -38.31,
+      "pl": -38.29,
       "openTime_utc": "2026-07-22T22:17:44Z",
-      "note": "EVAN_MANUAL. Discovered tick79, opened between ticks (22:17:44Z). Same signature as prior NVIDIA manual equity trades (Limit order, out of this bot's instrument universe). Not this system's instrument, not touched, treated as expected manual activity per the standing anomaly_status.RESOLVED rule (no freeze). pl re-checked tick83 (-38.31), unchanged vs tick82, unchanged position/orderIds.",
+      "note": "EVAN_MANUAL. Discovered tick79, opened between ticks (22:17:44Z). Same signature as prior NVIDIA manual equity trades (Limit order, out of this bot's instrument universe). Not this system's instrument, not touched, treated as expected manual activity per the standing anomaly_status.RESOLVED rule (no freeze). pl re-checked tick84 (-38.29), essentially unchanged vs tick83's -38.31, same orderId.",
       "origin": "EVAN_MANUAL"
     }
   ],
@@ -97,6 +97,12 @@
     }
   ],
   "h4_verdicts": {
+    "AUDJPY": {
+      "trend": "BULL (broader), currently in a violent post-news breakout leg — treat as NOT YET TRADEABLE",
+      "asof": "2026-07-23T02:01:19Z",
+      "swings": "H4 since 7/20 16:00: swing low 113.587 (7/21 00:00) -> higher highs/higher lows to 114.389 (7/22 04:00 high). Then a corrective pullback 7/22 08:00-16:00 H4 bars (lower lows 113.942 -> 113.865, below the 7/21 16:00 114.009 higher-low) — not a trend break (113.587 swing low never touched) but a genuine short-term correction. M15 02:00 UTC (7/23): price chopped 113.96-114.05 for ~4h post-correction, then the 01:45-02:00 M15 bar exploded O114.075 H114.441 L114.075 C114.36 (~78% bull body, vol 179.3M vs 40-150M baseline all session) — reclaimed the entire corrective structure and made a fresh multi-day high (114.441) above the 114.389 prior peak. Live price 114.347/114.365, current 02:00-02:15 bar still extending (H114.399 so far).",
+      "note": "First H4 verdict on file for AUDJPY (no prior read). Signal: HL_RECLAIM fired 114.327 (30m tf, level 114.18, extreme 113.98) at 02:00:05Z, Tier1 escalated (new instrument, no H4 verdict on file). Technically this reclaim looks clean and with-trend (bigger-picture BULL since 113.587, correction now reclaimed to fresh highs, M15 trigger bar closes 78% bull body — would pass Change5 steps 2-5 on structure alone). BLOCKED ON NEWS, not structure: WebSearch confirmed the Australian Labour Force Survey (jobs/employment report, ABS) printed at 11:30 AEST = 01:30 UTC today, 23 Jul 2026 — a high-impact scheduled AUD release, only ~30min before this signal and squarely inside the window that produced the spike bar (01:45-02:00 M15, vol 179.3M vs the 20-bar session baseline of ~40-150M, and range 0.366 vs typical 0.02-0.05 per bar — a ~7-10x range/vol expansion). This is a textbook post-data spike, not an organic reclaim; the current 02:00 bar is still extending with zero compression yet. Rule 11/12 spirit (never chase the spike, wait for M15 compression + confirmation) and the AUTO_TICK_PROTOCOL learn-mode STILL-HARD-BLOCK 'News: high-impact event within 2h' both apply — 30min post-release is inside that 2h window and this is NOT a learn-mode-downgradable gate (only Rule17/H4-countertrend/scout-uncertainty are). No enforcer run, nothing placed/would-placed. NO_ACTION. Watch for M15 compression (2+ consecutive small-range bars) post-spike before re-evaluating this reclaim — if it holds above ~114.18-114.21 (former resistance, now support) after compressing, the with-trend long case can be revisited on its technical merits alone."
+    },
     "XAUUSD": {
       "trend": "BULL (swing low 4076.88 still unbroken) \u2014 12:00 bar broke back above the 4109-4123 chop ceiling, momentum resuming upward",
       "asof": "2026-07-22T12:03:58+00:00",
@@ -139,6 +145,15 @@
     }
   },
   "session_ranges": {
+    "AUDJPY": {
+      "low": 113.956,
+      "high": 114.441,
+      "range": 0.485,
+      "top_15pct_cutoff": 114.368,
+      "bottom_15pct_cutoff": 114.029,
+      "asof": "2026-07-23T02:01:19Z",
+      "source": "get_symbol_price live low/high field. Entry ~114.365 (ask) = range_pos ~0.84, just under the top-15pct cutoff (warning-only in learn mode regardless) — moot this tick since blocked on news/spike grounds, not Rule17."
+    },
     "BRENT": {
       "low": 90.635,
       "high": 92.099,
@@ -401,9 +416,15 @@
       "symbol": "WTI",
       "note": "tick83 (mode=learn): HL_RECLAIM fired 89.514 (30m tf, level 89.327, extreme 88.296) at 01:31:03Z. Pre-blocked before any structure check, same standing rule as ticks 54/74/77-79: WTI is 'blocked' status in tv-pipeline/runner/tiers.json instrument_policy (too news/spread driven; use BRENT instead). Signal used symbol 'WTI' directly (post symbol_map, same as tick79) \u2014 block applies regardless of alias. No price pulled, no enforcer run, nothing placed/would-placed. NO_ACTION.",
       "set_utc": "2026-07-23T01:32:20Z"
+    },
+    {
+      "symbol": "AUDJPY",
+      "level": 114.18,
+      "note": "tick84 (mode=learn): HL_RECLAIM fired 114.327 (30m tf) at 02:00:05Z, first-ever read on this instrument. Structurally clean with-trend reclaim (BULL since 113.587, corrective dip reclaimed to fresh high 114.441) but the trigger bar itself is a post-news spike (Australian jobs report printed 01:30 UTC, ~30min prior) — blocked on news/spike grounds per Rule11/12 spirit, a hard block not learn-mode-downgradable. See h4_verdicts.AUDJPY for full writeup. NO_ACTION. Re-evaluate once M15 shows 2+ compression bars post-spike, ideally holding above 114.18-114.21.",
+      "set_utc": "2026-07-23T02:01:19Z"
     }
   ],
-  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick83 TIER2: batch of 2 signals. (1) PULLBACK_TAG_LONG EURUSD 1.14176 (01:30:05Z), same shelf as tick82, 30min later, no material change — last closed M15 (01:15) wicked to 1.14199 but closed back inside, 1.14212 resistance still unbroken; Rule15 Asian SL floor (25-35pips) vs ~3.1pips real room kills R:R (~0.1:1), same root cause as tick80/82. NO_ACTION, no enforcer run. (2) HL_RECLAIM WTI 89.514 (01:31:03Z) — pre-blocked, WTI is instrument_policy status=blocked in tiers.json, same standing block as ticks54/74/77-79. NO_ACTION, no structure check needed. Balance R6427.42 / equity R6389.11 (unchanged from tick82, TESLA EVAN_MANUAL pl -38.31, flat, not touched, no anomaly). Session P&L (balance basis) R-967.57 vs session_start_balance R7394.99, unchanged (no realized closes this tick).",
+  "notes": "Tier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick84 TIER2: HL_RECLAIM AUDJPY 114.327 (30m tf, level 114.18, extreme 113.98) at 02:00:05Z — Tier1 escalated as a new instrument with no H4 verdict on file. Built first-ever AUDJPY H4 read from scratch (H4/M15 history pulled): broader BULL since 7/21 low 113.587, corrective dip 7/22 (lower lows to 113.865), then a violent M15 reclaim bar (01:45-02:00, 78% bull body, vol 179.3M vs ~40-150M baseline) breaking to a fresh high 114.441. Structure alone would pass Change5 (with-trend, clean 60%+ trigger bar, Rule17 borderline-clear at range_pos ~0.84). BLOCKED ON NEWS: WebSearch found the Australian jobs report (ABS Labour Force Survey) printed 01:30 UTC today, ~30min before this signal — squarely inside the spike bar that produced the reclaim (vol/range both ~5-10x session baseline). Treated as a post-news spike chase (Rule11/12 spirit + AUTO_TICK_PROTOCOL's hard 'news within 2h' block, not learn-mode-downgradable). No enforcer run, nothing placed/would-placed. NO_ACTION. Pip value for AUDJPY at 0.01 lots calibrated this tick via get_symbol_info/get_trading_instrument (JPY-quoted, pipPos 2, roundLot 100000) + USDJPY/USDZAR cross (163.08 / 16.368) ≈ R1.00/pip — noted for future AUDJPY sizing. Balance R6427.42 / equity R6389.13 (unchanged from tick83, TESLA EVAN_MANUAL pl -38.29, flat, not touched, no anomaly). Session P&L (balance basis) R-967.57 vs session_start_balance R7394.99, unchanged (no realized closes this tick).",
   "anomaly_status": {
     "state": "RESOLVED",
     "resolved_utc": "2026-07-22T11:47:00Z",

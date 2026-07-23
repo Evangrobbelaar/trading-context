@@ -2719,3 +2719,14 @@ No enforcer run, nothing placed/would-placed. NO_ACTION on both signals.
 session_snapshot.json updated (balance/equity re-verified, TESLA pl refreshed, EURUSD
 h4_verdict/session_range refreshed, new tick83 watch_levels notes for EURUSD + WTI).
 tick_counter.txt -> 83. session_logger.py tick83 logged.
+
+## AUTO TICK 84 — 2026-07-23T02:01:19Z (Tier 2, mode=learn)
+- Signal: HL_RECLAIM AUDJPY 114.327 (30m, level 114.18, extreme 113.98). Tier1 escalated: new instrument, no H4 verdict on file.
+- Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Balance R6427.42 / equity R6389.13, unchanged from tick83.
+- Built first-ever AUDJPY H4 read: BULL since 7/21 low 113.587, corrective dip 7/22 (lower lows to 113.865), M15 01:45-02:00 bar reclaimed to fresh high 114.441 (78% bull body, vol 179.3M vs ~40-150M baseline all session).
+- Structure alone would pass Change5 (with-trend, clean trigger bar, Rule17 borderline clear ~0.84).
+- BLOCKED ON NEWS: Australian jobs report (ABS Labour Force Survey) printed 01:30 UTC today, ~30min before signal — squarely inside the spike bar. Treated as post-news spike chase (Rule11/12 spirit, hard news block, not learn-mode-downgradable).
+- Calibrated AUDJPY pip value at 0.01 lots ≈ R1.00/pip (via get_symbol_info/get_trading_instrument + USDJPY/USDZAR cross) for future ticks.
+- Open position TESLA (EVAN_MANUAL, Sell 2u, pl -38.29) re-checked, unchanged, not touched.
+- No enforcer run. Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.AUDJPY added, session_ranges.AUDJPY added, watch_levels appended. tick_counter -> 84.
