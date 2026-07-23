@@ -1,126 +1,16 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-23T13:06:40Z",
-  "updated_by": "auto tick 97",
+  "updated_utc": "2026-07-23T13:14:00Z",
+  "updated_by": "auto tick 98",
   "balance": {
     "value": 6730.65,
     "equity": 6730.65,
-    "queried_utc": "2026-07-23T13:01:56Z",
-    "note": "live-queried this run via get_account_info. Balance UP +303.23 vs tick96 (6427.42) -- all three open positions from tick96 (TESLA, USDJPY, EURJPY) closed via broker-side TP/SL fills between tick96 (10:03Z) and this tick, discovered via get_open_positions (empty) + get_close_positions. profit=0, no open positions remain."
+    "queried_utc": "2026-07-23T13:09:12Z",
+    "note": "live-queried this run via get_account_info. Unchanged from tick97 (6730.65) -- get_open_positions confirmed still empty, no fills/closes since tick97."
   },
   "session_start_balance": 7394.99,
   "open_positions": [],
-  "closed_since_last_snapshot": [
-    {
-      "symbol": "EURJPY",
-      "orderId": "109836016",
-      "side": "Buy",
-      "units": 1000,
-      "price": 186.514,
-      "closePrice": 186.272,
-      "pl": -24.320882,
-      "openTime_utc": "2026-07-23T08:33:46.088Z",
-      "closeTime_utc": "2026-07-23T11:22:40.574Z",
-      "note": "[LEARN] tick94 auto entry. Closed via its own SL (186.274, unchanged from tick94's fill) -- matches snapshot exactly. ECB 12:45 UTC watch item now moot, position closed before it. Discovered tick97 via get_close_positions.",
-      "origin": "AUTO_LEARN"
-    },
-    {
-      "symbol": "USDJPY",
-      "orderId": "109835929",
-      "side": "Buy",
-      "units": 1000,
-      "price": 163.354,
-      "closePrice": 163.565,
-      "pl": 21.218657,
-      "openTime_utc": "2026-07-23T08:10:40.947Z",
-      "closeTime_utc": "2026-07-23T11:41:24.240Z",
-      "note": "[LEARN] tick93 auto entry. Closed via TP -- BUT broker record shows TP 163.564 / SL 163.283 at close, NOT the 163.642 / 163.118 this system set at tick93 and still had on file as of tick96's snapshot (10:03Z read, pl exactly 0, SL/TP unchanged per that tick's note). tick_counter was frozen at 96 the entire gap (verified at tick97 start) -- no auto tick modified this position, so the SL/TP tightening happened out-of-band (most likely Evan manually tightening it, consistent with the anomaly_status.RESOLVED standing rule that his manual activity on 41829612 is expected and not a freeze trigger). FLAGGED FOR EVAN: please confirm you adjusted USDJPY 109835929's SL/TP intraday -- if so no action needed, just closing the loop on the discrepancy; if not, that's a genuine anomaly worth a closer look. Net effect was protective (tighter SL, closer TP), banked smaller than the original plan (+R21.22 vs an implied larger gain at 163.642) but still a clean win. Discovered tick97 via get_close_positions.",
-      "origin": "AUTO_LEARN"
-    },
-    {
-      "symbol": "TESLA",
-      "orderId": "109834150",
-      "side": "Sell",
-      "units": 2,
-      "price": 357.82,
-      "closePrice": 348.5,
-      "pl": 306.31839,
-      "openTime_utc": "2026-07-22T22:17:44Z",
-      "closeTime_utc": "2026-07-23T11:56:10.858Z",
-      "note": "EVAN_MANUAL, closed via its own TP (348.59). Not this system's instrument, not touched. Final pl +306.32, up from +187.40 at tick96. Discovered tick97 via get_close_positions.",
-      "origin": "EVAN_MANUAL"
-    },
-    {
-      "symbol": "BTCUSD",
-      "side": "Buy",
-      "units": 0.01,
-      "pl": -51.95,
-      "openTime_utc": "2026-07-22T16:49:49Z",
-      "closeTime_utc": "2026-07-22T18:22:24Z",
-      "note": "[LEARN] tick75 auto entry, closed via its own SL (65860), the 66116.99 double-bottom that ticks76-78 were watching broke sometime after tick78 before this system could re-check. First realized [LEARN] outcome this session: clean R:R 1.66:1 entry (no Rule17/H4 overrides used), lost as designed-for by the SL. Discovered tick79 via get_close_positions.",
-      "origin": "AUTO_LEARN"
-    },
-    {
-      "symbol": "NVIDIA",
-      "side": "Buy",
-      "units": 2,
-      "pl": 270.94,
-      "openTime_utc": "2026-07-22T09:41:49Z",
-      "closeTime_utc": "2026-07-22T19:22:53Z",
-      "note": "EVAN_MANUAL, closed short of its 221.01 TP (closePrice 213.21) \u2014 manual close, not this system's activity. Discovered tick79 via get_close_positions.",
-      "origin": "EVAN_MANUAL"
-    },
-    {
-      "symbol": "WTI",
-      "side": "Buy",
-      "units": 10,
-      "pl": -203.28,
-      "openTime_utc": "2026-07-22T10:02:05Z",
-      "closeTime_utc": "2026-07-22T19:28:07Z",
-      "note": "EVAN_MANUAL, the position flagged every tick since ~tick54 for having NO stop loss. Closed manually at 86.335 (a loss, well short of its 87.963 TP) \u2014 resolves the uncapped-downside flag that stood for ~25 ticks. Discovered tick79 via get_close_positions.",
-      "origin": "EVAN_MANUAL"
-    },
-    {
-      "symbol": "WTI",
-      "side": "Buy",
-      "units": 20,
-      "pl": -419.96,
-      "openTime_utc": "2026-07-22T09:19:47Z",
-      "closeTime_utc": "2026-07-22T12:38:32Z",
-      "note": "EVAN_MANUAL \u2014 closed via its own SL (85.973), not this system's activity. Discovered tick72 via get_close_positions.",
-      "origin": "EVAN_MANUAL"
-    },
-    {
-      "symbol": "GBPUSD",
-      "side": "Sell",
-      "units": 5000,
-      "pl": -26.37,
-      "openTime_utc": "2026-07-22T09:22:18Z",
-      "closeTime_utc": "2026-07-22T10:14:03Z",
-      "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z) \u2014 Limit sell 0.5 lot GBPUSD, not this system's activity, not in any tick record",
-      "origin": "EVAN_MANUAL"
-    },
-    {
-      "symbol": "WTI",
-      "side": "Buy",
-      "units": 20,
-      "pl": -285.88,
-      "openTime_utc": "2026-07-22T09:17:03Z",
-      "closeTime_utc": "2026-07-22T10:28:32Z",
-      "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z) \u2014 closed via its own SL (86.351), not this system's activity",
-      "origin": "EVAN_MANUAL"
-    },
-    {
-      "symbol": "NVIDIA",
-      "side": "Buy",
-      "units": 2,
-      "pl": -19.45,
-      "openTime_utc": "2026-07-22T09:12:59Z",
-      "closeTime_utc": "2026-07-22T09:58:55Z",
-      "note": "EVAN_MANUAL (confirmed 22 Jul 11:47Z) \u2014 not this system's instrument universe",
-      "origin": "EVAN_MANUAL"
-    }
-  ],
+  "closed_since_last_snapshot": [],
   "h4_verdicts": {
     "EURGBP": {
       "trend": "BULL \u2014 clean higher-lows staircase since 7/20 16:00 swing low 0.84824, fresh multi-day high 0.85391 at 7/22 16:00; overnight dip to 0.85197 (7/23 00:00 H4 bar) is a pullback within that structure, not a trend break",
@@ -155,10 +45,13 @@
       "note": "tick91 (mode=learn): HL_RECLAIM fired 114.45 (30m tf, level 114.448, extreme 113.98) at 04:44:17Z. Dispatcher escalated Tier2 (with-trend long vs H4 BULL, AUS-jobs news block now expired). News re-verified via fresh WebSearch: AUS labour force survey already printed ~01:30 UTC today (the event that caused the 01:45 spike), no other high-impact AUD or JPY item found for the rest of the session \u2014 attested news_clear, not the blocker this time. BLOCKED ON M15 TRIGGER, same Change5-step5 standard enforced all session: last CLOSED bar (04:30) is a ~33% BEAR body, not a 60%+ confirming bull bar; the signal's own reclaim level (114.448) was tagged on the still-forming bar and price has already round-tripped back below it (live ask 114.424 < 114.448) within ~90sec of the print \u2014 an active rejection/failed reclaim, not confirmation. Textbook 'do not chase the spike' (Rule 12 spirit) \u2014 the with-trend structure is real but this specific print is not yet validated. R:R also fails independently: structural SL beyond the 113.98 extreme + Asian buffer (Rule15 still active, 06:45 SAST, ~15min from London open) \u2248113.93-113.95, ~47-49pips risk from ask 114.424; nearest resistance is the just-broken 114.475 session high, only ~5pips away, with no confirmed level beyond it \u2014 R:R \u22480.1:1, fails Rule9's 1.2:1 floor by a wide margin and is not learn-mode-downgradable. No enforcer run (blocked pre-enforcer on trigger+R:R). Nothing placed/would-placed. NO_ACTION. Watch: a confirmed CLOSED M15 bull bar (60%+ body) reclaiming back above 114.448-114.475, ideally after London open (07:00 SAST) reverts Rule15 to the normal floor and improves the R:R math."
     },
     "XAUUSD": {
-      "trend": "BULL (swing low 4076.88 still unbroken) \u2014 12:00 bar broke back above the 4109-4123 chop ceiling, momentum resuming upward",
-      "asof": "2026-07-22T12:03:58+00:00",
-      "swings": "H4 04:00 bar ran to 4141.75 intrabar/4131.07 close. Chop 4109-4123 held 07:00-11:45 (double rejection 4122.45/4123.07). 11:45 bar swept to 4112.6 (spring extreme 4112.47, the SPRING_SHORT/SWEEP_LOW print), then the 12:00 bar reversed hard: O4115.26 H4123.06 L4114.88 C4122.53 (~89% bull body) \u2014 this is the SPRING_LONG signal bar (price 4122.47, level 4113.1). Live price at read time had already run further to 4125.97/4126.16, through the 4122-4123 ceiling that rejected price twice earlier.",
-      "note": "refreshed tick 70 \u2014 SPRING_LONG fired 4122.47 (level 4113.1, extreme 4112.47). With-trend long vs confirmed H4 BULL (swing low 4076.88 unbroken), no Rule3 issue. Rule17 clean: entry ~4126 = range_pos 0.76 of 4076.88-4141.75, nowhere near top-15pct cutoff 4132.02. BUT the 12:00 reversal bar is still forming (not closed) \u2014 Change5 step5 requires a confirmed closed rejection/reclaim bar, not a live/in-progress one (same standard applied ticks 53/55/56/58 against forming breakout bars). Also R:R fails on visible structure: proper SL sits below the 4112.47 spring extreme + 3-5pt buffer (~4108), ~17-18pt risk from ~4126 entry, vs only ~15-16pt reward to session high 4141.75 (no confirmed resistance beyond it to justify a farther TP) \u2014 R:R \u2248 0.9:1, under Rule9's 1.2:1 floor. Neither gate is learn-mode-downgradable. NO_ACTION on M15-trigger + R:R grounds, not H4/Rule17. Watch for a CLOSED M15 bar holding above 4123 with room, or a deeper pullback that improves R:R before chasing this move."
+      "trend": "BEARISH -- fresh intraday reversal confirmed, supersedes tick70-era BULL verdict. H4 swing low 4076.88 decisively broken (price now 4048, well below). Clean lower-high/lower-low sequence since 7/22 16:00 peak (4166/4106.88). Last 3 H4 swing highs: 4141.07 (7/23 04:00) -> 4130.49 (08:00) -> 4099.46 (12:00, closing lower). Last 3 H4 swing lows: 4112.19 -> 4090.19 -> 4072.98. H1 confirms 7 consecutive lower highs 06:00-13:00 -- Rule19 momentum condition met.",
+      "asof": "2026-07-23T13:09:00Z",
+      "note": "tick98: LL_BREAKDOWN 4061.85 (level 4070.395, range_pos 0.008) evaluated as fresh with-trend SELL candidate (H4 now confirmed BEARISH). News (WebSearch): macro-coherent driver -- Fed hawkish repricing (~78% Sept hike odds per money markets), strong USD, Mideast oil-spike (Houthi tanker attack) feeding inflation fears -- NOT a disorderly/intervention tape, no acute scheduled event in 2h window, attested news_clear. Rule17 moot (deep bottom-15pct signal but WARN-only in learn mode regardless). BLOCKED PRE-ENFORCER: no valid structural SL within risk budget. Price has been in straight-line acceleration since ~11:00 UTC with no consolidation/bounce nearby to anchor a Rule18 stop -- nearest usable closed M15/H1 swing high (12:45 bar, 4075.33) implies ~31pt SL from current ~4048, costing ~R489 at forced learn-mode 0.01 lots (R15.58/pt), which exceeds enforcer's 5%-balance per-trade cap (R336.53 on R6,730.65). NO_ACTION. Watch: a bear-flag bounce that creates a closer swing high (tightening the available SL into budget), or deceleration of the drop.",
+      "sources": [
+        "https://www.fxstreet.com/news/silver-price-today-silver-falls-according-to-fxstreet-data-202607230930",
+        "https://www.bullionvault.com/gold-news/gold-price-news/gold-fed-rates-jobs-060520261"
+      ]
     },
     "USDJPY": {
       "trend": "BULL -- sharp continuation leg 08:00-12:45Z (163.10 -> 163.75, ~6x normal H1 ATR pace over ~5h) extends the tick93 breakout further. Higher-low sequence intact throughout (163.315 12:00 wick still above the 162.99 session low / 07:00 base). Structurally still BULL, but now a stretched, extended move sitting at the session high rather than a fresh breakout.",
@@ -177,9 +70,12 @@
       "note": "Refreshed this tick (was stale from 7/21 14:20). Broader trend still up from 63693 base but 7/21 16:00-7/22 12:00 showed a corrective lower-highs/lower-lows sequence \u2014 not a clean confirmed bull continuation yet (no break of 66683/66905 swing highs). Treated as uncertain/transitioning; learn-mode WARN override applied, not a hard block."
     },
     "XAGUSD": {
-      "trend": "UNKNOWN",
-      "asof": "2026-07-21T20:45:02+00:00",
-      "note": "no H4 verdict on file, carried forward"
+      "trend": "BEARISH -- fresh confirmed reversal (prior verdict was UNKNOWN/carried-forward). Clean lower-high/lower-low sequence since 7/22 16:00 peak (60.907/58.885). Last 3 H4 swing highs: 60.041 (7/23 04:00) -> 59.88 (08:00) -> 59.004 (12:00, closing lower). Last 3 H4 swing lows: 59.393 -> 58.648 -> 57.977. H1 confirms lower-high sequence 06:00-13:00 (59.863->59.689->59.437->59.004->58.828->58.755) -- Rule19 momentum condition met.",
+      "asof": "2026-07-23T13:09:00Z",
+      "note": "tick98: LL_BREAKDOWN 57.6535 (level 58.0116, range_pos 0.003) evaluated alongside XAUUSD -- same macro driver (Fed hawkish repricing + strong USD + oil-spike inflation fears), attested news_clear, not a disorderly tape. BLOCKED PRE-ENFORCER, same root cause as XAUUSD: no nearby structural swing high to anchor a compliant SL. XAGUSD pip value at forced learn-mode 0.01 lots is R779/pt (confirmed instrument spec) -- enforcer's R336.53 per-trade cap (5% of R6,730.65 balance) allows only ~0.43pt of SL room, but the nearest usable closed-bar high (12:45 bar, 58.225) sits ~1.0pt above current price (~57.23), costing ~R779, well over budget. NO_ACTION. Watch: a bounce/consolidation creating a swing high within ~0.4pt of price, or deceleration.",
+      "sources": [
+        "https://www.fxstreet.com/news/silver-price-today-silver-falls-according-to-fxstreet-data-202607230930"
+      ]
     },
     "EURUSD": {
       "trend": "BULL (short-term) but REJECTED at the 1.14283-1.14296 daily-high cluster \u2014 last closed M15 (03:15) is a ~72% bear-body rejection bar off that exact level",
@@ -250,22 +146,22 @@
       "source": "get_symbol_price live low/high field (broker-native, today's session), tick95. Still moot for Rule17: NO_ACTION was on data-integrity grounds, not range position. Do NOT compute range_pos against the signal's own price/level/extreme (98.587/98.707/95.743) -- confirmed decoupled series, see h4_verdicts.BRENT."
     },
     "XAUUSD": {
-      "low": 4076.88,
-      "high": 4141.75,
-      "range": 64.87,
-      "top_15pct_cutoff": 4132.02,
-      "bottom_15pct_cutoff": 4086.61,
-      "asof": "2026-07-22T12:00:22+00:00",
-      "source": "get_symbol_price high/low field, unchanged range since tick62, tick 70 \u2014 SPRING_LONG entry ~4126 = range_pos 0.76, clear of Rule17 top-15pct band; moot this tick since blocked on M15-trigger/Rule9 R:R, not Rule17"
+      "low": 4044.88,
+      "high": 4141.07,
+      "range": 96.19,
+      "top_15pct_cutoff": 4126.64,
+      "bottom_15pct_cutoff": 4059.31,
+      "asof": "2026-07-23T13:09:00Z",
+      "source": "get_symbol_price live low/high field, tick98. LL_BREAKDOWN signal (range_pos 0.008) confirmed deep bottom-15pct band on this fresh range too -- moot, NO_ACTION was on enforcer risk-budget/SL grounds, not Rule17."
     },
     "XAGUSD": {
-      "low": 56.085,
-      "high": 59.225,
-      "range": 3.14,
-      "top_15pct_cutoff": 58.754,
-      "bottom_15pct_cutoff": 56.556,
-      "asof": "2026-07-21T20:45:02+00:00",
-      "source": "get_symbol_price high/low field"
+      "low": 57.14,
+      "high": 60.041,
+      "range": 2.901,
+      "top_15pct_cutoff": 59.606,
+      "bottom_15pct_cutoff": 57.575,
+      "asof": "2026-07-23T13:09:00Z",
+      "source": "get_symbol_price live low/high field, tick98. LL_BREAKDOWN signal (range_pos 0.003) confirmed deep bottom-15pct band -- moot, NO_ACTION was on enforcer risk-budget/SL grounds, not Rule17."
     },
     "EURUSD": {
       "low": 1.14045,
@@ -310,6 +206,21 @@
   },
   "armed_tickets": [],
   "watch_levels": [
+    {
+      "symbol": "BRENT",
+      "note": "tick98 (reaffirms tick95/tick96): signal/broker decoupling PERSISTS and still widening -- signal PULLBACK_TAG_LONG 99.906 vs live broker bid/ask 94.476/94.491, gap now ~5.4-5.5pt (was ~4.7-4.9pt at tick95). Broker-native price also hit a fresh high (94.651) with still no pullback/consolidation structure visible -- straight-line grind continues. NO_ACTION, same grounds as tick95: data-integrity primary, no independent M15 trigger secondary. Flag to Evan still open: re-point/disable the BRENT TV alert.",
+      "set_utc": "2026-07-23T13:09:00Z"
+    },
+    {
+      "symbol": "AUDJPY",
+      "note": "tick98: dispatcher shelf-signature flag -- 3 sweeps at ~114.227 within 240min (SWEEP_LOW fired again 114.228 at 13:00Z), Sprung Ladder Phase-1 candidate. Per AUTO_TICK_PROTOCOL absolutes, scout deployment is Evan-only regardless of mode -- not auto-actioned. No independent M15 reclaim trigger in this batch (bare sweep, not a reclaim), so no non-Sprung entry case either. NO_ACTION, informational flag only -- Evan to review if a scout deployment on this shelf is wanted.",
+      "set_utc": "2026-07-23T13:00:06Z"
+    },
+    {
+      "symbol": "EURGBP",
+      "note": "tick98: dispatcher shelf-signature flag -- 2nd sweep at ~0.85302 within 240min (SWEEP_LOW fired 0.85328 at 13:00Z), Sprung Ladder Phase-1 candidate (same shelf area as tick89/90's HL_RECLAIM/PULLBACK_TAG_LONG). Scout deployment remains Evan-only per protocol absolutes -- not auto-actioned. No reclaim trigger in this batch. NO_ACTION, informational flag only.",
+      "set_utc": "2026-07-23T13:00:12Z"
+    },
     {
       "symbol": "WTI",
       "note": "tick96: FIRST WTI signal since instrument_policy was emptied 23 Jul -- and it immediately shows the SAME signal/broker decoupling pattern already flagged for BRENT (tick81/95): signal price/level (91.293/90.803) sit ~1.5-2.3pts above broker's entire visible session range (86.534-89.353). No independent M15 trigger either (last closed bar 09:45 is a ~59% bear body). NO_ACTION. This is now 2/2 oil instruments showing the gap during the current US-Iran/Hormuz spike -- looks systemic to oil symbols on this feed pairing, escalate alongside the BRENT flag rather than as a separate issue. Treat WTI signal price/level/extreme as advisory-only, broker-native H1/H4 only for structure, until reconciled.",
@@ -571,7 +482,7 @@
       "set_utc": "2026-07-23T13:06:40Z"
     }
   ],
-  "notes": "tick97 TIER2: HL_RECLAIM USDJPY 163.676 (30m, level 163.65, extreme 163.324, range_pos 0.892, vol_mult 2.11) at 13:00:04Z. Tier1 escalation reason (Rule13 close-and-bank on the open tick93 position) was already moot: that position, plus EURJPY (tick94) and TESLA (EVAN_MANUAL), had ALL closed via broker-side TP/SL between tick96 (10:03Z) and now -- get_open_positions came back empty, confirmed via get_close_positions (EURJPY -R24.32 via SL @11:22Z, USDJPY +R21.22 via TP @11:41Z, TESLA +R306.32 via TP @11:56Z). USDJPY close revealed a discrepancy: broker's SL/TP at close (163.283/163.564) don't match what tick93 set and tick96's snapshot still showed (163.118/163.642), with no auto tick in between (tick_counter frozen at 96) -- flagged for Evan, likely his manual adjustment, net effect was protective and still a win. Evaluated the fresh HL_RECLAIM as a new-entry question: H4 BULL confirmed and with-trend, but NO_ACTION -- signal sits deep in Rule17's top-15pct band (learn-mode WARN-only, not the blocker), price is chasing an already-extended ~5h/0.65yen acceleration into the exact session high with the only forming M15 bar already fading off that high (Rule12 spirit), and R:R fails Rule9's 1.2:1 floor once a genuinely structural SL (12:45 bar low 163.574 or 12:00 wick low 163.315) is used instead of an artificially tight one. News: fresh WebSearch confirms ongoing BoJ/MoF verbal intervention risk on yen weakness (4-decade low) but no acute fresh intervention event today -- not a hard disorderly-tape block (distinct from the 7/22 07:45 spike precedent), just an added reason not to chase. Attested news_clear. No enforcer run (blocked pre-chase/R:R, pre-enforcer). Nothing placed/would-placed. Balance R6,730.65 / equity R6,730.65 (live-queried, UP +303.23 from tick96's R6,427.42 -- all three closes net positive: -24.32 +21.22 +306.32 = +303.22, rounds to the observed delta). Session P&L (balance basis) R-664.34 vs session_start_balance R7,394.99 (was R-967.57 at tick96). Snapshot updated: open_positions cleared to [], closed_since_last_snapshot +3, h4_verdicts.USDJPY + session_ranges.USDJPY refreshed, watch_levels USDJPY entry added. tick_counter -> 97.\n\ntick96 TIER2: PULLBACK_TAG_LONG WTI 91.293 (30m, level 90.803, extreme 88.589) at 10:01:05Z. First WTI signal since instrument_policy was emptied 23 Jul (confirmed via CLAUDE.md + tv-pipeline/runner/tiers.json, both show no ban -- old tick79/83 WTI NO_ACTIONs were under the now-removed block, stale). NO_ACTION -- immediately hit the SAME signal/broker feed decoupling already flagged for BRENT (tick81/95): broker bid/ask 88.948/88.963, session 86.534-89.353 (48-bar H1 history confirms broker never traded above 89.353), signal fields 91.293/90.803 sit ~1.5-2.3pts above that entire range. Not learn-mode-downgradable (data-trust block). Independent broker-native check: H4/H1 uptrend genuinely intact (81.192 -> 89.353 since 7/21 09:00, clean higher lows), but last CLOSED M15 bar (09:45) is a ~59% bear-body pullback off the session high, not a bull confirmation -- no independent trigger either. News: WebSearch found no scheduled high-impact oil event in 2h window (next EIA report 7/29); confirmed an active US-Iran/Hormuz spike is live, likely explaining both the signal's aggressive levels and the broker feed's own rapid 30h climb -- war-tape is a sizing input not a block per protocol, but also the probable root cause of the gap. No enforcer run (blocked pre-enforcer on data-trust). Full detail in h4_verdicts.WTI.note. FLAGGED FOR EVAN: 2nd oil instrument now showing this decoupling (after BRENT) -- looks systemic to the feed pairing during this spike, not BRENT-specific; escalating alongside the standing BRENT flag. Open-position guard: TESLA (EVAN_MANUAL) pl +187.05, untouched. USDJPY [LEARN] flat chop 163.285-163.391 all tick, pl 0, well under Rule14, Hold. EURJPY [LEARN] recovering on higher lows toward entry, pl 0 (last close 186.45 vs entry 186.514), SL untouched, Hold, watch into ECB 12:45 UTC. Balance R6,427.42 / equity R6,614.47 (unchanged, no realized closes). Session P&L (balance basis) R-967.57 vs session_start_balance R7,394.99, unchanged. tick_counter -> 96.\n\ntick95 TIER2: PULLBACK_TAG_LONG BRENT 98.587 (30m, level 98.707, extreme 95.743) at 10:00:14Z. NO_ACTION -- BRENT signal/broker feed decoupling from tick81 confirmed still present and worsening (gap now ~4.7-4.9pts vs tick81's ~3.8-4.4pts; broker bid/ask 93.612/93.627, session 90.635-93.88, signal fields 95.743-98.707 sit entirely above broker-visible range). Not learn-mode-downgradable (data-trust block, not a discretionary gate). Independent broker-native H4/H1 check: uptrend intact and accelerating but straight-line grind with zero pullback structure right now, so no independent M15 trigger exists either. No enforcer run (blocked pre-enforcer, same as tick81). Full detail in h4_verdicts.BRENT.note. Open-position guard: TESLA (EVAN_MANUAL) pl +187.40 (up from +99.56), untouched. USDJPY [LEARN] chopping flat since entry (163.354->163.364), well under Rule14 threshold, Hold. EURJPY [LEARN] dipped to -7.5pips then recovering over last 25min, SL untouched and not threatened, Rule5/10 cut not warranted yet, Hold, watch into ECB 12:45 UTC. Balance R6,427.42 / equity R6,620.40 (unchanged balance, no realized closes). Session P&L (balance basis) R-967.57 vs session_start_balance R7,394.99, unchanged. tick_counter -> 95.\n\ntick92b TIER2: PULLBACK_TAG_LONG USDJPY 163.318 (30m, level 163.153, extreme 163.03) at 08:06:39Z. Reassessed the stale (24h old) UNCERTAIN/post-intervention H4 verdict with fresh H4/M15 pulls: 20h of clean normal-volume consolidation since the 7/22 07:45 spike, then a genuine breakout to a fresh multi-day high 163.42 -- judged digested, not disorderly tape. H4 BULL confirmed (higher-low sequence unbroken through the spike), M15 trigger MET on a CLOSED bar (07:45, 62% bull body above the 163.153 pre-spike level), Rule17 clean (range_pos 0.828, no override needed), R:R ~1.3:1 (SL 163.118 beyond the 07:45 bar low +4pip buffer, TP 163.642). News: fresh WebSearch, no scheduled BoJ/Fed item in 2h window (only ongoing verbal-intervention risk noted, not a fresh event) -- attested news_clear. Enforcer PASS. PLACED (order-mutation tool present this run): BUY 0.01L [LEARN], filled 163.354, orderId 109835929, confirmed on account 41829612 via get_open_positions after a transient MCP 502 on first check. Risk ~R21.84 (0.34% of balance), within learn-mode's R15-R40 band. TESLA EVAN_MANUAL re-checked (pl +58.77), untouched, no anomaly. Balance R6427.42 / equity R6490.78 (balance unchanged, no realized closes). Session P&L (balance basis) R-967.57 vs session_start_balance R7394.99, unchanged.\n\ntick92 TIER2: HL_RECLAIM EURJPY 186.583 (30m tf, level 186.488, extreme 186.324) at 08:00:16Z. H4 confirmed BULL, with-trend. Asian session ended ~3h ago (10:02 SAST) so Rule15 doubling no longer applies -- genuine improvement vs prior EURJPY ticks. BLOCKED ON M15 TRIGGER: last closed M15 (07:45) and H1 (07:00-08:00) bars both closed at 186.443, below the 186.488 level; the break above it is only visible on the still-forming 08:00-08:15 bar. Same 'wait for a closed confirming bar' standard used all session (AUDJPY t91, BRENT t81, XAUUSD t70, EURUSD t88). News: fresh WebSearch, ECB decision today ~12:15 UTC (~4h10min out, outside 2h window), no BoJ today -- attested news_clear. No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed. NO_ACTION. TESLA EVAN_MANUAL position re-checked (pl +69.32, improved from tick91's -38.28), not touched, not this bot's instrument, no anomaly. Balance R6427.42 / equity R6496.74 (unchanged balance, no realized closes this tick). Session P&L (balance basis) R-967.57 vs session_start_balance R7394.99, unchanged. Watch: next M15/H1 close above 186.488 with 60%+ bull body reopens this setup for full R:R re-check.\n\nTier 1 reads only. Tier 2 refreshes at exit. Balances here are never current. tick87 TIER2: HL_RECLAIM EURUSD 1.14276 (30m tf, level 1.14204, extreme 1.1406) at 03:00:05Z + PULLBACK_TAG_LONG GBPJPY 218.344 (30m, level 218.25, extreme 218.0345) at 03:00:09Z. EURUSD: first confirmed-closed M15 break of the 1.14212 shelf resistance (02:45 bar, 93% bull body) \u2014 but extended H4/D1 history pulled fresh this tick found a closer overhead cluster (1.14283/1.14296, 7/20-7/21 daily highs) sitting right at entry, unseen while price was below 1.14212. BLOCKED ON R:R: Asian Rule15 SL floor (~26.6pips structural to the 1.1406 extreme) vs only ~0.7-15pips of real reward to that cluster \u2014 R:R ~0.5-0.6:1, fails Rule9. GBPJPY: price broke the nearest step-down H4 high (218.348) but the next resistance cluster (218.393-218.409) correspondingly shrank to ~3.4-5pips away \u2014 R:R did not improve from tick85, still ~0.1-0.15:1 vs the ~37.5pip Asian SL floor. Both BLOCKED ON R:R, not learn-mode-downgradable. News: WebSearch for EUR/GBP/JPY calendar 03:00-05:00 UTC found no date-specific high-impact hits (ECB ~9h out, outside window) \u2014 attested news_clear for both. TESLA EVAN_MANUAL position re-checked (pl -38.27, essentially flat vs tick86's -38.26), not touched, not this bot's instrument, no anomaly. No enforcer run on either signal, nothing placed/would-placed. NO_ACTION x2. Balance R6427.42 / equity R6389.15 (unchanged from tick86, no realized closes this tick). Session P&L (balance basis) R-967.57 vs session_start_balance R7394.99, unchanged. tick86 TIER2: PULLBACK_TAG_LONG EURJPY 186.35 (30m tf, level 186.214, extreme 186.046) at 03:00:03Z, continuation of tick85's HL_RECLAIM shelf 30min earlier. First-ever EURJPY H4 read built from scratch (H4/M15/D1 history pulled): clean BULL since 7/21 00:00 swing low 185.287 (unbroken higher-lows/higher-highs staircase), currently breaking out to a fresh multi-week high \u2014 live price 186.35/186.365 has traded through the entire visible 30-day daily range (prior 30-day high was 186.312 on 6/16). With-trend long, M15 trigger MET (closed 02:45 bar 93% bull body). Rule17 top-15pct (range_pos >1.0, entry above the broker's own session high) is learn-mode-downgradable, overridden and logged, not the blocker. BLOCKED ON R:R: 05:00 SAST, still deep Asian window, Rule15 doubles the SL floor to ~30-35pips which the structural stop (beyond the 186.046 extreme) satisfies on the risk side, but there is no defined resistance above entry to size a reward against (fresh breakout, nothing overhead in history) \u2014 best-case round-number/measured-move targets give only R:R ~0.3-0.4:1, fails Rule9's 1.2:1 floor, not learn-mode-downgradable. News: WebSearch found no scheduled high-impact EUR or JPY release in the 03:00-05:00 UTC window (ECB decision ~9h out, outside 2h window; no BoJ meeting today) \u2014 attested news_clear. TESLA EVAN_MANUAL position re-checked (pl -38.26, essentially flat vs tick85's -38.30), not touched, not this bot's instrument, no anomaly. No enforcer run, nothing placed/would-placed. NO_ACTION. Balance R6427.42 / equity R6389.16 (unchanged from tick85, no realized closes this tick). Session P&L (balance basis) R-967.57 vs session_start_balance R7394.99, unchanged. tick84 TIER2: HL_RECLAIM AUDJPY 114.327 (30m tf, level 114.18, extreme 113.98) at 02:00:05Z \u2014 Tier1 escalated as a new instrument with no H4 verdict on file. Built first-ever AUDJPY H4 read from scratch (H4/M15 history pulled): broader BULL since 7/21 low 113.587, corrective dip 7/22 (lower lows to 113.865), then a violent M15 reclaim bar (01:45-02:00, 78% bull body, vol 179.3M vs ~40-150M baseline) breaking to a fresh high 114.441. Structure alone would pass Change5 (with-trend, clean 60%+ trigger bar, Rule17 borderline-clear at range_pos ~0.84). BLOCKED ON NEWS: WebSearch found the Australian jobs report (ABS Labour Force Survey) printed 01:30 UTC today, ~30min before this signal \u2014 squarely inside the spike bar that produced the reclaim (vol/range both ~5-10x session baseline). Treated as a post-news spike chase (Rule11/12 spirit + AUTO_TICK_PROTOCOL's hard 'news within 2h' block, not learn-mode-downgradable). No enforcer run, nothing placed/would-placed. NO_ACTION. Pip value for AUDJPY at 0.01 lots calibrated this tick via get_symbol_info/get_trading_instrument (JPY-quoted, pipPos 2, roundLot 100000) + USDJPY/USDZAR cross (163.08 / 16.368) \u2248 R1.00/pip \u2014 noted for future AUDJPY sizing. Balance R6427.42 / equity R6389.13 (unchanged from tick83, TESLA EVAN_MANUAL pl -38.29, flat, not touched, no anomaly). Session P&L (balance basis) R-967.57 vs session_start_balance R7394.99, unchanged (no realized closes this tick). tick94: PLACED EURJPY BUY 0.01L [LEARN] @186.514 SL186.274 TP186.85, resolving tick92's M15-trigger watch item (breakout confirmed + held on two closed M15 bars). See h4_verdicts.EURJPY and open_positions for full reasoning.",
+  "notes": "tick98 TIER2: batch of 6 signals at 13:00Z -- AUDJPY SWEEP_LOW (shelf flag, Evan-only scout, NO_ACTION), XAGUSD LL_BREAKDOWN (H4 flipped to confirmed BEARISH, Rule19 met, but BLOCKED pre-enforcer: no structural SL within 5%-balance risk budget at forced learn-mode min lot, R779/pt), EURGBP SWEEP_LOW (shelf flag, Evan-only scout, NO_ACTION), BRENT PULLBACK_TAG_LONG (signal/broker decoupling reaffirmed ~5.5pt gap, still no broker-native pullback structure, NO_ACTION), XAUUSD LL_BREAKDOWN (H4 flipped to confirmed BEARISH, Rule19 met, same pre-enforcer SL-budget block as XAGUSD), USDJPY HL_RECLAIM (exact duplicate of tick97's signal, same timestamp/price 163.676 -- already handled, NO_ACTION). News: WebSearch confirms gold/silver selloff is a coherent macro move (Fed hawkish repricing ~78% Sept hike odds, strong USD, Mideast oil-spike/Houthi tanker attack driving inflation fears) -- not a disorderly/intervention tape, attested news_clear for both metals. No enforcer run this tick (nothing cleared pre-enforcer gates). No orders placed or would-placed. Balance R6,730.65 / equity R6,730.65 (live-queried, unchanged from tick97). Session P&L (balance basis) R-664.34 vs session_start_balance R7,394.99, unchanged from tick97 (no fills this tick).",
   "anomaly_status": {
     "state": "RESOLVED",
     "resolved_utc": "2026-07-22T11:47:00Z",
