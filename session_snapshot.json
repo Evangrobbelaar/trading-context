@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-23T03:30:32Z",
-  "updated_by": "auto_tick_88_tier2",
+  "updated_utc": "2026-07-23T03:33:53Z",
+  "updated_by": "auto_tick_89_tier2",
   "balance": {
     "value": 6427.42,
-    "equity": 6389.13,
-    "queried_utc": "2026-07-23T03:30:32Z",
-    "note": "live-queried this run. Balance unchanged from tick87 (no realized closes since). Equity 6389.13 flat vs tick87's 6389.15 - TESLA EVAN_MANUAL floating pl -38.29, essentially unchanged."
+    "equity": 6389.14,
+    "queried_utc": "2026-07-23T03:33:53Z",
+    "note": "live-queried this run. Balance unchanged from tick88 (no realized closes since). Equity 6389.14 flat vs tick88's 6389.13 - TESLA EVAN_MANUAL floating pl -38.28, essentially unchanged."
   },
   "session_start_balance": 7394.99,
   "open_positions": [
@@ -18,9 +18,9 @@
       "price": 357.82,
       "stopLoss": 374.22,
       "takeProfit": 339.12,
-      "pl": -38.27,
+      "pl": -38.28,
       "openTime_utc": "2026-07-22T22:17:44Z",
-      "note": "EVAN_MANUAL. Discovered tick79, opened between ticks (22:17:44Z). Same signature as prior NVIDIA manual equity trades (Limit order, out of this bot's instrument universe). Not this system's instrument, not touched, treated as expected manual activity per the standing anomaly_status.RESOLVED rule (no freeze). pl re-checked tick87 (-38.27), essentially unchanged vs tick86's -38.26, same orderId.",
+      "note": "EVAN_MANUAL. Discovered tick79, opened between ticks (22:17:44Z). Same signature as prior NVIDIA manual equity trades (Limit order, out of this bot's instrument universe). Not this system's instrument, not touched, treated as expected manual activity per the standing anomaly_status.RESOLVED rule (no freeze). pl re-checked tick89 (-38.28), essentially unchanged vs tick88's -38.27/-38.29, same orderId.",
       "origin": "EVAN_MANUAL"
     }
   ],
@@ -97,6 +97,13 @@
     }
   ],
   "h4_verdicts": {
+    "EURGBP": {
+      "trend": "BULL — clean higher-lows staircase since 7/20 16:00 swing low 0.84824, fresh multi-day high 0.85391 at 7/22 16:00; overnight dip to 0.85197 (7/23 00:00 H4 bar) is a pullback within that structure, not a trend break",
+      "asof": "2026-07-23T03:33:53Z",
+      "swings": "H4 lows since 7/20 16:00: 0.84824 -> 0.84851 -> 0.84897 -> 0.84945 -> 0.85147 -> 0.85184 -> 0.85219 -> 0.85241/0.85244 -> 0.85296 -> 0.85197 (7/23 00:00, overnight pullback, first lower-low vs the immediate 0.85241/0.85296 sequence but still far above the 7/20 base). H4 highs: 0.85045 -> 0.85071 -> 0.85007 -> 0.84995 -> 0.85001 -> 0.8519 -> 0.85376 -> 0.8532 -> 0.85241 -> 0.85228 -> 0.85328 -> 0.85343 -> 0.85391 (7/22 16:00, session/multi-day high, unbroken since) -> 0.85345 -> 0.85319 (forming). M15 02:30 bar (O0.85303 H0.8532 L0.85302 C0.85319, ~89% bull body) is the clean reclaim off the 0.85302 extreme; 02:45-03:30 bars grind higher (0.85335->0.85337->0.85343->0.85344 closes), confirming the reclaim held rather than whipsawing. Live bid/ask 0.85346/0.85365, only ~2.6 pips below the 0.85391 multi-day high.",
+      "note": "First H4 verdict on file for EURGBP (new instrument, Tier1-escalated tick89). Signal: HL_RECLAIM fired 0.85355 (30m tf, level 0.85353, extreme 0.85302) at 03:30:08Z. With-trend long vs confirmed H4 BULL — passes Change5 step3. M15 trigger MET: 02:30 closed bar is a clean ~89% bull reclaim off the 0.85302 extreme, and price has continued grinding up through four more M15 closes since without breaking back down — a held reclaim, not a spike. Rule17: entry ~0.85365 sits at/above the broker session high (low 0.85197/high 0.8535 per get_symbol_price, live ask already through it) — range_pos ~0.95-1.0, deep top-15pct band; learn-mode WARN-only, overridden and logged, not the blocker (matches signal's own range_pos 0.946). BLOCKED ON R:R: 05:33 SAST, inside the 00:00-07:00 Asian window, Rule15 doubles the forex SL floor to ~30-50 pips. Structural SL beyond the 0.85302 extreme + buffer (~0.85262) is only ~10.3 pips from ask 0.85365 — short of the Asian floor, so the real SL must widen to ~30-35 pips (~0.85015-0.85065), which does clear Rule18 geometry (well beyond even the deeper 0.85197 overnight sweep). Reward: nearest genuine resistance is the 0.85391 multi-day high, only ~2.6 pips from entry (already almost touched); a generous round-number/measured-move stretch target (0.8550) gives ~13.5 pips. Best-case honest R:R ≈ 0.07-0.4:1, fails Rule9's 1.2:1 floor by a wide margin — same root cause as tonight's EURJPY/GBPJPY/EURUSD blocks (Asian SL floor vs a level sitting right at or just past current price with nothing overhead). Not learn-mode-downgradable. News: WebSearch for EUR/GBP high-impact calendar around 03:30-05:30 UTC 23 Jul 2026 found the ECB rate decision/press conference today but ~12:15 UTC (~8.7h out, outside the 2h window); no GBP high-impact event today (UK CPI/unemployment/earnings already printed 7/21-22) — attested news_clear. No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION. Watch: a pullback that restores distance-to-entry against the same 0.85391 level, or London/NY session reverting Rule15 to the normal 15-25 pip floor (07:00 SAST) — either would meaningfully improve this R:R against the same clean with-trend reclaim structure.",
+      "sources": ["https://wforex.com/news/economic-calendar-july-20-26-2026", "https://www.tradingview.com/symbols/EURGBP/economic-calendar/"]
+    },
     "EURJPY": {
       "trend": "BULL — H4 swing low 185.287 (7/21 00:00) unbroken, clean higher-lows/higher-highs staircase since, currently breaking to a fresh multi-week high above the 30-day range ceiling (186.312, 6/16)",
       "asof": "2026-07-23T03:00:16Z",
@@ -157,6 +164,15 @@
     }
   },
   "session_ranges": {
+    "EURGBP": {
+      "low": 0.85197,
+      "high": 0.8535,
+      "range": 0.00153,
+      "top_15pct_cutoff": 0.853271,
+      "bottom_15pct_cutoff": 0.852199,
+      "asof": "2026-07-23T03:33:53Z",
+      "source": "get_symbol_price live low/high field. Live ask 0.85365 is ABOVE the stated session high (range_pos >1.0, matches signal's own range_pos 0.946), deep top-15pct band; learn-mode WARN only, moot since blocked on R:R not Rule17."
+    },
     "EURJPY": {
       "low": 185.985,
       "high": 186.349,
@@ -245,6 +261,11 @@
   },
   "armed_tickets": [],
   "watch_levels": [
+    {
+      "symbol": "EURGBP",
+      "note": "tick 89: HL_RECLAIM fired 0.85355 (30m, level 0.85353, extreme 0.85302) at 03:30:08Z. First EURGBP H4 read on file: clean BULL since 7/20 16:00 low 0.84824, fresh multi-day high 0.85391 (7/22 16:00). M15 trigger MET (02:30 89% bull reclaim bar, held through four more closes). Rule17 top-15pct learn-mode-downgradable, moot. NO_ACTION on R:R — Asian Rule15 SL floor (~30-35 pips) fine on the risk side but the 0.85391 multi-day high is only ~2.6 pips from entry with nothing overhead, best-case R:R ~0.07-0.4:1, fails Rule9's 1.2:1 floor. Re-check after 07:00 SAST (Rule15 reverts to 15-25pip floor) or on a pullback that restores distance-to-entry against 0.85391.",
+      "set_utc": "2026-07-23T03:33:53Z"
+    },
     {
       "symbol": "EURJPY",
       "note": "tick 86: PULLBACK_TAG_LONG fired 186.35 (30m, level 186.214, extreme 186.046), continuation of tick85's HL_RECLAIM shelf. First EURJPY H4 read on file: clean BULL, swing low 185.287 unbroken, M15 trigger confirmed (closed 02:45 bar 93% bull body breaking to a fresh multi-week high above the 30-day range ceiling 186.312). Rule17 top-15pct (range_pos >1.0) learn-mode-downgradable and moot. NO_ACTION on R:R — Asian-session Rule15 SL floor (~30-35pips) is fine on the risk side but there's no defined resistance above entry to size reward against (fresh breakout, nothing overhead in visible history); best-case round-number/measured-move targets only give R:R ~0.3-0.4:1. Re-check after 07:00 SAST (Rule15 reverts to 15-25pip floor) or on a pullback that restores distance-to-entry.",

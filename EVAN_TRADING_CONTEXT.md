@@ -2768,3 +2768,13 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - News: fresh WebSearch confirmed ECB decision today ~12:15 UTC, ~8.75h out, outside the 2h window — attested news_clear.
 - No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed. NO_ACTION.
 - Snapshot updated: h4_verdicts.EURUSD refreshed (rejection noted), session_ranges.EURUSD refreshed, watch_levels EURUSD entry superseded. tick_counter -> 88.
+
+## AUTO TICK 89 — 2026-07-23T03:33:53Z (Tier 2, mode=learn)
+- Signal: HL_RECLAIM EURGBP 0.85355 (30m, level 0.85353, extreme 0.85302) at 03:30:08Z. Tier1 escalated: new instrument, no H4 verdict on file, structure unknown.
+- Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Balance R6427.42 / equity R6389.14, unchanged from tick88. TESLA (EVAN_MANUAL, Sell 2u, pl -38.28) re-checked, untouched, not this bot's instrument.
+- Built first-ever EURGBP H4 read (H4/M15/H1 pulled): clean BULL since 7/20 16:00 swing low 0.84824, unbroken higher-lows staircase, fresh multi-day high 0.85391 at 7/22 16:00. Overnight dip to 0.85197 (7/23 00:00 H4 bar) is a pullback, not a trend break. M15 trigger MET: 02:30 bar is a clean ~89% bull reclaim off the signal's 0.85302 extreme, held through four more M15 closes (02:45-03:30) without breaking back down.
+- Rule17 top-15pct (entry ~0.85365 sits above the broker's own session high, range_pos ~0.95-1.0, matches signal's 0.946) is learn-mode-downgradable, overridden and logged, not the blocker.
+- BLOCKED ON R:R: 05:33 SAST, deep Asian window, Rule15 doubles the SL floor to ~30-50 pips. Structural SL beyond the 0.85302 extreme (~10.3 pips) is short of that floor, so the real SL widens to ~30-35 pips — fine on Rule18 geometry, but the nearest genuine resistance (the 0.85391 multi-day high) is only ~2.6 pips from entry with nothing overhead; best-case stretch target gives R:R ~0.07-0.4:1, fails Rule9's 1.2:1 floor by a wide margin. Same root cause as tonight's EURJPY/GBPJPY/EURUSD blocks. Not learn-mode-downgradable.
+- News: WebSearch for EUR/GBP calendar found ECB decision today ~12:15 UTC (~8.7h out, outside the 2h window), no GBP high-impact event today (UK data already printed 7/21-22) — attested news_clear.
+- No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.EURGBP added, session_ranges.EURGBP added, watch_levels appended. tick_counter -> 89.
