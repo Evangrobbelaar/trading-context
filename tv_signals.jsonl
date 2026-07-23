@@ -326,3 +326,4 @@
 {"event": "SWEEP_LOW", "symbol": "AUDJPY", "tf": "30", "price": 114.33, "level": 114.227, "extreme": 114.16, "range_pos": 0.699, "vol_mult": 1.56, "h1_atr": 0.119108, "t": 1784808000553, "received_utc": "2026-07-23T12:00:07.774313+00:00"}
 {"event": "SWEEP_LOW", "symbol": "GBPJPY", "tf": "30", "price": 218.3525, "level": 218.1485, "extreme": 218.068, "range_pos": 0.654, "vol_mult": 1, "h1_atr": 0.17774, "t": 1784808001235, "received_utc": "2026-07-23T12:00:09.599552+00:00"}
 {"event": "SWEEP_LOW", "symbol": "EURGBP", "tf": "30", "price": 0.85319, "level": 0.85302, "extreme": 0.853, "range_pos": 0.295, "vol_mult": 2.24, "h1_atr": 0.000466, "t": 1784808000611, "received_utc": "2026-07-23T12:00:11.287401+00:00"}
+{"event": "PULLBACK_TAG_SHORT", "symbol": "XAUUSD", "tf": "30", "price": 4085.765, "level": 4086.185, "extreme": 4099.63, "range_pos": 0.185, "vol_mult": 1.33, "h1_atr": 14.575936, "t": 1784808000297, "received_utc": "2026-07-23T12:00:13.008765+00:00"}
