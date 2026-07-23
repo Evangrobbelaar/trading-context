@@ -352,3 +352,4 @@
 {"event": "HL_RECLAIM", "symbol": "GBPJPY", "tf": "30", "price": 218.5355, "level": 218.521, "extreme": 218.068, "range_pos": 0.844, "vol_mult": 1, "h1_atr": 0.193898, "t": 1784815202464, "received_utc": "2026-07-23T14:00:18.375869+00:00"}
 {"event": "SPRING_LONG", "symbol": "EURJPY", "tf": "30", "price": 186.469, "level": 186.324, "extreme": 186.206, "range_pos": 0.682, "vol_mult": 1.64, "h1_atr": 0.163266, "t": 1784815201203, "received_utc": "2026-07-23T14:00:20.072391+00:00"}
 {"event": "SWEEP_LOW", "symbol": "EURGBP", "tf": "30", "price": 0.85326, "level": 0.85302, "extreme": 0.85296, "range_pos": 0.335, "vol_mult": 1.81, "h1_atr": 0.000474, "t": 1784815201233, "received_utc": "2026-07-23T14:00:31.236133+00:00"}
+{"event": "LL_BREAKDOWN", "symbol": "TSLA", "tf": "30", "price": 326.72, "level": 372.9, "extreme": 378.94, "range_pos": 0.035, "vol_mult": 9.42, "h1_atr": 6.695306, "t": 1784815200623, "received_utc": "2026-07-23T14:00:32.818128+00:00"}
