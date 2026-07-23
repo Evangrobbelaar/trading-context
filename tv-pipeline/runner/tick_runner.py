@@ -25,7 +25,7 @@ Design rules:
   - Runner owns notifications (ntfy) — fires even when a session dies.
   - stdlib only. Config: tiers.json next to this file (hot-reloaded every loop).
 """
-import json, os, subprocess, sys, time, urllib.request
+import json, os, re, subprocess, sys, time, urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -38,6 +38,7 @@ SNAPSHOT = REPO / "session_snapshot.json"
 TIERS_FILE = Path(__file__).resolve().parent / "tiers.json"
 CURSOR = RUNNER_DIR / "cursor.txt"
 SWEEP_STATE = RUNNER_DIR / "sweep_state.json"
+LIMIT_STATE = RUNNER_DIR / "limit_state.json"
 RUNS = RUNNER_DIR / "runs"
 POLL_S = 1.0
 
@@ -240,6 +241,17 @@ def drop_stale(batch, c):
     fresh, dropped = [], []
     for s in batch:
         t = s.get("t")
+        # ORB carries its own validity window (expires_ms). Honour it instead of
+        # the blanket age gate — the whole point of ORB on this system is that
+        # the plan stays actionable for hours, so a 30-min gate would delete the
+        # exact property that makes it survive the 39-min mean tick cadence.
+        exp = s.get("expires_ms")
+        if isinstance(exp, (int, float)):
+            if now_ms > exp:
+                dropped.append(f"{canon_event(s)} {s.get('symbol')} (past expires_ms)")
+            else:
+                fresh.append(s)
+            continue
         if isinstance(t, (int, float)) and (now_ms - t) > cutoff_ms:
             dropped.append(f"{canon_event(s)} {s.get('symbol')} ({(now_ms-t)/60000:.0f}min old)")
         else:
@@ -297,7 +309,101 @@ def build_prompt(tier, batch, notes, run_mode):
             "flag, append a new line with the same id, status RESOLVED and a resolved_note. "
             "Finish by updating session_snapshot.json, appending the auto "
             "tick to EVAN_TRADING_CONTEXT.md, committing and pushing, and end with the "
-            "single-line T2 summary starting with 'AUTO-TICK[t2]'.")
+            "single-line T2 summary starting with 'AUTO-TICK[t2]'.\n\n"
+            "ORB HANDLING (strategy=ORB, see STRATEGY_ORB.md): OR_COMPLETE carries a "
+            "PRE-COMPUTED plan — or_hi/or_lo/long_entry/long_sl/long_tp/short_entry/"
+            "short_sl/short_tp/expires_ms/first_bar_dir/require_first_dir/rvol. Do NOT "
+            "recompute the levels; the range is a fact of the session. Verify them "
+            "against a live broker quote, then if require_first_dir is true take ONLY "
+            "the side matching first_bar_dir. Place a RESTING STOP order at the entry "
+            "with SL and TP attached — this is the documented exception to Rule 22 "
+            "market-only, because ORB's entire premise is that the plan executes "
+            "without a session being present at the break. Max 2 ORB entries per day "
+            "(one London, one New York): before placing, check session_snapshot.json "
+            "for an ORB entry already taken in the same session and skip if so. "
+            "TIME_EXIT means the 3h cap is reached — flatten that symbol's ORB position "
+            "at market and cancel any unfilled resting order for it. ORB_LONG/ORB_SHORT "
+            "are confirmations only; if the resting order already filled, log and hold.")
+
+
+LIMIT_PAT = re.compile(
+    r"(usage|session|rate)\s+limit|limit\s+reach|quota\s+exceed|"
+    r"too\s+many\s+requests|429|out\s+of\s+credit|insufficient\s+credit",
+    re.I)
+RESET_PAT = re.compile(r"reset[s]?\s+(?:at\s+)?([0-9]{1,2}:[0-9]{2}\s*(?:[ap]m)?|[0-9]{9,13})", re.I)
+
+
+def detect_limit(res):
+    """Return a reason string if this run failed on a usage/session limit.
+
+    Added 23 Jul 2026. Bug: when the Claude session limit was hit, run_claude
+    returned an error string, ntfy fired it, and the cursor advanced — so EVERY
+    subsequent signal repeated the cycle. Observed as ~3 hours of identical
+    'you've hit your session limit' pushes. The limit is a property of the
+    account for a fixed window, not of the signal, so retrying per-signal can
+    never succeed; it only generates noise.
+    """
+    txt = (res.get("result") or "") + " " + (res.get("error") or "")
+    if not txt.strip():
+        return None
+    return txt.strip()[:300] if LIMIT_PAT.search(txt) else None
+
+
+def limit_state():
+    return load_json(LIMIT_STATE, {})
+
+
+def in_cooldown():
+    """(bool, seconds_remaining). Cheap; called every loop."""
+    st = limit_state()
+    until = st.get("cooldown_until", 0)
+    now = time.time()
+    return (now < until, max(0, int(until - now)))
+
+
+def enter_cooldown(reason, c, minutes=None):
+    """Open the breaker and notify ONCE."""
+    st = limit_state()
+    mins = minutes or c.get("limit_cooldown_min", 30)
+    # Escalating backoff: repeated hits inside one window mean the reset is
+    # further out than the default guess, so stop probing so often.
+    streak = int(st.get("streak", 0)) + 1
+    mins = min(mins * (2 ** (streak - 1)), c.get("limit_cooldown_max_min", 240))
+    until = time.time() + mins * 60
+    m = RESET_PAT.search(reason or "")
+    LIMIT_STATE.parent.mkdir(parents=True, exist_ok=True)
+    LIMIT_STATE.write_text(json.dumps({
+        "cooldown_until": until, "streak": streak, "reason": reason,
+        "opened_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "reset_hint": m.group(1) if m else None,
+        "suppressed": 0,
+    }))
+    log(f"LIMIT BREAKER OPEN for {mins}min (streak {streak}): {reason[:160]}")
+    ntfy(c["ntfy_topic"], "Runner paused — usage limit",
+         f"Hit a usage/session limit. Pausing spawns for {mins} min "
+         f"(attempt {streak}). Signals will be logged and skipped, not queued. "
+         f"You will get ONE message when it resumes."
+         + (f" Reset hint: {m.group(1)}." if m else "")
+         + f"\n\n{reason[:300]}")
+
+
+def clear_cooldown(c):
+    st = limit_state()
+    if not st:
+        return
+    supp = int(st.get("suppressed", 0))
+    LIMIT_STATE.write_text(json.dumps({"cooldown_until": 0, "streak": 0}))
+    log(f"limit breaker closed; {supp} signal(s) were skipped while paused")
+    ntfy(c["ntfy_topic"], "Runner resumed",
+         f"Usage limit cleared — spawning again. {supp} signal(s) were skipped "
+         f"while paused (not replayed, by design).")
+
+
+def note_suppressed(n=1):
+    st = limit_state()
+    if st:
+        st["suppressed"] = int(st.get("suppressed", 0)) + n
+        LIMIT_STATE.write_text(json.dumps(st))
 
 
 def run_claude(tier, batch, notes, c):
@@ -398,13 +504,36 @@ def main():
                 CURSOR.write_text(str(new_offset))
                 log(f"{len(batch)} signal(s) logged/dropped, no spawn")
                 continue
+            # ── Usage-limit circuit breaker ──────────────────────────────
+            # While open: consume the cursor (so nothing replays as a backlog
+            # storm when it closes — same lesson as the tick-46 cold start),
+            # log, count, and send NOTHING.
+            cooling, remain = in_cooldown()
+            if cooling:
+                note_suppressed(len(batch))
+                log(f"limit cooldown active ({remain}s left) — skipped {len(batch)} signal(s), no ntfy")
+                CURSOR.write_text(str(new_offset))
+                continue
+            if LIMIT_STATE.exists() and limit_state().get("cooldown_until", 0):
+                clear_cooldown(c)
+
             git_pull()
             notes += staleness_notes(actionable, c)
             res = run_claude(top, actionable, notes, c)
+            lim = detect_limit(res)
+            if lim:
+                enter_cooldown(lim, c)
+                CURSOR.write_text(str(new_offset))
+                continue
             ntfy(c["ntfy_topic"], f"TV tick t{top}", summarize(res))
             if top == 1 and "ESCALATE_TIER2" in (res.get("result") or ""):
                 reason = [l for l in res["result"].splitlines() if "ESCALATE_TIER2" in l]
                 res2 = run_claude(2, actionable, notes + reason, c)
+                lim2 = detect_limit(res2)
+                if lim2:
+                    enter_cooldown(lim2, c)
+                    CURSOR.write_text(str(new_offset))
+                    continue
                 ntfy(c["ntfy_topic"], "TV tick t2 (escalated)", summarize(res2))
             CURSOR.write_text(str(new_offset))
         except Exception as e:

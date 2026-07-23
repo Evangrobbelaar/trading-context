@@ -26,13 +26,17 @@
     "HL_RECLAIM",
     "LL_BREAKDOWN",
     "LEVEL1_HIT",
-    "LEVEL2_HIT"
+    "LEVEL2_HIT",
+    "ORB_LONG",
+    "ORB_SHORT"
   ],
   "tier2_events": [
     "SPRING_LONG",
     "SPRING_SHORT",
     "PULLBACK_TAG_LONG",
-    "PULLBACK_TAG_SHORT"
+    "PULLBACK_TAG_SHORT",
+    "OR_COMPLETE",
+    "TIME_EXIT"
   ],
   "armed_ticket_promote_events": [
     "LEVEL1_HIT",
@@ -57,5 +61,9 @@
     "timeout_s": 900
   },
   "ntfy_topic": "evan-tv-ticks-x9k4q2",
-  "max_signal_age_min": 30
+  "max_signal_age_min": 30,
+  "_orb_comment": "ORB v1 routing (added 23 Jul 2026, see STRATEGY_ORB.md). OR_COMPLETE is the actionable event: it arrives the instant the opening range closes and carries entry/sl/tp/expires_ms, so the session can rest a stop order rather than needing to be present at the break. ORB_LONG/ORB_SHORT are after-the-fact confirmations for the log. TIME_EXIT must reach Tier 2 because flattening a position is an action, not an observation.",
+  "limit_cooldown_min": 30,
+  "limit_cooldown_max_min": 240,
+  "_limit_comment": "Usage-limit circuit breaker. On a usage/session-limit failure the runner opens a breaker for limit_cooldown_min, doubling per consecutive hit up to limit_cooldown_max_min. While open it consumes the cursor, counts skips and sends NOTHING. One push on open, one on resume. Fixes ~3h of duplicate limit notifications caused by retrying a per-account limit once per incoming signal."
 }
