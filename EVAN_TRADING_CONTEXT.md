@@ -2787,3 +2787,12 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - News: reused tick89's attestation (ECB ~12:15 UTC, ~8h out, outside 2h window) — no new search needed given the 41min gap. Attested news_clear.
 - No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION.
 - Snapshot updated: h4_verdicts.EURGBP refreshed, session_ranges.EURGBP refreshed (high now 0.85391), watch_levels EURGBP entry added (supersedes tick89). tick_counter -> 90.
+
+## AUTO TICK 91 — 2026-07-23T04:45:52Z (ASIAN session, learn mode)
+- Signal: HL_RECLAIM AUDJPY fired 114.45 (30m tf, level 114.448, extreme 113.98) at 04:44:17Z. Dispatcher escalated Tier2: with-trend long vs H4 BULL, AUS-jobs news block (01:30-03:30 UTC) expired.
+- Account verified 41829612. Balance R6,427.42 | Equity R6,389.14 (live-queried, unchanged from tick90). TESLA EVAN_MANUAL position unchanged (-R38.28, orderId 109834150), not this system's instrument, no action.
+- News: fresh WebSearch confirmed AUS labour force survey already printed ~01:30 UTC (the event behind the earlier spike); no other high-impact AUD/JPY item in window. Attested news_clear — not the blocker.
+- BLOCKED ON M15 TRIGGER: last CLOSED bar (04:30) is a ~33% bear body, not a confirming 60%+ bull bar. Live price (bid/ask 114.406/114.424) already reversed back below the signal's own 114.448 reclaim level within ~90sec of the print — active failed reclaim, textbook "don't chase the spike."
+- R:R also fails independently: Asian-buffered structural SL (beyond 113.98 extreme) ≈47-49pips risk vs only ~5pips reward to the just-broken 114.475 session high — ≈0.1:1, far under Rule9's 1.2:1 floor.
+- No enforcer run (blocked pre-enforcer on trigger + R:R). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.AUDJPY refreshed (spike leg failing, not yet confirmed), session_ranges.AUDJPY refreshed (high now 114.475). tick_counter -> 91.

@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-23T04:11:19Z",
-  "updated_by": "auto_tick_90_tier2",
+  "updated_utc": "2026-07-23T04:45:52Z",
+  "updated_by": "auto_tick_91_tier2",
   "balance": {
     "value": 6427.42,
     "equity": 6389.14,
-    "queried_utc": "2026-07-23T04:11:19Z",
-    "note": "live-queried this run. Balance unchanged from tick89 (no realized closes since). Equity 6389.14 flat vs tick89's 6389.14 - TESLA EVAN_MANUAL floating pl -38.28 (get_account_info profit -38.276082), essentially unchanged."
+    "queried_utc": "2026-07-23T04:45:52Z",
+    "note": "live-queried this run. Balance unchanged from tick90 (no realized closes since). Equity 6389.14 flat vs tick90's 6389.14 - TESLA EVAN_MANUAL floating pl -38.28 (get_account_info profit -38.276620), essentially unchanged, same orderId 109834150."
   },
   "session_start_balance": 7394.99,
   "open_positions": [
@@ -117,10 +117,10 @@
       "note": "tick87 (mode=learn): PULLBACK_TAG_LONG fired 218.344 (30m tf, level 218.25, extreme 218.0345) at 03:00:09Z, continuation of tick85's HL_RECLAIM on the same shelf 30min earlier. Structure has improved slightly vs tick85: price has now broken the nearest step-down H4 high (218.348), still a long against the broader mild lower-highs lean (learn-mode-downgradable, not the blocker). Rule17 top-15pct (range_pos ~0.98 of 218.025-218.359) also learn-mode-downgradable, moot. BLOCKED ON R:R, same root cause as tick85 and getting worse, not better: 05:06 SAST, deep Asian window, Rule15 GBPJPY SL floor 30-50pips. Structural SL beyond the 218.0345 extreme + Asian buffer ≈ 217.9845, ~37.5pips risk from ask 218.359. Reward: nearest genuine resistance is now the 218.393-218.409 cluster, only ~3.4-5.0pips away (price has advanced closer to it since tick85, shrinking not growing the reward); the next real level (218.423) is ~6.4pips; the only level far enough to matter (218.721) needs the intervening cluster cleared first, not a fair single TP. Best-case honest R:R ≈ 0.1-0.15:1, fails Rule9's 1.2:1 floor by a wide margin, not learn-mode-downgradable. News: WebSearch for EUR/GBP/JPY calendar around 03:00-05:00 UTC found no date-specific high-impact hits for GBP/JPY/BoE/BoJ — attested news_clear, reused/consistent with tick85/86. No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION. Watch: London open (07:00 SAST) reverting Rule15 to 15-25pips would meaningfully help this R:R against the same 218.393-218.409 near target."
     },
     "AUDJPY": {
-      "trend": "BULL (broader), currently in a violent post-news breakout leg — treat as NOT YET TRADEABLE",
-      "asof": "2026-07-23T02:01:19Z",
-      "swings": "H4 since 7/20 16:00: swing low 113.587 (7/21 00:00) -> higher highs/higher lows to 114.389 (7/22 04:00 high). Then a corrective pullback 7/22 08:00-16:00 H4 bars (lower lows 113.942 -> 113.865, below the 7/21 16:00 114.009 higher-low) — not a trend break (113.587 swing low never touched) but a genuine short-term correction. M15 02:00 UTC (7/23): price chopped 113.96-114.05 for ~4h post-correction, then the 01:45-02:00 M15 bar exploded O114.075 H114.441 L114.075 C114.36 (~78% bull body, vol 179.3M vs 40-150M baseline all session) — reclaimed the entire corrective structure and made a fresh multi-day high (114.441) above the 114.389 prior peak. Live price 114.347/114.365, current 02:00-02:15 bar still extending (H114.399 so far).",
-      "note": "First H4 verdict on file for AUDJPY (no prior read). Signal: HL_RECLAIM fired 114.327 (30m tf, level 114.18, extreme 113.98) at 02:00:05Z, Tier1 escalated (new instrument, no H4 verdict on file). Technically this reclaim looks clean and with-trend (bigger-picture BULL since 113.587, correction now reclaimed to fresh highs, M15 trigger bar closes 78% bull body — would pass Change5 steps 2-5 on structure alone). BLOCKED ON NEWS, not structure: WebSearch confirmed the Australian Labour Force Survey (jobs/employment report, ABS) printed at 11:30 AEST = 01:30 UTC today, 23 Jul 2026 — a high-impact scheduled AUD release, only ~30min before this signal and squarely inside the window that produced the spike bar (01:45-02:00 M15, vol 179.3M vs the 20-bar session baseline of ~40-150M, and range 0.366 vs typical 0.02-0.05 per bar — a ~7-10x range/vol expansion). This is a textbook post-data spike, not an organic reclaim; the current 02:00 bar is still extending with zero compression yet. Rule 11/12 spirit (never chase the spike, wait for M15 compression + confirmation) and the AUTO_TICK_PROTOCOL learn-mode STILL-HARD-BLOCK 'News: high-impact event within 2h' both apply — 30min post-release is inside that 2h window and this is NOT a learn-mode-downgradable gate (only Rule17/H4-countertrend/scout-uncertainty are). No enforcer run, nothing placed/would-placed. NO_ACTION. Watch for M15 compression (2+ consecutive small-range bars) post-spike before re-evaluating this reclaim — if it holds above ~114.18-114.21 (former resistance, now support) after compressing, the with-trend long case can be revisited on its technical merits alone."
+      "trend": "BULL (broader, unbroken since 113.587), but the fresh HL_RECLAIM leg is failing in real time — treat as NOT YET CONFIRMED",
+      "asof": "2026-07-23T04:45:52Z",
+      "swings": "H4 unchanged base: swing low 113.587 (7/21 00:00). Post-spike M15 (since tick85's read): 02:00-04:00 bars chopped/digested in a 114.297-114.441 band (ranges .04-.095, loose not tight compression) with a brief 2-bar tightening at 03:45 (.045) / 04:00 (.04). 04:15 bar broke to a fresh session high (O114.424 H114.475 L114.409 C114.46, ~55% bull body). 04:30 (last CLOSED bar) reversed lower: O114.459 H114.472 L114.42 C114.442, ~33% BEAR body, closing back inside the prior range. Live price now 114.406/114.424 — already trading BELOW both the 114.448 signal level and the 114.475 session high.",
+      "note": "tick91 (mode=learn): HL_RECLAIM fired 114.45 (30m tf, level 114.448, extreme 113.98) at 04:44:17Z. Dispatcher escalated Tier2 (with-trend long vs H4 BULL, AUS-jobs news block now expired). News re-verified via fresh WebSearch: AUS labour force survey already printed ~01:30 UTC today (the event that caused the 01:45 spike), no other high-impact AUD or JPY item found for the rest of the session — attested news_clear, not the blocker this time. BLOCKED ON M15 TRIGGER, same Change5-step5 standard enforced all session: last CLOSED bar (04:30) is a ~33% BEAR body, not a 60%+ confirming bull bar; the signal's own reclaim level (114.448) was tagged on the still-forming bar and price has already round-tripped back below it (live ask 114.424 < 114.448) within ~90sec of the print — an active rejection/failed reclaim, not confirmation. Textbook 'do not chase the spike' (Rule 12 spirit) — the with-trend structure is real but this specific print is not yet validated. R:R also fails independently: structural SL beyond the 113.98 extreme + Asian buffer (Rule15 still active, 06:45 SAST, ~15min from London open) ≈113.93-113.95, ~47-49pips risk from ask 114.424; nearest resistance is the just-broken 114.475 session high, only ~5pips away, with no confirmed level beyond it — R:R ≈0.1:1, fails Rule9's 1.2:1 floor by a wide margin and is not learn-mode-downgradable. No enforcer run (blocked pre-enforcer on trigger+R:R). Nothing placed/would-placed. NO_ACTION. Watch: a confirmed CLOSED M15 bull bar (60%+ body) reclaiming back above 114.448-114.475, ideally after London open (07:00 SAST) reverts Rule15 to the normal floor and improves the R:R math."
     },
     "XAUUSD": {
       "trend": "BULL (swing low 4076.88 still unbroken) \u2014 12:00 bar broke back above the 4109-4123 chop ceiling, momentum resuming upward",
@@ -193,12 +193,12 @@
     },
     "AUDJPY": {
       "low": 113.956,
-      "high": 114.441,
-      "range": 0.485,
-      "top_15pct_cutoff": 114.368,
-      "bottom_15pct_cutoff": 114.029,
-      "asof": "2026-07-23T02:01:19Z",
-      "source": "get_symbol_price live low/high field. Entry ~114.365 (ask) = range_pos ~0.84, just under the top-15pct cutoff (warning-only in learn mode regardless) — moot this tick since blocked on news/spike grounds, not Rule17."
+      "high": 114.475,
+      "range": 0.519,
+      "top_15pct_cutoff": 114.397,
+      "bottom_15pct_cutoff": 114.034,
+      "asof": "2026-07-23T04:45:52Z",
+      "source": "get_symbol_price live low/high field, tick91 — session high extended to 114.475 (04:15 bar). Entry ~114.424 (ask) = range_pos ~0.90, inside top-15pct band; learn-mode WARN only, moot since blocked on M15 trigger + R:R, not Rule17."
     },
     "BRENT": {
       "low": 90.635,
