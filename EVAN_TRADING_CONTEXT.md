@@ -2778,3 +2778,12 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - News: WebSearch for EUR/GBP calendar found ECB decision today ~12:15 UTC (~8.7h out, outside the 2h window), no GBP high-impact event today (UK data already printed 7/21-22) — attested news_clear.
 - No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION.
 - Snapshot updated: h4_verdicts.EURGBP added, session_ranges.EURGBP added, watch_levels appended. tick_counter -> 89.
+
+## AUTO TICK 90 — 2026-07-23T04:11:19Z (Tier 2, mode=learn)
+- Signal: PULLBACK_TAG_LONG EURGBP 0.85366 (30m, level 0.85353, extreme 0.85302) at 04:11:19Z — continuation of tick89's HL_RECLAIM on the same shelf, 41min later.
+- Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Balance R6427.42 / equity R6389.14, unchanged from tick89. TESLA (EVAN_MANUAL, Sell 2u, pl -38.28) re-checked, untouched, not this bot's instrument.
+- H4 verdict unchanged (BULL, tick89 read still fresh, 41min old). M15 grind continued: last CLOSED bar (04:00, ~70% bull body) extended the reclaim without reversing. Rule17 range_pos ~1.0 (live ask above stated session high) — learn-mode-downgradable, moot.
+- BLOCKED ON R:R, and WORSE than tick89 not better: live ask has now reached 0.85391 EXACTLY (the multi-day high that had ~2.6 pips of headroom at tick89) — reward to that level is now ~0. Next target (round number 0.8550) only ~10.9 pips away vs the Asian Rule15 SL floor (~30-35 pips, still in effect at 06:11 SAST). Best-case R:R ≈ 0.31-0.36:1, fails Rule9's 1.2:1 floor. Not learn-mode-downgradable.
+- News: reused tick89's attestation (ECB ~12:15 UTC, ~8h out, outside 2h window) — no new search needed given the 41min gap. Attested news_clear.
+- No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.EURGBP refreshed, session_ranges.EURGBP refreshed (high now 0.85391), watch_levels EURGBP entry added (supersedes tick89). tick_counter -> 90.
