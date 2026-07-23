@@ -2730,3 +2730,13 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - Open position TESLA (EVAN_MANUAL, Sell 2u, pl -38.29) re-checked, unchanged, not touched.
 - No enforcer run. Nothing placed/would-placed. NO_ACTION.
 - Snapshot updated: h4_verdicts.AUDJPY added, session_ranges.AUDJPY added, watch_levels appended. tick_counter -> 84.
+
+## AUTO TICK 85 — 2026-07-23T02:32:11Z (Tier 2, mode=learn)
+- Signal: HL_RECLAIM GBPJPY 218.2505 (30m, level 218.25, extreme 218.0345). Tier1 escalated: new instrument, no H4 verdict on file, range_pos 0.883 needed H4 context for Rule17.
+- Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Balance R6427.42 / equity R6389.12, unchanged from tick84. TESLA (EVAN_MANUAL, Sell 2u, pl -38.30) re-checked, untouched, not this bot's instrument.
+- Built first-ever GBPJPY H4 read: CHOP/mild bear lean — H4 swing highs stepping down since 7/20 08:00 (218.828->218.721->218.423->218.409->218.348), lows noisy in a 217.5-218.8 band, no clean trend. M15 reclaim itself is orderly/low-vol (h1_atr 0.142), grinding up cleanly from 218.025 to 218.239 since 22:30.
+- H4-countertrend lean and Rule17 top-15pct (broker range_pos ~0.90) were both learn-mode-downgradable and moot.
+- BLOCKED ON R:R: 04:32 SAST, deep Asian window, Rule15 doubles the SL floor to 30-50 pips. Structural SL (below extreme 218.0345 + buffer) only clears ~29 pips — short of the floor — so the real SL sits ~35 pips out. Nearest honest resistance (218.393-218.409 cluster) is only ~10-12 pips of reward; the next real level (218.695-218.721) needs that cluster cleared first, not a fair single TP. Best-case R:R ~0.3-0.35:1, fails Rule9's 1.2:1 floor, not learn-mode-downgradable.
+- News: WebSearch for GBP/JPY high-impact calendar events found no date-specific hits; no scheduled high-impact GBP/JPY/BoE/BoJ release known for this slot. Attested news_clear, moot since blocked on R:R.
+- No enforcer run. Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.GBPJPY added, session_ranges.GBPJPY added, watch_levels appended. tick_counter -> 85.

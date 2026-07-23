@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-23T02:01:19Z",
-  "updated_by": "auto_tick_84_tier2",
+  "updated_utc": "2026-07-23T02:32:11Z",
+  "updated_by": "auto_tick_85_tier2",
   "balance": {
     "value": 6427.42,
-    "equity": 6389.13,
-    "queried_utc": "2026-07-23T02:01:19Z",
-    "note": "live-queried this run. Balance unchanged from tick83 (no realized closes since). Equity 6389.13 flat vs tick83's 6389.11 - TESLA EVAN_MANUAL floating pl -38.29, essentially unchanged."
+    "equity": 6389.12,
+    "queried_utc": "2026-07-23T02:32:11Z",
+    "note": "live-queried this run. Balance unchanged from tick84 (no realized closes since). Equity 6389.12 flat vs tick84's 6389.13 - TESLA EVAN_MANUAL floating pl -38.30, essentially unchanged."
   },
   "session_start_balance": 7394.99,
   "open_positions": [
@@ -18,9 +18,9 @@
       "price": 357.82,
       "stopLoss": 374.22,
       "takeProfit": 339.12,
-      "pl": -38.29,
+      "pl": -38.3,
       "openTime_utc": "2026-07-22T22:17:44Z",
-      "note": "EVAN_MANUAL. Discovered tick79, opened between ticks (22:17:44Z). Same signature as prior NVIDIA manual equity trades (Limit order, out of this bot's instrument universe). Not this system's instrument, not touched, treated as expected manual activity per the standing anomaly_status.RESOLVED rule (no freeze). pl re-checked tick84 (-38.29), essentially unchanged vs tick83's -38.31, same orderId.",
+      "note": "EVAN_MANUAL. Discovered tick79, opened between ticks (22:17:44Z). Same signature as prior NVIDIA manual equity trades (Limit order, out of this bot's instrument universe). Not this system's instrument, not touched, treated as expected manual activity per the standing anomaly_status.RESOLVED rule (no freeze). pl re-checked tick85 (-38.30), essentially unchanged vs tick84's -38.29, same orderId.",
       "origin": "EVAN_MANUAL"
     }
   ],
@@ -97,6 +97,12 @@
     }
   ],
   "h4_verdicts": {
+    "GBPJPY": {
+      "trend": "CHOP/MILD BEAR LEAN — H4 swing highs stepping down since 7/20 08:00 (218.828->218.721->218.423->218.409->218.348), lows noisy inside a 217.5-218.8 band, no clean directional trend either way",
+      "asof": "2026-07-23T02:32:11Z",
+      "swings": "H4 (last 20 bars, 7/18-7/23): high 218.828 (7/20 08:00) is the range top; subsequent H4 highs step down 218.721 (7/21 12:00) -> 218.423 (7/21 20:00) -> 218.409 (7/22 08:00) -> 218.348 (7/22 16:00) -> 218.234 (7/23 00:00, forming/partial). Lows: deepest 217.515 (7/21 16:00), retested 217.83/217.828 (7/22 12:00/16:00), currently basing 218.0-218.2. M15 since 22:30 (7/22): clean, low-volatility grind up from session low 218.025 to 218.239 (02:30), no violent spike (h1_atr only 0.142, quiet).",
+      "note": "First H4 verdict on file for GBPJPY (new instrument, Tier1 escalated for exactly this reason). Signal: HL_RECLAIM fired 218.2505 (30m tf, level 218.25, extreme 218.0345) at 02:30:07Z. Structure: M15 reclaim itself is clean/orderly (steady grind, no spike), but it's a long against a mild H4 lower-highs lean — counter-trend-ish, learn-mode-downgradable in principle. Rule17: broker live low/high 218.025/218.276 -> range_pos ~0.90, deep top-15pct band, also learn-mode-downgradable (WARN only). Neither of those was the blocker. BLOCKED ON R:R: it's 04:32 SAST, squarely inside the 00:00-07:00 SAST Asian window, so Rule15 doubles Rule2's forex SL floor to 30-50 pips. Structural SL (below extreme 218.0345 + 3-5pip buffer) only clears ~29 pips from ask 218.293 — short of the 30pip floor — so the real SL must sit further out, ~35 pips (218.293-0.35=217.943), which is still beyond the swing low so Rule18 geometry is fine. Nearest realistic resistance is the 218.393-218.409 cluster (7/22 00:00-08:00 H4 highs), only ~10-12 pips of reward from entry; the next real level (218.695-218.721, 7/21 08:00/12:00 highs) requires clearing that intervening cluster first so isn't a fair single TP. Best-case R:R with the 35pip SL and the honest near target is roughly 0.3-0.35:1, and even stretching to the far 218.72 level only gets to ~1.2:1 while ignoring the closer resistance that would almost certainly cap it first — fails Rule9's 1.2:1 floor in substance, and R:R is not one of the learn-mode-downgradable gates. News: WebSearch for GBP/JPY high-impact calendar events around 02:30 UTC 23 Jul 2026 returned no date-specific hits from the major calendar sites; no scheduled GBP/JPY/BoE/BoJ high-impact release is known for this slot (no NFP/CPI/FOMC-equivalent on this date/time), attested news_clear on that basis. No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION."
+    },
     "AUDJPY": {
       "trend": "BULL (broader), currently in a violent post-news breakout leg — treat as NOT YET TRADEABLE",
       "asof": "2026-07-23T02:01:19Z",
@@ -145,6 +151,15 @@
     }
   },
   "session_ranges": {
+    "GBPJPY": {
+      "low": 218.025,
+      "high": 218.276,
+      "range": 0.251,
+      "top_15pct_cutoff": 218.238,
+      "bottom_15pct_cutoff": 218.063,
+      "asof": "2026-07-23T02:32:11Z",
+      "source": "get_symbol_price live low/high field. Entry ~218.293 (ask) = range_pos ~0.90, deep top-15pct band; learn-mode WARN only, moot since blocked on R:R not Rule17."
+    },
     "AUDJPY": {
       "low": 113.956,
       "high": 114.441,
@@ -213,6 +228,10 @@
   },
   "armed_tickets": [],
   "watch_levels": [
+    {
+      "symbol": "GBPJPY",
+      "note": "tick 85: HL_RECLAIM fired 218.2505 (30m, level 218.25, extreme 218.0345). First GBPJPY H4 read on file: mild lower-highs lean, not a clean trend either way. NO_ACTION on R:R — Asian-session Rule15 SL floor (30-50pips) pushes the real stop to ~35pips out, but nearest honest resistance (218.393-218.409 cluster) is only ~10-12pips of reward. Rule17 top-15pct (range_pos ~0.90) was learn-mode-downgradable and moot. Re-check after 07:00 SAST when Rule15 reverts to the normal 15-25pip floor — same SL would then likely clear the R:R bar against that near cluster."
+    },
     {
       "symbol": "XAUUSD",
       "zone": "4060-4063",
