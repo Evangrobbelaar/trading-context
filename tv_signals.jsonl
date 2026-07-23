@@ -304,3 +304,4 @@
 {"event": "HL_RECLAIM", "symbol": "AUDJPY", "tf": "30", "price": 114.45, "level": 114.448, "extreme": 113.98, "range_pos": 0.933, "vol_mult": 1.22, "h1_atr": 0.117741, "t": 1784781001963, "received_utc": "2026-07-23T04:44:17.472557+00:00"}
 {"event": "HL_RECLAIM", "symbol": "EURJPY", "tf": "30", "price": 186.44, "level": 186.375, "extreme": 186.106, "range_pos": 0.947, "vol_mult": 1.23, "h1_atr": 0.110677, "t": 1784781001068, "received_utc": "2026-07-23T04:51:58.460993+00:00"}
 {"event": "HL_RECLAIM", "symbol": "EURJPY", "tf": "30", "price": 186.583, "level": 186.488, "extreme": 186.324, "range_pos": 0.866, "vol_mult": 1.76, "h1_atr": 0.127525, "t": 1784793600349, "received_utc": "2026-07-23T08:00:16.845759+00:00"}
+{"event": "PULLBACK_TAG_LONG", "symbol": "USDJPY", "tf": "30", "price": 163.318, "level": 163.153, "extreme": 163.03, "range_pos": 0.747, "vol_mult": 2.52, "h1_atr": 0.091043, "t": 1784793600550, "received_utc": "2026-07-23T08:06:39.548592+00:00"}
