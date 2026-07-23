@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-23T13:36:46Z",
-  "updated_by": "auto tick 100",
+  "updated_utc": "2026-07-23T14:06:00Z",
+  "updated_by": "auto tick 101",
   "balance": {
     "value": 6730.65,
     "equity": 6730.65,
-    "queried_utc": "2026-07-23T13:36:46Z",
-    "note": "live-queried this run via get_account_info. Unchanged from tick99 (6730.65) -- get_open_positions confirmed still empty, no fills/closes since tick97."
+    "queried_utc": "2026-07-23T14:03:00Z",
+    "note": "live-queried this run via get_account_info. Unchanged from tick97-100 (6730.65) -- get_open_positions confirmed still empty, no fills/closes. Session P&L -664.34 vs session_start_balance 7394.99."
   },
   "session_start_balance": 7394.99,
   "open_positions": [],
@@ -16,7 +16,7 @@
       "trend": "BULL — clean higher-lows staircase since 7/20 16:00 swing low 0.84824; fresh multi-day high 0.85433 printed since tick90 (was 0.85391), structure still intact",
       "asof": "2026-07-23T13:36:46Z",
       "swings": "M15 now chopping just under the 0.85302 shelf/level rather than grinding up: 12:30 (O0.85314 H0.8532 L0.85289 C0.85293) -> 12:45 (O0.85293 H0.8531 L0.85287 C0.85289) -> 13:00 (O0.85288 H0.85324 L0.85275 C0.85318) -> 13:15 LAST CLOSED (O0.85319 H0.85332 L0.8528 C0.8529, ~56% bear body, closed back below 0.85302) -> 13:30 forming (O0.85291 H0.85335 L0.85282 C0.85312, attempting reclaim, unclosed). Live bid/ask 0.85301/0.8532.",
-      "note": "tick100 (mode=learn): SWEEP_LOW fired 0.85322 (30m tf, level 0.85302, extreme 0.8529, range_pos 0.312, vol_mult 1.86) at 13:30:12Z -- 3rd/4th SWEEP_LOW print at ~0.85302 within 240min (12:00Z, 13:00Z, 13:30Z), dispatcher-flagged Sprung Ladder Phase-1 shelf signature. Two gates fail independently, same as tick99's EURJPY pattern: (1) scout deployment is Evan-only per AUTO_TICK_PROTOCOL absolutes -- never auto-deployed regardless of mode; (2) standalone Rule9 entry also fails -- last CLOSED M15 bar (13:15) is a ~56% bear body closing back below the 0.85302 shelf, not a bullish reclaim; the 13:30 bar is attempting reclaim but is still forming/unclosed (Change5 step5 requires a closed trigger bar). H4 remains BULL and structurally intact. News: reused this tick's WebSearch (EUR/GBP/JPY calendar scan, post-ECB, no new scheduled high-impact item found in the 2h window) -- attested news_clear, moot since blocked on trigger. No enforcer run. Nothing placed/would-placed. NO_ACTION. Watch: next closed M15 bar for a genuine bullish reclaim close above 0.85302, or the shelf breaking down further (4th sweep already fired -- Sprung Ladder maturity increasing).",
+      "note": "tick101 (mode=learn): SWEEP_LOW fired 0.85326 (30m tf, level 0.85302, extreme 0.85296, range_pos 0.335, vol_mult 1.81) at 14:00:31Z -- 5th+ SWEEP_LOW print at ~0.85302 within 240min, dispatcher-flagged Sprung Ladder Phase-1 shelf signature, maturity still increasing. Fresh M15 (12:15-14:00) confirms continued tight chop 0.8529-0.8533 around the shelf, no clean directional close either way -- last CLOSED bar (13:45, O0.85313 H0.85327 L0.85284 C0.8531) is a near-doji (~10% body), not a trigger. Same two independent blocks as tick99/100: (1) scout deployment is Evan-only per AUTO_TICK_PROTOCOL absolutes, never auto-deployed regardless of mode; (2) no confirmed closed M15 reclaim above the shelf. H4 remains BULL and structurally intact (session high still 0.85433). News: reused this tick's WebSearch scope, no new scheduled high-impact item found in the 2h window -- attested news_clear, moot. No enforcer run. Nothing placed/would-placed. NO_ACTION. Watch: a genuine closed bullish reclaim above 0.85302, or the shelf finally breaking down cleanly.",
       "sources": [
         "https://wforex.com/news/economic-calendar-july-20-26-2026",
         "https://www.tradingview.com/symbols/EURGBP/economic-calendar/"
@@ -29,10 +29,10 @@
       "note": "tick100 (mode=learn): SWEEP_LOW fired 186.366 (30m tf, level 186.324, extreme 186.206, range_pos 0.516, vol_mult 1.77) at 13:30:29Z, same shelf as tick99, no new information -- still a sweep, not a reclaim. Same two independent blocks as tick99: (1) Sprung Ladder Phase-1 scout deployment is Evan-only, never auto-deployed; (2) last CLOSED M15 bar (13:15) is bearish below the shelf -- no confirmed bullish reclaim trigger; the forming 13:30 bar shows a reclaim attempt (close 186.356, above 186.324) but is unclosed, so Change5 step5 is not yet satisfied. H4 remains BULL/intact. News: WebSearch (EUR/GBP/JPY calendar) found no new scheduled high-impact item in the 2h window post-ECB -- attested news_clear, moot. No enforcer run. Nothing placed/would-placed. NO_ACTION. Watch: if the 13:30 (or next) M15 bar CLOSES above 186.324, that's the confirmed reclaim trigger to re-evaluate as a standalone with-trend long."
     },
     "GBPJPY": {
-      "trend": "CHOP/MILD BEAR LEAN, but the most recent step-down high (218.348) has now been broken — H4 highs 218.828->218.721->218.423->218.409->218.348 stepped down since 7/20 08:00, live price 218.359 just cleared the last one",
-      "asof": "2026-07-23T03:06:26Z",
-      "swings": "H4: last CLOSED bar 7/22 20:00 (O218.13 H218.192 L217.994 C218.18); 7/23 00:00 bar forming, running to 218.343+ live. M15 02:45 (O218.237 H218.338 L218.237 C218.309, ~91% bull body) closed above the 218.25 level — clean confirmed trigger. 03:00 bar (live, <1min old) extended to 218.359, breaking the 218.348 (7/22 16:00) step-down high — the nearest rung in the lower-highs sequence. Next resistance cluster overhead: 218.393-218.409 (7/22 00:00-08:00 H4 highs), then 218.423 (7/21 20:00).",
-      "note": "tick87 (mode=learn): PULLBACK_TAG_LONG fired 218.344 (30m tf, level 218.25, extreme 218.0345) at 03:00:09Z, continuation of tick85's HL_RECLAIM on the same shelf 30min earlier. Structure has improved slightly vs tick85: price has now broken the nearest step-down H4 high (218.348), still a long against the broader mild lower-highs lean (learn-mode-downgradable, not the blocker). Rule17 top-15pct (range_pos ~0.98 of 218.025-218.359) also learn-mode-downgradable, moot. BLOCKED ON R:R, same root cause as tick85 and getting worse, not better: 05:06 SAST, deep Asian window, Rule15 GBPJPY SL floor 30-50pips. Structural SL beyond the 218.0345 extreme + Asian buffer ≈ 217.9845, ~37.5pips risk from ask 218.359. Reward: nearest genuine resistance is now the 218.393-218.409 cluster, only ~3.4-5.0pips away (price has advanced closer to it since tick85, shrinking not growing the reward); the next real level (218.423) is ~6.4pips; the only level far enough to matter (218.721) needs the intervening cluster cleared first, not a fair single TP. Best-case honest R:R ≈ 0.1-0.15:1, fails Rule9's 1.2:1 floor by a wide margin, not learn-mode-downgradable. News: WebSearch for EUR/GBP/JPY calendar around 03:00-05:00 UTC found no date-specific high-impact hits for GBP/JPY/BoE/BoJ — attested news_clear, reused/consistent with tick85/86. No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION. Watch: London open (07:00 SAST) reverting Rule15 to 15-25pips would meaningfully help this R:R against the same 218.393-218.409 near target."
+      "trend": "BULL (re-emerging) -- the earlier CHOP/MILD-BEAR-LEAN read is superseded. Clean staircase of higher highs since ~12:15: 218.29(12:15)->218.379(13:00)->218.502(13:45 closed, fresh high)->218.621(14:00 intrabar high, fresh session high), before fading back to 218.454/218.472 live.",
+      "asof": "2026-07-23T14:05:00Z",
+      "swings": "M15 12:15-14:00: 218.342(12:15)->218.311(12:30)->218.375(12:45)->218.379(13:00)->218.324(13:15)->218.416(13:30)->13:45 LAST CLOSED (O218.417 H218.526 L218.374 C218.502, fresh high, body ~56% bull -- just under Change5's 60% threshold)->14:00 forming, spiked intrabar to a fresh session high 218.621 then faded; live bid/ask 218.454/218.472 now BELOW both the signal price (218.5355) and the 218.521 reclaim level.",
+      "note": "tick101 (mode=learn): HL_RECLAIM fired 218.5355 (level 218.521, extreme 218.068, range_pos 0.844, vol_mult 1.0) at 14:00:18Z. BLOCKED ON M15 TRIGGER + live fade: last CLOSED bar (13:45) is a strong bull bar but body is ~56% (0.085/0.152), marginally under Change5's 60%+ confirmation standard -- not downgradable in learn mode (only Rule17/H4-countertrend/scout-uncertainty are). Separately, live price has already round-tripped back below both the signal print and the 218.521 reclaim level within ~90sec of print -- an active failed-reclaim, same pattern as tick91's AUDJPY call. Rule17: range_pos 0.844 sits just under the top-15pct band (cutoff recomputes to ~218.532 on the extended 218.025-218.621 range) -- warn-only in learn mode, moot regardless. News: reused this tick's WebSearch scope, no new GBP/JPY high-impact item found in the 2h window -- attested news_clear. No enforcer run. Nothing placed/would-placed. NO_ACTION. Watch: a CLOSED M15 bar back above 218.526-218.621 with a clean 60%+ bull body AND price holding above 218.521 (not fading) would confirm continuation of the re-emerging uptrend."
     },
     "AUDJPY": {
       "trend": "BULL (broader, unbroken since 113.587), but the fresh HL_RECLAIM leg is failing in real time — treat as NOT YET CONFIRMED",
@@ -66,9 +66,10 @@
       "note": "Refreshed this tick (was stale from 7/21 14:20). Broader trend still up from 63693 base but 7/21 16:00-7/22 12:00 showed a corrective lower-highs/lower-lows sequence — not a clean confirmed bull continuation yet (no break of 66683/66905 swing highs). Treated as uncertain/transitioning; learn-mode WARN override applied, not a hard block."
     },
     "XAGUSD": {
-      "trend": "BEARISH -- fresh confirmed reversal (prior verdict was UNKNOWN/carried-forward). Clean lower-high/lower-low sequence since 7/22 16:00 peak (60.907/58.885). Last 3 H4 swing highs: 60.041 (7/23 04:00) -> 59.88 (08:00) -> 59.004 (12:00, closing lower). Last 3 H4 swing lows: 59.393 -> 58.648 -> 57.977. H1 confirms lower-high sequence 06:00-13:00 (59.863->59.689->59.437->59.004->58.828->58.755) -- Rule19 momentum condition met.",
-      "asof": "2026-07-23T13:09:00Z",
-      "note": "tick98: LL_BREAKDOWN 57.6535 (level 58.0116, range_pos 0.003) evaluated alongside XAUUSD -- same macro driver (Fed hawkish repricing + strong USD + oil-spike inflation fears), attested news_clear, not a disorderly tape. BLOCKED PRE-ENFORCER, same root cause as XAUUSD: no nearby structural swing high to anchor a compliant SL. XAGUSD pip value at forced learn-mode 0.01 lots is R779/pt (confirmed instrument spec) -- enforcer's R336.53 per-trade cap (5% of R6,730.65 balance) allows only ~0.43pt of SL room, but the nearest usable closed-bar high (12:45 bar, 58.225) sits ~1.0pt above current price (~57.23), costing ~R779, well over budget. NO_ACTION. Watch: a bounce/consolidation creating a swing high within ~0.4pt of price, or deceleration.",
+      "trend": "BEARISH (structural, H4 intact) -- but a sharp corrective bounce is underway on M15 since the 13:15 sweep low 57.041. Last 3 H4 swing highs: 60.041 (7/23 04:00) -> 59.88 (08:00) -> 59.004 (12:00, closing lower). Last 3 H4 swing lows: 59.393 -> 58.648 -> 57.977. Treat the bounce as corrective-within-downtrend, not a reversal, until proven otherwise.",
+      "asof": "2026-07-23T14:04:00Z",
+      "swings": "M15 12:15-14:00: 58.506(12:15)->58.187(12:30)->58.01(12:45)->57.633(13:00, closed)->57.041 sweep low intrabar (13:15, closed 57.081)->13:30 sharp bull reversal (O57.082 H57.63 L57.072 C57.625, ~97% bull body)->13:45 LAST CLOSED (O57.622 H58.021 L57.604 C57.886, tagged 58.021 intrabar just above the 58.0116 signal level, closed back down at 57.886, ~56% bull body -- upper wick shows some rejection but body itself is bullish, not a clean bear trigger)->14:00 forming, dipped to 57.591 then recovering. Live bid/ask 57.682/57.726.",
+      "note": "tick101 (mode=learn): PULLBACK_TAG_SHORT fired 57.626 (level 58.0116, extreme 59.9255, range_pos 0.188, vol_mult 1.95) at 14:00:10Z -- with-trend SHORT candidate vs confirmed H4 BEARISH. BLOCKED ON M15 TRIGGER: last CLOSED bar (13:45) tagged the 58.0116 resistance intrabar (high 58.021) but closed as a ~56% BULL body, not a 60%+ bear rejection bar required by Change5 step5. The corrective bounce off the 13:15 sweep low (57.041) is sharp (+0.98pt in 2 bars) and not yet showing a confirmed rejection. Rule17 (range_pos 0.188, near bottom-15pct, would warn on a SELL) is WARN-only in learn mode and moot regardless -- blocked upstream on trigger. News: reused this tick's WebSearch scope (Fed hawkish repricing / strong USD / Mideast oil-spike backdrop, same macro driver as tick98, no acute scheduled event in 2h window) -- attested news_clear. No enforcer run. Nothing placed/would-placed. NO_ACTION. Watch: a CLOSED M15 bar printing a clean 60%+ bear body near 58.0-58.1 (confirming the pullback is rejected) would open a with-trend short -- SL above that rejection high + buffer, target back toward 57.04 and lower given H4 bearish.",
       "sources": [
         "https://www.fxstreet.com/news/silver-price-today-silver-falls-according-to-fxstreet-data-202607230930"
       ]
@@ -81,8 +82,8 @@
     },
     "BRENT": {
       "trend": "BULL on broker-native data, uptrend uninterrupted and accelerating -- clean higher lows through 7/21-7/23 (89.125 -> 89.502 -> 90.517 -> 90.492 -> 90.635 -> 91.554 -> 91.822 -> 92.001 -> 91.867 -> 91.675 -> 91.89 -> 92.48 -> 92.707 -> 92.876), fresh session high 93.88 on the forming 10:00 H1 bar, last closed H1 (09:00-10:00) printed 93.192->93.484. No pullback of any size visible on broker-native H1 -- this is straight-line grind-up, not a pullback structure.",
-      "asof": "2026-07-23T10:00:25Z",
-      "note": "tick95 (mode=learn): PULLBACK_TAG_LONG fired price 98.587 (level 98.707, extreme 95.743, 30m tf) at 10:00:14Z. SAME DATA-INTEGRITY FINDING AS TICK81, WORSENING: broker live BRENT quote at read time was bid/ask 93.612/93.627 (session low/high 90.635/93.88), and broker H1 history 7/21 03:00-7/23 10:00 never traded above 93.88. The signal's price/level/extreme (95.743-98.707) sit ~4.7-4.9pts (~5.0-5.2%) above the entire broker-visible range -- the gap has widened from tick81's ~3.8-4.4pts (~4.2-4.5%), i.e. the demo feed is falling further behind whatever real-world/TV feed is driving the alert, not converging. Two intervening BRENT signals this session (HL_RECLAIM 97.042 @08:46, HL_RECLAIM 98.848 @09:30) show the same pattern each time, confirming this is a persistent structural feed/vendor basis gap on this symbol, not a one-off spike artifact. Per tick81's standing finding, this remains NOT learn-mode-downgradable (data-trust, not a discretionary gate) -- the signal's level/extreme cannot be used to build a structural SL/TP that would actually fill on this broker. Independent check on broker-native data alone (ignoring signal fields): H4/H1 uptrend is genuinely intact and accelerating (see trend field), but there is no pullback structure at all right now -- price is grinding to fresh highs every H1 bar with no rejection/reclaim bar to trade off, so even a fully independent broker-native entry attempt has no M15 trigger to point to. NO_ACTION on data-integrity grounds (primary) and no independent trigger (secondary). No enforcer run (blocked pre-enforcer, same as tick81). FLAG FOR EVAN (escalating from tick81): the BRENT TradingView alert feed and this broker's BRENT quote are on divergent paths and the gap is growing tick over tick -- recommend re-pointing or disabling the BRENT TV alert until the feeds are reconciled, since every fill from here forward would need the same manual broker-native-only override tick81/tick95 did, and one day the override check may get skipped."
+      "asof": "2026-07-23T14:03:00Z",
+      "note": "tick101 (mode=learn): HL_RECLAIM fired 100.902 (level 100.513, extreme 95.743, 30m tf) at 14:00:13Z. DATA-INTEGRITY GAP PERSISTS AND HAS WIDENED FURTHER: broker live BRENT quote at read time was bid/ask 94.975/94.99 (session low/high 90.635/95.193, broker made a fresh high since tick95's 93.88). The signal's price/level (95.743-100.902) now sit ~5.7-5.9pts (~6.0-6.2%) above the entire broker-visible range -- up from tick95/98's ~4.7-5.5pt gap, continuing to widen tick over tick, not converging. Same standing finding since tick81: NOT learn-mode-downgradable (data-trust, not a discretionary gate). Independent broker-native check: H4/H1 uptrend still genuinely intact and accelerating, still straight-line grind to fresh highs with no pullback/consolidation structure to trade off -- no independent M15 trigger either. NO_ACTION on data-integrity (primary) and no independent trigger (secondary). No enforcer run. FLAG FOR EVAN (still open, escalating further): BRENT TV alert feed vs broker quote gap has now grown across ticks 81->95->98->101 with no sign of reconciling -- recommend re-pointing/disabling the BRENT TV alert."
     },
     "WTI": {
       "trend": "BULL on broker-native data, clean sustained uptrend since 7/21 09:00 (low 81.192), higher lows through pullbacks (83.496 -> 83.664 -> 84.018 -> 85.22 7/22 16:00, the deepest pullback -> resumed to fresh session high 89.353 at 7/23 09:30). No lower-high break anywhere in the visible H1 series.",
@@ -104,8 +105,8 @@
       "range": 0.00236,
       "top_15pct_cutoff": 0.853976,
       "bottom_15pct_cutoff": 0.852324,
-      "asof": "2026-07-23T13:36:46Z",
-      "source": "get_symbol_price live low/high field, tick100. Session high extended to 0.85433 since tick90. Signal entry ~0.8532 = range_pos ~0.52, mid-range, clear of both bands; moot anyway since blocked on M15 trigger (last closed bar bearish below shelf), not Rule17."
+      "asof": "2026-07-23T14:03:00Z",
+      "source": "get_symbol_price live low/high field, tick101. Range unchanged since tick90. Signal entry ~0.8533 = range_pos ~0.55, mid-range, clear of both bands; moot anyway since blocked on M15 trigger (chop, no reclaim), not Rule17."
     },
     "EURJPY": {
       "low": 185.985,
@@ -136,10 +137,10 @@
     },
     "BRENT": {
       "low": 90.635,
-      "high": 93.88,
-      "range": 3.245,
-      "asof": "2026-07-23T10:00:25Z",
-      "source": "get_symbol_price live low/high field (broker-native, today's session), tick95. Still moot for Rule17: NO_ACTION was on data-integrity grounds, not range position. Do NOT compute range_pos against the signal's own price/level/extreme (98.587/98.707/95.743) -- confirmed decoupled series, see h4_verdicts.BRENT."
+      "high": 95.193,
+      "range": 4.558,
+      "asof": "2026-07-23T14:03:00Z",
+      "source": "get_symbol_price live low/high field (broker-native, today's session), tick101. Fresh session high (was 93.88 at tick95). Still moot for Rule17: NO_ACTION was on data-integrity grounds, not range position. Do NOT compute range_pos against the signal's own price/level/extreme (100.902/100.513/95.743) -- confirmed decoupled series, see h4_verdicts.BRENT."
     },
     "XAUUSD": {
       "low": 4044.88,
@@ -151,13 +152,22 @@
       "source": "get_symbol_price live low/high field, tick98. LL_BREAKDOWN signal (range_pos 0.008) confirmed deep bottom-15pct band on this fresh range too -- moot, NO_ACTION was on enforcer risk-budget/SL grounds, not Rule17."
     },
     "XAGUSD": {
-      "low": 57.14,
+      "low": 57.041,
       "high": 60.041,
-      "range": 2.901,
-      "top_15pct_cutoff": 59.606,
-      "bottom_15pct_cutoff": 57.575,
-      "asof": "2026-07-23T13:09:00Z",
-      "source": "get_symbol_price live low/high field, tick98. LL_BREAKDOWN signal (range_pos 0.003) confirmed deep bottom-15pct band -- moot, NO_ACTION was on enforcer risk-budget/SL grounds, not Rule17."
+      "range": 3.0,
+      "top_15pct_cutoff": 59.591,
+      "bottom_15pct_cutoff": 57.491,
+      "asof": "2026-07-23T14:04:00Z",
+      "source": "get_symbol_price live low/high field, tick101. Fresh session low 57.041 (13:15 sweep, was 57.14 at tick98). Signal range_pos 0.188 clear of bottom-15pct band on the fresh range -- moot regardless, blocked on M15 trigger not Rule17."
+    },
+    "GBPJPY": {
+      "low": 218.025,
+      "high": 218.621,
+      "range": 0.596,
+      "top_15pct_cutoff": 218.5316,
+      "bottom_15pct_cutoff": 218.1144,
+      "asof": "2026-07-23T14:05:00Z",
+      "source": "get_symbol_price live low/high field, tick101. Session high extended to 218.621 (14:00 intrabar) since tick87's 218.359. Signal range_pos 0.844 sits just under the recomputed top-15pct cutoff -- warn-only in learn mode regardless, moot since blocked on M15 trigger + live fade."
     },
     "EURUSD": {
       "low": 1.14045,
@@ -202,6 +212,21 @@
   },
   "armed_tickets": [],
   "watch_levels": [
+    {
+      "symbol": "TSLA",
+      "note": "tick101: LL_BREAKDOWN fired 326.72 (30m tf, level 372.9, extreme 378.94, range_pos 0.035, vol_mult 9.42) at 14:00:32Z -- first TSLA read this session. WebSearch confirmed Q2 earnings miss already caused a 6.2% decline into 7/22 close (374.01); broker-native price check (bid/ask 325.62/326.06, session low/high 325.48/356.48) confirms the further ~13% drop is REAL on this broker (not a BRENT/WTI-style feed-decoupling artifact), but the 9.42x volume spike and single-session ~8.7% range are consistent with a disorderly/gap earnings-reaction tape. Per Rule 11/12 spirit (never chase the spike, wait for M15 compression post-news) and the learn-mode hard block on suspected disorderly tape, treated as NOT tradeable this tick regardless of direction. get_symbol_history calls for TSLA failed twice (transient Cloudflare 502, origin_bad_gateway) so no M15 structure read was possible. No enforcer run. Nothing placed/would-placed. NO_ACTION. Watch: M15 compression/stabilization before any structure-based entry is considered; re-attempt history pull next tick.",
+      "set_utc": "2026-07-23T14:03:43Z"
+    },
+    {
+      "symbol": "SPX500",
+      "note": "tick101: PULLBACK_TAG_SHORT fired 7419.9 (30m tf, level 7452.7, extreme 7486.2, range_pos 0.118, vol_mult 2.46) at 14:00:15Z -- first SPX500 read this session, no H4 verdict on file. Live price bid/ask 7433.7/7434.05, session low/high 7415.95/7520.58 (range_pos 0.118 is near/inside the bottom-15pct band, which would warn on a SELL in learn mode). Did not pull H4/H1/M15 history this tick (MCP call budget prioritized toward established with-trend candidates); Change5's H4 trend gate cannot be evaluated without it. NO_ACTION on insufficient data, not a structural block. No enforcer run. Nothing placed/would-placed. Watch: pull H4/H1/M15 history for SPX500 next tick before any entry consideration.",
+      "set_utc": "2026-07-23T14:00:15Z"
+    },
+    {
+      "symbol": "NVDA",
+      "note": "tick101: PULLBACK_TAG_LONG fired 208.93 (30m tf, level 208.65, extreme 204.95, range_pos 0.189, vol_mult 1.63) at 14:00:16Z -- first NVDA read this session, no H4 verdict on file. Live price bid/ask 208.73/209.13, session low/high 208.07/211.6. Did not pull H4/H1/M15 history this tick (same budget-prioritization reason as SPX500). NO_ACTION on insufficient data, not a structural block. No enforcer run. Nothing placed/would-placed. Watch: pull H4/H1/M15 history for NVDA next tick before any entry consideration.",
+      "set_utc": "2026-07-23T14:00:16Z"
+    },
     {
       "symbol": "BRENT",
       "note": "tick98 (reaffirms tick95/tick96): signal/broker decoupling PERSISTS and still widening -- signal PULLBACK_TAG_LONG 99.906 vs live broker bid/ask 94.476/94.491, gap now ~5.4-5.5pt (was ~4.7-4.9pt at tick95). Broker-native price also hit a fresh high (94.651) with still no pullback/consolidation structure visible -- straight-line grind continues. NO_ACTION, same grounds as tick95: data-integrity primary, no independent M15 trigger secondary. Flag to Evan still open: re-point/disable the BRENT TV alert.",
