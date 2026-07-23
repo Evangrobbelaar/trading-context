@@ -2807,3 +2807,17 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - News: fresh WebSearch confirmed ECB rate decision today ~12:15 UTC (~4h10min out, outside the 2h window), no BoJ meeting today — attested news_clear.
 - No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed. NO_ACTION.
 - Snapshot updated: h4_verdicts.EURJPY refreshed, session_ranges.EURJPY refreshed (high now 186.659), watch_levels EURJPY entry added (supersedes tick86). tick_counter -> 92.
+
+## AUTO TICK 93 — 2026-07-23T08:06:39Z (Tier 2, mode=learn)
+- Signal: PULLBACK_TAG_LONG USDJPY 163.318 (30m, level 163.153, extreme 163.03) at 08:06:39Z.
+- Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Balance R6,427.42 / equity R6,514.11 pre-order (live-queried). TESLA (EVAN_MANUAL, Sell 2u, orderId 109834150) pl +86.69, re-checked, untouched, not this bot's instrument.
+- Reassessed the on-file USDJPY H4 verdict (UNCERTAIN, tick63, ~24h stale, written 35min after the 7/22 07:45 suspected BoJ-adjacent spike to 162.659) with fresh H4/M15 pulls: 20h of clean, normal-volume consolidation (162.905-163.191) since the spike, then a genuine breakout on the 08:00 bar to a fresh multi-day high 163.42 on in-range volume (not spike-anomalous). Swing-low sequence unbroken through the spike (162.406 -> 162.659, still higher). Judged digested, not disorderly tape — upgraded verdict to BULL.
+- M15 trigger MET on a CLOSED bar: 07:45 (O163.162 H163.26 L163.158 C163.225, ~62% bull body), closing above the 163.153 level (the spike bar's own open — price reclaimed exactly what it lost). Did not chase the still-forming 08:00 bar.
+- Session timing: 10:06 SAST, well past Asian close — Rule15 doubling does not apply, Rule2 normal 15-25pip floor governs.
+- Rule17: entry 163.346 = range_pos 0.828 of session range 162.99-163.42, clear of the top-15pct band — no override needed.
+- News: fresh WebSearch found no scheduled BoJ/Fed/high-impact item in the 2h window; only an ongoing verbal-intervention-risk note (Japan FinMin reiterating readiness to act on yen weakness) — not a fresh 2h event. Attested news_clear.
+- SL 163.118 (4pip buffer below the 07:45 bar low 163.158) → risk 22.8 pips ≈ R21.84 at 0.01L (0.34% of balance). TP 163.642 (~1.3:1 R:R). TESLA worst-case risk (~R539) included as open_pending_risk.
+- **Enforcer PASS (exit 0)**: `python3 enforcer.py --account demo --account_id 41829612 --balance 6427.42 --instrument USDJPY --risk_amount 21.84 --open_pending_risk 539 --news_checked --news_clear --entry 163.346 --direction buy --session_high 163.42 --session_low 162.99 --learn`.
+- **PLACED**: BUY 0.01L (1000 units) [LEARN], filled 163.354, SL 163.118, TP 163.642, orderId 109835929. Order-mutation tool (create_market_order) present this session — the tool-grant gap noted at ticks 54-61 is resolved. Confirmed via get_open_positions (after one transient MCP 502, retried) that the fill sits on account 41829612.
+- Balance R6,427.42 / equity R6,490.78 post-order (balance unchanged, no realized closes). Session P&L (balance basis) R-967.57 vs session_start_balance R7,394.99, unchanged.
+- Snapshot updated: h4_verdicts.USDJPY rewritten (UNCERTAIN -> BULL), session_ranges.USDJPY refreshed, open_positions +USDJPY, watch_levels appended (management checklist for next tick). tick_counter -> 93.
