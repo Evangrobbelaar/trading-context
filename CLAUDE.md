@@ -291,26 +291,47 @@ After news: wait for M15 compression + double bottom/top before entering (Rule 1
 
 ## INSTRUMENTS TO AVOID
 
-SOURCE OF TRUTH (23 Jul 2026): this list is now enforced in code, not prose.
-The machine-readable version lives in `tv-pipeline/runner/tiers.json` under
-`instrument_policy`, keyed by BROKER symbol, and the auto-tick runner blocks
-matching signals BEFORE spawning a session. Keep the two in sync — edit the
-JSON, mirror the human summary here.
+**NONE. This list was emptied 23 Jul 2026 at Evan's instruction. No instrument is
+banned outright — every instrument is judged live, on its own numbers, each tick.**
 
-- WTI Crude — too news/spread driven (use BRENT instead). status: blocked.
-  Note: to trade oil, make BRENT alerts in TradingView. Do NOT remap USOIL->BRENT
-  in the pipeline — a signal's level/extreme were computed on the source chart
-  and do not transfer to a different contract.
-- BTCUSD / ETHUSD — wide spread, random spikes. status: session_limited,
-  blocked 00:00–07:00 SAST (Rule 16 Asian crypto ban). Tradeable London/NY.
-- GER40 overnight — wide spread, no liquidity. status: session_limited 22:00–07:00 SAST.
-- NAS100 — UNBLOCKED 23 Jul 2026 (was: "not worth it at 0.01 lots, use at 1+ lot
-  when account > R5,000"). Balance R6,427 clears that bar. status: ok. Sizing
-  caveat stands: do NOT trade NAS100 at 0.01 lots (R1.30/pt) — 1+ lot only.
+Why it went, beyond preference — the ban premise measured FALSE. Spread as a
+percentage of daily range, 23 Jul 2026:
 
-### Alias map (TV alert name -> broker symbol), also in tiers.json:
+| instrument | spread | daily range | cost to trade |
+|---|---|---|---|
+| NAS100 | 1.3 | 359.1 | 0.36% |
+| BRENT | 0.015 | 2.851 | 0.53% |
+| WTI | 0.015 | 2.349 | 0.64% |
+| EURUSD | 0.00009 | 0.00308 | 2.92% |
+
+WTI sat on this list for being "too news/spread driven". It is 4.5x CHEAPER to
+trade than EURUSD, which the system trades continuously without objection.
+
+The list was also redundant by construction. R:R is computed from the LIVE ask
+(buys) / bid (sells), so spread is already inside every Rule 9 decision. A ban
+list double-counted a cost the R:R gate measures anyway — substituting a frozen
+opinion for a live quote. The other stated concern, news-driven whipsaw, is
+Rule 11, also evaluated live. Both concerns survive; the static list did not.
+
+Corroborating evidence that static lists rot: NAS100's own entry read "use at
+1+ lot when account > R5,000". The account cleared R5,000 and the entry kept
+blocking anyway, because prose has no way to notice its own condition expired.
+
+**Sizing notes survive as sizing notes, not bans:**
+- NAS100 — R1.30/pt. Not worth trading at 0.01 lots. Use 1+ lot.
+- BTCUSD / ETHUSD — wide spread and spike-prone. Rule 16 (00:00–07:00 SAST crypto
+  ban) is a numbered session rule and still stands on its own; it is NOT an
+  instrument list entry.
+- GER40 — thin overnight. Judge on live spread at tick time.
+- WTI / BRENT — oil moves on headlines. That is Rule 11's job, not a ban.
+
+**To re-add an entry here:** attach a dated measurement showing the instrument
+fails on its own live numbers. No entry goes back in on recollection alone.
+
+### Alias map (TV alert name -> broker symbol), in tiers.json:
 USOIL->WTI, GOLD->XAUUSD, SILVER->XAGUSD, US100->NAS100. XAUUSD1! stays IGNORED
-(futures continuous ≠ spot). Broker names verified via get_symbols 23 Jul 2026.
+(futures continuous is a different contract from spot — this is a wiring fix, not
+a ban). Broker names verified via get_symbols 23 Jul 2026.
 
 ---
 

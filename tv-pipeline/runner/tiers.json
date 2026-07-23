@@ -1,42 +1,14 @@
 {
   "_comment": "Hot-reloaded every loop. Edit + push from anywhere; takes effect on the next signal.",
-
-  "_symbol_map_comment": "TV alert symbol -> broker symbol. NAMING RECONCILIATION ONLY: both sides must be the SAME instrument under different vendor names. NEVER map to a different contract (e.g. USOIL->BRENT) — the signal's level/extreme/price were computed on the source chart and do not transfer across instruments. XAUUSD1! is deliberately absent: futures continuous is a different contract from spot, so it stays in ignore_symbols. Broker names verified against get_symbols 23 Jul 2026.",
+  "_symbol_map_comment": "TV alert symbol -> broker symbol. NAMING RECONCILIATION ONLY: both sides must be the SAME instrument under different vendor names. NEVER map to a different contract (e.g. USOIL->BRENT) \u2014 the signal's level/extreme/price were computed on the source chart and do not transfer across instruments. XAUUSD1! is deliberately absent: futures continuous is a different contract from spot, so it stays in ignore_symbols. Broker names verified against get_symbols 23 Jul 2026.",
   "symbol_map": {
     "USOIL": "WTI",
     "GOLD": "XAUUSD",
     "SILVER": "XAGUSD",
     "US100": "NAS100"
   },
-
-  "_instrument_policy_comment": "Machine-readable replacement for the prose INSTRUMENTS TO AVOID list in CLAUDE.md. Keyed by BROKER symbol (post symbol_map). Prose was being re-interpreted per tick and applied inconsistently; this is one source of truth. status: blocked | session_limited | ok.",
-  "instrument_policy": {
-    "WTI": {
-      "status": "blocked",
-      "reason": "too news/spread driven - use BRENT instead",
-      "review": "To trade oil, create BRENT alerts in TradingView. Do NOT remap USOIL->BRENT; levels do not transfer. Evan to revisit whether WTI itself comes off this list."
-    },
-    "BTCUSD": {
-      "status": "session_limited",
-      "blocked_sast_hours": [0, 7],
-      "reason": "wide spread / random spikes - Rule 16 Asian-session crypto ban, London/NY only"
-    },
-    "ETHUSD": {
-      "status": "session_limited",
-      "blocked_sast_hours": [0, 7],
-      "reason": "wide spread / random spikes - Rule 16 Asian-session crypto ban, London/NY only"
-    },
-    "GER40": {
-      "status": "session_limited",
-      "blocked_sast_hours": [22, 7],
-      "reason": "wide spread, no liquidity overnight"
-    },
-    "NAS100": {
-      "status": "ok",
-      "reason": "UNBLOCKED 23 Jul 2026. Prior entry read 'not worth it at 0.01 lots, use at 1+ lot when account > R5,000'. Condition met: balance R6427.42. Sizing caveat stands - do not trade this at 0.01 lots."
-    }
-  },
-
+  "_instrument_policy_comment": "EMPTIED 23 Jul 2026 at Evan's instruction \u2014 no blanket instrument bans. Rationale is not just preference, it measured false: spread as % of daily range on 23 Jul 07:xx SAST was NAS100 0.36%, BRENT 0.53%, WTI 0.64%, EURUSD 2.92%. WTI \u2014 banned for being 'too spread driven' \u2014 is 4.5x CHEAPER to trade than the pair the system trades most. The list was also structurally redundant: R:R is computed from live ask (buys) / bid (sells), so spread is already priced into every Rule 9 decision. Banning an instrument double-counted a cost the R:R gate already measures, using a frozen opinion instead of a live quote. News-driven whipsaw (the other stated concern) is Rule 11's job and is also evaluated live. Mechanism retained but empty: add an entry here only with a dated measurement showing an instrument fails on its own numbers.",
+  "instrument_policy": {},
   "ignore_symbols": [
     "XAUUSD1!"
   ],
