@@ -349,3 +349,4 @@
 {"event": "HL_RECLAIM", "symbol": "BRENT", "tf": "30", "price": 100.902, "level": 100.513, "extreme": 95.743, "range_pos": 0.955, "vol_mult": 1.62, "h1_atr": 1.060032, "t": 1784815202048, "received_utc": "2026-07-23T14:00:13.241744+00:00"}
 {"event": "PULLBACK_TAG_SHORT", "symbol": "SPX500", "tf": "30", "price": 7419.9, "level": 7452.7, "extreme": 7486.2, "range_pos": 0.118, "vol_mult": 2.46, "h1_atr": 19.673388, "t": 1784815200981, "received_utc": "2026-07-23T14:00:15.029531+00:00"}
 {"event": "PULLBACK_TAG_LONG", "symbol": "NVDA", "tf": "30", "price": 208.93, "level": 208.65, "extreme": 204.95, "range_pos": 0.189, "vol_mult": 1.63, "h1_atr": 2.351217, "t": 1784815201585, "received_utc": "2026-07-23T14:00:16.708766+00:00"}
+{"event": "HL_RECLAIM", "symbol": "GBPJPY", "tf": "30", "price": 218.5355, "level": 218.521, "extreme": 218.068, "range_pos": 0.844, "vol_mult": 1, "h1_atr": 0.193898, "t": 1784815202464, "received_utc": "2026-07-23T14:00:18.375869+00:00"}
