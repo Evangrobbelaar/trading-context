@@ -3044,3 +3044,15 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - Tick113's analysis stands unchanged and is not re-run: data-integrity gap (signal ~2.4pt above live broker ask, broker series independently disagreeing in direction) and unconfirmed-reversal blocks both still apply, nothing has changed in the ~5 min gap. No enforcer run. Nothing placed/would-placed. NO_ACTION — duplicate signal, no new information.
 - Snapshot updated: timestamps only (updated_utc/queried_utc), no h4_verdicts/session_ranges changes (tick113's WTI entries remain current). tick_counter -> 114.
 - Watch: same as tick113 — WTI/BRENT TV alert feed re-pointing/disabling still recommended; also flagging the double-dispatch itself in case the webhook/dispatcher is retry-sending duplicates.
+
+## AUTO TICK 115 — 2026-07-24T03:02:00Z (TIER2, mode=learn)
+- Signal: LL_BREAKDOWN XAUUSD 4024.54 (level 4039.97, extreme 4051.01, range_pos 0.053, vol_mult 1.98) @03:00:03Z. Tier1 escalated: H4-aligned downtrend with tighter-SL potential vs tick98's budget block.
+- Account: switch_trading_account caught the usual revert to 41750592, confirmed switched to 41829612. Live balance/equity R6,708.77 (unchanged since tick114), no open positions — CHANGE3 monitor moot.
+- H4: BEARISH confirmed, extending tick98's read further — lower highs continued (4099.46→4086.02→4054.51→4051.45) and the 4040-4051 range that had looked like a ~10h bottoming zone (17:00-02:45) just broke down hard on the 03:00 H1 bar, fresh session low 4023.05. Clean WITH-trend short, no counter-trend override needed.
+- M15 trigger MET: last-closed 02:45 bar ~70% bear body already rejecting the range top; forming 03:00 bar continuing the drop.
+- Rule17: range_pos 0.053, deep bottom-15pct SELL — WARN-only in learn mode, not a block.
+- BLOCKED PRE-ENFORCER on risk budget — same failure mode as tick98, now unavoidable: 05:00 SAST Asian session doubles the Gold Rule15 SL floor to 30-50pts. At forced learn-mode 0.01 lots (R15.58/pt) even the 30pt Asian MINIMUM costs R467.40, already over enforcer's 5%-balance cap (R335.44 on R6,708.77) before the actual structural SL (~35pt above the 4051 extreme, ~R545) is even considered. No lot-size lever available in learn mode. No enforcer run (blocked pre-enforcer, same convention as tick98).
+- News: WebSearch — July 24 Manufacturing/Services PMI scheduled today but no specific high-impact release found inside the 2h window from 03:00 UTC; FOMC is Jul28-29, not today; Fed hold-probability 85.6% priced. Iran/Houthi tape ongoing (Rule11 sizing input, not a scheduled-event block). Attested news_clear.
+- Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.XAUUSD and session_ranges.XAUUSD refreshed (fresh session low 4023.05, high 4050.78). tick_counter -> 115.
+- Watch: London open (07:00 SAST) reverting Rule15 to the 15-25pt floor would bring a ~20-25pt SL into budget (~R311-389, under the R335 cap) against the same 4050-4051 structural high, if the breakdown is still live then.
