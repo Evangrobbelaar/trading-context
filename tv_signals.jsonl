@@ -533,3 +533,4 @@
 {"event": "SWEEP_HIGH", "symbol": "NVDA", "tf": "30", "price": 210.24, "level": 210.43, "extreme": 210.87, "range_pos": 0.733, "vol_mult": 0.68, "h1_atr": 2.386353, "t": 1784912401867, "received_utc": "2026-07-24T17:00:15.596438+00:00"}
 {"event": "SWEEP_LOW", "symbol": "BRENT", "tf": "30", "price": 96.983, "level": 96.642, "extreme": 96.623, "range_pos": 0.145, "vol_mult": 0.76, "h1_atr": 1.03577, "t": 1784912401747, "received_utc": "2026-07-24T17:00:20.793870+00:00"}
 {"event": "PULLBACK_TAG_SHORT", "symbol": "WTI", "tf": "30", "price": 89.865, "level": 89.657, "extreme": 91.486, "range_pos": 0.245, "vol_mult": 0.78, "h1_atr": 0.981912, "t": 1784914261106, "received_utc": "2026-07-24T17:31:05.144844+00:00"}
+{"event": "SWEEP_LOW", "symbol": "WTI", "tf": "30", "price": 89.865, "level": 89.657, "extreme": 89.102, "range_pos": 0.245, "vol_mult": 0.78, "h1_atr": 0.981912, "t": 1784914261106, "received_utc": "2026-07-24T17:31:06.841012+00:00"}
