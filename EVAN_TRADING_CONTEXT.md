@@ -2975,3 +2975,16 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - No enforcer run (blocked pre-enforcer on unclosed trigger + scout-gate). Nothing placed/would-placed. NO_ACTION.
 - Snapshot updated: h4_verdicts.USDJPY and session_ranges.USDJPY refreshed (session range reset overnight to 163.766-163.933). tick_counter -> 108.
 - Watch: a CLOSED M15 bar with a clean 60%+ bear body below 163.879 confirms the rejection — re-evaluate as counter-trend short candidate (still needs Rule3 confirmation, Sprung scout still Evan-only). A confirmed close back above 163.933 would be continuation but is chasing the sweep per Rule12 without a pullback first.
+
+---
+## AUTO TICK 109 — 2026-07-24T01:31:33Z (TIER2, mode=learn)
+- Signal: SWEEP_HIGH SPX500 7417.8 (level 7420.1, extreme 7421.9, range_pos 0.727, vol_mult 1.27). 2nd sweep at ~7420.1 within 30min (01:00:11Z + 01:30:04Z) — tier1 flagged shelf signature / Sprung Ladder Phase-1 candidate, escalated.
+- Account: switch_trading_account 41829612 verified. Balance/equity live R6,708.77 (unchanged), no open positions.
+- H4: bearish, decelerating. Clean lower-highs 7506.33→7472.2→7428.95 (H4), but last 2 H4 closes near-flat under a 7428-7429 shelf. H1 shows corrective bounce off 7382.7 (Jul23 16:00) low, repeatedly probing 7420.1 without a clean rejection close.
+- M15 trigger: FAILS. Last closed M15 bars (00:45-01:30) are small-body/doji with upper wicks, none reaching the 60%+ bear-body threshold Change5 step5 needs for a short. M15 trigger is not on the learn-mode downgrade list — hard NO_ACTION on insufficient trigger.
+- Sprung Ladder: explicitly NOT auto-deployable (protocol absolute #4 — scout decisions stay with Evan). Phase 1 MAP not placed regardless of mode.
+- Rule17: range_pos ~0.690 live (session 7414.37-7428.93) — not in bottom-15pct sell-ban zone; moot since blocked on trigger anyway.
+- News: WebSearch clear — no high-impact US event within 2h (Jobless Claims/New Home Sales outside window; next FOMC Jul28-29).
+- No enforcer run (nothing cleared pre-enforcer gates). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.SPX500 and session_ranges.SPX500 set (first read this session). tick_counter -> 109.
+- Watch: closed M15 bar with 60%+ bear body off 7428-7429 (short trigger), or confirmed close above 7429 (invalidates short bias).
