@@ -3216,3 +3216,14 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - No enforcer run on any symbol (all three blocked pre-enforcer on M15 trigger). Nothing placed/would-placed. NO_ACTION across the entire batch. No new flags.jsonl entries (shelf signature is informational per established precedent, not a data-integrity/infra anomaly).
 - Snapshot updated: h4_verdicts for EURGBP/EURJPY/EURUSD appended with tick129 reads, closed_since_last_snapshot cleared (stale tick107 AUDJPY entry already fully reflected in prior ticks' notes). tick_counter → 129.
 - Watch: EURGBP needs a CLOSED 60%+ bull body reclaiming above 0.85392-0.85413 to confirm the long. EURJPY needs the session range to expand (fresh lower low) before a short has reward room — unlikely to clear R:R as-is. EURUSD needs a confirmed bear-body close below ~1.1372 AND more room below before the session low turns this into a clean short.
+
+### AUTO tick 130 — 2026-07-24T13:04:46Z — TIER2 — mode=learn
+- Signal: LL_BREAKDOWN EURUSD 1.13698 (level 1.13712, extreme 1.1393, range_pos 0.071, vol_mult 1.3) @13:00:05Z, tier1-escalated (confirmed bearish H4 + breakdown at session lows).
+- Routing: previous=41750592 (reconnect bug caught again) → switched/verified current=41829612. Live balance/equity R6,708.77 (unchanged since tick124-129), no open positions — CHANGE3 monitor moot.
+- H4 gate PASSES clean (confirmed BEARISH continuing, on-file verdict, no fresh full re-pull this tick — budget conserved) — WITH-trend short, no override needed.
+- M15 trigger MET: last CLOSED bar (12:45: O1.13737 H1.13757 L1.13671 C1.13678) is a ~69% bear body; live price extending to a fresh session low 1.13667.
+- Structural math (would-be ticket): SL above the 12:15 pullback high 1.13779, widened to Rule2's 15pip floor from bid 1.13679 = ~1.13829 (15pips, well beyond structural). TP at the prior H4 multi-day low 1.13635 (~44pips) — R:R ~2.9:1, clears Rule9's 1.2:1 floor easily. Rule17: range_pos ~0.035 (fresh range 1.13667-1.14008), deep bottom-15pct band for a sell — WARN-only/downgradable in learn mode, would not independently block.
+- BLOCKED ON NEWS (hard, NOT learn-mode-downgradable): WebSearch confirms US flash S&P Global Manufacturing/Services PMI due ~13:45 UTC today — only ~43min from this read, inside the 2h forward blackout for a USD pair per News Protocol (PMI is an explicitly listed blocking event). news_checked but NOT news_clear.
+- No enforcer run (blocked pre-enforcer on news). Nothing placed/would-placed. NO_ACTION. Otherwise a clean with-trend setup — purely a timing block.
+- Snapshot updated: h4_verdicts.EURUSD note appended with tick130 read, session_ranges.EURUSD refreshed (low 1.137→1.13667). tick_counter → 130.
+- Watch: once past 13:45 UTC PMI print and any immediate post-print volatility settles, re-check for a still-valid breakdown/continuation below ~1.13712-1.13698 — re-verify levels live, don't reuse this tick's numbers blind.
