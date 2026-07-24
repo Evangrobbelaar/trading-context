@@ -3183,3 +3183,15 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - No enforcer run on any symbol (all nine blocked pre-enforcer). Nothing placed/would-placed. NO_ACTION across the entire batch.
 - Snapshot updated: h4_verdicts for EURUSD/USDJPY/SPX500/GBPJPY/AUDJPY/EURGBP/BRENT/WTI/XAUUSD all appended with tick126 reads; SPX500 trend field rewritten (BEAR → "reversal likely, pending reclassification"); session_ranges refreshed for EURUSD/USDJPY/GBPJPY/SPX500/BRENT/WTI (all printed fresh extremes); watch_levels +1 flagging SPX500/USDJPY/GBPJPY for a fresh H4 re-pull next tick. tick_counter → 126.
 - Watch: next tick should spend budget on a full fresh H4 re-pull (H1/H4 history) for SPX500, USDJPY, and GBPJPY before actioning any new signal on those three — all three have moved materially past their last full H4 read.
+
+---
+## AUTO TICK 127 — 2026-07-24T09:30:30Z (TIER2, mode=learn)
+- Signal: PULLBACK_TAG_LONG XAUUSD 4053.125 (30m, level 4053.84, extreme 4022.06, range_pos 0.803, vol_mult 0.88) @09:30:04Z. Follow-on to tick125/126's HL_RECLAIM at the same shelf, now priced as a pullback-to-breakout-level retest.
+- Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Live balance/equity R6,708.77 (unchanged since tick124-126), no open positions — CHANGE3 monitor moot.
+- Fresh M15 pull: the 09:00 bar DID close above both old H4 pivots (4054.51/4051.45) at 4057.42 — the exact confirmation tick125/126 were waiting on. But the very next bar (09:15, now last CLOSED) spiked to a fresh high 4060.7 and reversed to close at 4054.19, a ~44% bear body — a rejection off the new high, not a clean confirming hold. The 09:30 forming bar is continuing that decline back toward the 4053.84 retest level.
+- BLOCKED ON M15 TRIGGER (hard, not downgradable): Change5 step5 needs a confirmed CLOSED bar in the trade direction (bullish reclaim for this long); the last closed bar is a bear-body rejection instead. H4 gate still not formally reclassified (forming H4 bar not due to close for ~2.5h) — reversal thesis reads weaker this tick (failed breakout + rejection) than at tick125/126, not invalidated.
+- R:R (independent secondary block, not reached): structural SL below the 08:45 higher-low (4048.9) widened to Rule2's 15pt gold floor ≈ 4037.5, ~15pt from ask 4052.48; reward to the just-rejected 4060.7 high only ~8.2pt — R:R ~0.55:1, fails Rule9's 1.2:1 floor. Rule17 moot (range_pos ~0.78, below the 0.85 top-band cutoff).
+- News: WebSearch confirms US flash Manufacturing/Services PMI due today but ~13:45 UTC (~4h15m out, outside the 2h blackout); FOMC is 7/28-29, not imminent. Attested news_clear.
+- No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.XAUUSD refreshed with the tick127 M15 ladder and rejection note, trend field appended with the tick127 update. tick_counter → 127.
+- Watch: a fresh M15/H1 bar CLOSING back above ~4057-4058 with a clean bull body would restore the reversal thesis; continued closes below 4053.84 would instead suggest the breakout has failed and price is rolling back into the old range.
