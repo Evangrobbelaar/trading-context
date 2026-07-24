@@ -505,3 +505,4 @@
 {"event": "SWEEP_LOW", "symbol": "EURUSD", "tf": "30", "price": 1.13782, "level": 1.13765, "extreme": 1.13746, "range_pos": 0.365, "vol_mult": 1.43, "h1_atr": 0.000947, "t": 1784905200354, "received_utc": "2026-07-24T15:00:06.335643+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "XAUUSD", "tf": "30", "price": 4063.35, "level": 4064.025, "extreme": 4068.185, "range_pos": 0.862, "vol_mult": 1.66, "h1_atr": 12.839059, "t": 1784905200947, "received_utc": "2026-07-24T15:00:08.126580+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "XAGUSD", "tf": "30", "price": 58.501, "level": 58.6415, "extreme": 58.6835, "range_pos": 0.885, "vol_mult": 1.25, "h1_atr": 0.416461, "t": 1784905200578, "received_utc": "2026-07-24T15:00:09.717129+00:00"}
+{"event": "HL_RECLAIM", "symbol": "NFLX", "tf": "30", "price": 69.73, "level": 69.535, "extreme": 67.99, "range_pos": 1, "vol_mult": 1.05, "h1_atr": 0.777201, "t": 1784905201092, "received_utc": "2026-07-24T15:00:11.348838+00:00"}
