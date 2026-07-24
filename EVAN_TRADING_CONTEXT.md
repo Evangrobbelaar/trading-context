@@ -3227,3 +3227,13 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - No enforcer run (blocked pre-enforcer on news). Nothing placed/would-placed. NO_ACTION. Otherwise a clean with-trend setup — purely a timing block.
 - Snapshot updated: h4_verdicts.EURUSD note appended with tick130 read, session_ranges.EURUSD refreshed (low 1.137→1.13667). tick_counter → 130.
 - Watch: once past 13:45 UTC PMI print and any immediate post-print volatility settles, re-check for a still-valid breakdown/continuation below ~1.13712-1.13698 — re-verify levels live, don't reuse this tick's numbers blind.
+
+### AUTO tick 131 — 2026-07-24T13:05:47Z — TIER2 — mode=learn
+- Signals: SPRING_LONG EURGBP 0.85424 (level 0.85392, extreme 0.85364, range_pos 0.337, vol_mult 1.34) @13:00:08Z; SWEEP_HIGH SPX500 7414.8 (level 7423.6, extreme 7430.7, range_pos 0.469, vol_mult 0.88) @13:00:10Z. Dispatcher shelf note: 2nd sweep ~7423.6 SPX500 within 240min — Sprung Ladder Phase-1 candidate, informational only.
+- Routing: previous=41750592 (reconnect bug caught again) → switched/verified current=41829612. Live balance/equity R6,708.77 (unchanged since tick124-130), no open positions — CHANGE3 monitor moot.
+- EURGBP: SPRING_LONG is exactly the reclaim tick129 flagged as the watch condition — live bid/ask 0.85408/0.85426, back above both the 0.85392 level and 0.85364 sweep extreme, WITH confirmed BULL H4. Otherwise a clean with-trend setup.
+- SPX500: 2nd sweep at the same 7423.6 shelf as tick126. Live bid/ask 7418.8/7419.15, fresh session high 7440.3 (was 7434.55) — confirms price still trading above the old 7428-7429 resistance, tick126's stale-BEAR/pending-reclassification read stands. Deferred fresh H4/H1 re-pull again (moot, blocked upstream on news).
+- BLOCKED ON NEWS (hard, NOT learn-mode-downgradable), both symbols: WebSearch confirms US flash S&P Global Manufacturing/Services PMI due ~13:45 UTC today — only ~39min from this read, inside the 2h forward blackout. Per CLAUDE.md News Protocol these events "block all trades," so applied to EURGBP (cross-asset risk sentiment) as well as SPX500 (direct US equity index exposure), not just literal USD pairs. news_checked but NOT news_clear on either.
+- No enforcer run on either symbol (both blocked pre-enforcer on news). Nothing placed/would-placed. NO_ACTION across the batch. No new flags.jsonl entries (shelf signature informational per established precedent).
+- Snapshot updated: h4_verdicts.EURGBP + h4_verdicts.SPX500 notes appended, session_ranges.EURGBP/SPX500 refreshed (SPX500 high 7434.55→7440.3). tick_counter → 131.
+- Watch: both symbols clear of the PMI blackout at ~15:45Z — re-check EURGBP for a confirmed CLOSED M15 bull-reclaim bar above 0.85392-0.85413, and do the deferred SPX500 H4/H1 re-pull then.
