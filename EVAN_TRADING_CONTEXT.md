@@ -3237,3 +3237,12 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - No enforcer run on either symbol (both blocked pre-enforcer on news). Nothing placed/would-placed. NO_ACTION across the batch. No new flags.jsonl entries (shelf signature informational per established precedent).
 - Snapshot updated: h4_verdicts.EURGBP + h4_verdicts.SPX500 notes appended, session_ranges.EURGBP/SPX500 refreshed (SPX500 high 7434.55→7440.3). tick_counter → 131.
 - Watch: both symbols clear of the PMI blackout at ~15:45Z — re-check EURGBP for a confirmed CLOSED M15 bull-reclaim bar above 0.85392-0.85413, and do the deferred SPX500 H4/H1 re-pull then.
+
+### AUTO tick 132 — 2026-07-24T13:30:24Z — TIER2 — mode=learn
+- Signal: PULLBACK_TAG_SHORT EURUSD 1.13705 (level 1.13712, extreme 1.1393, range_pos 0.152, vol_mult 1.59) @13:30:06Z.
+- Routing: previous=41750592 (reconnect bug caught again) → switched/verified current=41829612. Live balance/equity R6,708.77 (unchanged since tick124-131), no open positions — CHANGE3 monitor moot.
+- Live price 1.13694/1.13703, fresh session low 1.13645 (was 1.13667 at tick130), high 1.14008 unchanged — breakdown continuing. H4 verdict on file unchanged (BEARISH confirmed continuing, tick130 read) — no fresh re-pull, moot given the block below.
+- BLOCKED ON NEWS (hard, NOT learn-mode-downgradable): US flash S&P Global Manufacturing/Services PMI due 13:45 UTC — only ~15min from this read, tighter than tick130 (43min) and tick131 (39min), still squarely inside the 2h forward blackout. news_checked but NOT news_clear.
+- No enforcer run (blocked pre-enforcer on news). Nothing placed/would-placed. NO_ACTION. No new flags.jsonl entries.
+- Snapshot updated: h4_verdicts.EURUSD note appended with tick132 read, session_ranges.EURUSD refreshed (low 1.13667→1.13645). tick_counter → 132.
+- Watch: same as tick130/131 — once past the 13:45 UTC PMI print and any immediate post-print volatility settles, re-check EURUSD for a still-valid breakdown/continuation below ~1.13645-1.13705; re-verify levels live, don't reuse this tick's numbers blind.
