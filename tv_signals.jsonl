@@ -537,3 +537,4 @@
 {"event": "SWEEP_HIGH", "symbol": "NVDA", "tf": "30", "price": 209.69, "level": 210.43, "extreme": 210.53, "range_pos": 0.645, "vol_mult": 0.51, "h1_atr": 2.293196, "t": 1784916002015, "received_utc": "2026-07-24T18:00:16.032660+00:00"}
 {"event": "SPRING_LONG", "symbol": "WTI", "tf": "30", "price": 90.021, "level": 89.657, "extreme": 89.102, "range_pos": 0.275, "vol_mult": 0.73, "h1_atr": 0.999555, "t": 1784916060463, "received_utc": "2026-07-24T18:01:04.355262+00:00"}
 {"event": "SPRING_SHORT", "symbol": "NVDA", "tf": "30", "price": 207.82, "level": 210.43, "extreme": 210.53, "range_pos": 0.344, "vol_mult": 0.7, "h1_atr": 2.432481, "t": 1784917800318, "received_utc": "2026-07-24T18:30:04.484514+00:00"}
+{"event": "LL_BREAKDOWN", "symbol": "TSLA", "tf": "30", "price": 307.33, "level": 308, "extreme": 323.4, "range_pos": 0.001, "vol_mult": 0.57, "h1_atr": 5.746058, "t": 1784917800248, "received_utc": "2026-07-24T18:30:06.092562+00:00"}
