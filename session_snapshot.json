@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-24T18:09:30Z",
-  "updated_by": "auto tick140",
+  "updated_utc": "2026-07-24T18:33:00Z",
+  "updated_by": "auto tick141",
   "balance": {
     "value": 6708.77,
-    "equity": 6713.73,
-    "queried_utc": "2026-07-24T18:09:00Z",
-    "note": "live-queried this run via get_account_info. Balance unchanged (6708.77); equity +R4.96 floating (TESLA +R5.11, GBPJPY ~R0, WTI -R0.15 just filled). Session P&L vs session_start_balance 7394.99 = -686.29 (-9.28%) -- below AUTO_TICK hard 50% max-loss stop."
+    "equity": 6723.19,
+    "queried_utc": "2026-07-24T18:30:36Z",
+    "note": "live-queried this run via get_account_info. Balance unchanged (6708.77); equity +R14.42 floating (TESLA +R6.34, GBPJPY ~R0, WTI +R8.11, all growing in favor). Session P&L vs session_start_balance 7394.99 = -686.29 (-9.28%) -- below AUTO_TICK hard 50% max-loss stop."
   },
   "session_start_balance": 7394.99,
   "open_positions": [
@@ -18,8 +18,8 @@
       "entry": 311.42,
       "stopLoss": 317.66,
       "takeProfit": 303,
-      "pl": 5.11,
-      "note": "tick140: unchanged since tick139, still holding. M5 17:20-18:05 chopping 307.82-309.61, still well below entry 311.42, ~25% to TP, no adverse break of structure. ACTION: Hold."
+      "pl": 6.34,
+      "note": "tick141: M5 17:45-18:30 extending lower-lows (309.61->308.75->308.36->307.82->307.12), clean bearish continuation with-trend, no adverse structure break. pl growing (+5.11->+6.34). ACTION: Hold."
     },
     {
       "orderId": "109844331",
@@ -31,7 +31,7 @@
       "stopLoss": 218.51,
       "takeProfit": 218.0,
       "pl": 0,
-      "note": "[LEARN] tick140: unchanged since tick139. M5 18:00-18:05 chopping 218.24-218.30, no clear structure break either way, pl ~flat. ACTION: Hold."
+      "note": "[LEARN] tick141: M5 17:45-18:30 structure has turned AGAINST the short -- clean higher-highs since the 218.24 (17:50) low up to a fresh 218.337 high (18:20), live bid 218.326, only ~0.18 (~0.9x h1_atr) from SL 218.51. Broker pl still reads ~0 (flat) despite the ~7pip adverse move from entry -- CHANGE3 Rule5 cut needs pl NEGATIVE + reversal, not met on the broker's own number, so no forced close this tick. ACTION: Hold, watch closely -- next tick re-check pl and SL distance."
     },
     {
       "orderId": "109844484",
@@ -42,8 +42,8 @@
       "entry": 87.697,
       "stopLoss": 86.37,
       "takeProfit": 89.35,
-      "pl": -0.15,
-      "note": "[LEARN] tick140: SPRING_LONG. Entered on broker-native structure only (FLAG-002 still open, signal price 90.021 vs broker ask 87.717 ~2.30pt/2.6% gap -- widened vs tick138's 2.13pt/2.4%, narrowing trend did NOT continue). Broker-native reclaim confirmed independently: session low 86.619 swept at 16:00 bar, 30m-aggregate 17:30-18:00 bar closed ~70% bull body off that low. Counter-trend vs standing BEARISH H4 (learn-mode WARN override, structurally clean spring/reclaim shape). SL 86.37 (86.619 swing low - 0.25 buffer), TP 89.35 (just under 89.396/89.408 resistance cluster), R:R ~1.21:1. Enforcer PASS (risk R22.65 at 0.01 lots/1 barrel, open_pending_risk R29.66 TESLA+GBPJPY, aggregate R52.31). ACTION: Hold, watch reclaim continuation."
+      "pl": 8.11,
+      "note": "[LEARN] tick141: M5 17:45-18:30 clean bullish continuation with-trend (18:10 low 87.588 -> 18:30 close 88.193, fresh push higher), pl growing (-0.15->+8.11). No adverse structure break. ACTION: Hold, watch reclaim continuation."
     }
   ],
   "closed_since_last_snapshot": [],
@@ -98,7 +98,7 @@
       "trend": "BEARISH -- H4 lower-highs sequence intact on closed bars: 211.6(7/23 12:00)->210.66(16:00)->210.24(20:00)->209.82(00:00 7/24)->208.5(12:00 7/24). Current forming H4 bar (16:00-20:00 7/24) swept a fresh low 205.49 (below the 7/23 16:00 low of 205.79) then reversed sharply to an intrabar high 211.69, now backing off to ~209.5 -- a stop-hunt-and-reverse shape inside the still-open bar, but no H4 bar has CLOSED back above the lower-high sequence, so NOT reclassified bullish. Confirmed BEARISH by closed-bar standard.",
       "asof": "2026-07-24T18:02:00Z",
       "swings": "M15 16:00-18:00: 16:00(O209.05 H210.1 L208.98 C210, bull closes near high)->16:15(O209.99 H211.69 L209.83 C210.67, sweeps to fresh high 211.69, ~65% bull body)->16:30(O210.64 H210.9 L210.48 C210.58, small range pullback)->16:45(O210.58 H210.67 L209.8 C209.99, ~68% bear body)->17:00(O209.99 H210.24 L209.58 C210.04, small/mixed)->17:15(O210.03 H210.14 L209.35 C209.6, ~55% bear)->17:30(O209.61 H210.16 L209.43 C210.07, ~63% bull bounce)->17:45 LAST CLOSED (O210.06 H210.34 L209.63 C209.65, ~58% bear body, rejecting just under the 210.43 shelf)->18:00 forming (O209.66 H210.1 L209.5 C209.5 as of read, unclosed). Live bid/ask 209.43/209.82.",
-      "note": "tick139 (mode=learn, TIER2, escalated from tier1 ESCALATE_TIER2 on shelf signature): 2nd SWEEP_HIGH at ~210.43 shelf within 60min (17:00:15Z price 210.24/extreme 210.87, 18:00:16Z price 209.69/extreme 210.53) -- Sprung Ladder Phase-1 shelf signature per dispatcher. H4 refreshed and confirmed BEARISH (lower-highs intact on closed bars; see trend field) -- a SHORT here would be WITH-trend, no learn-mode override needed for direction. BLOCKED ON M15 TRIGGER (hard, not learn-mode-downgradable): last CLOSED M15 bar (17:45: O210.06 H210.34 L209.63 C209.65) is only a ~58% bear body, just short of Change5's 60% rejection threshold; the 18:00 bar was still forming at read time (18:01:48Z), only ~2min old. Sprung Ladder scout deployment is Evan-only per protocol absolutes regardless of mode -- not auto-actioned, informational only. Rule17 moot (signal range_pos ~0.645, mid-range, clear of both bands). News: WebSearch confirms NVDA's next scheduled earnings is ~Aug 26 2026 (Q2 FY2026), well outside any 2h window; no other high-impact scheduled event found. Attested news_clear. No enforcer run (blocked pre-enforcer on M15 trigger). Nothing placed/would-placed. NO_ACTION. Watch: next M15 bar CLOSING with a 60%+ bear body below ~210.34 (or continuing the drift below 209.5) confirms the with-trend short (SL above the shelf/sweep extreme ~210.53-210.87 + buffer, target toward the 208.5 prior H4 high / 207.6-208 zone). A CLOSED H4 bar back above the lower-high sequence (>208.5, ideally >209.82) would instead flag a possible reversal needing re-classification, mirroring the XAUUSD pattern documented ticks125-127."
+      "note": "tick139 (mode=learn, TIER2, escalated from tier1 ESCALATE_TIER2 on shelf signature): 2nd SWEEP_HIGH at ~210.43 shelf within 60min (17:00:15Z price 210.24/extreme 210.87, 18:00:16Z price 209.69/extreme 210.53) -- Sprung Ladder Phase-1 shelf signature per dispatcher. H4 refreshed and confirmed BEARISH (lower-highs intact on closed bars; see trend field) -- a SHORT here would be WITH-trend, no learn-mode override needed for direction. BLOCKED ON M15 TRIGGER (hard, not learn-mode-downgradable): last CLOSED M15 bar (17:45: O210.06 H210.34 L209.63 C209.65) is only a ~58% bear body, just short of Change5's 60% rejection threshold; the 18:00 bar was still forming at read time (18:01:48Z), only ~2min old. Sprung Ladder scout deployment is Evan-only per protocol absolutes regardless of mode -- not auto-actioned, informational only. Rule17 moot (signal range_pos ~0.645, mid-range, clear of both bands). News: WebSearch confirms NVDA's next scheduled earnings is ~Aug 26 2026 (Q2 FY2026), well outside any 2h window; no other high-impact scheduled event found. Attested news_clear. No enforcer run (blocked pre-enforcer on M15 trigger). Nothing placed/would-placed. NO_ACTION. Watch: next M15 bar CLOSING with a 60%+ bear body below ~210.34 (or continuing the drift below 209.5) confirms the with-trend short (SL above the shelf/sweep extreme ~210.53-210.87 + buffer, target toward the 208.5 prior H4 high / 207.6-208 zone). A CLOSED H4 bar back above the lower-high sequence (>208.5, ideally >209.82) would instead flag a possible reversal needing re-classification, mirroring the XAUUSD pattern documented ticks125-127. | tick141 (mode=learn, TIER2): SPRING_SHORT re-fired 207.82 (level 210.43, extreme 210.53, range_pos 0.344) @18:30:04Z. Watch item from tick139 SATISFIED via its OR-clause: price continued the drift well below 209.5, M15 closes stepped down cleanly (209.65->209.5->209.1) and last CLOSED M5 bar (18:25: O208.85 H208.85 L208.2 C208.23) is a ~95% bear body, unambiguous confirmed rejection continuation; forming 18:30 bar extending further to L207.54. H4 gate PASSES clean (confirmed BEARISH, forming H4 bar 16:00-20:00 already broke back below the 208.5 prior lower-high after the 211.69 intrabar spike) -- WITH-trend short, no override needed. Rule17 clear (live range_pos ~0.32 on session 205.49-211.69, mid-range, neither band). Noted unusually elevated volume since 7/23 16:00 (11-27M per H4 bar vs typical 1-2M) -- WebSearch found no scheduled high-impact NVDA catalyst (next earnings ~Aug 26, nothing else) and spread (0.39) is not blown out, so this is a sizing/volatility input (Rule11), not a disorderly-tape hard block. BLOCKED ON R:R (hard, not learn-mode-downgradable): this is a chase-the-spike situation, same pattern documented for AUDJPY/EURGBP/XAUUSD this session -- price has already run most of the way from the 210.43-210.53 shelf to the 205.49-205.8 support cluster before this signal could be acted on. Honest structural SL must sit above the full spring/shelf zone being defended (extreme 210.53 + buffer ~211.0), not just the nearest minor pullback high, since the whole thesis of this pattern is that shelf's rejection -- risk ~3.5pt from ~207.5 entry. Reward to the nearest real support (205.49-205.8 cluster) is only ~1.7-1.9pt (R:R ~0.5-0.55:1); even reaching the deeper 7/22 base (204.32-204.47) only gets to R:R ~0.87:1 -- neither clears Rule9's 1.2:1 floor. Tightening the SL to the most recent minor swing high (~209.1-209.7) would mechanically pass R:R but violates Rule18's substance (stop must sit beyond the level actually being defended, not curve-fit to force the ratio) given today's elevated ATR (2.43) -- declined for the same reason other symbols this session were not force-fit. No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION. Watch: a deeper pullback/consolidation that rebuilds distance between entry and the 205.5-205.8 support (or a fresh break of that support opening reward room toward 204.3) would reopen this as a cleaner with-trend short."
     },
     "XAGUSD": {
       "trend": "REVERSED TO BULL -- the tick101/116 BEARISH structural read (asof 03:10 UTC) is now stale and INVALIDATED. Fresh H1 pull: session low 57.054 (03:00) was the final low of the downtrend; H1 has since printed a clean higher-low/higher-high staircase: lows 57.054(03:00)->57.059(04:00)->57.141(05:00)->57.221(06:00)->57.25(07:00)->57.676(08:00)->58.033(09:00)->58.238(10:00)->58.356(11:00), with a deep wick-only dip to 57.829 at 14:00 (M15 sweep, not a closed H1 low) that recovered same-hour. Highs: 57.367(04:00)->57.576(06:00)->57.786(07:00)->58.401(08:00, breaks both old lower-high pivots 57.903/57.868)->58.617(11:00)->58.667(15:00)->58.965(16:00, fresh session high). This decisively meets the counter-trend-long exception (confirmed higher low + broke prior H4 swing high) and should be reclassified BULL outright, not treated as a WARN-override long. Old downtrend reference (59.004/59.88/60.041 pivots from tick101) not yet retested -- 58.965 is the highest print since the reversal began.",
@@ -282,8 +282,8 @@
     },
     {
       "symbol": "NVDA",
-      "note": "tick139: SWEEP_HIGH 209.69 (2nd sweep of the ~210.43 shelf within 60min, Sprung Phase-1 candidate). H4 refreshed and confirmed BEARISH (see h4_verdicts.NVDA). NO_ACTION -- blocked on M15 trigger, last closed bar (17:45) only ~58% bear body, just short of the 60% threshold. Watch: next M15 bar CLOSING 60%+ bear below ~210.34 confirms a with-trend short.",
-      "set_utc": "2026-07-24T18:02:00Z"
+      "note": "tick141: SPRING_SHORT 207.82, follow-through on tick139's watch item (drift below 209.5 confirmed, M5 95% bear closed bar). H4 confirmed BEARISH, with-trend, trigger MET. NO_ACTION -- BLOCKED ON R:R: honest structural SL above the shelf/extreme (210.53+buffer) vs nearest real support (205.49-205.8) gives only ~0.5:1, chase-the-spike pattern. See h4_verdicts.NVDA for full detail. Watch: a pullback/consolidation restoring entry-to-support distance, or a break of 205.5-205.8 opening room toward 204.3, reopens this as a cleaner with-trend short.",
+      "set_utc": "2026-07-24T18:30:36Z"
     },
     {
       "symbol": "BRENT",
