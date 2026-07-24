@@ -3134,3 +3134,14 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - No enforcer run on any symbol (all four blocked pre-enforcer — trigger for EURGBP, R:R for GBPJPY and AUDJPY, data-integrity for WTI). Nothing placed/would-placed. NO_ACTION across the batch.
 - Snapshot updated: h4_verdicts for EURGBP/GBPJPY/AUDJPY/WTI refreshed with tick122 reads (AUDJPY trend upgraded to confirmed bull); session_ranges refreshed for all four (AUDJPY and WTI both printed fresh session extremes this tick). tick_counter -> 122.
 - Watch: GBPJPY — a confirmed CLOSED bar above 218.324 improves R:R materially. AUDJPY — a pullback toward 114.31-114.34 without breaking the new uptrend would reopen a cleaner with-trend long. EURGBP — a confirmed 60%+ bear rejection bar below 0.85482 opens the counter-trend short case. WTI — re-check FLAG-002 gap next signal; direction now agrees with broker for the first time, worth noting in case the vendor feed is lagged rather than mismapped.
+
+## AUTO TICK 123 — 2026-07-24T07:30:39Z (TIER2, mode=learn)
+- Signal: PULLBACK_TAG_LONG AUDJPY 114.39 (level 114.344, extreme 114.214, range_pos 0.931, vol_mult 1.56) @07:30:02Z.
+- Account: switch_trading_account caught the usual revert to 41750592, confirmed switched to 41829612. Live balance/equity R6,708.77 (unchanged since tick122), no open positions — CHANGE3 monitor moot.
+- AUDJPY: H4/H1 trend still confirmed BULL reversal per tick122. Price never actually pulled back to the 114.344 tag level — still trading at/above the prior extension, fresh session high 114.403 on the forming 07:30 M15 bar. Last CLOSED bar (07:15) only ~10% body, not a rejection or reclaim.
+- BLOCKED ON R:R (hard, not downgradable) — same chase-the-spike as tick122, now slightly worse: structural SL below the 06:45 higher-low (114.309) − buffer ≈ 114.269, ~13.2 pips from ask 114.401; nearest resistance estimate unchanged ~114.47-114.48, only ~7-8 pips reward — R:R ~0.56:1, fails Rule9's 1.2:1 floor.
+- Rule17: range_pos ~0.94, deep top-15pct band — WARN-only/downgradable in learn mode, moot regardless (blocked on R:R).
+- News: WebSearch — no high-impact AUD/JPY item found in the 2h window. Attested news_clear.
+- No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.AUDJPY and session_ranges.AUDJPY refreshed (fresh session high 114.403). tick_counter -> 123.
+- Watch: unchanged from tick122 — a genuine pullback toward 114.31-114.34 without breaking the uptrend would reopen a cleaner with-trend long; this signal was not that pullback.
