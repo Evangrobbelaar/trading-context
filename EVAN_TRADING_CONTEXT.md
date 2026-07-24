@@ -3025,3 +3025,14 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - No enforcer run (both blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION on both.
 - Snapshot updated: h4_verdicts.GBPJPY (reversal to BEARISH) and .EURJPY refreshed, session_ranges.GBPJPY and .EURJPY rebuilt on fresh overnight session data. tick_counter -> 112.
 - Watch: both symbols -- London open (07:00 SAST) reverting Rule15 to the 15-25pip floor would materially improve R:R against the same shelves (218.333/217.958 for GBPJPY, 186.519/186.234 for EURJPY) if still relevant then.
+
+---
+## AUTO TICK 113 — 2026-07-24T02:31:11Z (TIER2, mode=learn)
+- Signal: SPRING_LONG WTI 92.734 (level 92.191, extreme 92.108, range_pos 0.376, vol_mult 0.63) @02:31:04Z — reclaim leg of the SWEEP_LOW at 92.638 that fired 02:01:03Z at the same 92.191 shelf, per the signal's own internal price series.
+- Account: switch_trading_account caught the usual revert to 41750592, confirmed switched to 41829612. Live balance/equity R6,708.77 (unchanged since tick112), no open positions — CHANGE3 monitor moot.
+- DATA-INTEGRITY GAP PERSISTS AND RE-WIDENED (standing tick81/96/98/101/102/103 flag, NOT learn-mode-downgradable — data-trust, not a discretionary gate): signal price 92.734 sits ~2.41pt (~2.7%) above live broker ask 90.32, and ~1.46pt above broker's own today-session high 91.274. This is wider than tick103's narrowed ~0.85-1.5pt read — the gap did NOT converge, it re-widened. Broker has never traded at or near 92.191/92.734/92.108.
+- Independent broker-native check: the two series actively DISAGREE in direction, not just level. Broker H1 topped 92.239 (7/23 19:00) then reversed hard, breaking the ascending H1 low-sequence (20:00 low 90.083 undercut 18:00/19:00 lows) down to a fresh session low 89.675 (01:45), now a nascent unconfirmed 3-bar M15 bounce to 90.378. TV signal's own series shows a bullish spring/reclaim; broker's independent series shows an unrelated deeper decline with no confirmed higher-low yet. Even setting data-integrity aside, a long here fails Rule3's counter-trend exception.
+- News: WebSearch — Hormuz/Iran/Houthi war-tape continues escalating (new Red Sea tanker attacks on Saudi shipping, real-world Brent ~$101/bbl reported); Rule11 sizing-input treatment, not a scheduled-release block; no EIA report until 7/29. Attested news_clear on the scheduled-event dimension.
+- No enforcer run (blocked pre-enforcer on data-integrity). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.WTI and session_ranges.WTI refreshed (broker session low/high 89.675/91.274). tick_counter -> 113.
+- Watch: WTI/BRENT TV alert feed still recommended for re-pointing/disabling — gap has now both narrowed (tick96→103) and re-widened (103→113), not a clean monotonic convergence. Re-check broker-native structure next WTI signal: does the bounce off 89.675 print a confirmed higher low, or does the reversal from 92.239 continue?
