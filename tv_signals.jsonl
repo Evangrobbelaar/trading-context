@@ -502,3 +502,4 @@
 {"event": "PULLBACK_TAG_SHORT", "symbol": "TSLA", "tf": "30", "price": 312.53, "level": 315.735, "extreme": 326.36, "range_pos": 0.044, "vol_mult": 0.98, "h1_atr": 6.614149, "t": 1784903400342, "received_utc": "2026-07-24T14:30:09.652954+00:00"}
 {"event": "PULLBACK_TAG_SHORT", "symbol": "SPX500", "tf": "30", "price": 7414.9, "level": 7398.8, "extreme": 7432.9, "range_pos": 0.499, "vol_mult": 2.31, "h1_atr": 16.434147, "t": 1784903401297, "received_utc": "2026-07-24T14:30:14.646083+00:00"}
 {"event": "SWEEP_LOW", "symbol": "SPX500", "tf": "30", "price": 7414.9, "level": 7398.8, "extreme": 7397, "range_pos": 0.499, "vol_mult": 2.31, "h1_atr": 16.434147, "t": 1784903401297, "received_utc": "2026-07-24T14:30:16.274123+00:00"}
+{"event": "SWEEP_LOW", "symbol": "EURUSD", "tf": "30", "price": 1.13782, "level": 1.13765, "extreme": 1.13746, "range_pos": 0.365, "vol_mult": 1.43, "h1_atr": 0.000947, "t": 1784905200354, "received_utc": "2026-07-24T15:00:06.335643+00:00"}
