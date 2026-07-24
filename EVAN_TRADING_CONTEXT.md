@@ -3100,3 +3100,15 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - No enforcer run (blocked pre-enforcer on news). Nothing placed/would-placed. NO_ACTION.
 - Snapshot updated: h4_verdicts.EURGBP and session_ranges.EURGBP refreshed (fresh session high 0.85484, H4 high 0.85481). tick_counter -> 119.
 - Watch: once past the 06:00 UTC PMI window, re-check for a confirmed CLOSED M15 bar above 0.85486 — underlying H4 trend/momentum is clean, this is purely a timing block.
+
+## AUTO TICK 120 — 2026-07-24T06:30:20Z (TIER2, mode=learn)
+- Signal: PULLBACK_TAG_SHORT XAUUSD 4036.72 (level 4039.97, extreme 4051.01, range_pos 0.506, vol_mult 1.66) @06:30:03Z.
+- Account: switch_trading_account caught the usual revert to 41750592, confirmed switched to 41829612. Live balance/equity R6,708.77 (unchanged since tick119), no open positions — CHANGE3 monitor moot.
+- H4: BEARISH confirmed continuing, extends tick115. Since the 03:00 breakdown (low 4023.05), price kept grinding down: H1 lows 4023.2(04:00)→4025.61(05:00)→4022.03(06:00, fresh session low). WITH-trend short, no override needed.
+- BLOCKED ON M15 TRIGGER (hard, not downgradable): last-closed 06:15 bar is a ~89% BULL body (sharp bounce off the 4022.03 low), forming 06:30 bar (signal bar) still bullish as of the history read (close 4036.54) though live price has since faded to 4034.37/4034.56 — can't act on an unclosed bar. Bounce, not a rejection, so far.
+- Rule17 moot: range_pos ~0.43 on live range 4022.03-4050.78, clear of both bands.
+- Session now past Asian close (06:30 UTC = 08:30 SAST) — Rule15's doubled SL floor no longer applies, which would have helped R:R had the trigger been met (contrast tick115's Asian risk-budget block, now moot).
+- News: WebSearch — only EU/German/French flash PMIs due today, all already printed by 06:00 UTC; no scheduled high-impact USD/gold event in the 2h window (next FOMC 2026-07-29). Attested news_clear.
+- No enforcer run (blocked pre-enforcer on M15 trigger). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.XAUUSD and session_ranges.XAUUSD refreshed (fresh session low 4022.03). tick_counter -> 120.
+- Watch: a confirmed CLOSED M15 bear rejection bar (60%+ body) back below ~4036-4040 would open this short with clean with-trend + now-favorable (non-Asian) risk sizing; a confirmed close back above 4039.97-4051 would instead threaten the bear thesis.
