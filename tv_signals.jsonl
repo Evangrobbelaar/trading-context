@@ -441,3 +441,4 @@
 {"event": "HL_RECLAIM", "symbol": "XAGUSD", "tf": "30", "price": 58.2615, "level": 57.903, "extreme": 57.09, "range_pos": 0.952, "vol_mult": 1.98, "h1_atr": 0.422985, "t": 1784878200642, "received_utc": "2026-07-24T07:30:17.127191+00:00"}
 {"event": "PULLBACK_TAG_SHORT", "symbol": "USDJPY", "tf": "30", "price": 163.767, "level": 163.724, "extreme": 163.848, "range_pos": 0.398, "vol_mult": 1.01, "h1_atr": 0.10657, "t": 1784880000345, "received_utc": "2026-07-24T08:00:03.320254+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "SPX500", "tf": "30", "price": 7421, "level": 7423.6, "extreme": 7427.7, "range_pos": 0.768, "vol_mult": 0.98, "h1_atr": 15.757211, "t": 1784880000337, "received_utc": "2026-07-24T08:00:05.047514+00:00"}
+{"event": "SWEEP_LOW", "symbol": "USDJPY", "tf": "30", "price": 163.767, "level": 163.724, "extreme": 163.663, "range_pos": 0.398, "vol_mult": 1.01, "h1_atr": 0.10657, "t": 1784880000345, "received_utc": "2026-07-24T08:00:06.595290+00:00"}
