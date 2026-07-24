@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-24T03:02:00Z",
-  "updated_by": "auto tick 115",
+  "updated_utc": "2026-07-24T03:10:00Z",
+  "updated_by": "auto tick 116",
   "balance": {
     "value": 6708.77,
     "equity": 6708.77,
-    "queried_utc": "2026-07-24T03:02:00Z",
-    "note": "live-queried this run via get_account_info. No change since tick114 (6708.77, no open positions, no trades this tick). Session P&L -686.22 vs session_start_balance 7394.99."
+    "queried_utc": "2026-07-24T03:10:00Z",
+    "note": "live-queried this run via get_account_info. No change since tick115 (6708.77, no open positions, no trades this tick)."
   },
   "session_start_balance": 7394.99,
   "open_positions": [],
@@ -47,15 +47,15 @@
     },
     "GBPJPY": {
       "trend": "BEARISH -- H4 reversal confirmed, supersedes tick101's BULL read. Uptrend into 218.621(7/23 14:00 bucket high) then broke: H4 swing highs 218.621(12:00-16:00 bucket)->218.225(16:00-20:00)->218.21(20:00-00:00)->218.324(00:00-04:00 forming), two consecutive lower highs. H4 swing lows 218.038(12:00-16:00 bucket)->217.958(16:00-20:00, fresh lower low breaking the prior bucket low)->218.018(20:00-00:00, higher low)->218.083(00:00-04:00 forming). Lower-high + broken prior swing low = Rule3 exception satisfied, this is a WITH-trend short now, not counter-trend.",
-      "asof": "2026-07-24T02:04:33Z",
+      "asof": "2026-07-24T03:10:00Z",
       "swings": "M15 22:15-02:00: chopped 218.10-218.18 overnight, then bounced 218.09(00:00)->218.162(00:15)->218.2(00:30)->218.248(00:45)->218.27(01:00)->218.296(01:15, local high, matches signal extreme 218.333 area)->01:30 (O218.295 H218.3 L218.21 C218.233, ~69% bear body, rejection off the bounce high)->01:45 LAST CLOSED (O218.234 H218.239 L218.154 C218.176, ~68% bear body, closes near low)->02:00 forming (O218.175 H218.201 L218.141 C218.154, continuing down). Live bid/ask 218.139/218.161.",
-      "note": "tick112 (mode=learn, TIER2): SPRING_SHORT fired 218.162 (30m tf, level 218.2505, extreme 218.333, range_pos 0.312, vol_mult 1.0) at 02:00:08Z. H4 gate PASSES (confirmed bearish reversal, see trend field) -- with-trend short, no learn-mode override needed. M15 trigger MET: last-closed 01:45 bar ~68% bear body, continuing into the forming 02:00 bar. BLOCKED ON R:R (hard, not downgradable): 02:04 UTC = 04:04 SAST, Asian session -- Rule15 doubles the SL floor to 30-50 pips; structural SL beyond the 218.333 extreme + buffer is only ~21 pips from entry, so Rule15's 30pip floor governs -- SL ~218.46 (30 pips) from ~218.16 entry. Nearest support (today's session low 217.958) is only ~20 pips down, giving best-case R:R ~20/30 = 0.67:1, well under Rule9's 1.2:1 floor. No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION. Watch: London open (07:00 SAST) reverting Rule15 to the 15-25pip floor would materially improve this R:R against the same 217.958/218.018 support if the short setup is still live then."
+      "note": "tick112 (mode=learn, TIER2): SPRING_SHORT fired 218.162 (30m tf, level 218.2505, extreme 218.333, range_pos 0.312, vol_mult 1.0) at 02:00:08Z. H4 gate PASSES (confirmed bearish reversal, see trend field) -- with-trend short, no learn-mode override needed. M15 trigger MET: last-closed 01:45 bar ~68% bear body, continuing into the forming 02:00 bar. BLOCKED ON R:R (hard, not downgradable): 02:04 UTC = 04:04 SAST, Asian session -- Rule15 doubles the SL floor to 30-50 pips; structural SL beyond the 218.333 extreme + buffer is only ~21 pips from entry, so Rule15's 30pip floor governs -- SL ~218.46 (30 pips) from ~218.16 entry. Nearest support (today's session low 217.958) is only ~20 pips down, giving best-case R:R ~20/30 = 0.67:1, well under Rule9's 1.2:1 floor. No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION. Watch: London open (07:00 SAST) reverting Rule15 to the 15-25pip floor would materially improve this R:R against the same 217.958/218.018 support if the short setup is still live then. | tick116 update: LL_BREAKDOWN re-print 218.055 (level 218.0735, extreme 218.333, range_pos 0.019) @03:00:07Z, extending the same with-trend bearish break. Live price now 218.052, session low 218.018 (barely moved) -- current range_pos ~0.11, still deep bottom-15pct band. R:R still fails: session low only ~3.4 pips below current bid, Asian Rule15 SL floor (30-50pips) needs far more room than that to any support. No enforcer run (blocked pre-enforcer on R:R, unchanged from tick112). NO_ACTION."
     },
     "AUDJPY": {
       "trend": "H1 lower-high sequence just barely still intact but no longer extending cleanly: 114.387(15:00)->114.319(16:00)->114.292(17:00)->114.272(18:00)->114.187(19:00)->114.117(20:00)->114.176(21:00, forming/latest -- still below 114.187 but has erased almost all of the 20:00 pullback). Lows have stopped making fresh lows since 20:00 (114.056) and printed a higher low at 21:00 (114.112) -- the downtrend is stalling, not confirmed reversed. Broader multi-day bull base (113.587, 7/21) remains the stale counter-label, WARN-only in learn mode.",
-      "asof": "2026-07-23T21:01:13Z",
+      "asof": "2026-07-24T03:10:00Z",
       "swings": "Since tick106's HOLD, the position (109839152) was stopped out at 114.308 (~21:00:10Z) -- price spiked/wicked above the 114.176 high visible in the M5/H1 series to run the SL, then settled back to a 114.152 H1 close. M5 20:35-21:00 shows a steady grind up (114.144->114.163->114.155->114.168->114.164->114.154->114.152), consistent with the stop-run high being a brief excursion not held. Live bid/ask 114.13/114.295 -- spread 16.5-17.2 pips, roughly 1.4x the h1_atr (0.1178/~11.8pips) and 5-6x AUDJPY's normal spread. This wide/unstable spread, together with the SL closing 0.13-0.25 beyond the printed candle highs, reads as a disorderly-tape/thin-liquidity condition (pre-Tokyo-open dead zone, 23:01 SAST) rather than a clean structural break.",
-      "note": "tick107 (mode=learn): SPRING_LONG fired 114.182 (30m tf, level 114.136, extreme 114.122, range_pos 0.409, vol_mult 0.29) at 21:01:04Z, ~1min after 109839152 (the tick104 short) was stopped out at 114.308. This is a counter-direction (LONG) signal vs the just-closed short, so Rule20 stacking does not apply and it was evaluated as an independent fresh-entry candidate. BLOCKED: (1) learn-mode hard block -- suspected disorderly/thin-liquidity tape: live spread 16.5-17.2 pips vs h1_atr ~11.8 pips (spread alone exceeds a full average H1 range) and the just-closed SL printed 0.13-0.25 beyond any candle high in the pulled history, both pointing to an unreliable tape right now (this is a HARD block per AUTO_TICK_PROTOCOL learn-mode absolutes, not overridable); (2) H1 lower-high sequence is stalling but NOT yet broken (21:00 forming high 114.176 still < 19:00's 114.187) so this would also be a counter-trend long -- WARN-only in learn mode but a second strike against entry; (3) vol_mult 0.29 is thin (29% of average), weak confirmation for a spring reclaim. News: WebSearch found no high-impact AUD/JPY item in the 2h window (AUS labour survey already printed and in-line; JPY industrial production low-impact) -- news_clear attested. No enforcer run (blocked pre-enforcer on disorderly-tape hard block). Nothing placed/would-placed. NO_ACTION. Watch: spread normalizing back toward 2-4 pips, and/or a confirmed closed H1 higher-high above 114.187, before treating this shelf as tradeable again."
+      "note": "tick107 (mode=learn): SPRING_LONG fired 114.182 (30m tf, level 114.136, extreme 114.122, range_pos 0.409, vol_mult 0.29) at 21:01:04Z, ~1min after 109839152 (the tick104 short) was stopped out at 114.308. This is a counter-direction (LONG) signal vs the just-closed short, so Rule20 stacking does not apply and it was evaluated as an independent fresh-entry candidate. BLOCKED: (1) learn-mode hard block -- suspected disorderly/thin-liquidity tape: live spread 16.5-17.2 pips vs h1_atr ~11.8 pips (spread alone exceeds a full average H1 range) and the just-closed SL printed 0.13-0.25 beyond any candle high in the pulled history, both pointing to an unreliable tape right now (this is a HARD block per AUTO_TICK_PROTOCOL learn-mode absolutes, not overridable); (2) H1 lower-high sequence is stalling but NOT yet broken (21:00 forming high 114.176 still < 19:00's 114.187) so this would also be a counter-trend long -- WARN-only in learn mode but a second strike against entry; (3) vol_mult 0.29 is thin (29% of average), weak confirmation for a spring reclaim. News: WebSearch found no high-impact AUD/JPY item in the 2h window (AUS labour survey already printed and in-line; JPY industrial production low-impact) -- news_clear attested. No enforcer run (blocked pre-enforcer on disorderly-tape hard block). Nothing placed/would-placed. NO_ACTION. Watch: spread normalizing back toward 2-4 pips, and/or a confirmed closed H1 higher-high above 114.187, before treating this shelf as tradeable again. | tick116 update: SWEEP_HIGH re-print 114.203 (level 114.215, extreme 114.31, range_pos 0.485) @03:00:19Z -- another touch of the same 114.215 shelf area flagged since tick98 (Sprung Ladder Phase-1 candidate, 2+ sweeps within 240min). Per AUTO_TICK_PROTOCOL absolutes, Sprung Ladder scout deployment is Evan-only regardless of mode -- not auto-actioned. Bare sweep, no independent M15 reclaim trigger in this batch. Live bid/ask 114.236/114.254, session low/high 114.058/114.311. NO_ACTION, informational flag only."
     },
     "XAUUSD": {
       "trend": "BEARISH -- confirmed continuing, extends tick98's read. H4 lower-highs sequence continued further: 4099.46(7/23 12:00)->4086.02(16:00)->4054.51(20:00)->4051.45(7/24 00:00). H4 lows had been stalling/stepping up 4072.98->4040.11->4040.68->4046.58 (looked like a bottoming range 4040-4051 for ~10h 17:00-02:45) until the 03:00 H1 bar broke decisively through it, low 4023.05 -- fresh session low, trend extending not reversing.",
@@ -84,12 +84,13 @@
       "note": "Refreshed this tick (was stale from 7/21 14:20). Broader trend still up from 63693 base but 7/21 16:00-7/22 12:00 showed a corrective lower-highs/lower-lows sequence \u2014 not a clean confirmed bull continuation yet (no break of 66683/66905 swing highs). Treated as uncertain/transitioning; learn-mode WARN override applied, not a hard block."
     },
     "XAGUSD": {
-      "trend": "BEARISH (structural, H4 intact) -- but a sharp corrective bounce is underway on M15 since the 13:15 sweep low 57.041. Last 3 H4 swing highs: 60.041 (7/23 04:00) -> 59.88 (08:00) -> 59.004 (12:00, closing lower). Last 3 H4 swing lows: 59.393 -> 58.648 -> 57.977. Treat the bounce as corrective-within-downtrend, not a reversal, until proven otherwise.",
-      "asof": "2026-07-23T14:04:00Z",
-      "swings": "M15 12:15-14:00: 58.506(12:15)->58.187(12:30)->58.01(12:45)->57.633(13:00, closed)->57.041 sweep low intrabar (13:15, closed 57.081)->13:30 sharp bull reversal (O57.082 H57.63 L57.072 C57.625, ~97% bull body)->13:45 LAST CLOSED (O57.622 H58.021 L57.604 C57.886, tagged 58.021 intrabar just above the 58.0116 signal level, closed back down at 57.886, ~56% bull body -- upper wick shows some rejection but body itself is bullish, not a clean bear trigger)->14:00 forming, dipped to 57.591 then recovering. Live bid/ask 57.682/57.726.",
-      "note": "tick101 (mode=learn): PULLBACK_TAG_SHORT fired 57.626 (level 58.0116, extreme 59.9255, range_pos 0.188, vol_mult 1.95) at 14:00:10Z -- with-trend SHORT candidate vs confirmed H4 BEARISH. BLOCKED ON M15 TRIGGER: last CLOSED bar (13:45) tagged the 58.0116 resistance intrabar (high 58.021) but closed as a ~56% BULL body, not a 60%+ bear rejection bar required by Change5 step5. The corrective bounce off the 13:15 sweep low (57.041) is sharp (+0.98pt in 2 bars) and not yet showing a confirmed rejection. Rule17 (range_pos 0.188, near bottom-15pct, would warn on a SELL) is WARN-only in learn mode and moot regardless -- blocked upstream on trigger. News: reused this tick's WebSearch scope (Fed hawkish repricing / strong USD / Mideast oil-spike backdrop, same macro driver as tick98, no acute scheduled event in 2h window) -- attested news_clear. No enforcer run. Nothing placed/would-placed. NO_ACTION. Watch: a CLOSED M15 bar printing a clean 60%+ bear body near 58.0-58.1 (confirming the pullback is rejected) would open a with-trend short -- SL above that rejection high + buffer, target back toward 57.04 and lower given H4 bearish.",
+      "trend": "BEARISH -- structural, confirmed extending. H4/H1 lower-highs sequence continues: prior read (tick101) had highs 60.041->59.88->59.004; since then price broke to 57.041 (7/23 14:00 sweep low), bounced to a lower high 57.903 (18:00), chopped 57.34-57.87 for ~9h, then broke down again this tick to a fresh session low 57.054 (03:00 H1), essentially retesting the 57.041 shelf. Trend intact and re-accelerating down, not reversing.",
+      "asof": "2026-07-24T03:10:00Z",
+      "swings": "H1 13:00(7/23)-03:00(7/24): 57.633->57.041 sweep low(14:00,C57.602)->57.972 high(15:00)->57.268(16:00)->57.903 high(18:00, lower high vs 59.004)->chop 57.38-57.836 (19:00-02:00)->03:00 BREAKS DOWN: O57.618 H57.757 L57.054 C57.157, fresh session low. M15 last CLOSED (02:45): O57.689 H57.747 L57.426 C57.494, ~61% bear body. Forming 03:00-03:15 bar (as of read): O57.495 H57.504 L57.054 C57.157, ~75% bear body, continuing the breakdown. Live bid/ask 57.218/57.29, session low/high 57.054/57.868.",
+      "note": "tick116 (mode=learn, TIER2, escalated from T1 on LL_BREAKDOWN 57.191, level 57.3375, extreme 57.903, range_pos 0.124, vol_mult 2.09 @03:00:08Z). H4 gate PASSES clean (confirmed bearish, re-accelerating) -- WITH-trend short, no learn-mode override needed. M15 trigger MET: last-closed 02:45 bar ~61% bear body, forming 03:00 bar ~75% bear body continuing to a fresh session low. Rule17: current range_pos ~0.20 (bid 57.218, range 57.054-57.868) -- just clear of the bottom-15pct cutoff (57.176), moot/would-not-block regardless (learn-mode WARN-only anyway). BLOCKED PRE-ENFORCER on risk budget, same failure mode as XAUUSD tick115: 03:10 UTC = 05:10 SAST, Asian session -- Rule15 doubles the XAGUSD SL floor to 0.60-1.00pt per CLAUDE.md instrument note. At forced learn-mode 0.01 lots (R779/pt confirmed), even the Asian MINIMUM 0.60pt SL alone costs R467.40, already over enforcer's 5%-balance per-trade cap (R335.44 on live R6,708.77) -- blocked before even reaching the actual structural stop. The real Rule18 structural SL (above the 57.868-57.903 recent swing-high zone + buffer) would run ~0.65-0.70pt (~R506-R545), further over budget. No lot-size lever available (learn mode forces 0.01 min) -- this is CLAUDE.md's own documented XAGUSD Asian-session constraint ('0.01 lots minimum = R779/pt = TOO LARGE for account < R15,000') playing out exactly as written. News: WebSearch found no scheduled high-impact item in the 2h window for silver; standing macro backdrop is Fed-blackout-ahead-of-next-week's-meeting + Mideast/Red Sea tension (Trump Iran-strike warning, Houthi tanker attacks) driving safe-haven/inflation crosscurrents in metals -- unscheduled-headline regime per protocol, sizing input not a block -- attested news_clear. No enforcer run (blocked pre-enforcer on risk budget, per tick98/115 convention). Nothing placed/would-placed. NO_ACTION. Watch: London open (07:00 SAST, ~2h away) reverting Rule15 to the 0.30-0.50pt floor would bring a ~0.35-0.40pt SL into budget (~R273-R312, under the R335 cap) against the same 57.87-57.90 structural high, if the breakdown is still live then.",
       "sources": [
-        "https://www.fxstreet.com/news/silver-price-today-silver-falls-according-to-fxstreet-data-202607230930"
+        "https://tradingeconomics.com/commodity/silver",
+        "https://www.capitalstreetfx.com/trade-idea/silver-xag-usd-trade-idea-today/"
       ]
     },
     "EURUSD": {
@@ -147,17 +148,17 @@
       "range": 0.306,
       "top_15pct_cutoff": 218.2779,
       "bottom_15pct_cutoff": 218.0639,
-      "asof": "2026-07-24T02:04:33Z",
-      "source": "get_symbol_price live low/high field, tick112 -- broker session reset overnight (today's range, was 218.025-218.621 at tick101). Entry ~218.16 (sell) = range_pos ~0.46, clear of both bands -- moot this tick, blocked on R:R, not Rule17."
+      "asof": "2026-07-24T03:10:00Z",
+      "source": "get_symbol_price live low/high field, tick116. Unchanged from tick112. Current bid 218.052 = range_pos ~0.11, deep bottom-15pct band -- moot, blocked on R:R not Rule17."
     },
     "AUDJPY": {
-      "low": 113.956,
-      "high": 114.475,
-      "range": 0.519,
-      "top_15pct_cutoff": 114.397,
-      "bottom_15pct_cutoff": 114.034,
-      "asof": "2026-07-23T21:01:13Z",
-      "source": "get_symbol_price live low/high field, tick107. Range unchanged since tick91/103/105/106 (113.956/114.475). Signal range_pos 0.409 mid-range, clear of both bands -- moot regardless since blocked upstream on the disorderly-tape hard block, not Rule17."
+      "low": 114.058,
+      "high": 114.311,
+      "range": 0.253,
+      "top_15pct_cutoff": 114.2731,
+      "bottom_15pct_cutoff": 114.096,
+      "asof": "2026-07-24T03:10:00Z",
+      "source": "get_symbol_price live low/high field, tick116. Session range narrowed/reset vs tick107's 113.956-114.475. Current bid 114.236 = range_pos ~0.70, clear of both bands -- moot, blocked upstream on Sprung Ladder Evan-only gate."
     },
     "BRENT": {
       "low": 90.635,
@@ -176,13 +177,13 @@
       "source": "get_symbol_price live low/high field, tick115 -- broker session reset overnight (today's range, was 4044.88-4141.07 at tick98). Entry ~4024.5 (sell) = range_pos ~0.053, deep bottom-15pct band -- WARN-only in learn mode, moot regardless since NO_ACTION was on enforcer risk-budget grounds, not Rule17."
     },
     "XAGUSD": {
-      "low": 57.041,
-      "high": 60.041,
-      "range": 3.0,
-      "top_15pct_cutoff": 59.591,
-      "bottom_15pct_cutoff": 57.491,
-      "asof": "2026-07-23T14:04:00Z",
-      "source": "get_symbol_price live low/high field, tick101. Fresh session low 57.041 (13:15 sweep, was 57.14 at tick98). Signal range_pos 0.188 clear of bottom-15pct band on the fresh range -- moot regardless, blocked on M15 trigger not Rule17."
+      "low": 57.054,
+      "high": 57.868,
+      "range": 0.814,
+      "top_15pct_cutoff": 57.7459,
+      "bottom_15pct_cutoff": 57.1761,
+      "asof": "2026-07-24T03:10:00Z",
+      "source": "get_symbol_price live low/high field, tick116. Fresh session low 57.054 (03:00 breakdown, was 57.041 at tick101 -- essentially retested). Current bid 57.218 = range_pos ~0.20, just clear of bottom-15pct band -- moot regardless, blocked on risk budget not Rule17."
     },
     "EURUSD": {
       "low": 1.137,
@@ -569,6 +570,11 @@
       "symbol": "SPX500",
       "note": "tick109: shelf signature confirmed (2x SWEEP_HIGH ~7420.1 within 30min) under H4 bearish trend, but NO_ACTION -- no closed M15 60%+ bear-body rejection bar yet. Sprung Ladder Phase-1 (scout limits) explicitly not auto-deployable per protocol absolute #4; would need Evan's manual go to run that play. Watch for closed M15 bear rejection off 7428-7429 (short trigger) or a confirmed close above 7429 (invalidates short bias).",
       "set_utc": "2026-07-24T01:32:00Z"
+    },
+    {
+      "symbol": "XAGUSD",
+      "note": "tick116: LL_BREAKDOWN blocked pre-enforcer on Asian SL risk budget (0.01L min forced by learn mode, 0.60pt Asian floor = R467 > R335 5%-cap on R6708.77 balance). H4/M15 setup itself is clean (with-trend, trigger met). Watch: London open 07:00 SAST reverting Rule15 floor to 0.30-0.50pt would bring this into budget against the same 57.87-57.90 structural high, if breakdown still live.",
+      "set_utc": "2026-07-24T03:10:00Z"
     }
   ],
   "notes": "tick102 TIER2: single-signal batch, BRENT PULLBACK_TAG_LONG 100.972 (level 101.508, extreme 100.134, range_pos 0.815, vol_mult 1.26). NO_ACTION: standing BRENT TV-feed/broker-quote decoupling (since tick81) persists essentially flat at ~5.9pt/6.2% gap -- confirmed hard data-trust block, not learn-mode-downgradable. Independent broker-native check: BRENT H4/H1 still a genuine, accelerating uptrend but straight-line grind (fresh high 96.058) with no pullback/consolidation structure to trade off, so no independent trigger either. News: one WebSearch confirmed an active Hormuz/Iran/Houthi war-tape driving the real rally -- unscheduled headline regime, sizing input not a scheduled-news block, but chasing this spike would violate Rule 12 spirit regardless. No open positions (confirmed empty via live get_open_positions). Balance/equity unchanged R6,730.65. No enforcer run (nothing cleared pre-enforcer gates).",
