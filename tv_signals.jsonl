@@ -529,3 +529,4 @@
 {"event": "SPRING_SHORT", "symbol": "GBPJPY", "tf": "30", "price": 218.362, "level": 218.443, "extreme": 218.4795, "range_pos": 0.769, "vol_mult": 1, "h1_atr": 0.197525, "t": 1784912400695, "received_utc": "2026-07-24T17:00:07.289707+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "XAGUSD", "tf": "30", "price": 58.6275, "level": 58.6415, "extreme": 58.78, "range_pos": 0.81, "vol_mult": 1.03, "h1_atr": 0.426551, "t": 1784912400503, "received_utc": "2026-07-24T17:00:08.969785+00:00"}
 {"event": "SPRING_SHORT", "symbol": "AUDJPY", "tf": "30", "price": 114.494, "level": 114.534, "extreme": 114.54, "range_pos": 0.841, "vol_mult": 0.56, "h1_atr": 0.110976, "t": 1784912400800, "received_utc": "2026-07-24T17:00:10.653507+00:00"}
+{"event": "PULLBACK_TAG_LONG", "symbol": "SPX500", "tf": "30", "price": 7438.7, "level": 7432.9, "extreme": 7397, "range_pos": 0.651, "vol_mult": 1.11, "h1_atr": 19.163153, "t": 1784912400531, "received_utc": "2026-07-24T17:00:12.521237+00:00"}
