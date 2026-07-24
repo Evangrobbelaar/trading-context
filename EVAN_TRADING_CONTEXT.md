@@ -3090,3 +3090,13 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - No enforcer run (both blocked pre-enforcer on trigger/R:R). Nothing placed/would-placed. NO_ACTION across the batch.
 - Snapshot updated: h4_verdicts.XAGUSD and .GBPJPY notes appended with tick118 reads; session_ranges unchanged (both symbols' session low/high identical to tick116). tick_counter -> 118.
 - Watch: both symbols are mid-bounce off their Asian-session lows back toward resistance — a confirmed CLOSED bearish rejection bar at/above the tag levels (57.3375 XAGUSD / 218.0735-218.25 GBPJPY) would open the short case again, but R:R/budget blocks persist until London open (07:00 SAST) reverts Rule15 to normal minimums.
+
+## AUTO TICK 119 — 2026-07-24T04:01:40Z (TIER2, mode=learn)
+- Signal: HL_RECLAIM EURGBP 0.8549 (level 0.85486, extreme 0.85432, range_pos 0.989, vol_mult 1.06) @04:00:21Z. Tier1 escalated: H4 BULL aligns, fresh-high breakout signal.
+- Account: switch_trading_account caught the usual revert to 41750592, confirmed switched to 41829612. Live balance/equity R6,708.77 (unchanged since tick118), no open positions — CHANGE3 monitor moot.
+- H4: BULL confirmed continuing, refreshed — fresh multi-day high 0.85481 printed on the forming 04:00 H4 bar, exceeding tick101's 0.85433 read. Staircase since 7/20 16:00 low 0.84824 still intact (choppy but net higher). WITH-trend long, no override needed.
+- BLOCKED ON NEWS (hard, not downgradable in any mode): WebSearch confirms EU flash PMIs due today — France ~05:15 UTC (~1h13m away), Germany ~05:30 UTC, Eurozone composite ~06:00 UTC — all inside the 2h pre-news blackout for EUR pairs (PMI explicitly listed in CLAUDE.md News Protocol). news_checked but NOT news_clear.
+- Independent secondary blocks, both would also apply: (1) M15 trigger not confirmed — 04:00-04:15 bar containing the level break still forming/unclosed at read time; last CLOSED bar (03:45) closed 0.85477, below the 0.85486 level. (2) Rule17: live bid 0.85483 vs today's range 0.85259-0.85484 = range_pos ~0.996, deep top-15pct band — WARN-only/downgradable in learn mode but would independently block outside it.
+- No enforcer run (blocked pre-enforcer on news). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.EURGBP and session_ranges.EURGBP refreshed (fresh session high 0.85484, H4 high 0.85481). tick_counter -> 119.
+- Watch: once past the 06:00 UTC PMI window, re-check for a confirmed CLOSED M15 bar above 0.85486 — underlying H4 trend/momentum is clean, this is purely a timing block.

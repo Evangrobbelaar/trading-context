@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-24T03:34:07Z",
-  "updated_by": "auto tick 118",
+  "updated_utc": "2026-07-24T04:02:00Z",
+  "updated_by": "auto tick 119",
   "balance": {
     "value": 6708.77,
     "equity": 6708.77,
-    "queried_utc": "2026-07-24T03:34:07Z",
-    "note": "live-queried this run via get_account_info. No change since tick117 (6708.77, no open positions, no trades this tick)."
+    "queried_utc": "2026-07-24T04:02:00Z",
+    "note": "live-queried this run via get_account_info. No change since tick118 (6708.77, no open positions, no trades this tick)."
   },
   "session_start_balance": 7394.99,
   "open_positions": [],
@@ -30,14 +30,10 @@
   ],
   "h4_verdicts": {
     "EURGBP": {
-      "trend": "BULL \u2014 clean higher-lows staircase since 7/20 16:00 swing low 0.84824; fresh multi-day high 0.85433 printed since tick90 (was 0.85391), structure still intact",
-      "asof": "2026-07-23T13:36:46Z",
-      "swings": "M15 now chopping just under the 0.85302 shelf/level rather than grinding up: 12:30 (O0.85314 H0.8532 L0.85289 C0.85293) -> 12:45 (O0.85293 H0.8531 L0.85287 C0.85289) -> 13:00 (O0.85288 H0.85324 L0.85275 C0.85318) -> 13:15 LAST CLOSED (O0.85319 H0.85332 L0.8528 C0.8529, ~56% bear body, closed back below 0.85302) -> 13:30 forming (O0.85291 H0.85335 L0.85282 C0.85312, attempting reclaim, unclosed). Live bid/ask 0.85301/0.8532.",
-      "note": "tick101 (mode=learn): SWEEP_LOW fired 0.85326 (30m tf, level 0.85302, extreme 0.85296, range_pos 0.335, vol_mult 1.81) at 14:00:31Z -- 5th+ SWEEP_LOW print at ~0.85302 within 240min, dispatcher-flagged Sprung Ladder Phase-1 shelf signature, maturity still increasing. Fresh M15 (12:15-14:00) confirms continued tight chop 0.8529-0.8533 around the shelf, no clean directional close either way -- last CLOSED bar (13:45, O0.85313 H0.85327 L0.85284 C0.8531) is a near-doji (~10% body), not a trigger. Same two independent blocks as tick99/100: (1) scout deployment is Evan-only per AUTO_TICK_PROTOCOL absolutes, never auto-deployed regardless of mode; (2) no confirmed closed M15 reclaim above the shelf. H4 remains BULL and structurally intact (session high still 0.85433). News: reused this tick's WebSearch scope, no new scheduled high-impact item found in the 2h window -- attested news_clear, moot. No enforcer run. Nothing placed/would-placed. NO_ACTION. Watch: a genuine closed bullish reclaim above 0.85302, or the shelf finally breaking down cleanly.",
-      "sources": [
-        "https://wforex.com/news/economic-calendar-july-20-26-2026",
-        "https://www.tradingview.com/symbols/EURGBP/economic-calendar/"
-      ]
+      "trend": "BULL -- confirmed continuing, refreshed tick119. Fresh multi-day high 0.85481 printed on the forming 04:00 H4 bar, exceeding tick101's 0.85433 read. H4 staircase since 7/20 16:00 low 0.84824 still intact: H4 lows 7/23 00:00(0.85197)->04:00(0.85292)->08:00(0.85352)->12:00(0.85287, dip)->16:00(0.85275, dip)->20:00(0.85375)->7/24 00:00(0.85259, dip)->04:00 forming(0.85425, higher low). H4 highs 08:00(0.85433)->16:00(0.85459)->00:00(0.85456)->04:00 forming(0.85481, fresh high). Structure choppy but net higher, trend intact.",
+      "asof": "2026-07-24T04:01:40Z",
+      "swings": "M15 00:00-04:00: steady grind up from 0.85446(00:15) through a shallow 01:00 dip (0.85428) back to fresh highs: 02:00(0.85451)->02:15(0.85458)->02:30(0.85464)->02:45(0.8547)->03:00(0.85471)->03:15(0.85465)->03:30(0.8547)->03:45 LAST CLOSED(O0.85469 H0.85479 L0.85469 C0.85477, ~80% bull body)->04:00 forming (O0.85477 H0.85481 L0.85473 C0.8548 as of read, unclosed). Live bid/ask 0.85483/0.85502 -- already trading above the signal's 0.85486 level intra-bar, but no M15 bar has CLOSED above it yet.",
+      "note": "tick119 (mode=learn, TIER2, escalated from tier1 on ESCALATE_TIER2): HL_RECLAIM fired 0.8549 (30m tf, level 0.85486, extreme 0.85432, range_pos 0.989, vol_mult 1.06) at 04:00:21Z. H4 gate PASSES clean (confirmed BULL, fresh high, see trend field) -- WITH-trend long, no override needed. BLOCKED ON NEWS (hard, not downgradable in any mode): WebSearch confirms EU flash PMIs due today -- France flash ~07:15 CEST/05:15 UTC (~1h13m away), Germany flash ~07:30 CEST/05:30 UTC, Eurozone composite ~08:00 CEST/06:00 UTC -- all inside the 2h pre-news blackout window for EUR pairs per CLAUDE.md News Protocol (PMI explicitly listed as a blocking event type). news_checked but NOT news_clear -- attestation fails, enforcer's --news_clear flag cannot be honestly set. Independent secondary blocks, both would also apply: (1) M15 trigger not confirmed -- the 04:00-04:15 bar containing the level break is still forming/unclosed at read time (04:01:40Z), last CLOSED bar (03:45) closed at 0.85477, below the 0.85486 level; Change5 step5 requires a confirmed closed bar. (2) Rule17: live bid 0.85483 vs today's session range 0.85259-0.85484 = range_pos ~0.996, deep top-15pct band for a BUY -- WARN-only/downgradable in learn mode but would independently block outside it. No enforcer run (blocked pre-enforcer on news). Nothing placed/would-placed. NO_ACTION. Watch: once past the 06:00 UTC PMI window, re-check for a confirmed CLOSED M15 bar above 0.85486 -- the underlying H4 trend and momentum are clean, this is purely a timing block."
     },
     "EURJPY": {
       "trend": "BULL structurally intact (multi-day swing low 185.287 unbroken) but INTRADAY LOWER-HIGHS since the 186.659 peak: H4 swing highs 186.659(7/23 08:00)->186.608(12:00)->186.508(16:00)->186.45(00:00, forming) -- chopping/compressing under the multi-week high, not extending. H4 lows still broadly stepping up (186.037->186.118->186.284) though the 00:00 forming bar dipped to 186.234, below the 20:00 low -- still just a dip, not a confirmed broken swing low.",
@@ -125,13 +121,13 @@
   },
   "session_ranges": {
     "EURGBP": {
-      "low": 0.85197,
-      "high": 0.85433,
-      "range": 0.00236,
-      "top_15pct_cutoff": 0.853976,
-      "bottom_15pct_cutoff": 0.852324,
-      "asof": "2026-07-23T14:03:00Z",
-      "source": "get_symbol_price live low/high field, tick101. Range unchanged since tick90. Signal entry ~0.8533 = range_pos ~0.55, mid-range, clear of both bands; moot anyway since blocked on M15 trigger (chop, no reclaim), not Rule17."
+      "low": 0.85259,
+      "high": 0.85484,
+      "range": 0.00225,
+      "top_15pct_cutoff": 0.8545025,
+      "bottom_15pct_cutoff": 0.8529275,
+      "asof": "2026-07-24T04:01:40Z",
+      "source": "get_symbol_price live low/high field, tick119 -- broker session reset overnight (today's range, was 0.85197-0.85433 at tick101). Live bid 0.85483 = range_pos ~0.996, deep top-15pct band -- moot this tick, blocked on News (hard), not primarily Rule17 (which is WARN-only in learn mode regardless)."
     },
     "EURJPY": {
       "low": 186.234,
