@@ -1,15 +1,27 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-24T14:09:00Z",
-  "updated_by": "auto tick135",
+  "updated_utc": "2026-07-24T17:00:30Z",
+  "updated_by": "auto tick136",
   "balance": {
     "value": 6708.77,
-    "equity": 6708.77,
-    "queried_utc": "2026-07-24T14:08:40Z",
-    "note": "live-queried this run via get_account_info. Unchanged since tick124-134 (6708.77, no open positions, no trades this tick). Session P&L vs session_start_balance 7394.99 = -686.22 (-9.28%) -- below AUTO_TICK hard 50% max-loss stop."
+    "equity": 6712.33,
+    "queried_utc": "2026-07-24T17:00:10Z",
+    "note": "live-queried this run via get_account_info. Balance unchanged since tick124-135 (6708.77); equity +R3.56 floating from the open TESLA short. Session P&L vs session_start_balance 7394.99 = -686.22 (-9.28%) -- below AUTO_TICK hard 50% max-loss stop."
   },
   "session_start_balance": 7394.99,
-  "open_positions": [],
+  "open_positions": [
+    {
+      "orderId": "109843788",
+      "symbol": "TESLA",
+      "side": "Sell",
+      "units": 0.1,
+      "entry": 311.42,
+      "stopLoss": 317.66,
+      "takeProfit": 303,
+      "pl": 3.48,
+      "note": "tick136: M5 structure since entry continuing lower (16:15-17:00 bars stepping down, last close 309.00, live bid 308.34) -- WITH the short, Rule3 no action needed (not yet a new swing point against, and only ~37% progress to TP: (311.42-308.34)/(311.42-303)=36.6%, below Rule13's 60% threshold). ACTION: Hold."
+    }
+  ],
   "closed_since_last_snapshot": [],
   "h4_verdicts": {
     "EURGBP": {
@@ -59,10 +71,10 @@
       "note": "Refreshed this tick (was stale from 7/21 14:20). Broader trend still up from 63693 base but 7/21 16:00-7/22 12:00 showed a corrective lower-highs/lower-lows sequence \u2014 not a clean confirmed bull continuation yet (no break of 66683/66905 swing highs). Treated as uncertain/transitioning; learn-mode WARN override applied, not a hard block."
     },
     "XAGUSD": {
-      "trend": "BEARISH -- structural, confirmed extending. H4/H1 lower-highs sequence continues: prior read (tick101) had highs 60.041->59.88->59.004; since then price broke to 57.041 (7/23 14:00 sweep low), bounced to a lower high 57.903 (18:00), chopped 57.34-57.87 for ~9h, then broke down again this tick to a fresh session low 57.054 (03:00 H1), essentially retesting the 57.041 shelf. Trend intact and re-accelerating down, not reversing.",
-      "asof": "2026-07-24T03:10:00Z",
-      "swings": "H1 13:00(7/23)-03:00(7/24): 57.633->57.041 sweep low(14:00,C57.602)->57.972 high(15:00)->57.268(16:00)->57.903 high(18:00, lower high vs 59.004)->chop 57.38-57.836 (19:00-02:00)->03:00 BREAKS DOWN: O57.618 H57.757 L57.054 C57.157, fresh session low. M15 last CLOSED (02:45): O57.689 H57.747 L57.426 C57.494, ~61% bear body. Forming 03:00-03:15 bar (as of read): O57.495 H57.504 L57.054 C57.157, ~75% bear body, continuing the breakdown. Live bid/ask 57.218/57.29, session low/high 57.054/57.868.",
-      "note": "tick116 (mode=learn, TIER2, escalated from T1 on LL_BREAKDOWN 57.191, level 57.3375, extreme 57.903, range_pos 0.124, vol_mult 2.09 @03:00:08Z). H4 gate PASSES clean (confirmed bearish, re-accelerating) -- WITH-trend short, no learn-mode override needed. M15 trigger MET: last-closed 02:45 bar ~61% bear body, forming 03:00 bar ~75% bear body continuing to a fresh session low. Rule17: current range_pos ~0.20 (bid 57.218, range 57.054-57.868) -- just clear of the bottom-15pct cutoff (57.176), moot/would-not-block regardless (learn-mode WARN-only anyway). BLOCKED PRE-ENFORCER on risk budget, same failure mode as XAUUSD tick115: 03:10 UTC = 05:10 SAST, Asian session -- Rule15 doubles the XAGUSD SL floor to 0.60-1.00pt per CLAUDE.md instrument note. At forced learn-mode 0.01 lots (R779/pt confirmed), even the Asian MINIMUM 0.60pt SL alone costs R467.40, already over enforcer's 5%-balance per-trade cap (R335.44 on live R6,708.77) -- blocked before even reaching the actual structural stop. The real Rule18 structural SL (above the 57.868-57.903 recent swing-high zone + buffer) would run ~0.65-0.70pt (~R506-R545), further over budget. No lot-size lever available (learn mode forces 0.01 min) -- this is CLAUDE.md's own documented XAGUSD Asian-session constraint ('0.01 lots minimum = R779/pt = TOO LARGE for account < R15,000') playing out exactly as written. News: WebSearch found no scheduled high-impact item in the 2h window for silver; standing macro backdrop is Fed-blackout-ahead-of-next-week's-meeting + Mideast/Red Sea tension (Trump Iran-strike warning, Houthi tanker attacks) driving safe-haven/inflation crosscurrents in metals -- unscheduled-headline regime per protocol, sizing input not a block -- attested news_clear. No enforcer run (blocked pre-enforcer on risk budget, per tick98/115 convention). Nothing placed/would-placed. NO_ACTION. Watch: London open (07:00 SAST, ~2h away) reverting Rule15 to the 0.30-0.50pt floor would bring a ~0.35-0.40pt SL into budget (~R273-R312, under the R335 cap) against the same 57.87-57.90 structural high, if the breakdown is still live then. | tick118 update: PULLBACK_TAG_SHORT 57.2875 (level 57.3375, extreme 57.903, range_pos 0.243, vol_mult 1.61) @03:30:04Z -- price bounced hard off the 57.054 low (last-closed 03:15 M15 bar O57.156 H57.365 L57.059 C57.327, ~56% BULL body, not a bear rejection) back up toward the 57.3375 tag level, now bid/ask 57.282/57.355. M15 trigger for a short NOT MET: last closed bar is bullish, forming 03:30 bar (O57.326 C57.254 as of read) is only a partial bearish retrace and unclosed. Risk-budget block also still stands unchanged (still Asian session, same R467 vs R335 cap math as tick116). Double block: trigger + budget. No enforcer run. Nothing placed/would-placed. NO_ACTION.",
+      "trend": "REVERSED TO BULL -- the tick101/116 BEARISH structural read (asof 03:10 UTC) is now stale and INVALIDATED. Fresh H1 pull: session low 57.054 (03:00) was the final low of the downtrend; H1 has since printed a clean higher-low/higher-high staircase: lows 57.054(03:00)->57.059(04:00)->57.141(05:00)->57.221(06:00)->57.25(07:00)->57.676(08:00)->58.033(09:00)->58.238(10:00)->58.356(11:00), with a deep wick-only dip to 57.829 at 14:00 (M15 sweep, not a closed H1 low) that recovered same-hour. Highs: 57.367(04:00)->57.576(06:00)->57.786(07:00)->58.401(08:00, breaks both old lower-high pivots 57.903/57.868)->58.617(11:00)->58.667(15:00)->58.965(16:00, fresh session high). This decisively meets the counter-trend-long exception (confirmed higher low + broke prior H4 swing high) and should be reclassified BULL outright, not treated as a WARN-override long. Old downtrend reference (59.004/59.88/60.041 pivots from tick101) not yet retested -- 58.965 is the highest print since the reversal began.",
+      "asof": "2026-07-24T17:00:10Z",
+      "swings": "M15 16:00-17:00: 16:00(O58.737 H58.958 L58.698 C58.881, strong bull, fresh high)->16:15(O58.882 H58.904 L58.764 C58.789, pullback)->16:30(O58.788 H58.865 L58.74 C58.74, bear, closes at low)->16:45(O58.744 H58.756 L58.607 C58.635, ~73% bear body, continuing pullback)->17:00 LAST CLOSED (O58.634 H58.65 L58.537 C58.607, small ~24% body, indecision -- wicks to 58.537 then recovers, NOT a confirmed 60%+ bull rejection/reclaim bar). Live bid/ask 58.611/58.656, session low/high 57.054/58.965.",
+      "note": "tick116 (mode=learn, TIER2, escalated from T1 on LL_BREAKDOWN 57.191, level 57.3375, extreme 57.903, range_pos 0.124, vol_mult 2.09 @03:00:08Z). H4 gate PASSES clean (confirmed bearish, re-accelerating) -- WITH-trend short, no learn-mode override needed. M15 trigger MET: last-closed 02:45 bar ~61% bear body, forming 03:00 bar ~75% bear body continuing to a fresh session low. Rule17: current range_pos ~0.20 (bid 57.218, range 57.054-57.868) -- just clear of the bottom-15pct cutoff (57.176), moot/would-not-block regardless (learn-mode WARN-only anyway). BLOCKED PRE-ENFORCER on risk budget, same failure mode as XAUUSD tick115: 03:10 UTC = 05:10 SAST, Asian session -- Rule15 doubles the XAGUSD SL floor to 0.60-1.00pt per CLAUDE.md instrument note. At forced learn-mode 0.01 lots (R779/pt confirmed), even the Asian MINIMUM 0.60pt SL alone costs R467.40, already over enforcer's 5%-balance per-trade cap (R335.44 on live R6,708.77) -- blocked before even reaching the actual structural stop. The real Rule18 structural SL (above the 57.868-57.903 recent swing-high zone + buffer) would run ~0.65-0.70pt (~R506-R545), further over budget. No lot-size lever available (learn mode forces 0.01 min) -- this is CLAUDE.md's own documented XAGUSD Asian-session constraint ('0.01 lots minimum = R779/pt = TOO LARGE for account < R15,000') playing out exactly as written. News: WebSearch found no scheduled high-impact item in the 2h window for silver; standing macro backdrop is Fed-blackout-ahead-of-next-week's-meeting + Mideast/Red Sea tension (Trump Iran-strike warning, Houthi tanker attacks) driving safe-haven/inflation crosscurrents in metals -- unscheduled-headline regime per protocol, sizing input not a block -- attested news_clear. No enforcer run (blocked pre-enforcer on risk budget, per tick98/115 convention). Nothing placed/would-placed. NO_ACTION. Watch: London open (07:00 SAST, ~2h away) reverting Rule15 to the 0.30-0.50pt floor would bring a ~0.35-0.40pt SL into budget (~R273-R312, under the R335 cap) against the same 57.87-57.90 structural high, if the breakdown is still live then. | tick118 update: PULLBACK_TAG_SHORT 57.2875 (level 57.3375, extreme 57.903, range_pos 0.243, vol_mult 1.61) @03:30:04Z -- price bounced hard off the 57.054 low (last-closed 03:15 M15 bar O57.156 H57.365 L57.059 C57.327, ~56% BULL body, not a bear rejection) back up toward the 57.3375 tag level, now bid/ask 57.282/57.355. M15 trigger for a short NOT MET: last closed bar is bullish, forming 03:30 bar (O57.326 C57.254 as of read) is only a partial bearish retrace and unclosed. Risk-budget block also still stands unchanged (still Asian session, same R467 vs R335 cap math as tick116). Double block: trigger + budget. No enforcer run. Nothing placed/would-placed. NO_ACTION. | tick136 (mode=learn, TIER2): PULLBACK_TAG_LONG fired 58.6275 (30m tf, level 58.6835, extreme 57.846, range_pos 0.81, vol_mult 1.03) @17:00:05Z. H4 gate: the prior BEARISH verdict is stale/invalidated -- fresh H1 shows a clean reversal with confirmed higher-lows/higher-highs since the 57.054 low (see trend field), Rule3 exception met on its own merits, no learn-mode override needed for direction. Rule17: live range_pos ~0.815 (bid 58.611, session range 57.054-58.965, top-15pct cutoff 58.678) -- just CLEAR of the top-band, does not block this buy. BLOCKED ON M15 TRIGGER (hard, not learn-mode-downgradable): last CLOSED bar (17:00) is a small-bodied ~24% indecision candle, not a confirmed 60%+ bull rejection/reclaim off the pullback low (58.537); the prior 16:45 bar was actually a 73% BEAR body, so the reclaim this signal is tagging has not yet printed a qualifying closed candle. Secondary/independent: R:R marginal even if triggered -- normal-session (19:00 SAST, outside Asian window) Rule2 SL floor 0.30-0.50pt vs only ~0.30-0.34pt reward to the recent 58.965 high, sub-1.2:1 unless a deeper momentum target is used. News: WebSearch found no scheduled high-impact silver/USD event in the forward 2h window; standing Fed-blackout-ahead-of-July28-29-FOMC + Hormuz/Houthi Red Sea tension backdrop unchanged (sizing input, not a block). Attested news_clear. No enforcer run (blocked pre-enforcer on M15 trigger). Nothing placed/would-placed. NO_ACTION. Watch: next M15 bar CLOSING with a 60%+ bull body reclaiming above 58.68-58.70 would confirm the pullback long, now WITH a properly reclassified BULL H4 behind it.",
       "sources": [
         "https://tradingeconomics.com/commodity/silver",
         "https://www.capitalstreetfx.com/trade-idea/silver-xag-usd-trade-idea-today/"
@@ -160,12 +172,12 @@
     },
     "XAGUSD": {
       "low": 57.054,
-      "high": 57.868,
-      "range": 0.814,
-      "top_15pct_cutoff": 57.7459,
-      "bottom_15pct_cutoff": 57.1761,
-      "asof": "2026-07-24T03:10:00Z",
-      "source": "get_symbol_price live low/high field, tick116. Fresh session low 57.054 (03:00 breakdown, was 57.041 at tick101 -- essentially retested). Current bid 57.218 = range_pos ~0.20, just clear of bottom-15pct band -- moot regardless, blocked on risk budget not Rule17."
+      "high": 58.965,
+      "range": 1.911,
+      "top_15pct_cutoff": 58.6784,
+      "bottom_15pct_cutoff": 57.3406,
+      "asof": "2026-07-24T17:00:10Z",
+      "source": "get_symbol_price live low/high field, tick136. Session range extended massively since tick116 (57.054-57.868) as the reversal rally pushed a fresh high to 58.965. Current bid 58.611 = range_pos ~0.815, just clear of the top-15pct cutoff (58.678) -- does not block the fired PULLBACK_TAG_LONG signal; blocked on M15 trigger instead."
     },
     "EURUSD": {
       "low": 1.13645,
