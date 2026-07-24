@@ -545,3 +545,4 @@
 {"event": "SPRING_SHORT", "symbol": "SPX500", "tf": "30", "price": 7407.7, "level": 7461.1, "extreme": 7436.5, "range_pos": 0.167, "vol_mult": 1.07, "h1_atr": 20.329453, "t": 1784919600443, "received_utc": "2026-07-24T19:00:06.701080+00:00"}
 {"event": "SPRING_LONG", "symbol": "EURJPY", "tf": "30", "price": 186.286, "level": 186.24, "extreme": 186.231, "range_pos": 0.147, "vol_mult": 0.52, "h1_atr": 0.122366, "t": 1784919601244, "received_utc": "2026-07-24T19:00:13.649103+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "NVDA", "tf": "30", "price": 205.61, "level": 205.68, "extreme": 211.9, "range_pos": 0.113, "vol_mult": 1.51, "h1_atr": 2.477661, "t": 1784921400200, "received_utc": "2026-07-24T19:30:06.161493+00:00"}
+{"event": "SWEEP_LOW", "symbol": "SPX500", "tf": "30", "price": 7399.6, "level": 7397, "extreme": 7396.3, "range_pos": 0.051, "vol_mult": 1.02, "h1_atr": 20.034492, "t": 1784921400982, "received_utc": "2026-07-24T19:30:12.067449+00:00"}
