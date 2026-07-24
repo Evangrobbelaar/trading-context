@@ -2988,3 +2988,15 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - No enforcer run (nothing cleared pre-enforcer gates). Nothing placed/would-placed. NO_ACTION.
 - Snapshot updated: h4_verdicts.SPX500 and session_ranges.SPX500 set (first read this session). tick_counter -> 109.
 - Watch: closed M15 bar with 60%+ bear body off 7428-7429 (short trigger), or confirmed close above 7429 (invalidates short bias).
+
+---
+## AUTO TICK 110 — 2026-07-24T01:34:18Z (TIER2, mode=learn)
+- Signals: SWEEP_HIGH EURJPY 186.486 (level 186.519, extreme 186.54, range_pos 0.713, vol_mult 1.35) @01:30:06Z — 2nd sweep at ~186.519 within 240min, shelf-signature/Sprung Ladder Phase-1 candidate. PULLBACK_TAG_LONG EURUSD 1.1382 (level 1.1381, extreme 1.13754, range_pos 0.618, vol_mult 1.32) @01:30:09Z.
+- Account: switch_trading_account caught the usual revert to 41750592, confirmed switched to 41829612. Live balance/equity R6,708.77 (unchanged), no open positions.
+- EURJPY: H4 refreshed — structurally still BULL (multi-day swing low 185.287 unbroken) but intraday lower-highs since the 186.659 peak (186.659->186.608->186.508->186.45 forming), compressing under it. M15 trigger IS met: last-closed 01:30 bar is a ~60% bear-body rejection right at the 186.519 shelf. But counter-trend (no Rule3 exception — no prior H4 swing low broken, WARN-only). BLOCKED ON R:R (hard): 01:34 UTC = 03:34 SAST, Asian session — Rule15 doubles the SL floor to 30-50 pips, but today's range is only ~30pt wide (186.234-186.534), leaving ~22 pips to the session low from ~186.454 entry — best case R:R ~0.63:1, fails Rule9's 1.2:1 floor. Sprung Ladder Phase-1 scout stays Evan-only regardless. No enforcer run.
+- EURUSD: H4 refreshed — now confirmed BEARISH (broke from 1.14353 through 1.13829/1.13635 since 7/23 08:00), superseding the stale tick88 BULL read (~440 pips higher, 22h+ stale). This long is counter-trend. BLOCKED ON M15 TRIGGER (hard): last-closed 01:30 bar is a ~47.5% bear-leaning bar closing at its low, not a bull confirmation, despite the 01:00 bar's strong 92% bull body and the 01:15 bar's intrabar tag of the level. No enforcer run.
+- News: WebSearch — broad USD strength (Initial Jobless Claims 187K vs 212K forecast, hawkish Fed repricing, Mideast tension) is the macro-coherent driver behind EURUSD's breakdown; no scheduled high-impact EUR/JPY/USD release in the 2h window. news_clear attested for both.
+- Rule17 moot both symbols (EURJPY range_pos ~0.733, EURUSD ~0.759 — clear of both bands on fresh broker session ranges).
+- Nothing placed/would-placed. NO_ACTION on both.
+- Snapshot updated: h4_verdicts.EURJPY and .EURUSD refreshed, session_ranges.EURJPY and .EURUSD rebuilt on fresh overnight session data. tick_counter -> 110.
+- Watch: EURJPY — London open (07:00 SAST) reverting Rule15 to 15-25pips would improve the short's R:R at this shelf if still relevant. EURUSD — a confirmed closed M15 bull bar (60%+) back above 1.1382-1.1386 would reopen the long case; otherwise this is a corrective bounce inside the new downtrend.
