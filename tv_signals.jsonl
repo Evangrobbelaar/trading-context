@@ -541,3 +541,4 @@
 {"event": "HL_RECLAIM", "symbol": "NFLX", "tf": "30", "price": 70.34, "level": 70.29, "extreme": 67.99, "range_pos": 0.992, "vol_mult": 0.62, "h1_atr": 0.712192, "t": 1784917800403, "received_utc": "2026-07-24T18:30:07.815182+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "SPX500", "tf": "30", "price": 7413.9, "level": 7432.9, "extreme": 7436.5, "range_pos": 0.264, "vol_mult": 0.85, "h1_atr": 19.386596, "t": 1784917800456, "received_utc": "2026-07-24T18:30:09.317108+00:00"}
 {"event": "SWEEP_LOW", "symbol": "EURJPY", "tf": "30", "price": 186.274, "level": 186.24, "extreme": 186.231, "range_pos": 0.115, "vol_mult": 0.7, "h1_atr": 0.120795, "t": 1784917802687, "received_utc": "2026-07-24T18:30:16.459786+00:00"}
+{"event": "PULLBACK_TAG_SHORT", "symbol": "TSLA", "tf": "30", "price": 309.39, "level": 308, "extreme": 323.4, "range_pos": 0.175, "vol_mult": 0.74, "h1_atr": 5.577768, "t": 1784919600235, "received_utc": "2026-07-24T19:00:04.231056+00:00"}
