@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-24T03:10:00Z",
-  "updated_by": "auto tick 116",
+  "updated_utc": "2026-07-24T03:31:17Z",
+  "updated_by": "auto tick 117",
   "balance": {
     "value": 6708.77,
     "equity": 6708.77,
-    "queried_utc": "2026-07-24T03:10:00Z",
-    "note": "live-queried this run via get_account_info. No change since tick115 (6708.77, no open positions, no trades this tick)."
+    "queried_utc": "2026-07-24T03:31:17Z",
+    "note": "live-queried this run via get_account_info. No change since tick116 (6708.77, no open positions, no trades this tick)."
   },
   "session_start_balance": 7394.99,
   "open_positions": [],
@@ -94,10 +94,10 @@
       ]
     },
     "EURUSD": {
-      "trend": "BEARISH -- supersedes the stale tick88 BULL-short-term read. Clean H4 break: topped 1.14353 (7/23 08:00), dropped straight through 1.13829(12:00)->1.13635(16:00) to a fresh multi-day low, now stabilizing/consolidating 1.137-1.1386 the last 2 H4 bars (20:00, 00:00 forming) with no confirmed reversal yet (no prior H4 swing high broken).",
-      "asof": "2026-07-24T01:34:18Z",
-      "swings": "M15 into the signal: 00:00 fresh local low 1.13753 -> 00:15 reclaim (low 1.13747, close 1.13785) -> 00:30/00:45 chop -> 01:00 strong ~92% bull bar (O1.13768 C1.13838) -> 01:15 tagged the 1.1382 level intrabar (low 1.1382 matches signal level exactly) but closed indecisive (O1.13842 C1.13835, ~18% body) -> 01:30 LAST CLOSED (O1.13834 H1.13855 L1.13815 C1.13815, ~47.5% BEAR body, closed at its low) -- NOT a bull confirmation bar. Live bid/ask 1.13838/1.13847.",
-      "note": "tick110 (mode=learn, TIER2): PULLBACK_TAG_LONG fired 1.1382 (30m tf, level 1.1381, extreme 1.13754, range_pos 0.618, vol_mult 1.32) at 01:30:09Z. H4 refresh (was stale 22h+ from tick88, based on a level ~440 pips above current price -- fully superseded) shows a confirmed BEARISH break since 7/23 08:00, so this long is COUNTER-TREND -- Rule3 exception (confirmed higher low + broken prior H4 swing high) not established, WARN-only in learn mode. BLOCKED ON M15 TRIGGER (hard, not downgradable): Change5 step5 needs a confirmed CLOSED bull rejection/reclaim bar in trade direction; the actual last-closed bar (01:30) is a ~47.5% bear-leaning bar closing at its low, not a bull confirmation, despite the strong 01:00 bull bar and the intrabar tag of the level. News: WebSearch -- broad USD strength (strong US Initial Jobless Claims 187K vs 212K forecast, hawkish Fed repricing, Mideast tension) is the macro-coherent driver of this EURUSD breakdown; no scheduled high-impact EUR/USD release in the 2h window -- attested news_clear. Rule17 moot (range_pos 0.618 on fresh session range 1.137-1.13858, clear of both bands). No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed. NO_ACTION. Watch: a confirmed CLOSED M15 bull bar (60%+ body) back above 1.1382-1.1386 would reopen the long case; otherwise this reads as a corrective bounce within the new downtrend."
+      "trend": "BEARISH -- confirmed continuing, refreshed tick117. H4 lower-highs sequence extends: 1.14353(7/23 08:00)->1.14247(12:00)->1.13948(16:00)->1.13806(20:00)->1.13795(7/24 00:00, forming). H4 lows: 1.13829(12:00, broke down)->1.13635(16:00, fresh multi-day low)->1.13708(20:00, bounce/higher low)->1.137(00:00 forming, retesting). Structurally bearish, consolidating just above the 1.13635 low, no reversal.",
+      "asof": "2026-07-24T03:31:17Z",
+      "swings": "M15 00:00-03:30: chopped 1.13753-1.13872 for ~3.5h. 02:45(O1.13839 H1.13872 C1.13844, tagged range top matching the 1.13814/1.13876 shelf extremes)->03:00 LAST STRONG(O1.13841 H1.13847 L1.13804 C1.13804, ~76% bear body, rejection off the top)->03:15(O1.13806 H1.1381 L1.13774 C1.1378, ~68% bear body, continuation)->03:30 LAST CLOSED (O1.13783 H1.1379 L1.13774 C1.13785, tiny ~10% bull-leaning body, indecisive -- NOT a confirmed rejection bar). Live bid/ask 1.13809/1.13818, price already reclaiming back up toward the 1.1381 shelf since the 03:30 close.",
+      "note": "tick117 (mode=learn, TIER2): SWEEP_HIGH fired 1.13788 (30m tf, level 1.1381, extreme 1.13814, range_pos 0.29, vol_mult 0.89) @03:30:02Z -- 3rd+ touch of the 1.1381 shelf within ~2h (PULLBACK_TAG_LONG 1.1382 @01:30, SWEEP_HIGH 1.13808 @03:00, this one @03:30), dispatcher-flagged Sprung Ladder Phase-1 candidate (2 sweeps within 240min). H4 gate PASSES clean for a short (confirmed bearish, see trend field) -- WITH-trend, no override needed. BLOCKED ON M15 TRIGGER (hard, not downgradable): Change5 step5 needs a confirmed CLOSED 60%+ rejection bar; the actual last-closed bar (03:30) is a tiny ~10% body, indecisive, not a rejection -- and live price (1.13809/1.13818) has already reclaimed back up toward the shelf since that close, undercutting the case further. Sprung Ladder scout deployment is Evan-only per AUTO_TICK_PROTOCOL absolutes, never auto-deployed regardless of mode -- informational flag only. Rule17 moot: range_pos ~0.63 on live range 1.137-1.13872, clear of both bands, blocked upstream on trigger anyway. News: WebSearch -- no scheduled high-impact EUR/USD release found in the 2h window; standing backdrop unchanged from tick110 (broad USD strength off Thursday's strong Initial Jobless Claims + Mideast tension, ECB press conference already priced in from 7/23) -- attested news_clear. No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed. NO_ACTION. Watch: a confirmed CLOSED 60%+ bear rejection bar at/above the 1.1381-1.1387 shelf would open the short; a confirmed CLOSED bull reclaim above 1.1387 would instead flag the shelf as broken/invalidated."
     },
     "BRENT": {
       "trend": "BULL on broker-native data, uptrend uninterrupted and accelerating -- fresh session high 96.058 on the 18:00 H1 bar (96.031 close), prior bars show continuous grind: 92.168->92.066->92.276->92.522->93.029->93.192->93.484->93.362->93.746->94.319->95.088->95.017->94.874->95.157->96.031. Minor stall 15:00-17:00 (95.355 high -> 95.435 -> 95.248, essentially flat) but no real pullback/consolidation structure -- resumed straight to new highs at 18:00. Not a tradeable pullback structure.",
@@ -187,12 +187,12 @@
     },
     "EURUSD": {
       "low": 1.137,
-      "high": 1.13858,
-      "range": 0.00158,
-      "top_15pct_cutoff": 1.138343,
-      "bottom_15pct_cutoff": 1.137237,
-      "asof": "2026-07-24T01:34:18Z",
-      "source": "get_symbol_price live low/high field, tick110 -- broker session reset overnight, range fully rebuilt after the 7/23 breakdown (was 1.14045-1.14288 at tick88, ~440 pips higher). Entry ~1.1382 (buy) = range_pos ~0.759, clear of both bands -- moot this tick, blocked on M15 trigger, not Rule17."
+      "high": 1.13872,
+      "range": 0.00172,
+      "top_15pct_cutoff": 1.138462,
+      "bottom_15pct_cutoff": 1.137258,
+      "asof": "2026-07-24T03:31:17Z",
+      "source": "get_symbol_price live low/high field, tick117 -- range extended slightly (high ticked up 1.13858->1.13872). Live bid 1.13809 (sell side) = range_pos ~0.63, clear of both bands -- moot this tick, blocked on M15 trigger, not Rule17."
     },
     "USDJPY": {
       "low": 163.766,

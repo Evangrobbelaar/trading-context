@@ -3067,3 +3067,15 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - Nothing placed/would-placed. NO_ACTION across the batch.
 - Snapshot updated: h4_verdicts.XAGUSD refreshed (fresh session low 57.054), .GBPJPY/.AUDJPY notes appended, session_ranges.XAGUSD/.GBPJPY/.AUDJPY refreshed, watch_levels.XAGUSD appended. tick_counter -> 116.
 - Watch: London open (07:00 SAST, ~2h away) reverting Rule15 to the 0.30-0.50pt XAGUSD floor would bring a ~0.35-0.40pt SL into budget (~R273-312, under the R335 cap) against the same 57.87-57.90 structural high, if the breakdown is still live then. Same London-open watch stands for GBPJPY's R:R.
+
+## AUTO TICK 117 — 2026-07-24T03:31:17Z (TIER2, mode=learn)
+- Signal: SWEEP_HIGH EURUSD 1.13788 (level 1.1381, extreme 1.13814, range_pos 0.29, vol_mult 0.89) @03:30:02Z. Tier1 escalated: 2nd sweep at ~1.1381 within 240min, Sprung Ladder Phase-1 shelf candidate.
+- Account: switch_trading_account caught the usual revert to 41750592, confirmed switched to 41829612. Live balance/equity R6,708.77 (unchanged since tick116), no open positions — CHANGE3 monitor moot.
+- H4: BEARISH confirmed continuing (refreshed) — lower-highs sequence extends 1.14353→1.14247→1.13948→1.13806→1.13795(forming); lows 1.13829(broke down)→1.13635(fresh multi-day low)→1.13708(bounce)→1.137(forming, retest). WITH-trend short, no override needed.
+- BLOCKED ON M15 TRIGGER (hard, not downgradable): last-closed 03:30 bar is a tiny ~10% body, indecisive — not a confirmed 60%+ rejection. Live price (1.13809/1.13818) has already reclaimed back up toward the 1.1381 shelf since that close, undercutting the setup further.
+- Sprung Ladder Phase-1 shelf (3rd+ touch of 1.1381 in ~2h) is informational only — scout deployment is Evan-only per protocol absolutes, never auto-actioned.
+- Rule17 moot: range_pos ~0.63 on live range 1.137-1.13872, clear of both bands.
+- News: WebSearch — no scheduled high-impact EUR/USD release in the 2h window; standing backdrop unchanged (broad USD strength off Thursday's Initial Jobless Claims beat + Mideast tension). Attested news_clear.
+- No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.EURUSD and session_ranges.EURUSD refreshed (session high ticked up to 1.13872). tick_counter -> 117.
+- Watch: a confirmed CLOSED 60%+ bear rejection bar at/above the 1.1381-1.1387 shelf would open the short; a confirmed CLOSED bull reclaim above 1.1387 would flag the shelf as broken instead.
