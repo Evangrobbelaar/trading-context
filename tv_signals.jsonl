@@ -429,3 +429,4 @@
 {"event": "SPRING_LONG", "symbol": "GBPJPY", "tf": "30", "price": 218.2325, "level": 218.0735, "extreme": 218.012, "range_pos": 0.687, "vol_mult": 1, "h1_atr": 0.160774, "t": 1784876401366, "received_utc": "2026-07-24T07:00:12.581127+00:00"}
 {"event": "HL_RECLAIM", "symbol": "AUDJPY", "tf": "30", "price": 114.366, "level": 114.344, "extreme": 114.214, "range_pos": 0.993, "vol_mult": 1.2, "h1_atr": 0.109866, "t": 1784876402251, "received_utc": "2026-07-24T07:00:14.811737+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "WTI", "tf": "30", "price": 91.375, "level": 92.037, "extreme": 93.355, "range_pos": 0.052, "vol_mult": 2.04, "h1_atr": 0.839197, "t": 1784876460786, "received_utc": "2026-07-24T07:01:03.210109+00:00"}
+{"event": "PULLBACK_TAG_LONG", "symbol": "AUDJPY", "tf": "30", "price": 114.39, "level": 114.344, "extreme": 114.214, "range_pos": 0.931, "vol_mult": 1.56, "h1_atr": 0.107019, "t": 1784878200287, "received_utc": "2026-07-24T07:30:02.580469+00:00"}
