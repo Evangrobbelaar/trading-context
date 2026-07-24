@@ -3195,3 +3195,13 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed. NO_ACTION.
 - Snapshot updated: h4_verdicts.XAUUSD refreshed with the tick127 M15 ladder and rejection note, trend field appended with the tick127 update. tick_counter → 127.
 - Watch: a fresh M15/H1 bar CLOSING back above ~4057-4058 with a clean bull body would restore the reversal thesis; continued closes below 4053.84 would instead suggest the breakout has failed and price is rolling back into the old range.
+
+### AUTO tick 128 — 2026-07-24T12:30:35Z — TIER2 — mode=learn
+- Signal: PULLBACK_TAG_SHORT EURGBP 0.85417 (level 0.85392, extreme 0.85542, range_pos 0.298, vol_mult 1.49) @12:30:04Z.
+- Routing: previous=41750592 (reconnect bug caught again) → switched/verified current=41829612. Balance/equity live R6,708.77 (unchanged since tick124-126), no open positions.
+- H1 refresh: price made a FRESH session high 0.85532 at 11:00 (above the 05:00 peak 0.85489), then reversed hard — 12:00 close 0.85369, new low 0.85357 at 12:15, breaking below the 08:00/09:00 swing lows (0.85399/0.85381). Lower-high-plus-broken-swing-low (Rule3 exception) arguably met on this leg, though ambiguous since 0.85532 was itself a fresh HH — moot regardless, H4 counter-trend gate is WARN-only in learn mode.
+- BLOCKED ON M15 TRIGGER (hard, not learn-mode-downgradable): last CLOSED bar (12:15: O0.85368 H0.85383 L0.85357 C0.85381) is only a ~50% BULL body — price pulling back into the tagged level as expected, but not a confirmed 60%+ bear rejection candle. Forming 12:30 bar also trending bullish.
+- Rule17 moot (range_pos ~0.586, clear of both bands). News: WebSearch found no high-impact EUR/GBP item in the forward 2h window (today's PMIs/UK retail sales already printed by 06:00 UTC). Attested news_clear.
+- No enforcer run (blocked pre-enforcer on M15 trigger). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.EURGBP note appended, session_ranges.EURGBP refreshed (high extended 0.85489→0.85532). tick_counter → 128.
+- Watch: a subsequent M15 bar CLOSING with a 60%+ bear body below ~0.85392-0.85417 reopens this as a short candidate — still needs SL above the local high + buffer and an R:R check vs 0.85259/0.85357.
