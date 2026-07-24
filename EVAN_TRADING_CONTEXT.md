@@ -2963,3 +2963,15 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - No enforcer run (blocked pre-enforcer on disorderly-tape hard block). Nothing placed/would-placed.
 - Snapshot updated: open_positions now empty, closed_since_last_snapshot has 109839152's close record, h4_verdicts.AUDJPY and session_ranges.AUDJPY refreshed. tick_counter -> 107.
 - Watch: spread normalizing (~2-4 pips) and/or a confirmed closed H1 higher-high above 114.187 before treating AUDJPY as tradeable again.
+
+## AUTO TICK 108 — 2026-07-24T01:01:13Z (mode=learn, TIER2)
+- Signal: SWEEP_HIGH USDJPY 163.809 (30m, level 163.879, extreme 163.938, range_pos 0.178, vol_mult 1.97) @01:00:05Z. Tier1 escalation: 2nd sweep at ~163.879 within 240min (00:30 + 01:00 prints) — Sprung Ladder Phase-1 shelf signature, H4 verdict flagged stale.
+- Routing: switch_trading_account hit the usual revert to 41750592, confirmed switched to 41829612. Live balance R6,708.77 / equity R6,708.77, no open positions (unchanged since tick107, no fills this tick).
+- H4 refresh (was stale since tick100/13:36Z): confirmed still genuinely BULL — fresh multi-day high 163.982 printed 7/23 16:00 (well past tick100's 163.845 read), then ~9h of tight 163.71-163.98 consolidation, NOT a break of trend. H4 lows still stepping up (163.024->163.283->163.452->163.711->163.766 forming). Tier1's staleness concern resolved as continuation/consolidation, not reversal.
+- M15 read: 00:45 LAST CLOSED bar is a clean ~76% bull body to a fresh local high; the 01:00 signal bar (forming, unclosed at read time) spiked to 163.933 (sweeping the shelf) then reversed hard to 163.811, ~88% bear body — a textbook rejection shape but NOT yet closed.
+- BLOCKED ON M15 TRIGGER: Change5 step5 requires a confirmed CLOSED rejection bar; can't act on a live/forming candle. Two independent standing blocks even if it closes clean: (1) Sprung Ladder Phase-1 scout deployment is Evan-only per protocol absolutes, never auto-deployed; (2) a short here is counter-trend vs confirmed H4 BULL — WARN-only in learn mode but needs Rule3's structural exception, not yet established (first sweep-reject at the shelf, no confirmed lower-high break).
+- Rule17: price ~163.81 = range_pos ~0.26 of today's broker session (163.766-163.933), clear of both bands — moot regardless.
+- News: WebSearch — no scheduled high-impact USD/JPY release in the 2h window; standing BoJ/MoF verbal-intervention backdrop (FinMin Katayama) unchanged, not an acute event. Attested news_clear.
+- No enforcer run (blocked pre-enforcer on unclosed trigger + scout-gate). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: h4_verdicts.USDJPY and session_ranges.USDJPY refreshed (session range reset overnight to 163.766-163.933). tick_counter -> 108.
+- Watch: a CLOSED M15 bar with a clean 60%+ bear body below 163.879 confirms the rejection — re-evaluate as counter-trend short candidate (still needs Rule3 confirmation, Sprung scout still Evan-only). A confirmed close back above 163.933 would be continuation but is chasing the sweep per Rule12 without a pullback first.

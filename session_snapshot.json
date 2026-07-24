@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-23T21:01:13Z",
-  "updated_by": "auto tick 107",
+  "updated_utc": "2026-07-24T01:01:13Z",
+  "updated_by": "auto tick 108",
   "balance": {
     "value": 6708.77,
     "equity": 6708.77,
-    "queried_utc": "2026-07-23T21:01:13Z",
-    "note": "live-queried this run via get_account_info. AUDJPY short 109839152 (tick104 entry) closed via its own SL (114.30) between tick106 and this tick -- close price 114.308, pl -R22.04, well inside the R15-R40 learn-mode band. Balance dropped from 6730.65 -> 6708.77. Equity == balance, no open positions. Session P&L -686.22 vs session_start_balance 7394.99."
+    "queried_utc": "2026-07-24T01:01:13Z",
+    "note": "live-queried this run via get_account_info. No change since tick107 (6708.77, no open positions, no trades this tick). Session P&L -686.22 vs session_start_balance 7394.99."
   },
   "session_start_balance": 7394.99,
   "open_positions": [],
@@ -67,10 +67,10 @@
       ]
     },
     "USDJPY": {
-      "trend": "BULL -- continuation leg extends further, now 08:00-13:15Z (163.10 -> 163.845, fresh session high). Higher-low sequence intact throughout. Structurally still BULL, but increasingly extended/stretched sitting right at the session high, with the first visible intrabar fade since the acceleration began.",
-      "asof": "2026-07-23T13:36:46Z",
-      "swings": "H1/M15 since tick97: 13:00 (O163.707 H163.717 L163.645 C163.671) -> 13:15 LAST CLOSED (O163.672 H163.845 L163.661 C163.807, ~74% bull body, tagged a fresh session high 163.845) -> 13:30 forming (O163.81 H163.82 L163.769 C163.783, already fading off the 163.845 high, unclosed). Live bid/ask 163.746/163.759.",
-      "note": "tick100 (mode=learn): PULLBACK_TAG_LONG fired 163.789 (level 163.65, extreme 163.324, range_pos 0.926, vol_mult 1.68) at 13:30:23Z -- same shelf/leg tick97 already evaluated and blocked, now further extended (range_pos 0.926 vs 0.892, deeper in top-15pct band) and the fade tick97 anticipated is now visible on the tape: price tagged a fresh high 163.845 on the 13:15 closed bar then the 13:30 forming bar has already pulled back to 163.783. H4 still BULL/with-trend, but this is squarely Rule12 'never chase the spike' territory -- buying right after a fresh high with an active intrabar pullback already underway. R:R re-checked with a genuinely structural SL: nearest defensible swing low is the 13:00 bar low (163.645, ~11.4 pip risk from ask 163.759, under Rule2's 15pip floor -- would need the 12:30 low 163.464 instead, ~29.5pip risk) against a reward side with no defined resistance above the just-made 163.845 high (round number 164.00 is the only candidate, ~24pips) -- best-case R:R roughly 0.8-1.2:1 depending on which SL is used, marginal at best and undermined by the fact price is actively fading rather than continuing. Consistent with tick97's established verdict, reinforced not reversed. News: WebSearch (EUR/GBP/JPY calendar) found no new scheduled high-impact JPY/USD item in the 2h window; broader BoJ/MoF verbal-intervention-risk backdrop unchanged from tick97, not an acute event -- attested news_clear. No enforcer run (blocked pre-enforcer on chase/R:R logic). Nothing placed/would-placed. NO_ACTION. Watch: a clean pullback toward 163.55-163.65 (better R:R, still with-trend) or a confirmed CLOSED M15 bar continuing decisively above 163.845 before re-considering.",
+      "trend": "BULL -- refreshed tick108, was stale since tick100 (13:36:46Z). H4 staircase confirmed still intact and extended further: swing highs 163.172(7/22 20:00)->163.16(00:00)->163.133(04:00)->163.42(08:00)->163.642(12:00)->163.982(7/23 16:00, fresh multi-day high, well past the 163.845 tick100 read). Since that high, price has pulled back into a tight 163.71-163.98 chop for ~9h, NOT broken trend -- H4 lows still stepping up: 163.024(08:00)->163.283(12:00)->163.452(16:00)->163.711(20:00)->163.766(7/24 00:00, forming). Structurally BULL and intact, currently consolidating under the 163.982 high rather than extending.",
+      "asof": "2026-07-24T01:01:13Z",
+      "swings": "H1 since tick100: 14:00(->163.957)->15:00(->163.917)->16:00(->163.799)->17:00(->163.762)->18:00(->163.835)->19:00(->163.798)->20:00(->163.818)->21:00(->163.818)->22:00(->163.782)->23:00(->163.842)->7/24 00:00(->163.835)->01:00 forming. M15 into the signal: 00:15(O163.835 H163.9 L163.791 C163.843)->00:30(O163.844 H163.886 L163.827 C163.856)->00:45 LAST CLOSED(O163.855 H163.92 L163.838 C163.917, ~76% bull body, tagged fresh local high)->01:00 forming/signal bar(O163.918 H163.933 L163.811 C163.811 as of read time, ~88% BEAR body -- spiked to 163.933 sweeping the 163.879 shelf then dumped straight back to 163.811, NOT yet closed). Live bid/ask 163.807/163.82.",
+      "note": "tick108 (mode=learn, TIER2): 2nd SWEEP_HIGH at ~163.879 shelf within 240min (00:30 print 163.861/extreme163.911, 01:00 print 163.809/extreme163.938) -- dispatcher-flagged Sprung Ladder Phase-1 shelf signature, escalated from tier1. H4 refreshed and confirmed still BULL/intact (see trend field) -- tier1's 'H4 verdict stale' concern resolved, not a reversal. BLOCKED ON M15 TRIGGER: the forming 01:00 M15 bar is a sharp ~88% bear-body reversal off the 163.933 sweep high back to 163.811 -- exactly the shape of a rejection/short setup, but it is UNCLOSED at read time (01:01:13Z, bar spans 01:00-01:15). Change5 step5 requires a confirmed CLOSED rejection bar; can't act on a live/forming bar. Also two independent standing blocks even if it closes clean: (1) Sprung Ladder Phase-1 scout deployment is Evan-only per AUTO_TICK_PROTOCOL absolutes, never auto-deployed regardless of mode; (2) a short here would be counter-trend vs confirmed H4 BULL -- learn-mode WARN-only, not a hard block, but needs the Rule3 counter-trend exception (confirmed lower high + broken prior H4 swing low) which is not yet established this is just the first sweep-reject at the shelf. Rule17: current price ~163.81 = range_pos ~0.26 of today's broker session (163.766-163.933) -- clear of both bands, moot regardless. News: WebSearch found no scheduled high-impact USD/JPY release in the 2h window; standing BoJ/MoF verbal-intervention-risk backdrop (FinMin Katayama reiterating readiness to act on yen weakness) unchanged, not an acute scheduled event -- attested news_clear. No enforcer run (blocked pre-enforcer on unclosed trigger + scout-gate). Nothing placed/would-placed. NO_ACTION. Watch: if the 01:00 (or next) M15 bar CLOSES with a clean 60%+ bear body below 163.879, that's a confirmed rejection -- re-evaluate as a counter-trend short candidate (still needs Rule3 structural confirmation, Sprung scout still Evan-only). Alternatively a confirmed close back above 163.933 would be continuation, but that's chasing the sweep high per Rule12 without a pullback first.",
       "sources": [
         "https://www.fxstreet.com/news/japanese-yen-edges-higher-amid-intervention-risks-remains-close-to-four-decade-low-vs-usd-202607230446",
         "https://think.ing.com/articles/fx-daily-japans-2026-fx-intervention-campaign-begins/"
@@ -187,13 +187,13 @@
       "source": "get_symbol_price live low/high field, tick88 \u2014 session high unchanged at 1.14288 (03:15 bar tagged it and got rejected). entry ~1.14286 = range_pos ~0.974, top-15pct band, warning-only in learn mode; moot since blocked on M15 trigger (confirmed bear rejection bar at this exact level), not Rule17."
     },
     "USDJPY": {
-      "low": 162.99,
-      "high": 163.845,
-      "range": 0.855,
-      "top_15pct_cutoff": 163.7175,
-      "bottom_15pct_cutoff": 163.1175,
-      "asof": "2026-07-23T13:36:46Z",
-      "source": "get_symbol_price live low/high field, tick100. Session high extended to 163.845 (13:15 bar) since tick97's 163.75. Signal range_pos 0.926 confirmed inside top-15pct band (cutoff 163.7175), deeper than tick97's 0.892."
+      "low": 163.766,
+      "high": 163.933,
+      "range": 0.167,
+      "top_15pct_cutoff": 163.90795,
+      "bottom_15pct_cutoff": 163.79105,
+      "asof": "2026-07-24T01:01:13Z",
+      "source": "get_symbol_price live low/high field, tick108 -- broker session reset overnight (today's range, was 162.99-163.845 at tick100). Current price ~163.81 sits just above the bottom-15pct cutoff, range_pos ~0.26, clear of both bands. Moot this tick: blocked on unclosed M15 trigger, not Rule17."
     },
     "GBPUSD": {
       "low": 1.33545,
