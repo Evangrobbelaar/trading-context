@@ -3036,3 +3036,11 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - No enforcer run (blocked pre-enforcer on data-integrity). Nothing placed/would-placed. NO_ACTION.
 - Snapshot updated: h4_verdicts.WTI and session_ranges.WTI refreshed (broker session low/high 89.675/91.274). tick_counter -> 113.
 - Watch: WTI/BRENT TV alert feed still recommended for re-pointing/disabling — gap has now both narrowed (tick96→103) and re-widened (103→113), not a clean monotonic convergence. Re-check broker-native structure next WTI signal: does the bounce off 89.675 print a confirmed higher low, or does the reversal from 92.239 continue?
+
+## AUTO TICK 114 — 2026-07-24T02:35:54Z (TIER2, mode=learn)
+- Signal: SPRING_LONG WTI 92.734 (level 92.191, extreme 92.108, range_pos 0.376, vol_mult 0.63) — batch received_utc 02:31:11.797799Z.
+- DUPLICATE DETECTED: identical `t` epoch (1784860262335), price, level, extreme, range_pos and vol_mult to the signal already fully processed as AUTO TICK 113 (received_utc 02:31:04.394418Z, ~7s apart) — a re-delivery/retry of the same TV webhook event, not a new signal. Confirmed via tail of tv_signals.jsonl (two back-to-back identical rows).
+- Account: switch_trading_account caught the usual revert to 41750592, confirmed switched to 41829612. Live balance/equity R6,708.77 (unchanged since tick113), no open positions — CHANGE3 monitor moot.
+- Tick113's analysis stands unchanged and is not re-run: data-integrity gap (signal ~2.4pt above live broker ask, broker series independently disagreeing in direction) and unconfirmed-reversal blocks both still apply, nothing has changed in the ~5 min gap. No enforcer run. Nothing placed/would-placed. NO_ACTION — duplicate signal, no new information.
+- Snapshot updated: timestamps only (updated_utc/queried_utc), no h4_verdicts/session_ranges changes (tick113's WTI entries remain current). tick_counter -> 114.
+- Watch: same as tick113 — WTI/BRENT TV alert feed re-pointing/disabling still recommended; also flagging the double-dispatch itself in case the webhook/dispatcher is retry-sending duplicates.
