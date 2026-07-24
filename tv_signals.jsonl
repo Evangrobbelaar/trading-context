@@ -490,3 +490,4 @@
 {"event": "PULLBACK_TAG_SHORT", "symbol": "EURUSD", "tf": "30", "price": 1.13741, "level": 1.13765, "extreme": 1.1393, "range_pos": 0.097, "vol_mult": 1.57, "h1_atr": 0.000888, "t": 1784896201176, "received_utc": "2026-07-24T12:30:09.644227+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "EURUSD", "tf": "30", "price": 1.13698, "level": 1.13712, "extreme": 1.1393, "range_pos": 0.071, "vol_mult": 1.3, "h1_atr": 0.000919, "t": 1784898000475, "received_utc": "2026-07-24T13:00:05.822386+00:00"}
 {"event": "SPRING_LONG", "symbol": "EURGBP", "tf": "30", "price": 0.85424, "level": 0.85392, "extreme": 0.85364, "range_pos": 0.337, "vol_mult": 1.34, "h1_atr": 0.000533, "t": 1784898000704, "received_utc": "2026-07-24T13:00:08.459553+00:00"}
+{"event": "SWEEP_HIGH", "symbol": "SPX500", "tf": "30", "price": 7414.8, "level": 7423.6, "extreme": 7430.7, "range_pos": 0.469, "vol_mult": 0.88, "h1_atr": 15.037827, "t": 1784898001191, "received_utc": "2026-07-24T13:00:10.942414+00:00"}
