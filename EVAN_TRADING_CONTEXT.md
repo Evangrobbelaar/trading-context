@@ -3438,3 +3438,16 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - Snapshot updated: balance/equity refreshed (unchanged), open_positions.TESLA note refreshed, h4_verdicts.{USDJPY,GBPJPY,XAGUSD,BRENT,WTI} tick149 notes appended, session_ranges.{USDJPY,GBPJPY,XAGUSD,WTI} refreshed to post-reopen ranges (BRENT noted frozen/no range yet), watch_levels.{USDJPY,GBPJPY,XAGUSD,BRENT,WTI} appended. tick_counter → 149.
 - Session P&L: -R686.41 vs session_start_balance R7,394.99 (-9.28%) — below the 50% hard stop.
 - Watch: GBPJPY — the 2-bar acceleration needs 2-3 more clean bars to trust as real momentum vs a thin-tape spike. WTI — needs volume back to normal (250-550k/bar) and no further multi-point single-bar swings before re-evaluating. BRENT — watch for the broker's first genuine post-weekend bar. TESLA — re-assess once US equities reopen Monday.
+
+### AUTO tick 150 — 2026-07-26T23:03:00Z — TIER2 — mode=learn
+- Signal: SWEEP_HIGH EURJPY 186.44 (level 186.443, extreme 186.484, range_pos 0.484, vol_mult 0.42) @23:00:02Z — second sweep of the same 186.443 shelf within ~60min (1st @22:00:03Z, extreme 186.52). Tier1 escalated as a Sprung Ladder Phase-1 shelf-signature candidate, H4 verdict stale 52h.
+- Routing: switched 41750592→41829612, verified current. Live balance R6,708.58 / equity R6,706.17 — unchanged from tick149.
+- Open-position guard: TESLA short 0.1L (entry 311.42, SL 317.66, TP 303, pl -R2.41) — US market still closed (Sunday), unchanged. ACTION: Hold.
+- Fresh H1/H4 pull (post-reopen 21:15 UTC): H4 confirms pre-weekend BEARISH read stands (lower-highs 186.659→186.608→186.508→186.403→186.599→186.534→186.435→186.4; lower-lows 185.985→...→186.234→186.233→186.224). Reopen spiked to 186.512 (sweeping the H4 lower-high band) then hard-rejected, re-tested+rejected again at 186.484 — this would be a WITH-TREND short, no counter-trend WARN needed.
+- BLOCKED ON M15 TRIGGER (hard): last CLOSED bar (22:45) only ~39% bear body, not a confirmed 60%+ rejection; 23:00 forming bar ~73% bear but unclosed.
+- BLOCKED ON R:R (hard, Rule15 Asian buffer applies — 23:01 UTC=01:01 SAST): SL floor 4×H1 ATR(0.122)≈49pips vs reward to nearest support (~15-20pips) → R:R ~0.3-0.4:1, fails Rule9.
+- SPRUNG LADDER CHECK: examined against STRATEGY_SPRUNG_LADDER.md preconditions and REJECTED — width test fails (fresh reopen range 186.279-186.512 ≈23pips vs required ≥1.5×scout SL≈73pips) and only the HIGH side has 2 touches, no low-side repeat. Tier1's 2-sweeps/240min heuristic is necessary but not sufficient. No flag raised (analysis outcome, not an infra/data issue).
+- News: WebSearch, no high-impact EUR/JPY event in forward 2h (next: Tue US Consumer Confidence, Wed Fed, Thu BoJ/EZ CPI+GDP, Fri BoJ). Attested news_clear. No enforcer run (blocked pre-enforcer). Nothing placed/would-placed. NO_ACTION.
+- Snapshot updated: balance refreshed (unchanged), h4_verdicts.EURJPY + session_ranges.EURJPY refreshed to fresh post-reopen range, watch_levels.EURJPY appended. tick_counter → 150.
+- Session P&L: -R686.41 vs session_start_balance R7,394.99 (-9.28%) — below 50% hard stop.
+- Watch: EURJPY — CLOSED 60%+ bear M15 body below ~186.40 reopens the short (R:R still needs London-hours Rule15 relief); a genuine low-side sweep+reclaim near 186.28 would start building Sprung Ladder's required 2-sided range.
