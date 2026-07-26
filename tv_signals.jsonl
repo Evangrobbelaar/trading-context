@@ -562,3 +562,4 @@
 {"event": "HL_RECLAIM", "symbol": "XAUUSD", "tf": "30", "price": 4086.85, "level": 4082.16, "extreme": 4049.38, "range_pos": 0.359, "vol_mult": 0.41, "h1_atr": 14.029417, "t": 1785105000335, "received_utc": "2026-07-26T22:30:02.108382+00:00"}
 {"event": "SWEEP_LOW", "symbol": "USDJPY", "tf": "30", "price": 163.699, "level": 163.644, "extreme": 163.554, "range_pos": 0.918, "vol_mult": 1.08, "h1_atr": 0.106054, "t": 1785105000590, "received_utc": "2026-07-26T22:30:04.070217+00:00"}
 {"event": "HL_RECLAIM", "symbol": "GBPJPY", "tf": "30", "price": 218.487, "level": 218.4795, "extreme": 218.151, "range_pos": 0.946, "vol_mult": 1, "h1_atr": 0.181161, "t": 1785105000446, "received_utc": "2026-07-26T22:30:05.743444+00:00"}
+{"event": "HL_RECLAIM", "symbol": "XAGUSD", "tf": "30", "price": 59.662, "level": 58.98825, "extreme": 58.0745, "range_pos": 0.607, "vol_mult": 0.76, "h1_atr": 0.474798, "t": 1785105000525, "received_utc": "2026-07-26T22:30:07.283916+00:00"}
