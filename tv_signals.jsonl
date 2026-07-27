@@ -645,3 +645,4 @@
 {"event": "SWEEP_HIGH", "symbol": "SPX500", "tf": "30", "price": 7472.9, "level": 7476, "extreme": 7480, "range_pos": 0.566, "vol_mult": 1.2, "h1_atr": 15.068178, "t": 1785155401641, "received_utc": "2026-07-27T12:30:09.933018+00:00"}
 {"event": "SWEEP_LOW", "symbol": "SPX500", "tf": "30", "price": 7472.9, "level": 7469.9, "extreme": 7469.4, "range_pos": 0.566, "vol_mult": 1.2, "h1_atr": 15.068178, "t": 1785155401640, "received_utc": "2026-07-27T12:30:11.588256+00:00"}
 {"event": "SPRING_LONG", "symbol": "WTI", "tf": "30", "price": 84.859, "level": 82.885, "extreme": 83.789, "range_pos": 0.548, "vol_mult": 1.33, "h1_atr": 1.150447, "t": 1785155462624, "received_utc": "2026-07-27T12:31:04.376316+00:00"}
+{"event": "PULLBACK_TAG_SHORT", "symbol": "XAGUSD", "tf": "30", "price": 58.9285, "level": 59.01, "extreme": 59.463, "range_pos": 0.166, "vol_mult": 1.02, "h1_atr": 0.404747, "t": 1785157200415, "received_utc": "2026-07-27T13:00:05.727712+00:00"}
