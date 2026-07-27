@@ -651,3 +651,4 @@
 {"event": "LL_BREAKDOWN", "symbol": "XAGUSD", "tf": "30", "price": 58.6635, "level": 58.69615, "extreme": 59.463, "range_pos": 0.008, "vol_mult": 1.78, "h1_atr": 0.406872, "t": 1785159000876, "received_utc": "2026-07-27T13:30:12.965520+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "XAGUSD", "tf": "30", "price": 58.6635, "level": 58.69615, "extreme": 59.463, "range_pos": 0.008, "vol_mult": 1.78, "h1_atr": 0.406872, "t": 1785159000876, "received_utc": "2026-07-27T13:30:30.181784+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "NVDA", "tf": "30", "price": 201.79, "level": 204.81, "extreme": 211.9, "range_pos": 0.078, "vol_mult": 2.91, "h1_atr": 2.798953, "t": 1785160800557, "received_utc": "2026-07-27T14:00:08.441833+00:00"}
+{"event": "LL_BREAKDOWN", "symbol": "EURUSD", "tf": "30", "price": 1.13743, "level": 1.13764, "extreme": 1.14014, "range_pos": 0.039, "vol_mult": 2.01, "h1_atr": 0.001031, "t": 1785160801537, "received_utc": "2026-07-27T14:00:13.640130+00:00"}
