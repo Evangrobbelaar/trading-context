@@ -665,3 +665,4 @@
 {"event": "HL_RECLAIM", "symbol": "NFLX", "tf": "30", "price": 71.14, "level": 70.91, "extreme": 69.86, "range_pos": 0.921, "vol_mult": 1.08, "h1_atr": 0.69738, "t": 1785166200476, "received_utc": "2026-07-27T15:30:05.038986+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "NVDA", "tf": "30", "price": 197.06, "level": 197.41, "extreme": 208.74, "range_pos": 0.024, "vol_mult": 1.5, "h1_atr": 2.983619, "t": 1785166200490, "received_utc": "2026-07-27T15:30:11.144827+00:00"}
 {"event": "SWEEP_LOW", "symbol": "GBPJPY", "tf": "30", "price": 217.773, "level": 217.7715, "extreme": 217.728, "range_pos": 0.057, "vol_mult": 1, "h1_atr": 0.172977, "t": 1785166202069, "received_utc": "2026-07-27T15:30:12.898577+00:00"}
+{"event": "PULLBACK_TAG_SHORT", "symbol": "NVDA", "tf": "30", "price": 197.59, "level": 197.41, "extreme": 208.74, "range_pos": 0.13, "vol_mult": 1.04, "h1_atr": 2.891218, "t": 1785168000576, "received_utc": "2026-07-27T16:00:09.650304+00:00"}
