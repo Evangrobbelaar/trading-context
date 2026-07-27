@@ -619,3 +619,4 @@
 {"event": "SPRING_LONG", "symbol": "XAGUSD", "tf": "30", "price": 59.3935, "level": 59.135, "extreme": 59.081, "range_pos": 0.308, "vol_mult": 0.59, "h1_atr": 0.424511, "t": 1785142800751, "received_utc": "2026-07-27T09:00:08.814988+00:00"}
 {"event": "SWEEP_LOW", "symbol": "EURUSD", "tf": "30", "price": 1.14023, "level": 1.14012, "extreme": 1.13956, "range_pos": 0.469, "vol_mult": 1.2, "h1_atr": 0.000986, "t": 1785142801366, "received_utc": "2026-07-27T09:00:15.649399+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "BRENT", "tf": "30", "price": 90.51, "level": 91.178, "extreme": 93.885, "range_pos": 0.03, "vol_mult": 1.98, "h1_atr": 1.238548, "t": 1785142801416, "received_utc": "2026-07-27T09:00:21.288407+00:00"}
+{"event": "LL_BREAKDOWN", "symbol": "WTI", "tf": "30", "price": 83.9, "level": 84.107, "extreme": 86.484, "range_pos": 0.092, "vol_mult": 1.81, "h1_atr": 1.199375, "t": 1785142860712, "received_utc": "2026-07-27T09:01:03.781693+00:00"}
