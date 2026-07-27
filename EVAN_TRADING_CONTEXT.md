@@ -3514,3 +3514,14 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - Snapshot updated: balance/equity live (R6,683.77/R6,681.62), open_positions replaced with GBPJPY only, closed_since_last_snapshot logged TESLA+USDJPY, h4_verdicts.GBPJPY refreshed to tick155 read, session_ranges.GBPJPY re-timestamped (range unchanged), watch_levels appended for USDJPY/GBPJPY/TESLA. tick_counter → 155.
 - Session P&L: -R711.22 vs session_start_balance R7,394.99 (-9.62%) — below the 50% hard stop.
 - Watch: GBPJPY — CLOSED M15 reclaim above ~218.15-218.20 invalidates the breakdown; continued closes toward 217.90 confirms it. USDJPY — pl-display-vs-real-economics gap recurring outside weekend-reopen; worth a dedicated flag if it recurs again. TESLA — flat, no position; re-open thesis only on a fresh signal. Also watching EURJPY (tick154's still-forming breakdown bar) and AUDJPY/SPX500 (tick151/149) per their standing notes.
+
+## AUTO TICK 156 -- 2026-07-27T08:09Z (LEARN mode, TIER2)
+Routing: switch_trading_account caught the usual revert to 41750592 (FLAG-003), confirmed 41829612. Stray-position count on 41750592 now 1 (was 2 at tick154) -- oscillating, not monotonic.
+Balance R6683.77 / Equity R6684.08 (live-queried). No closes this tick.
+Open position: GBPJPY Sell 0.01L [LEARN] (109848789) -- CHANGE3 guard: M5 resumed bearish after brief compression, pl~+1pip (API still showing 0, FLAG-005 lag). HOLD, no management change.
+Signals worked: EURJPY PULLBACK_TAG_SHORT 186.36, USDJPY PULLBACK_TAG_SHORT 163.528.
+EURJPY: NO_ACTION -- M15 trigger fail (last closed bar 66% bull bounce, not a rejection) + R:R fail (~5pips reward vs ~11-13pip SL, session low unchanged 186.279).
+USDJPY: NO_ACTION -- M15 trigger fail; this signal is the same reclaim rally that Rule5-cut the prior USDJPY short at tick155 (price fully round-tripped back above the broken 163.458 support). Declined to chase.
+News: WebSearch, no high-impact EUR/USD/GBP/JPY item in the forward 2h window (FOMC Wed 7/29, BoE/BoJ later in week). Attested news_clear.
+No enforcer run (no trade cleared pre-enforcer gates). Nothing placed/would-placed this tick.
+No new FLAG-NNN opened. FLAG-003/FLAG-005 remain OPEN.
