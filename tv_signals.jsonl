@@ -579,3 +579,4 @@
 {"event": "SWEEP_HIGH", "symbol": "EURUSD", "tf": "30", "price": 1.13892, "level": 1.13908, "extreme": 1.1391, "range_pos": 0.09, "vol_mult": 0.31, "h1_atr": 0.000968, "t": 1785108620681, "received_utc": "2026-07-26T23:30:21.162860+00:00"}
 {"event": "HL_RECLAIM", "symbol": "XAUUSD", "tf": "30", "price": 4094.11, "level": 4093.84, "extreme": 4049.38, "range_pos": 0.811, "vol_mult": 0.73, "h1_atr": 14.064867, "t": 1785110400568, "received_utc": "2026-07-27T00:00:10.377566+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "GBPJPY", "tf": "30", "price": 218.4485, "level": 218.4795, "extreme": 218.48, "range_pos": 0.838, "vol_mult": 1, "h1_atr": 0.173649, "t": 1785110400764, "received_utc": "2026-07-27T00:00:12.335522+00:00"}
+{"event": "HL_RECLAIM", "symbol": "SPX500", "tf": "30", "price": 7475.1, "level": 7473.5, "extreme": 7396.3, "range_pos": 0.957, "vol_mult": 0.58, "h1_atr": 22.581737, "t": 1785110401955, "received_utc": "2026-07-27T00:00:15.707663+00:00"}
