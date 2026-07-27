@@ -3476,3 +3476,14 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - Snapshot updated: balance unchanged, open_positions.TESLA note refreshed, h4_verdicts.EURJPY trend/swings/note refreshed to the tick152 read, session_ranges.EURJPY refreshed (high extended 186.512→186.732), watch_levels.EURJPY appended. tick_counter → 152.
 - Session P&L: -R686.41 vs session_start_balance R7,394.99 (-9.28%) — below the 50% hard stop.
 - Watch: EURJPY — a CLOSED M15 bar reclaiming above ~186.64-186.67 with a 60%+ bull body revives the long thesis (H4 structure still technically supports it); continued closes below ~186.51-186.53 instead confirms a failed breakout and reopens the with-trend short from the old bearish sequence (same shelf as tick150's SWEEP_HIGH watch item). TESLA — re-assess once US equities open (14:30 UTC).
+
+### AUTO tick 153 — 2026-07-27T07:34:29Z — TIER2 — mode=learn
+- Signal: LL_BREAKDOWN USDJPY 163.335 (30m tf, level 163.458, extreme 163.608, range_pos 0.013, vol_mult 1.95) @07:30:04Z, escalated from tier1.
+- Routing: switch_trading_account confirmed current=41829612 (previous=41750592, reconnect bug caught again). Live balance R6,708.58 / equity R6,706.17 — unchanged from tick152.
+- Open-position guard: TESLA short 0.1L (entry 311.42, SL 317.66, TP 303, pl -R2.41) — US equities still pre-open Monday, unchanged. ACTION: Hold.
+- USDJPY: fresh H1/H4 reclassified BEARISH (Rule3 counter-trend exception met — confirmed lower high + broken prior swing low off the weekend gap-down). M15 trigger MET clean (last closed 07:15 bar ~76.6% bear body). Rule17 bottom-band WARN override logged (range_pos ~0.01-0.02, downgraded in learn mode). R:R ~1.97:1 (SL 17.6pips above 163.532 swing-high+buffer, TP 34.6pips at the 7/23 base ~163.05). risk_amount R16.86, open_pending_risk R10.66 (TESLA), aggregate well under cap. Enforcer PASS.
+- PLACED: SELL 0.01L USDJPY, filled 163.392, SL 163.572, TP 163.05, orderId 109848667, confirmed on 41829612. Tagged [LEARN].
+- Housekeeping note: this tick's snapshot/logger/counter updates were made at run time but the git commit and this context-md append were never completed by the prior run (orphaned, same failure mode as tick151). Recovered and committed here as tick 153 before proceeding to tick 154.
+- Snapshot updated: balance/equity unchanged, open_positions added USDJPY (109848667), h4_verdicts.USDJPY refreshed to the tick153 BEARISH read, session_ranges.USDJPY refreshed. tick_counter → 153.
+- Session P&L: -R686.41 vs session_start_balance R7,394.99 (-9.28%) — below the 50% hard stop.
+- Watch: USDJPY — now live, apply Rule5/13/14 structure monitor next tick.
