@@ -671,3 +671,4 @@
 {"event": "SPRING_LONG", "symbol": "AUDJPY", "tf": "30", "price": 114.488, "level": 114.42, "extreme": 114.413, "range_pos": 0.345, "vol_mult": 1.08, "h1_atr": 0.107314, "t": 1785169800857, "received_utc": "2026-07-27T16:30:08.244848+00:00"}
 {"event": "SWEEP_LOW", "symbol": "GBPJPY", "tf": "30", "price": 217.795, "level": 217.7715, "extreme": 217.713, "range_pos": 0.107, "vol_mult": 1, "h1_atr": 0.171234, "t": 1785169802489, "received_utc": "2026-07-27T16:30:16.535550+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "GBPJPY", "tf": "30", "price": 217.4985, "level": 217.694, "extreme": 217.843, "range_pos": 0.013, "vol_mult": 1, "h1_atr": 0.177335, "t": 1785173400428, "received_utc": "2026-07-27T17:30:03.835751+00:00"}
+{"event": "LL_BREAKDOWN", "symbol": "NVDA", "tf": "30", "price": 195.57, "level": 195.93, "extreme": 208.74, "range_pos": 0.01, "vol_mult": 0.68, "h1_atr": 2.938682, "t": 1785173400800, "received_utc": "2026-07-27T17:30:06.630334+00:00"}
