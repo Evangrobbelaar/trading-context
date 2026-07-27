@@ -657,3 +657,4 @@
 {"event": "SWEEP_HIGH", "symbol": "NFLX", "tf": "30", "price": 70.07, "level": 70.57, "extreme": 70.8, "range_pos": 0.17, "vol_mult": 1.74, "h1_atr": 0.681355, "t": 1785160800637, "received_utc": "2026-07-27T14:00:22.108387+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "SPX500", "tf": "30", "price": 7439.6, "level": 7462, "extreme": 7489.1, "range_pos": 0.002, "vol_mult": 3.54, "h1_atr": 16.870451, "t": 1785160801288, "received_utc": "2026-07-27T14:00:25.650513+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "NFLX", "tf": "30", "price": 70.41, "level": 70.57, "extreme": 70.66, "range_pos": 0.585, "vol_mult": 1.08, "h1_atr": 0.68564, "t": 1785162600278, "received_utc": "2026-07-27T14:30:09.684290+00:00"}
+{"event": "PULLBACK_TAG_SHORT", "symbol": "EURUSD", "tf": "30", "price": 1.13704, "level": 1.13764, "extreme": 1.14014, "range_pos": 0, "vol_mult": 1.41, "h1_atr": 0.001003, "t": 1785162603576, "received_utc": "2026-07-27T14:30:18.691579+00:00"}
