@@ -3451,3 +3451,16 @@ tick_counter.txt -> 83. session_logger.py tick83 logged.
 - Snapshot updated: balance refreshed (unchanged), h4_verdicts.EURJPY + session_ranges.EURJPY refreshed to fresh post-reopen range, watch_levels.EURJPY appended. tick_counter → 150.
 - Session P&L: -R686.41 vs session_start_balance R7,394.99 (-9.28%) — below 50% hard stop.
 - Watch: EURJPY — CLOSED 60%+ bear M15 body below ~186.40 reopens the short (R:R still needs London-hours Rule15 relief); a genuine low-side sweep+reclaim near 186.28 would start building Sprung Ladder's required 2-sided range.
+
+### AUTO tick 151 — 2026-07-26T23:10:02Z — TIER2 — mode=learn
+- Signals (3): PULLBACK_TAG_LONG GBPJPY 218.422 (level 218.4795, extreme 218.151, range_pos 0.763) @23:00:04Z; SPRING_SHORT AUDJPY 114.456 (level 114.57, extreme 114.626, range_pos 0.067) @23:00:08Z; SWEEP_HIGH SPX500 7456.5 (level 7461.1, extreme 7463.2, range_pos 0.076) @23:00:10Z, tier1-flagged shelf-signature/Sprung Ladder Phase-1 candidate.
+- Routing: switched 41750592→41829612, verified current. Live balance R6,708.58 / equity R6,706.17 — unchanged from tick150.
+- Open-position guard: TESLA short 0.1L (entry 311.42, SL 317.66, TP 303, pl -R2.41) — weekend-closed, unchanged. ACTION: Hold.
+- GBPJPY: reopen rally (217.989→218.482) pulling back INTO the tagged level, not bouncing off it. BLOCKED ON M15 TRIGGER (hard): last two closed bars (22:45 ~65% bear, 23:00 ~62% bear) both reject 218.4795, opposite of the bull reclaim a long needs. Rule17 top-band also would restrict (WARN-only, moot). NO_ACTION.
+- AUDJPY: same 114.57-114.626 shelf swept repeatedly since reopen then rejected — the shape a spring-short needs. BLOCKED ON M15 TRIGGER (hard): last closed bar 56% bear, just short of the 60% threshold; tape still thin (~7 bars/1h45m post-reopen). NO_ACTION.
+- SPX500: weekend reopen gapped to a fresh high 7482.4, now pulling back (23:00 bar 82% bear). SPRUNG LADDER CHECK FAILS (range ~21pt vs ~136.5pt required; one-sided touches only). As plain short: trigger already invalidated (live price reclaimed above the rejection bar's close) and R:R impossible (Rule2 80-150pt indices SL floor vs ~21pt-wide range). NO_ACTION.
+- News: WebSearch, no high-impact GBP/JPY/AUD/JPY/US event in forward 2h window for any of the three. Attested news_clear. No enforcer run (nothing cleared pre-enforcer gates). Nothing placed/would-placed.
+- FLAG-003 unchanged (1 stray position on 41750592, confirmed via switch_trading_account response).
+- Snapshot updated: balance unchanged, open_positions.TESLA note refreshed, h4_verdicts.{GBPJPY,AUDJPY,SPX500} tick151 notes appended, session_ranges.{GBPJPY,AUDJPY,SPX500} refreshed (SPX500 reset at weekend-reopen gap). tick_counter → 151.
+- Session P&L: -R686.41 vs session_start_balance R7,394.99 (-9.28%) — below the 50% hard stop.
+- Watch: GBPJPY — a closed 60%+ bull body reclaiming above 218.48 reopens the long. AUDJPY — a closed 60%+ bear body below ~114.45 confirms the short. SPX500 — needs more reopen bars (ideally a genuine low-side test) before Sprung or a plain directional trade has workable R:R. TESLA — re-assess once US equities reopen Monday.
