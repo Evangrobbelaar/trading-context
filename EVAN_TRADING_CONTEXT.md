@@ -3535,3 +3535,13 @@ USDJPY: NO_ACTION -- the confirming reclaim candle already closed 2 bars back (8
 News: WebSearch, no high-impact USD/JPY item in the forward 2h window (Fed decision Wed 7/29-31 per sources, BoJ/GDP/PCE later in week -- nothing imminent). Attested news_clear.
 No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed this tick.
 No new FLAG-NNN opened. FLAG-003/FLAG-005 remain OPEN.
+
+## AUTO TICK 158 -- 2026-07-27T09:03Z (LEARN mode, TIER2)
+Routing: switch_trading_account caught the usual revert to 41750592 (FLAG-003), confirmed 41829612. Stray-position count on 41750592 still 1, unchanged from tick156/157.
+Balance R6683.77 -> R6675.29 / Equity R6675.29 (live-queried, book now flat, profit R0).
+CHANGE3 guard on GBPJPY Sell 0.01L [LEARN] (109848789): watch condition from tick157 triggered -- fresh M5 08:35-09:00 shows a clean higher-low/higher-high sequence, price decisively cleared the flagged 218.07-218.09 zone to a new session high 218.128. Structure confirmed reversed against the short, P&L negative on cross-check (displayed 0 again, FLAG-005 4th occurrence; real ~-8.2pips/~-R8). Rule5 manual cut executed: closed at 218.105, realized -R8.48 -- matched the manual estimate exactly. Book flat.
+Signal worked: XAGUSD SPRING_LONG 59.3935 (level 59.135, extreme 59.081, range_pos 0.308) @09:00:08Z, follow-on to this same tick's own SWEEP_LOW (59.227) at the same shelf -- classic sweep-below-then-reclaim spring shape, session low printed 59.071 at 08:15.
+XAGUSD: NO_ACTION -- BLOCKED ON M15 TRIGGER (hard, not learn-mode-downgradable): last CLOSED bar (08:45) closes 83.5% up its own range but raw body is only ~41.5%, short of Change5's 60%+ threshold; the 08:15 sweep/reclaim bar itself was only ~37% body. No closed bar yet qualifies. Counter-trend vs the last ~7h intraday decline (60.058->59.071) -- WARN-only in learn mode, moot regardless. Rule17 clear (range_pos ~0.28, and only restricts buys in the top band anyway).
+News: WebSearch, no high-impact silver/USD item in the forward 2h window (Fed decision Wed 7/29, ADP/jobless claims/GDP/Chicago PMI later this week). Attested news_clear.
+No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed on the new signal this tick; one management close executed (GBPJPY Rule5 cut).
+No new FLAG-NNN opened. FLAG-005 updated (4th occurrence, appended to flags.jsonl). FLAG-003 unchanged (still OPEN). FLAG-001/FLAG-002 unchanged (still OPEN, not touched this tick -- no BRENT/WTI signal in this tick's batch).
