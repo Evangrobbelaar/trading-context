@@ -3525,3 +3525,13 @@ USDJPY: NO_ACTION -- M15 trigger fail; this signal is the same reclaim rally tha
 News: WebSearch, no high-impact EUR/USD/GBP/JPY item in the forward 2h window (FOMC Wed 7/29, BoE/BoJ later in week). Attested news_clear.
 No enforcer run (no trade cleared pre-enforcer gates). Nothing placed/would-placed this tick.
 No new FLAG-NNN opened. FLAG-003/FLAG-005 remain OPEN.
+
+## AUTO TICK 157 -- 2026-07-27T08:31Z (LEARN mode, TIER2)
+Routing: switch_trading_account caught the usual revert to 41750592 (FLAG-003), confirmed 41829612. Stray-position count on 41750592 now 1, unchanged from tick156.
+Balance R6683.77 / Equity R6679.88 (live-queried, profit -R3.89). No closes this tick.
+Open position: GBPJPY Sell 0.01L [LEARN] (109848789) -- CHANGE3 guard: 08:10 favorable low (217.995) not extended, price chopped back to entry (~-2.8pips live), highs flat not decisively reversing -- reads as consolidation not a clean Rule5 reversal. pl API still showing 0 (FLAG-005 lag, 3rd occurrence), manual cross-check ~-R3. SL 18pips away, untouched. HOLD, no management change.
+Signal worked: USDJPY SPRING_LONG 163.541 (level 163.458, extreme 163.332, range_pos 0.552) @08:30:47Z -- reclaim of the level swept in tick153-156's short/breakdown sequence, now framed as a long.
+USDJPY: NO_ACTION -- the confirming reclaim candle already closed 2 bars back (83% bull, closed above 163.458); last-closed bar is a flat consolidation doji, not fresh confirmation either way. BLOCKED ON R:R (hard): price already ran ~22pips off the 163.332 extreme before this signal, nearest resistance (163.593-163.704) too close relative to any defensible structural SL -- best case ~0.56-0.96:1, fails the 1.2:1 floor. Counter-trend vs standing BEARISH H4 (WARN-only in learn mode, not independently blocking). Same chase-the-spike shape as AUDJPY ticks122-126/NVDA tick141.
+News: WebSearch, no high-impact USD/JPY item in the forward 2h window (Fed decision Wed 7/29-31 per sources, BoJ/GDP/PCE later in week -- nothing imminent). Attested news_clear.
+No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed this tick.
+No new FLAG-NNN opened. FLAG-003/FLAG-005 remain OPEN.
