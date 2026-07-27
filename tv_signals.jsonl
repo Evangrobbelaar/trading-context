@@ -606,3 +606,4 @@
 {"event": "SWEEP_HIGH", "symbol": "EURUSD", "tf": "30", "price": 1.14081, "level": 1.14144, "extreme": 1.14184, "range_pos": 0.66, "vol_mult": 1.71, "h1_atr": 0.000966, "t": 1785135600405, "received_utc": "2026-07-27T07:00:07.186417+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "USDJPY", "tf": "30", "price": 163.335, "level": 163.458, "extreme": 163.608, "range_pos": 0.013, "vol_mult": 1.95, "h1_atr": 0.106858, "t": 1785137400624, "received_utc": "2026-07-27T07:30:04.563296+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "AUDJPY", "tf": "30", "price": 114.445, "level": 114.534, "extreme": 114.593, "range_pos": 0.159, "vol_mult": 1.44, "h1_atr": 0.114473, "t": 1785137400641, "received_utc": "2026-07-27T07:30:06.291581+00:00"}
+{"event": "LL_BREAKDOWN", "symbol": "EURJPY", "tf": "30", "price": 186.32, "level": 186.352, "extreme": 186.62, "range_pos": 0.023, "vol_mult": 1.96, "h1_atr": 0.122657, "t": 1785137401289, "received_utc": "2026-07-27T07:30:08.187806+00:00"}
