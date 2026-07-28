@@ -834,3 +834,4 @@
 {"event": "PULLBACK_TAG_SHORT", "symbol": "NVDA", "tf": "30", "price": 196.77, "level": 195.44, "extreme": 198.03, "range_pos": 0.831, "vol_mult": 1.27, "h1_atr": 2.838993, "t": 1785250800441, "received_utc": "2026-07-28T15:00:16.310795+00:00"}
 {"event": "PULLBACK_TAG_LONG", "symbol": "EURJPY", "tf": "30", "price": 186.574, "level": 186.356, "extreme": 186.202, "range_pos": 0.974, "vol_mult": 1.36, "h1_atr": 0.136002, "t": 1785250801679, "received_utc": "2026-07-28T15:00:19.066545+00:00"}
 {"event": "SWEEP_LOW", "symbol": "XAGUSD", "tf": "30", "price": 57.204, "level": 57.019, "extreme": 56.9185, "range_pos": 0.298, "vol_mult": 1.69, "h1_atr": 0.42081, "t": 1785252600248, "received_utc": "2026-07-28T15:30:02.758628+00:00"}
+{"event": "SWEEP_LOW", "symbol": "USDJPY", "tf": "30", "price": 163.694, "level": 163.669, "extreme": 163.648, "range_pos": 0.152, "vol_mult": 2.5, "h1_atr": 0.085529, "t": 1785252600486, "received_utc": "2026-07-28T15:30:10.379975+00:00"}
