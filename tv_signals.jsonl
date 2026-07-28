@@ -766,3 +766,4 @@
 {"event": "SWEEP_LOW", "symbol": "EURJPY", "tf": "30", "price": 186.118, "level": 186.116, "extreme": 186.072, "range_pos": 0.262, "vol_mult": 1.57, "h1_atr": 0.102973, "t": 1785222000713, "received_utc": "2026-07-28T07:00:11.038537+00:00"}
 {"event": "SWEEP_LOW", "symbol": "EURGBP", "tf": "30", "price": 0.85488, "level": 0.85482, "extreme": 0.85472, "range_pos": 0.154, "vol_mult": 1.33, "h1_atr": 0.000424, "t": 1785222000550, "received_utc": "2026-07-28T07:00:12.745953+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "BRENT", "tf": "30", "price": 88.747, "level": 88.947, "extreme": 90.535, "range_pos": 0.111, "vol_mult": 2.22, "h1_atr": 0.938325, "t": 1785222001913, "received_utc": "2026-07-28T07:00:14.650049+00:00"}
+{"event": "SPRING_SHORT", "symbol": "WTI", "tf": "30", "price": 81.407, "level": 82.966, "extreme": 83.051, "range_pos": 0.047, "vol_mult": 2.43, "h1_atr": 0.938996, "t": 1785222061371, "received_utc": "2026-07-28T07:01:04.079857+00:00"}
