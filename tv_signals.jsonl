@@ -792,3 +792,4 @@
 {"event": "HL_RECLAIM", "symbol": "USDJPY", "tf": "30", "price": 163.88, "level": 163.854, "extreme": 163.669, "range_pos": 0.946, "vol_mult": 0.89, "h1_atr": 0.079526, "t": 1785232800360, "received_utc": "2026-07-28T10:00:03.144823+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "EURUSD", "tf": "30", "price": 1.13564, "level": 1.13618, "extreme": 1.13736, "range_pos": 0.021, "vol_mult": 1.06, "h1_atr": 0.000869, "t": 1785232800630, "received_utc": "2026-07-28T10:00:05.646071+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "XAUUSD", "tf": "30", "price": 4023.42, "level": 4034.795, "extreme": 4055.21, "range_pos": 0.062, "vol_mult": 1.33, "h1_atr": 12.604578, "t": 1785232800312, "received_utc": "2026-07-28T10:00:09.325533+00:00"}
+{"event": "SPRING_SHORT", "symbol": "GBPJPY", "tf": "30", "price": 217.635, "level": 217.821, "extreme": 217.9375, "range_pos": 0.249, "vol_mult": 1, "h1_atr": 0.165331, "t": 1785232800937, "received_utc": "2026-07-28T10:00:13.212355+00:00"}
