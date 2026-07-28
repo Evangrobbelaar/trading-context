@@ -705,3 +705,4 @@
 {"event": "SWEEP_LOW", "symbol": "EURUSD", "tf": "30", "price": 1.13721, "level": 1.1367, "extreme": 1.13668, "range_pos": 0.736, "vol_mult": 1.18, "h1_atr": 0.000819, "t": 1785198602262, "received_utc": "2026-07-28T00:30:14.013355+00:00"}
 {"event": "SWEEP_LOW", "symbol": "EURUSD", "tf": "30", "price": 1.13721, "level": 1.1367, "extreme": 1.13668, "range_pos": 0.736, "vol_mult": 1.18, "h1_atr": 0.000819, "t": 1785198602262, "received_utc": "2026-07-28T00:30:20.244302+00:00"}
 {"event": "SWEEP_LOW", "symbol": "WTI", "tf": "30", "price": 82.426, "level": 82.385, "extreme": 82.143, "range_pos": 0.362, "vol_mult": 0.61, "h1_atr": 0.894234, "t": 1785198661563, "received_utc": "2026-07-28T00:31:02.794258+00:00"}
+{"event": "PULLBACK_TAG_SHORT", "symbol": "XAUUSD", "tf": "30", "price": 4058.245, "level": 4065.415, "extreme": 4089.485, "range_pos": 0.024, "vol_mult": 1.02, "h1_atr": 12.32591, "t": 1785200400115, "received_utc": "2026-07-28T01:00:00.546417+00:00"}
