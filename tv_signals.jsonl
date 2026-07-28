@@ -740,3 +740,4 @@
 {"event": "SWEEP_LOW", "symbol": "SPX500", "tf": "30", "price": 7390.7, "level": 7390.1, "extreme": 7389.6, "range_pos": 0.034, "vol_mult": 1.19, "h1_atr": 16.698942, "t": 1785216600717, "received_utc": "2026-07-28T05:30:07.315464+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "EURJPY", "tf": "30", "price": 186.082, "level": 186.116, "extreme": 186.321, "range_pos": 0.131, "vol_mult": 1.32, "h1_atr": 0.103048, "t": 1785216600988, "received_utc": "2026-07-28T05:30:07.745384+00:00"}
 {"event": "SWEEP_LOW", "symbol": "BRENT", "tf": "30", "price": 89.758, "level": 89.705, "extreme": 89.572, "range_pos": 0.509, "vol_mult": 0.59, "h1_atr": 0.810592, "t": 1785216601065, "received_utc": "2026-07-28T05:30:09.718127+00:00"}
+{"event": "LL_BREAKDOWN", "symbol": "EURUSD", "tf": "30", "price": 1.13652, "level": 1.13668, "extreme": 1.13802, "range_pos": 0.185, "vol_mult": 1.32, "h1_atr": 0.000786, "t": 1785216601795, "received_utc": "2026-07-28T05:30:11.350298+00:00"}
