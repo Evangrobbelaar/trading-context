@@ -853,3 +853,4 @@
 {"event": "SPRING_SHORT", "symbol": "XAGUSD", "tf": "30", "price": 57.32, "level": 57.5205, "extreme": 57.5525, "range_pos": 0.359, "vol_mult": 0.5, "h1_atr": 0.416742, "t": 1785258000809, "received_utc": "2026-07-28T17:00:09.573335+00:00"}
 {"event": "PULLBACK_TAG_LONG", "symbol": "EURJPY", "tf": "30", "price": 186.604, "level": 186.624, "extreme": 186.202, "range_pos": 0.869, "vol_mult": 1.19, "h1_atr": 0.133002, "t": 1785258001445, "received_utc": "2026-07-28T17:00:12.351073+00:00"}
 {"event": "HL_RECLAIM", "symbol": "SPX500", "tf": "30", "price": 7449.8, "level": 7448.2, "extreme": 7383.3, "range_pos": 0.974, "vol_mult": 0.74, "h1_atr": 20.872272, "t": 1785258001706, "received_utc": "2026-07-28T17:00:14.174132+00:00"}
+{"event": "SPRING_LONG", "symbol": "USDJPY", "tf": "30", "price": 163.747, "level": 163.669, "extreme": 163.645, "range_pos": 0.333, "vol_mult": 0.83, "h1_atr": 0.086919, "t": 1785258000847, "received_utc": "2026-07-28T17:00:19.771388+00:00"}
