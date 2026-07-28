@@ -841,3 +841,4 @@
 {"event": "SWEEP_LOW", "symbol": "TSLA", "tf": "30", "price": 306.23, "level": 304.28, "extreme": 303.88, "range_pos": 0.854, "vol_mult": 0.6, "h1_atr": 5.231107, "t": 1785252601037, "received_utc": "2026-07-28T15:30:26.095379+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "WTI", "tf": "30", "price": 80.222, "level": 80.509, "extreme": 82.542, "range_pos": 0.097, "vol_mult": 2.33, "h1_atr": 1.066871, "t": 1785252661108, "received_utc": "2026-07-28T15:31:05.546592+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "WTI", "tf": "30", "price": 80.222, "level": 80.509, "extreme": 82.542, "range_pos": 0.097, "vol_mult": 2.33, "h1_atr": 1.066871, "t": 1785252661108, "received_utc": "2026-07-28T15:31:11.638090+00:00"}
+{"event": "SPRING_LONG", "symbol": "XAGUSD", "tf": "30", "price": 57.43835, "level": 57.019, "extreme": 56.9185, "range_pos": 0.421, "vol_mult": 1.12, "h1_atr": 0.426453, "t": 1785254400385, "received_utc": "2026-07-28T16:00:04.772851+00:00"}
