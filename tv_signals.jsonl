@@ -844,3 +844,4 @@
 {"event": "SPRING_LONG", "symbol": "XAGUSD", "tf": "30", "price": 57.43835, "level": 57.019, "extreme": 56.9185, "range_pos": 0.421, "vol_mult": 1.12, "h1_atr": 0.426453, "t": 1785254400385, "received_utc": "2026-07-28T16:00:04.772851+00:00"}
 {"event": "PULLBACK_TAG_LONG", "symbol": "SPX500", "tf": "30", "price": 7445.5, "level": 7429.4, "extreme": 7383.3, "range_pos": 0.958, "vol_mult": 1.01, "h1_atr": 21.047062, "t": 1785254400521, "received_utc": "2026-07-28T16:00:07.185916+00:00"}
 {"event": "SPRING_LONG", "symbol": "TSLA", "tf": "30", "price": 309.7, "level": 304.28, "extreme": 303.88, "range_pos": 1, "vol_mult": 0.69, "h1_atr": 5.120314, "t": 1785254400682, "received_utc": "2026-07-28T16:00:10.559955+00:00"}
+{"event": "HL_RECLAIM", "symbol": "AUDJPY", "tf": "30", "price": 114.278, "level": 114.268, "extreme": 114.1, "range_pos": 0.471, "vol_mult": 1.35, "h1_atr": 0.118936, "t": 1785254401102, "received_utc": "2026-07-28T16:00:12.848304+00:00"}
