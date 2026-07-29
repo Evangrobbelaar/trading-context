@@ -3780,3 +3780,18 @@ No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed.
 Snapshot: balance re-confirmed R7659.59 (flat book, unchanged). h4_verdicts.XAUUSD + session_ranges.XAUUSD refreshed (low extended 4010.25->4009.16). 1 watch_levels entry added. tick_counter -> 178.
 No new flags opened; none resolved. FLAG-008 reaffirmed applicable to this signal, still OPEN.
 Watch: a genuine pullback/retest of ~4025-4030 with a fresh bearish rejection would restore real room to the same support target.
+
+---
+### AUTO TICK 179 — 2026-07-29T12:36:26Z (LDN, mode=learn, TIER2)
+Signals: LL_BREAKDOWN XAGUSD 56.9605 (level 57.3275); HL_RECLAIM BRENT 91.88 (level 90.808); PULLBACK_TAG_SHORT EURUSD 1.1377 (level 1.13834); HL_RECLAIM USDJPY 163.76 (level 163.752); HL_RECLAIM WTI 85.396 (level 84.029), all 12:30-12:31Z.
+Account 41829612 verified (revert-to-41750592 caught and corrected on switch, zero warnings). Balance/equity live-queried R7659.59/R7659.59, unchanged from tick178. Book flat, no open positions.
+News: WebSearch confirmed FOMC statement 14:00 ET/18:00 UTC today (~5.4h out, outside 2h window) and EIA weekly crude inventory ~13:30 UTC (<1h out, INSIDE 2h window) — hard block on oil, not learn-mode-downgradable.
+XAGUSD: fresh H1/M15 pull shows a genuine bearish reversal off the 58.218 sweep high (tick174) to a fresh low, M15 trigger MET clean (~93% bear body, vol confirmed). BLOCKED ON SIZING — standing FLAG-007 confirmed a 3rd time (now short side too): min lot 0.01L=R779/pt, structural SL ~R500-540 risk, 12-13x the learn-mode band. Not re-flagged (no new info).
+BRENT/WTI: FLAG-001/002 gaps re-measured (BRENT ~5.85%, WTI ~2.9%), both still in standing ranges — unresolved. Broker-native H1 confirms tick177's bull reversal continuing hard, both spiking on 12:30 M15 bars at ~2x normal volume. BLOCKED ON NEWS regardless — same EIA gate as tick174/175/177, now <1h out.
+EURUSD: H4/H1 verdict (tick176, fresh) confirmed — 7 consecutive declining H1 highs, Rule19 satisfied, M15 trigger MET (61% bear body). Rule17 borderline (range_pos ~0.144, bottom-15pct, WARN-only in learn mode). BLOCKED ON R:R (hard): Rule2-floor SL (~15pips) leaves only ~4pips to the session low before any TP would project into unconfirmed territory below it — best case well under 1.2:1.
+USDJPY: fresh H1/M15 pull resolves the 2-day-stale tick153 BEARISH verdict — genuine reversal off the 05:00 Asian low, clean higher-low staircase, M15 trigger MET on last closed bar (64% bull body breaking the 163.687-689 shelf). Rule17 clear (~0.80). BLOCKED ON R:R (hard): only visible resistance is today's own session high 163.877 (~12pips reward vs ~16-17pip Rule2-floor SL) — R:R ~0.71:1, no confirmed level beyond it in the pulled window.
+Decision: NO_ACTION on all five signals. Nothing placed/would-placed. No enforcer run (all blocked pre-enforcer: 1 sizing, 2 news, 2 R:R).
+Snapshot updated: balance re-confirmed, h4_verdicts.USDJPY reclassified BULL (supersedes stale tick153), h4_verdicts.XAGUSD reclassified BEARISH (supersedes tick168/171/174 BULL), h4_verdicts.EURUSD/BRENT/WTI notes appended. tick_counter -> 179.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
+No new flags opened; none resolved. FLAG-001/002 re-measured (updated, not new). FLAG-003/005/006/007/008 untouched this tick.
+Watch: BRENT/WTI re-evaluate broker-native structure after ~13:30 UTC EIA clears; USDJPY needs a pullback or the 163.877 high to clear with room behind it; EURUSD needs the range to extend below 1.13742; all USD-pairs need re-evaluation after the FOMC 2h blackout begins ~16:00 UTC and clears post-14:30 ET press conference; XAGUSD sizing wall unchanged, needs Evan's FLAG-007 decision to unblock.
