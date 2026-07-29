@@ -3807,3 +3807,15 @@ Snapshot updated: balance re-confirmed, session_ranges.USDJPY refreshed to live 
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
 New flag opened: FLAG-009 (medium, process) — news gate checked per-instrument, not per shared-currency exposure; tick179 missed JOLTS/Consumer Confidence for USDJPY despite tick176 already finding it blocking for EURUSD 26min earlier same session. No financial harm this instance. FLAG-001/002/003/005/006/007/008 untouched this tick.
 Watch: re-evaluate USDJPY news-clear only after ~14:05 UTC (JOLTS/Consumer Confidence), and again once clear of the FOMC 2h blackout (~16:00 UTC onward, post-14:30 ET press conference). Structural watch unchanged from tick179 — needs range extension above 163.877 with room behind it, or a genuine pullback rebuilding distance to entry.
+
+---
+### AUTO TICK 181 — 2026-07-29T13:04:05Z (LDN, mode=learn, TIER2)
+Signals: PULLBACK_TAG_SHORT XAGUSD 57.2825 (level 57.3275, extreme 58.2365, range_pos 0.314, vol_mult 1.53) @13:00:06Z; PULLBACK_TAG_SHORT XAUUSD 4022.65 (level 4020.655, extreme 4047.88, range_pos 0.345, vol_mult 1.42) @13:00:08Z.
+Account 41829612 verified (clean switch from the usual 41750592 revert, zero warnings). Balance/equity live-queried R7659.59/R7659.59, unchanged from tick180. Book flat, no open positions — position guard trivial.
+News: WebSearch confirmed JOLTS Job Openings + Conference Board Consumer Confidence, both 10:00 ET/14:00 UTC today, ~56min out at read time — INSIDE the 2h blackout window, same release that blocked EURUSD (tick176) and USDJPY (tick180) earlier this session. BLOCKED ON NEWS (hard, not learn-mode-downgradable) for both metals — gold/silver are USD-quoted and directly exposed.
+Independently (would also have blocked): XAUUSD would have hit FLAG-008's standing sizing wall (Rule2 15-25pt SL floor × R15.58/pt min-lot = R233-390 risk, 6-10x the learn-mode R15-40 band). XAGUSD would have hit FLAG-007's standing sizing wall (0.01L min-lot=R779/pt, structural SL ~0.5-0.7pt = R400-540 risk, confirmed a 4th time on the short side matching tick179). Neither structural analysis pursued further since news blocked pre-enforcer.
+Decision: NO_ACTION on both signals. Nothing placed/would-placed. No enforcer run.
+Snapshot updated: balance re-confirmed, h4_verdicts.XAUUSD + h4_verdicts.XAGUSD notes appended. tick_counter -> 181.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
+No new flags opened; none resolved. FLAG-001/002/003/005/006/007/008/009 untouched this tick.
+Watch: both metals re-evaluate news-clear only after ~14:05 UTC (JOLTS/Consumer Confidence), and again once clear of the FOMC 2h blackout (~16:00 UTC onward). Sizing walls (FLAG-007/008) remain the deeper structural blocker for both regardless of news clearing — unresolved pending Evan's decision.
