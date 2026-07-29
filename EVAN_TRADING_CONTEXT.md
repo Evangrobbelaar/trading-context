@@ -3686,3 +3686,15 @@ NO_ACTION. Opened FLAG-008 (XAUUSD sizing floor, mirrors FLAG-007). No other fla
 Snapshot updated: balance re-confirmed, h4_verdicts.XAUUSD refreshed (trend/swings/note), session_ranges.XAUUSD extended to 4010.25-4047.78, watch_levels.XAUUSD appended. tick_counter -> 170.
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
 Watch: Evan's decision on FLAG-007/FLAG-008 (exclude Gold+Silver from learn-mode, or widen the target band) gates whether this exact setup becomes tradeable.
+
+## AUTO TICK 171 — 2026-07-29T07:38:51Z (mode=learn, TIER2)
+Signal: XAGUSD PULLBACK_TAG_LONG 58.2195 (30m tf, level 58.065, extreme 57.3275, range_pos 0.988, vol_mult 0.61) @07:30:04Z, same 58.065 shelf as tick168's HL_RECLAIM.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612 with zero warnings. Balance/equity live-queried R7659.59/R7659.59, unchanged from tick170, book flat (zero open positions, get_open_positions confirmed).
+Fresh M15 pull: price has extended to a new session high 58.215 (07:30 forming bar), continuing the same with-trend structure established at tick168 (two confirmed higher lows 56.623->56.833->57.319, higher highs broken). H4/H1 trend read carried forward as still valid (~35min old, no contradicting price action since).
+BLOCKED ON M15 TRIGGER (hard, not learn-mode-downgradable): last CLOSED bar (07:15: O58.109 H58.156 L58.061 C58.126) is only an ~18% bull body -- a stall/consolidation bar, not the 60%+ rejection/reclaim Change5 requires. The stronger 07:30 bar (~57% bull body, fresh 58.215 high) is still forming/unclosed at read time. Never reached FLAG-007's sizing wall this tick -- blocked upstream on trigger.
+News: WebSearch confirms FOMC decision today (~14:00 ET / ~20:00 SAST, ~10-12h out, outside the 2h window); silver's move attributed to broad USD/Fed positioning, no fresh silver-specific high-impact item in window. Attested news_clear.
+No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed. NO_ACTION.
+Snapshot updated: balance re-confirmed unchanged, h4_verdicts.XAGUSD refreshed (trend/asof/swings appended), session_ranges.XAGUSD extended to 56.833-58.215, watch_levels.XAGUSD appended. tick_counter -> 171.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
+No new flag opened/resolved. FLAG-001/002/003/005/006/007/008 untouched this tick.
+Watch: XAGUSD -- a CLOSED M15 bar with a 60%+ bull body above ~58.15-58.20 clears the trigger, at which point this reopens FLAG-007's still-unresolved sizing question (minLotSize 0.01 = R779/pt, structural SL still prices risk well above the learn-mode R15-40 band).
