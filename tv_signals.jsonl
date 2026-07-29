@@ -967,3 +967,4 @@
 {"event": "HL_RECLAIM", "symbol": "BRENT", "tf": "30", "price": 92.168, "level": 92.102, "extreme": 89.783, "range_pos": 0.982, "vol_mult": 1.52, "h1_atr": 0.99237, "t": 1785333602316, "received_utc": "2026-07-29T14:00:33.077934+00:00"}
 {"event": "SWEEP_LOW", "symbol": "EURGBP", "tf": "30", "price": 0.85692, "level": 0.85678, "extreme": 0.85666, "range_pos": 0.605, "vol_mult": 1.63, "h1_atr": 0.000472, "t": 1785333600986, "received_utc": "2026-07-29T14:00:34.767299+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "EURGBP", "tf": "30", "price": 0.85692, "level": 0.85706, "extreme": 0.85716, "range_pos": 0.605, "vol_mult": 1.63, "h1_atr": 0.000472, "t": 1785333600986, "received_utc": "2026-07-29T14:00:36.446553+00:00"}
+{"event": "LL_BREAKDOWN", "symbol": "NVDA", "tf": "30", "price": 191.64, "level": 192.66, "extreme": 198.15, "range_pos": 0.116, "vol_mult": 1.44, "h1_atr": 2.735434, "t": 1785335400314, "received_utc": "2026-07-29T14:30:03.075977+00:00"}
