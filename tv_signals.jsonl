@@ -998,3 +998,4 @@
 {"event": "SWEEP_HIGH", "symbol": "GBPJPY", "tf": "30", "price": 217.7135, "level": 217.7515, "extreme": 217.7595, "range_pos": 0.732, "vol_mult": 1, "h1_atr": 0.183584, "t": 1785340801568, "received_utc": "2026-07-29T16:00:13.377695+00:00"}
 {"event": "SWEEP_LOW", "symbol": "TSLA", "tf": "30", "price": 301.46, "level": 300.69, "extreme": 300.56, "range_pos": 0.106, "vol_mult": 0.82, "h1_atr": 4.339438, "t": 1785340801053, "received_utc": "2026-07-29T16:00:17.462458+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "USDJPY", "tf": "30", "price": 163.882, "level": 163.888, "extreme": 163.908, "range_pos": 0.959, "vol_mult": 0.65, "h1_atr": 0.110939, "t": 1785342600259, "received_utc": "2026-07-29T16:30:02.450031+00:00"}
+{"event": "SWEEP_LOW", "symbol": "XAUUSD", "tf": "30", "price": 4016.595, "level": 4010.41, "extreme": 4007.63, "range_pos": 0.396, "vol_mult": 1.05, "h1_atr": 12.799306, "t": 1785342600520, "received_utc": "2026-07-29T16:30:04.849513+00:00"}
