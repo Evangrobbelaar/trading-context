@@ -1008,3 +1008,4 @@
 {"event": "SPRING_LONG", "symbol": "TSLA", "tf": "30", "price": 302.21, "level": 300.69, "extreme": 299.7, "range_pos": 0.268, "vol_mult": 0.61, "h1_atr": 4.19509, "t": 1785344400268, "received_utc": "2026-07-29T17:00:08.864414+00:00"}
 {"event": "SWEEP_LOW", "symbol": "AUDJPY", "tf": "30", "price": 113.552, "level": 113.52, "extreme": 113.46, "range_pos": 0.134, "vol_mult": 0.8, "h1_atr": 0.14362, "t": 1785344401942, "received_utc": "2026-07-29T17:00:12.694293+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "XAUUSD", "tf": "30", "price": 4039.245, "level": 4047.88, "extreme": 4050.745, "range_pos": 0.79, "vol_mult": 1.99, "h1_atr": 14.568667, "t": 1785346200265, "received_utc": "2026-07-29T17:30:05.294589+00:00"}
+{"event": "SPRING_LONG", "symbol": "AUDJPY", "tf": "30", "price": 113.575, "level": 113.52, "extreme": 113.46, "range_pos": 0.159, "vol_mult": 0.99, "h1_atr": 0.138576, "t": 1785346201018, "received_utc": "2026-07-29T17:30:08.552332+00:00"}
