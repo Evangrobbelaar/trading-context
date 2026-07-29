@@ -963,3 +963,4 @@
 {"event": "SWEEP_LOW", "symbol": "XAGUSD", "tf": "30", "price": 56.971, "level": 56.8595, "extreme": 56.8395, "range_pos": 0.094, "vol_mult": 2.19, "h1_atr": 0.422158, "t": 1785333600623, "received_utc": "2026-07-29T14:00:08.199350+00:00"}
 {"event": "SWEEP_LOW", "symbol": "EURUSD", "tf": "30", "price": 1.13918, "level": 1.139, "extreme": 1.13834, "range_pos": 0.593, "vol_mult": 1.57, "h1_atr": 0.000858, "t": 1785333600642, "received_utc": "2026-07-29T14:00:09.862749+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "XAUUSD", "tf": "30", "price": 4007.445, "level": 4009.39, "extreme": 4036.195, "range_pos": 0.107, "vol_mult": 2.78, "h1_atr": 13.145456, "t": 1785333600647, "received_utc": "2026-07-29T14:00:14.176055+00:00"}
+{"event": "LL_BREAKDOWN", "symbol": "SPX500", "tf": "30", "price": 7395.5, "level": 7404.2, "extreme": 7457.2, "range_pos": 0.094, "vol_mult": 2.03, "h1_atr": 20.238152, "t": 1785333600870, "received_utc": "2026-07-29T14:00:22.493220+00:00"}
