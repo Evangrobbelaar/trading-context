@@ -921,3 +921,4 @@
 {"event": "SWEEP_LOW", "symbol": "EURGBP", "tf": "30", "price": 0.85691, "level": 0.85678, "extreme": 0.85675, "range_pos": 0.262, "vol_mult": 1.42, "h1_atr": 0.000401, "t": 1785306601017, "received_utc": "2026-07-29T06:30:08.957334+00:00"}
 {"event": "HL_RECLAIM", "symbol": "XAGUSD", "tf": "30", "price": 58.1285, "level": 58.065, "extreme": 57.3275, "range_pos": 0.987, "vol_mult": 0.97, "h1_atr": 0.394843, "t": 1785308400319, "received_utc": "2026-07-29T07:00:02.660343+00:00"}
 {"event": "PULLBACK_TAG_LONG", "symbol": "XAUUSD", "tf": "30", "price": 4041.25, "level": 4040.15, "extreme": 4020.655, "range_pos": 0.896, "vol_mult": 0.84, "h1_atr": 12.680691, "t": 1785308400272, "received_utc": "2026-07-29T07:00:04.869769+00:00"}
+{"event": "SWEEP_HIGH", "symbol": "EURUSD", "tf": "30", "price": 1.13921, "level": 1.1393, "extreme": 1.1395, "range_pos": 0.463, "vol_mult": 1.56, "h1_atr": 0.000793, "t": 1785308400550, "received_utc": "2026-07-29T07:00:06.575859+00:00"}
