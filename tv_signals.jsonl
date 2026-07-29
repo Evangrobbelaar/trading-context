@@ -1025,3 +1025,4 @@
 {"event": "HL_RECLAIM", "symbol": "NFLX", "tf": "30", "price": 73.59, "level": 73.58, "extreme": 71.77, "range_pos": 0.978, "vol_mult": 0.83, "h1_atr": 0.773534, "t": 1785349800368, "received_utc": "2026-07-29T18:30:13.873950+00:00"}
 {"event": "HL_RECLAIM", "symbol": "XAUUSD", "tf": "30", "price": 4067.93, "level": 4050.745, "extreme": 3996.055, "range_pos": 0.797, "vol_mult": 3.17, "h1_atr": 16.631619, "t": 1785349800294, "received_utc": "2026-07-29T18:30:15.701743+00:00"}
 {"event": "HL_RECLAIM", "symbol": "GBPJPY", "tf": "30", "price": 218.0325, "level": 217.9765, "extreme": 217.6515, "range_pos": 0.83, "vol_mult": 1, "h1_atr": 0.199129, "t": 1785349800856, "received_utc": "2026-07-29T18:30:18.430794+00:00"}
+{"event": "PULLBACK_TAG_LONG", "symbol": "XAUUSD", "tf": "30", "price": 4106.75, "level": 4050.745, "extreme": 3996.055, "range_pos": 0.97, "vol_mult": 2.87, "h1_atr": 18.338405, "t": 1785351600158, "received_utc": "2026-07-29T19:00:00.826366+00:00"}
