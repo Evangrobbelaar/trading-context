@@ -1031,3 +1031,4 @@
 {"event": "HL_RECLAIM", "symbol": "AUDJPY", "tf": "30", "price": 114.066, "level": 113.83, "extreme": 113.456, "range_pos": 0.699, "vol_mult": 2.49, "h1_atr": 0.164953, "t": 1785351600374, "received_utc": "2026-07-29T19:00:08.402662+00:00"}
 {"event": "PULLBACK_TAG_LONG", "symbol": "EURJPY", "tf": "30", "price": 187.032, "level": 186.71, "extreme": 186.442, "range_pos": 0.962, "vol_mult": 2.41, "h1_atr": 0.175074, "t": 1785351600423, "received_utc": "2026-07-29T19:00:10.398141+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "USDJPY", "tf": "30", "price": 163.318, "level": 163.452, "extreme": 163.908, "range_pos": 0.063, "vol_mult": 3.73, "h1_atr": 0.143208, "t": 1785351600660, "received_utc": "2026-07-29T19:00:11.965856+00:00"}
+{"event": "PULLBACK_TAG_LONG", "symbol": "NFLX", "tf": "30", "price": 73.44, "level": 73.58, "extreme": 71.77, "range_pos": 0.852, "vol_mult": 0.96, "h1_atr": 0.741496, "t": 1785351602076, "received_utc": "2026-07-29T19:00:13.867872+00:00"}
