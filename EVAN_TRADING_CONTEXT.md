@@ -3877,3 +3877,14 @@ Snapshot updated: balance re-confirmed, h4_verdicts.XAGUSD note appended (tick18
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
 No new flags opened; none resolved — routine Rule11 block, consistent with tick180/182/183/184/185. FLAG-001/002/003/006/007/008/009 untouched this tick.
 Watch: do not re-evaluate XAGUSD for entry until after the ~18:05 UTC FOMC print clears, then require a fresh H4/H1/M15 pull AND a FLAG-007 sizing check (structural SL vs R779/pt min-lot cost) before treating this spring as actionable.
+
+### AUTO TICK 187 — 2026-07-29T17:02:18Z (LDN, mode=learn, TIER2)
+Signals: SPRING_LONG XAUUSD 4027.46 (level 3996.055, range_pos 0.606, vol_mult 1.28); SPRING_LONG TSLA 302.21 (level 300.69, range_pos 0.268, vol_mult 0.61); SWEEP_LOW AUDJPY 113.552 (level 113.52, extreme 113.46, range_pos 0.134, vol_mult 0.8), 2nd touch of the ~113.52 shelf within 240min — shelf-signature, escalated tier2.
+Account 41829612 verified (clean switch from the usual 41750592 revert, zero warnings). Balance/equity live-queried R7659.59/R7659.59, unchanged from tick186. Book flat, no open positions — position guard trivial.
+News: WebSearch confirmed FOMC statement 14:00 ET/18:00 UTC today, read time 17:02:18 UTC = ~58min out — squarely INSIDE the 2h blackout window, same event that blocked all three fired instruments' predecessors at ticks 180/182/183/184/185/186. BLOCKED ON NEWS (hard, not learn-mode-downgradable) for all three signals.
+AUDJPY: on-file H4 verdict (BULL, asof 07-26T23:10, ~66h stale) checked against a fresh H1 pull — found superseded: hard intraday reversal from a 113.819 session peak (15:00) to a fresh low 113.447 (17:00 forming), now consolidating 113.44-113.56. The SWEEP_LOW shelf-signature (2 touches) is real on broker-native data, not a feed artifact, but Sprung Ladder Phase-1 evaluation not completed — moot since news blocked first. XAUUSD/TSLA: price checked only (no full H4/H1/M15 refresh), moot for the same reason.
+Decision: NO_ACTION on all three. Nothing placed/would-placed. No enforcer run (blocked pre-enforcer on news).
+Snapshot updated: balance re-confirmed, h4_verdicts.AUDJPY trend/note refreshed with the intraday reversal finding (stale label flagged, not yet re-verdicted), 1 watch_levels entry added (AUDJPY — post-FOMC re-check + Sprung Ladder shelf candidacy). tick_counter -> 187.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
+No new flags opened; none resolved — routine Rule11 block, consistent with tick180/182/183/184/185/186. FLAG-001/002/003/006/007/008/009 untouched this tick.
+Watch: do not re-evaluate XAUUSD/TSLA/AUDJPY for entry until after the ~18:05 UTC FOMC print clears, then require a fresh H4/H1/M15 pull for each — AUDJPY's stale BULL label needs a genuine re-verdict (fresh reversal in play), and the 113.44-113.56 shelf needs a second look for Sprung Ladder Phase-1 candidacy if it holds as 2-sided support.
