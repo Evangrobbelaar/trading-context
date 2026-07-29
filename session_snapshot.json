@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-29T08:40:00Z",
-  "updated_by": "auto_tick_174",
+  "updated_utc": "2026-07-29T11:31:30Z",
+  "updated_by": "auto_tick_175",
   "balance": {
     "value": 7659.59,
     "equity": 7659.59,
-    "queried_utc": "2026-07-29T08:40:00Z",
-    "note": "live-queried tick174, unchanged from tick170-173 (no fills, book flat)."
+    "queried_utc": "2026-07-29T11:31:30Z",
+    "note": "live-queried tick175, unchanged from tick170-174 (no fills, book flat)."
   },
   "session_start_balance": 7394.99,
   "open_positions": [],
@@ -93,16 +93,16 @@
       "note": "tick162 (mode=learn, TIER2): LL_BREAKDOWN fired 1.13912, with-trend short. Day range_pos at entry ~0.45 (mid-range) using live day high/low -- signal's own range_pos field (0.102) computed on a narrower window and was NOT used for the Rule17 call, per protocol's cross-check instruction. M15 trigger MET (11:15 closed bar ~80% bear body). No Rule20 correlation conflict (only other open book = GBPJPY, no EUR-correlated exposure). News clear (WebSearch, no high-impact EUR/USD event within 2h). Enforcer PASS. SELL 0.01L filled 1.13947, SL1.14073/TP1.13693, orderId 109849631."
     },
     "BRENT": {
-      "trend": "BEARISH -- intact but testing. Clean lower-highs 03:00 88.79 -> 04:00 88.59 -> 05:00 88.216 -> 06:00 87.889 -> 07:00 87.47 -> 08:00 87.392, then a sharp 09:00-10:00 breakdown to a fresh session low 84.764 (09:00 swept 85.462, 10:00 extended to 84.764). 10:15 M15 bar was a strong 68.7%-body bull reversal off that low; price has since chopped 85.3-85.9 and the 11:00 bar (forming) is pushing back up toward 85.926.",
-      "asof": "2026-07-27T11:08:12Z",
-      "swings": "Lower-high sequence 03:00-08:00 intact; 09:00-10:00 impulsive breakdown to fresh low 84.764; 10:15 reversal bar + subsequent chop -- not yet a confirmed continuation either direction.",
-      "note": "tick161: SWEEP_LOW signal (90.86, level 90.759) -- FLAG-001 gap re-measured: signal 90.86 vs broker bid 85.944 = ~4.92pt/~5.72%, still inside the standing 5.5-6.6% range, not converging/widening. The prompt's 'SHELF SIGNATURE: 2 sweeps at ~90.759 -- Sprung Ladder Phase-1 candidate' does NOT hold up against broker-native data: broker has never traded near 90.759 this session (range 84.764-88.79) and shows a single impulsive breakdown to a fresh low, not a double-sweep of one shelf -- the shelf claim is an artifact of the decoupled TV feed, not real structure. NO_ACTION -- BLOCKED ON M15 TRIGGER (hard): last CLOSED bar (10:45) only ~23% bear body (near-doji), no clean 60%+ confirmation either direction after the 10:15 reversal bar. Broker-native structure only per FLAG-001. | tick162: PULLBACK_TAG_SHORT (91.469) and SPRING_LONG (91.469, same price, opposite direction) fired simultaneously -- further confirms FLAG-001 (feed decoupling/noise), no new flag line needed, same standing gap. NO_ACTION, deferred to FLAG-001 standing guidance (broker-native only, currently choppy 85.3-85.9 post-breakdown-reversal, no clean trigger anyway)."
+      "trend": "BEARISH sequence intact through 08:00 but now under active challenge: 02:00 85.15 -> 03:00 84.76 -> 04:00 85.178 -> 05:00 84.538 -> 06:00 84.546 -> 07:00 84.511 -> 08:00 84.53 -> 09:00 84.508 -> 10:00 84.807 -> 11:00 SHARP BULL REVERSAL (open 84.802, high 85.857, close 85.76, ~78% bull body), fresh session high, breaking the flat/lower-high chop that had held since 05:00.",
+      "asof": "2026-07-29T11:31:30Z",
+      "swings": "05:00-10:00 was a tight lower-high grind 84.5-84.8; 11:00 broke out hard to a new session high 85.857, closing near the top -- first clean bullish structural break this session. Not yet confirmed as a trend change (one bar), but the with-trend-short case from 07-27/08-27 is stale and should not be relied on until this bar's continuation (or rejection) is seen.",
+      "note": "tick175: SWEEP_HIGH + PULLBACK_TAG_LONG fired 90.344 (level 90.423) @11:30Z. FLAG-001 re-measured: signal 90.344 vs broker bid 85.576 = ~4.77pt/~5.57%, inside the standing 5.5-6.6% range, not converging/widening. Broker-native range_pos ~0.85 (top of session range) would additionally raise a Rule 17 buy-side concern for a long. Moot -- NO_ACTION this tick, blocked upstream on the EIA crude inventory release (~13:30 UTC, <2h away at read time), a hard news gate not downgradable in learn mode. Nothing placed, no enforcer run (blocked pre-enforcer). Watch: EIA print reaction post-13:30 UTC, and whether the 11:00 bull bar gets continuation or rejection -- H4 read needs a fresh look next tick regardless of news."
     },
     "WTI": {
-      "trend": "BEARISH -- broker-native H1 confirms lower-high/lower-low sequence since the Monday session high 84.572 (03:00 bar). Highs declining: 84.572(03:00)->84.463(04:00)->84.11(05:00)->83.868(06:00)->83.531(07:00)->83.518(08:00 bounce top)->83.773(09:00 forming, sweep-and-reject). Lows: 84.086(03:00)->83.97(04:00)->83.407(05:00)->83.285(06:00)->82.414(07:00, fresh break)->82.358(08:00)->81.891(09:00 forming, fresh session low). The 08:00 bounce (weak, ~41% body) was swept and rejected hard in the forming 09:00 bar. Supersedes the tick149 'violent disorderly reopen' read -- tape has since normalized (~9h/36 M15 bars of ordinary volume since reopen), decoupling from TV feed is now the only standing concern, not tape quality.",
-      "asof": "2026-07-27T09:08:00Z",
-      "swings": "M15 07:30-09:00: 07:30(O82.658 H83.123 L82.573 C83.123, ~85% bull, bounce leg)->07:45(O83.13 C83.268, 41% bull)->08:00(O83.258 H83.518 L82.888 C83.518, 41% bull, session bounce high 83.518, wicked to 83.773 next bar)->08:15(O83.516 H83.773 L83.073 C83.216, ~43% bear, rejects the bounce)->08:30(O83.219 H83.347 L82.536 C82.648, ~70% BEAR, breaks down hard)->08:45 LAST CLOSED (O82.63 H82.876 L82.29 C82.388, ~41% bear body -- well short of Change5's 60%+ threshold)->09:00 forming (O82.396 H82.561 L81.891 C81.947, ~67% bear body, fresh session low 81.891, UNCLOSED at read time 09:08Z). Live bid/ask 82.198/82.213.",
-      "note": "tick140 (mode=learn, TIER2): SPRING_LONG fired 90.021 (level 89.657, extreme 89.102, range_pos 0.275) at 18:01:04Z. FLAG-002 gap re-measured: signal 90.021 vs broker ask 87.717 = 2.304pt/2.6%, UP from tick138's 2.13pt/2.4% -- the two-tick narrowing trend reversed, gap re-widened slightly. Not resolved, flag stays OPEN, no new flags.jsonl line (same in-place-update convention as prior ticks, direction reversal noted but not judged material enough for a status change). WebSearch: WTI trading near $90 real-world on Hormuz/Red Sea risk premium + falling US inventories + OPEC+ discipline -- corroborates standing hypothesis that TV feed tracks the real-world/global benchmark while broker runs its own lower independent series. Broker-native trigger confirmed independently (see trend field) -- traded on broker-native structure only, signal price/level/extreme used for direction/pattern-recognition only, not for SL/TP sizing. Entered 0.01 lots (1 barrel) Buy, fill 87.697, SL 86.37, TP 89.35, orderId 109844484. | tick149 (mode=learn, TIER2): LL_BREAKDOWN fired 85.03 (level 88.596, extreme 91.486, range_pos 0.596) @22:31:02Z, immediately followed by SPRING_SHORT re-print at the same price/level @22:31:04Z. Broker-native check: WTI reopened at 22:15 UTC with a violent gap -- Friday's 89.166 H1 close vs the first post-reopen M15 bar opening 82.316 and ranging 82.316-83.956 in 15min on ~2.1M volume (vs 250-550k typical this session), a ~6.85pt/7.7% gap-down on 4-8x volume. This independently qualifies as suspected disorderly/gap tape -- a hard block in learn mode regardless of the standing FLAG-002 decoupling (signal 85.03 vs broker bid 83.362 = ~2.0% gap, in line with the standing 1.7-2.6% range, no material change there). flags.jsonl updated with the disorderly-reopen observation (FLAG-002 stays OPEN). NO_ACTION -- broken/gapped tape teaches nothing except how to lose on a gap, per the learn-mode absolutes. | tick159 (mode=learn, TIER2, escalated from T1 ESCALATE_TIER2): LL_BREAKDOWN fired 83.9 (level 84.107, extreme 86.484, range_pos 0.092, vol_mult 1.81) @09:01:03Z. Tape has now normalized (~9h since reopen, ordinary 400-750k volume per M15 bar, no discontinuities) -- tick149's disorderly-tape block no longer applies. FLAG-002 re-measured: signal 83.9 vs live broker bid 82.198 = ~1.70pt (~2.0%) gap, consistent with the standing ~1.7-2.6% range, not converging/not widening -- flags.jsonl updated in place, stays OPEN. Independent broker-native check: H4/H1 CONFIRMED BEARISH (see trend field), with-trend short, no override needed. BLOCKED ON M15 TRIGGER (hard, not learn-mode-downgradable): last CLOSED bar (08:45) is only ~41% bear body, well short of the 60%+ threshold; the 09:00 bar with the actual fresh-low breakdown (~67% bear, to 81.891) is unclosed at read time -- same unclosed-bar trap as BRENT this tick. News: same WebSearch as BRENT this tick (Hormuz whipsaw backdrop, no scheduled high-impact oil release in the 2h window, next EIA report 7/29). Attested news_clear. No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed. NO_ACTION. Watch: a CLOSED M15/H1 bar continuing below ~82.0-82.4 with a 60%+ bear body would confirm the breakdown and reopen this as a with-trend short (structural SL above the 08:15-08:30 rejection high ~83.7-83.8 + buffer)."
+      "trend": "BEARISH sequence intact through 09:00 but now under active challenge: 02:00 81.694 -> 03:00 81.276 -> 04:00 81.675 -> 05:00 81.049 -> 06:00 81.145 -> 07:00 81.047 -> 08:00 80.995 -> 09:00 80.892 (fresh session low) -> 10:00 81.184 -> 11:00 SHARP BULL REVERSAL (open 81.137, high 82.219, close 82.123, ~80% bull body), fresh session high, mirroring BRENT's 11:00 breakout.",
+      "asof": "2026-07-29T11:31:30Z",
+      "swings": "02:00-09:00 was a grinding lower-low sequence into a fresh session low 80.892 (09:00); 11:00 broke out hard to a new session high 82.219, closing near the top -- first clean bullish structural break this session, same timing/shape as BRENT.",
+      "note": "tick175: PULLBACK_TAG_LONG/HL_RECLAIM/SWEEP_HIGH fired 83.595-83.827 (level 83.741) @11:00-11:31Z. FLAG-002 re-measured: signal 83.595 vs broker bid 81.977 = ~1.62pt/~1.97%, inside the standing 1.7-2.6% range, not converging/widening. Broker-native range_pos ~0.91 (top of session range) would additionally raise a Rule 17 buy-side concern for a long. Moot -- NO_ACTION this tick, blocked upstream on the EIA crude inventory release (~13:30 UTC, <2h away at read time), a hard news gate not downgradable in learn mode. Nothing placed, no enforcer run (blocked pre-enforcer). Watch: EIA print reaction post-13:30 UTC, and whether the 11:00 bull bar gets continuation or rejection -- H4 read needs a fresh look next tick regardless of news."
     },
     "GBPUSD": {
       "trend": "CHOP (unconfirmed either way) \u2014 bouncing inside the 1.3365-1.3382 compression zone",
@@ -159,13 +159,13 @@
       "source": "get_symbol_price live low/high, tick151. Unchanged from tick147/149's range (114.382/114.617), now backed by 7 M15 bars, still thin/early post-reopen."
     },
     "BRENT": {
-      "low": 84.764,
-      "high": 88.79,
-      "range": 4.026,
-      "top_15pct_cutoff": 88.1861,
-      "bottom_15pct_cutoff": 85.3679,
-      "asof": "2026-07-27T11:08:12Z",
-      "source": "get_symbol_price live low/high field (broker-native), tick161. Low extended 85.462->84.764. Live bid 85.944 = range_pos ~0.293, clear of both bands -- moot, blocked on M15 trigger regardless."
+      "low": 83.988,
+      "high": 85.857,
+      "range": 1.869,
+      "top_15pct_cutoff": 85.5765,
+      "bottom_15pct_cutoff": 84.268,
+      "asof": "2026-07-29T11:31:30Z",
+      "source": "get_symbol_price live low/high field (broker-native), tick175. Live bid 85.576 sits essentially at the top-15pct cutoff -- moot, blocked on news regardless."
     },
     "XAUUSD": {
       "low": 4010.25,
@@ -219,13 +219,13 @@
       "range_pos_at_entry": 0.566
     },
     "WTI": {
-      "low": 81.891,
-      "high": 84.572,
-      "range": 2.681,
-      "top_15pct_cutoff": 84.17,
-      "bottom_15pct_cutoff": 82.293,
-      "asof": "2026-07-27T09:08:00Z",
-      "source": "get_symbol_price live low/high, tick159. Range now backed by ~9h/36 M15 bars of ordinary-volume post-reopen trading -- tape has normalized, tick149's disorderly-tape read no longer applies. Live bid 82.198 = range_pos ~0.114, bottom-15pct band for the LL_BREAKDOWN's implied SELL -- WARN-only/downgradable in learn mode, moot regardless since blocked upstream on M15 trigger. See FLAG-002 update."
+      "low": 79.019,
+      "high": 82.262,
+      "range": 3.243,
+      "top_15pct_cutoff": 81.776,
+      "bottom_15pct_cutoff": 79.505,
+      "asof": "2026-07-29T11:31:30Z",
+      "source": "get_symbol_price live low/high field (broker-native), tick175. Live bid 81.977 = range_pos ~0.91, inside top-15pct band -- moot, blocked on news regardless."
     },
     "SPX500": {
       "low": 7460.38,
@@ -741,7 +741,7 @@
       "set_utc": "2026-07-29T07:38:51Z"
     }
   ],
-  "notes": "tick174 TIER2 (mode=learn): SWEEP_HIGH XAGUSD 57.80885 @08:30:05Z off the 58.008 shelf (extreme 58.1078 signal / 58.218 broker H1 high). Tier1 escalated for with-trend BULL H4 + shelf-signature (2 sweeps ~58.008 within 240min) requiring Sprung Ladder Phase-1 precondition check + M15 confirmation. Findings: (1) shelf-signature CONFIRMED on broker-native H1/M15 data (unlike BRENT/WTI TV-decoupling artifacts at tick161/164) -- 06:00 and 08:30 both genuinely swept ~58.008-58.03. (2) Sprung Ladder Phase-1 preconditions FAIL: this is a trending advance with intact higher-lows (56.623->56.833->57.319), not a 2-sided range (only the top has been tested, no range floor with 2 touches) -- precondition 1 fails; today is also a one-sided bull regime -- precondition 3 fails. Scout economics also fail independently: 3x0.01L scouts at SL=4xH1_ATR(0.378)=1.51pt = R779/pt*1.51=~R1176/scout, ~R3528 total vs the 2%-of-balance cap (~R153) -- fails by ~23x, and scouts are never auto-deployed regardless (protocol absolute, Evan-only). (3) Clean 90%-bear-body M15 rejection bar exists (08:15 CLOSED) that would trigger Change5 for a SHORT, but that trade is counter-trend (no swing low broken) AND fails sizing the same way FLAG-007 already flagged for longs -- structural SL above 58.218+buffer vs entry ~57.87 = ~R335-405 risk at minimum lot, 8-10x the learn-mode band. NO_ACTION, nothing placed, no scout deployed. FLAG-007 updated (not new) with this tick's short-side + Sprung-scout confirmation. News: FOMC decision today (2026-07-29, evening US time) -- outside the 2h block window right now (~08:40 UTC read) but flagged as elevated-event-risk context; market pricing ~1/3 chance of a hike per WebSearch. Balance R7659.59, book flat, unchanged from tick170-173. FLAG-001/002/003/006/008 not independently re-touched this tick beyond being unchanged.",
+  "notes": "tick175 TIER2 (mode=learn): SWEEP_HIGH+PULLBACK_TAG_LONG BRENT (90.344) and PULLBACK_TAG_LONG+HL_RECLAIM+SWEEP_HIGH WTI (83.595-83.827) fired 11:00-11:31Z. Book flat, no open positions/pending orders, balance unchanged R7659.59 (live-queried). Broker-native check: both instruments printed a strong ~78-80%-body bull reversal bar at 11:00 UTC, breaking the prior lower-high/lower-low grind -- first clean bullish structural break this session on both, but only one bar old, not confirmed. FLAG-001/002 re-measured, gaps unchanged (5.57% BRENT, 1.97% WTI), both stay OPEN. WebSearch: Fed rate decision AND EIA weekly crude inventory report both scheduled today; EIA print ~13:30 UTC is <2h from read time (11:31Z) -- hard news block on new oil entries per protocol step 5/learn-mode absolutes (not downgradable). FOMC itself is further out (afternoon US) and not the binding constraint this tick. NO_ACTION on both BRENT and WTI, nothing placed, no enforcer run (blocked pre-enforcer on news gate). No open positions to manage. FLAG-003/006/007/008 not independently re-touched this tick beyond being unchanged. Watch: re-evaluate both symbols after the 13:30 UTC EIA print clears the 2h window, and check whether the 11:00 bull bar on each gets continuation (would flip the stale bearish H4 read) or rejection.",
   "anomaly_status": {
     "state": "RESOLVED",
     "resolved_utc": "2026-07-22T11:47:00Z",

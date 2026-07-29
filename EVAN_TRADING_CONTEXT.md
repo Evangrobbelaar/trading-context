@@ -3737,3 +3737,12 @@ Decision: NO_ACTION. Nothing placed, no scout deployed, enforcer not invoked (no
 FLAG-007 updated (tick174, not new) with short-side + Sprung-scout confirmation, widening its scope from "longs only" to "XAGUSD structurally excluded from learn-mode entries and Sprung scouts in both directions."
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
 Watch: a CLOSED M15/H1 bar below 57.319 would break the intraday higher-low and open a genuine trend-reversal read; until then this is pullback noise inside a bull trend.
+
+## AUTO TICK 175 -- 2026-07-29T11:31:30Z (LDN, mode=learn, TIER2)
+Signals: SWEEP_HIGH+PULLBACK_TAG_LONG BRENT 90.344 (level 90.423); PULLBACK_TAG_LONG+HL_RECLAIM+SWEEP_HIGH WTI 83.595-83.827 (level 83.741), all 11:00-11:31Z.
+Account 41829612 verified. Balance R7659.59 (live-queried, unchanged). Book flat: no open positions, no pending orders.
+Broker-native (FLAG-001/002 gap re-measured, both stay OPEN): BRENT bid 85.576 (signal gap ~5.57%, in standing range); WTI bid 81.977 (signal gap ~1.97%, in standing range). Both printed a strong ~78-80%-body bull reversal bar at 11:00 UTC breaking the prior lower-high/lower-low grind -- first bullish structural break this session on both, one bar old, not confirmed.
+News: WebSearch found Fed rate decision AND EIA weekly crude inventory report both scheduled today (2026-07-29). EIA print ~13:30 UTC is <2h from read time (11:31Z) -- HARD BLOCK on new oil entries (not learn-mode-downgradable). FOMC itself is afternoon US, not binding this tick.
+Decision: NO_ACTION on both BRENT and WTI, blocked on news pre-enforcer. Nothing placed, no enforcer run.
+Snapshot updated: balance, BRENT/WTI H4 verdicts + session ranges refreshed to live broker data, notes.
+Watch: re-evaluate both symbols after 13:30 UTC EIA print clears; check whether 11:00 bull bar gets continuation or rejection.
