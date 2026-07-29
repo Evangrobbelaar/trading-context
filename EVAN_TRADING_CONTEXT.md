@@ -3962,3 +3962,21 @@ Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged.
 No new flags opened; none resolved. FLAG-001/002/003/006/007/008/009 untouched this tick.
 Watch: re-evaluate the whole batch only after the press conference ends and M15 shows genuine post-event
 compression (Rule12); XAGUSD additionally gated by FLAG-007, JPY crosses by FLAG-009 logic.
+
+## AUTO TICK 194 -- 2026-07-29 19:30 UTC (mode=learn, TIER2)
+Signal: PULLBACK_TAG_LONG AUDJPY 113.875 (level 113.83, extreme 113.456, range_pos 0.489,
+vol_mult 2.12, h1_atr 0.175385) @19:30:03Z.
+Account 41829612 verified live. Balance/equity R7659.59 (live-queried), book flat, no open positions.
+News: FOMC presser (new Chair Warsh, 18:30 UTC start, ~1h typical length per prior WebSearch)
+sits right at/inside its expected end at read time -- treated as still-live. Live tape confirms:
+AUDJPY M15 spiked to a fresh intraday high 114.107 (19:15 bar) then reversed to 113.798 in the
+19:30 forming bar -- single M15 bar range ~30.9pips exceeds the full H1 ATR (17.5pips).
+BLOCKED ON NEWS (hard) and independently BLOCKED on disorderly/whipsaw tape (hard) --
+same class of block as ticks180-193, not learn-mode-downgradable. No enforcer run (blocked
+pre-enforcer). Nothing placed/would-placed. NO_ACTION.
+session_snapshot.json updated: balance note, AUDJPY h4_verdicts note, AUDJPY session_ranges
+refreshed to today's live range 113.423-114.329 (was stale tick151 7/26 value). tick_counter -> 194.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged.
+No new flags opened; none resolved. FLAG-001/002/003/006/007/008/009 untouched this tick.
+Watch: re-evaluate AUDJPY once the presser is confirmed over AND M15 compresses back under
+~10-12pip bar ranges (Rule12), with a fresh H1/H4 pull.
