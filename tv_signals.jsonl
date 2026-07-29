@@ -952,3 +952,4 @@
 {"event": "PULLBACK_TAG_SHORT", "symbol": "EURUSD", "tf": "30", "price": 1.1377, "level": 1.13834, "extreme": 1.1401, "range_pos": 0.083, "vol_mult": 2, "h1_atr": 0.000802, "t": 1785328200768, "received_utc": "2026-07-29T12:30:08.527624+00:00"}
 {"event": "HL_RECLAIM", "symbol": "USDJPY", "tf": "30", "price": 163.76, "level": 163.752, "extreme": 163.506, "range_pos": 0.79, "vol_mult": 1.28, "h1_atr": 0.116402, "t": 1785328200787, "received_utc": "2026-07-29T12:30:10.169374+00:00"}
 {"event": "HL_RECLAIM", "symbol": "WTI", "tf": "30", "price": 85.396, "level": 84.029, "extreme": 82.188, "range_pos": 0.983, "vol_mult": 2.41, "h1_atr": 1.074864, "t": 1785328261290, "received_utc": "2026-07-29T12:31:03.973063+00:00"}
+{"event": "PULLBACK_TAG_LONG", "symbol": "USDJPY", "tf": "30", "price": 163.8, "level": 163.752, "extreme": 163.506, "range_pos": 0.856, "vol_mult": 0.91, "h1_atr": 0.120117, "t": 1785330000278, "received_utc": "2026-07-29T13:00:02.309072+00:00"}
