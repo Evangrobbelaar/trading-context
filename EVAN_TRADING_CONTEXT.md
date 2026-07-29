@@ -3727,3 +3727,13 @@ Snapshot updated: balance re-confirmed unchanged, h4_verdicts.XAUUSD refreshed (
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
 No new flag opened/resolved. FLAG-001/002/003/005/006/007/008 untouched this tick.
 Watch: a CLOSED M15 bar below ~4032.5-4033 would confirm a genuine reversal-short thesis; a CLOSED M15 bar back above ~4044-4046 with a bull body would instead confirm the sweep was a shakeout and the uptrend continuation resumes.
+
+## AUTO TICK 174 -- 2026-07-29T08:40:00Z (LDN, mode=learn, TIER2)
+Signal: SWEEP_HIGH XAGUSD 57.80885 @08:30:05Z off the 58.008 shelf (2nd sweep within 2.5h; extreme 58.1078 signal / 58.218 broker H1 high). Tier1 escalated for with-trend BULL H4 + shelf-signature requiring Sprung Ladder Phase-1 precondition check.
+Account 41829612 verified. Balance R7659.59 / equity R7659.59, live-queried, unchanged from tick170-173. Book flat, no open positions.
+Findings: (1) Shelf-signature CONFIRMED real on broker-native H1/M15 (unlike BRENT/WTI TV-decoupling artifacts at tick161/164). (2) Sprung Ladder Phase-1 preconditions FAIL: this is a trending advance with intact higher-lows (56.623->56.833->57.319), not a 2-sided range; today is also a one-sided bull regime -- both preconditions 1 and 3 fail. Scout economics fail independently too: 3x0.01L scouts @ SL=4xH1_ATR(0.378)=1.51pt = ~R1176/scout, ~R3528 total vs the strategy's 2%-of-balance cap (~R153) -- fails by ~23x. Scouts are never auto-deployed regardless (protocol absolute). (3) A clean 90%-bear-body M15 rejection bar exists (08:15 CLOSED) that would trigger Change5 for a counter-trend short, but it fails on sizing the same way FLAG-007 already flagged for longs: SL above 58.218+buffer vs entry ~57.87 = ~R335-405 risk at minimum lot, 8-10x the learn-mode R15-40 band.
+News: FOMC decision today (evening US time) -- outside the 2h block window at this read (~08:40 UTC) but noted as elevated-event-risk context; market pricing ~1/3 chance of a hike.
+Decision: NO_ACTION. Nothing placed, no scout deployed, enforcer not invoked (no order attempted).
+FLAG-007 updated (tick174, not new) with short-side + Sprung-scout confirmation, widening its scope from "longs only" to "XAGUSD structurally excluded from learn-mode entries and Sprung scouts in both directions."
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
+Watch: a CLOSED M15/H1 bar below 57.319 would break the intraday higher-low and open a genuine trend-reversal read; until then this is pullback noise inside a bull trend.
