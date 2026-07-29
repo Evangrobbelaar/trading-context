@@ -1046,3 +1046,4 @@
 {"event": "LL_BREAKDOWN", "symbol": "SPX500", "tf": "30", "price": 7318.8, "level": 7340.5, "extreme": 7450.2, "range_pos": 0.021, "vol_mult": 1.57, "h1_atr": 34.010949, "t": 1785355201338, "received_utc": "2026-07-29T20:00:16.047775+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "NVDA", "tf": "30", "price": 190.07, "level": 190.68, "extreme": 198.15, "range_pos": 0.007, "vol_mult": 3.31, "h1_atr": 2.726549, "t": 1785355201913, "received_utc": "2026-07-29T20:00:18.916748+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "TSLA", "tf": "30", "price": 298.27, "level": 299.7, "extreme": 309.06, "range_pos": 0.076, "vol_mult": 2.98, "h1_atr": 4.499508, "t": 1785355205240, "received_utc": "2026-07-29T20:00:39.050138+00:00"}
+{"event": "HL_RECLAIM", "symbol": "EURJPY", "tf": "30", "price": 187.36, "level": 187.262, "extreme": 186.484, "range_pos": 0.997, "vol_mult": 0.68, "h1_atr": 0.18264, "t": 1785357000422, "received_utc": "2026-07-29T20:30:04.158019+00:00"}
