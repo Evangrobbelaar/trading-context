@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-29T16:31:19Z",
-  "updated_by": "auto_tick_184",
+  "updated_utc": "2026-07-29T16:35:22Z",
+  "updated_by": "auto_tick_185",
   "balance": {
     "value": 7659.59,
     "equity": 7659.59,
-    "queried_utc": "2026-07-29T16:31:19Z",
-    "note": "live-queried tick184, unchanged, book flat, no fills this tick (NO_ACTION -- FOMC news blackout)."
+    "queried_utc": "2026-07-29T16:35:22Z",
+    "note": "live-queried tick185, unchanged, book flat, no fills this tick (NO_ACTION -- FOMC news blackout, ~1h25m out, same event that blocked ticks 180/182/183/184)."
   },
   "session_start_balance": 7394.99,
   "open_positions": [],
@@ -247,6 +247,11 @@
   },
   "armed_tickets": [],
   "watch_levels": [
+    {
+      "symbol": "TSLA",
+      "note": "tick185 (mode=learn, TIER2): SWEEP_LOW 300.9 (level 300.69, extreme 299.7) fired 16:30:17Z, 2nd touch of the ~300.69 shelf within 240min (shelf-signature note). On-file H4 verdict is 5 days stale (asof 2026-07-24T14:05, tick142) -- did not refresh this tick since the FOMC blackout makes any entry decision moot regardless. Watch: fresh H4/H1 pull required post-FOMC (~18:05 UTC+) before treating this shelf as actionable -- 5-day-old bearish-continuation verdict cannot be trusted at face value given how much price has likely moved since.",
+      "set_utc": "2026-07-29T16:35:22Z"
+    },
     {
       "symbol": "EURUSD",
       "note": "tick176 (mode=learn, TIER2): LL_BREAKDOWN fired 1.1382 @12:00:08Z. Clean with-trend short (Rule19 momentum-entry, 7 consecutive declining H1 highs since 05:00, M15 trigger MET ~83% bear body last closed bar), indicative R:R ~1.37:1 (SL~1.13968 above 11:00-11:30 consolidation high +Rule2 15pip floor, TP~1.13613 at the 7/28 08:00/16:00 double-tested support shelf) -- would have cleared enforcer. BLOCKED ON NEWS instead (hard): JOLTS Job Openings + Conference Board Consumer Confidence both standard 14:00 UTC releases, ~1h56m out at read time, inside the 2h window; Advance Goods Trade Balance/Wholesale Inventories ~12:30 UTC, ~26min out. FOMC itself (~18:00 UTC) is the bigger catalyst but outside the 2h window. NO_ACTION, nothing placed/would-placed. Watch: re-evaluate once clear of the ~14:05 UTC data window (and recheck the calendar fresh, do not assume clear into the FOMC run-up) -- if the breakdown structure still holds (fresh lower low, no bull reclaim above ~1.1388), this is a clean re-entry candidate on the same H1 lower-high/Rule19 read.",
@@ -774,7 +779,7 @@
       "set_utc": "2026-07-29T16:08:00Z"
     }
   ],
-  "notes": "tick184 TIER2 (mode=learn): SWEEP_HIGH USDJPY (163.882, 2nd sweep of ~163.888 shelf within 240min) fired 16:30:02Z, escalated from Tier1 on shelf-signature + stale H4 + Rule17 top-band conflict. NO_ACTION -- hard-blocked by FOMC rate decision 18:00 UTC, ~1.5h from this tick (inside the 2h window that already blocked SPX500 at tick182 half an hour ago). Shelf-signature is informational only (Sprung Ladder scout deployment is Evan-only). Book flat, no open positions, balance unchanged R7659.59 (live-queried). No new flags opened -- routine news block matching tick182's precedent, not an anomaly. Watch level set for post-FOMC (~18:00 UTC+) re-evaluation with a fresh H4 pull.",
+  "notes": "tick185 TIER2 (mode=learn): batch of 5 signals (SWEEP_LOW XAUUSD 4016.595, SWEEP_LOW XAGUSD 57.0675, SWEEP_HIGH GBPJPY 217.72, PULLBACK_TAG_SHORT SPX500 7361.4, SWEEP_LOW TSLA 300.9), all with shelf-signature/Sprung Phase-1 notes except SPX500. NO_ACTION across all five -- hard-blocked by FOMC rate decision 18:00 UTC (confirmed via WebSearch: 14:00 ET decision + 14:30 ET Warsh presser), ~1h25m out at read time (16:35 UTC), inside the 2h window that already blocked USDJPY (tick184), GBPJPY (tick183), SPX500 (tick182) and metals (tick181) earlier this session. GBPJPY and SPX500 have fresh on-file H4 verdicts from tick183/182 respectively (GBPJPY: ambiguous/range-bound, does not qualify Sprung Phase-1; SPX500: bearish breakdown confirmed) -- both moot this tick regardless of quality since news blocks pre-enforcer. XAUUSD/XAGUSD H4 verdicts ~4h stale, TSLA ~5 days stale -- not refreshed since moot. XAGUSD also sits behind standing sizing wall FLAG-007 independently. Book flat, no open positions, balance unchanged R7659.59 (live-queried). No new flags opened -- routine news block matching tick180/182/183/184 precedent, not an anomaly. One watch_levels entry added (TSLA, stale H4). Post-FOMC re-evaluation (~18:05 UTC+) needed across all five with fresh H4/H1 pulls before treating any shelf-signature as actionable.",
   "anomaly_status": {
     "state": "RESOLVED",
     "resolved_utc": "2026-07-22T11:47:00Z",
