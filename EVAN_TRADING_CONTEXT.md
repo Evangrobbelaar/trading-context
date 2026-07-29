@@ -3698,3 +3698,17 @@ Snapshot updated: balance re-confirmed unchanged, h4_verdicts.XAGUSD refreshed (
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
 No new flag opened/resolved. FLAG-001/002/003/005/006/007/008 untouched this tick.
 Watch: XAGUSD -- a CLOSED M15 bar with a 60%+ bull body above ~58.15-58.20 clears the trigger, at which point this reopens FLAG-007's still-unresolved sizing question (minLotSize 0.01 = R779/pt, structural SL still prices risk well above the learn-mode R15-40 band).
+
+## AUTO TICK 172 — 2026-07-29T08:00:04Z (mode=learn, TIER2)
+Signal: XAUUSD PULLBACK_TAG_LONG 4043.825 (30m tf, level 4044.845, extreme 4020.655, range_pos 0.892, vol_mult 0.84) @08:00:02Z, same 4044.845 retest level as tick169/170.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612 with zero warnings. Balance/equity live-queried R7659.59/R7659.59, unchanged from tick171, book flat (zero open positions, get_open_positions confirmed).
+Fresh H1/M15 pull: H1 structure unchanged/still bullish (07:00 CLOSED 4041.25, reclaim above the 4046.57/4047.02 shelf still holding, day range unchanged 4010.25-4047.78). M15 last CLOSED bar (07:45: O4046.06 H4047.43 L4044.82 C4046.09) is a near-flat doji (~1% body), not a 60%+ bull reclaim; the 08:00 forming bar has rolled over bearish (O4046.08 H4046.99 L4042.55 C4043.88, live bid/ask 4044.07/4044.26), pulling back toward this signal's 4044.845 tag level rather than confirming a bounce.
+BLOCKED ON M15 TRIGGER (hard, not learn-mode-downgradable): no closed bull rejection/reclaim bar exists yet at this pullback.
+Rule17: range_pos ~0.90 on live range, top-15pct band -- WARN-only in learn mode, moot regardless (blocked upstream).
+Would also have hit FLAG-008's sizing floor (XAUUSD minLotSize 0.01 x Rule2's 15-25pt gold SL floor = R233.70-389.50, 6-10x the learn-mode R15-40 target) had the trigger cleared -- FLAG-008 remains OPEN/unresolved, unchanged since tick170.
+News: carried forward from tick170's WebSearch (~28min prior, same instrument) -- FOMC 2026-07-29 14:00ET/~20:00 SAST still ~10h out, outside the 2h window. Attested news_clear.
+No enforcer run (blocked pre-enforcer on trigger). Nothing placed/would-placed. NO_ACTION.
+Snapshot updated: balance re-confirmed unchanged, h4_verdicts.XAUUSD refreshed (note appended). tick_counter -> 172.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
+No new flag opened/resolved. FLAG-001/002/003/005/006/007/008 untouched this tick.
+Watch: XAUUSD -- unchanged from tick169/170 -- needs a CLOSED M15 bar with a 60%+ bull body reclaiming back above ~4046-4047 to confirm the pullback held; a close back below the 4032.96-4033 higher-low would instead threaten the reclaim structure.
