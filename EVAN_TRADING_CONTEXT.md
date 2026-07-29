@@ -3768,3 +3768,15 @@ Snapshot updated: balance re-confirmed, h4_verdicts.BRENT/WTI/EURGBP refreshed, 
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
 No new flags opened. FLAG-001/FLAG-002 updated (not new, re-measured only). FLAG-003/005/006/007/008 untouched this tick.
 Watch: BRENT/WTI re-evaluate after 13:30 UTC EIA print clears the window; EURGBP needs the day range to extend below 0.85586 before the short clears R:R.
+
+---
+### AUTO TICK 178 — 2026-07-29T12:34:59Z (LDN, mode=learn, TIER2)
+Signal: LL_BREAKDOWN XAUUSD 4013.29 @12:30:03Z (level 4020.655, extreme 4047.88, vol_mult 2.34).
+Tier1 escalated: H4 bearish with-trend + elevated vol + Rule17 bottom-band WARN, needed fresh trigger/R:R check.
+H4/H1: bearish multi-day trend confirmed resuming -- H1 staircase off the 04:00 low broke (12:00 close 4032.66 < 4032.96 higher-low). M15 last CLOSED bar (12:15) ~80% bear body clears trigger.
+Decision: NO_ACTION -- blocked on R:R (hard, not learn-downgradable). Structural SL (swing high 4033.29 +4pt buffer = 4037.29) sits ~19-23pts above entry, but price already sits on the 4009.16-4012.8 support cluster (same zone as the 04:00 H4 low) -- reward only ~4-8pts, R:R ~0.2-0.45:1 vs required 1.2:1. Price bounced 4012.8->4018.53 within ~4min of the signal, confirming the breakdown was already exhausted (chased, not fresh). FLAG-008 sizing wall (R296-390 risk vs R15-40 learn target) would also have applied had R:R cleared -- flag remains OPEN, unchanged.
+News: WebSearch confirmed FOMC ~5.5h out (18:00 UTC), no other high-impact item in the 2h window. Attested news_clear.
+No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed.
+Snapshot: balance re-confirmed R7659.59 (flat book, unchanged). h4_verdicts.XAUUSD + session_ranges.XAUUSD refreshed (low extended 4010.25->4009.16). 1 watch_levels entry added. tick_counter -> 178.
+No new flags opened; none resolved. FLAG-008 reaffirmed applicable to this signal, still OPEN.
+Watch: a genuine pullback/retest of ~4025-4030 with a fresh bearish rejection would restore real room to the same support target.
