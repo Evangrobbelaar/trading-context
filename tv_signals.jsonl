@@ -1044,3 +1044,4 @@
 {"event": "SWEEP_HIGH", "symbol": "AUDJPY", "tf": "30", "price": 113.609, "level": 113.83, "extreme": 113.89, "range_pos": 0.197, "vol_mult": 1.83, "h1_atr": 0.191242, "t": 1785355200791, "received_utc": "2026-07-29T20:00:06.555012+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "XAGUSD", "tf": "30", "price": 57.2665, "level": 58.2365, "extreme": 58.4919, "range_pos": 0.206, "vol_mult": 1.88, "h1_atr": 0.632234, "t": 1785355200569, "received_utc": "2026-07-29T20:00:13.484595+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "SPX500", "tf": "30", "price": 7318.8, "level": 7340.5, "extreme": 7450.2, "range_pos": 0.021, "vol_mult": 1.57, "h1_atr": 34.010949, "t": 1785355201338, "received_utc": "2026-07-29T20:00:16.047775+00:00"}
+{"event": "LL_BREAKDOWN", "symbol": "NVDA", "tf": "30", "price": 190.07, "level": 190.68, "extreme": 198.15, "range_pos": 0.007, "vol_mult": 3.31, "h1_atr": 2.726549, "t": 1785355201913, "received_utc": "2026-07-29T20:00:18.916748+00:00"}
