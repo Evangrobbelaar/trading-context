@@ -3659,3 +3659,17 @@ Snapshot updated: balance re-confirmed unchanged, h4_verdicts.XAGUSD fully refre
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged from tick167 (no fills this tick).
 New flag: FLAG-007 opened (risk_sizing, medium -- XAGUSD's minimum-lot risk floor structurally exceeds the learn-mode R15-40 target band; this is instrument-structural, not a one-off, so it will recur on every future XAGUSD learn-mode signal until Evan resolves it). FLAG-001/002/003/005/006 untouched this tick.
 Watch: XAGUSD -- trend/trigger were both clean here; only sizing blocked it. If Evan widens the learn-band for XAGUSD or excludes it per FLAG-007, re-evaluate the next XAGUSD signal against this same fresh H4 read (still valid short-term) rather than re-deriving from scratch.
+
+## AUTO TICK 169 -- 2026-07-29T07:09Z (mode=learn, TIER2)
+Signal: XAUUSD PULLBACK_TAG_LONG 4041.25 (30m tf, level 4040.15, extreme 4020.655, range_pos 0.896, vol_mult 0.84) @07:00:04Z, ~30min after tick166's HL_RECLAIM NO_ACTION at the same 4040.15 level.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612 with zero warnings. Balance/equity live-queried R7659.59/R7659.59, unchanged from tick168, book flat (zero open positions, get_open_positions confirmed).
+Fresh H1/H4/M15 pull: forming H4 bar (04:00-08:00) has run further into the untouched 4046.57/4047.02 resistance shelf (live high 4044.9) without closing above it. H1 higher-low staircase intact and extended one more step (4010.25->4023.13->4023.17->4020.74->4026.72 06:00 CLOSED). Live bid/ask 4043.74/4043.93.
+BLOCKED ON M15 TRIGGER (hard, not learn-mode-downgradable): last CLOSED bar (06:45) only ~47% bull body, short of Change5's 60%+ threshold; the 07:00 forming bar has rolled over bearish (O4042.82 C4041.25, wicked to 4039.74) -- momentum stalling right at the shelf, not confirming it.
+Independently BLOCKED ON R:R (hard, not downgradable), same wall as tick166 now tighter: structural SL below the 06:00 higher-low (4026.72 - 4pt buffer = ~4022.72) is ~21.2pt from ask (clears Rule2's normal 15-25pt floor, past 07:00 SAST so no Asian doubling). Nearest resistance (4046.57/4047.02) is now only ~2.6-3.1pt away -- R:R ~0.14:1, worse than tick166's 0.48:1.
+Rule17: range_pos ~0.90 on live range, top-15pct band -- WARN-only/downgradable in learn mode, moot regardless.
+News: WebSearch confirms FOMC decision today 14:00 ET/~20:00 SAST (~11h out, outside 2h window); no other high-impact USD/gold item in the forward 2h window (GDP/PCE/jobless claims are tomorrow 7/30). Attested news_clear.
+No enforcer run (blocked pre-enforcer on trigger+R:R). Nothing placed/would-placed. NO_ACTION.
+Snapshot updated: balance re-confirmed unchanged, h4_verdicts.XAUUSD refreshed (note appended, trend field updated), session_ranges.XAUUSD extended to 4010.25-4044.9. tick_counter -> 169.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged from tick168 (no fills this tick).
+No new flag opened. FLAG-001/002/003/005/006/007 untouched this tick.
+Watch: XAUUSD -- unchanged from tick166 -- needs either a CLOSED M15/H1 bar breaking the 4046.57/4047.02 shelf, or a pullback that rebuilds distance-to-entry without breaking the reclaim structure, before this clears both trigger and R:R.
