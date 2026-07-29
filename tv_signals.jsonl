@@ -1020,3 +1020,4 @@
 {"event": "SWEEP_HIGH", "symbol": "XAGUSD", "tf": "30", "price": 58.159, "level": 58.2365, "extreme": 58.9115, "range_pos": 0.652, "vol_mult": 2.72, "h1_atr": 0.510025, "t": 1785349800328, "received_utc": "2026-07-29T18:30:04.949199+00:00"}
 {"event": "HL_RECLAIM", "symbol": "XAGUSD", "tf": "30", "price": 58.159, "level": 58.1078, "extreme": 56.804, "range_pos": 0.652, "vol_mult": 2.72, "h1_atr": 0.510025, "t": 1785349800328, "received_utc": "2026-07-29T18:30:06.776713+00:00"}
 {"event": "HL_RECLAIM", "symbol": "EURUSD", "tf": "30", "price": 1.14224, "level": 1.14005, "extreme": 1.13768, "range_pos": 0.854, "vol_mult": 4.89, "h1_atr": 0.001178, "t": 1785349800506, "received_utc": "2026-07-29T18:30:07.505328+00:00"}
+{"event": "SWEEP_LOW", "symbol": "EURGBP", "tf": "30", "price": 0.8568, "level": 0.8562, "extreme": 0.85596, "range_pos": 0.587, "vol_mult": 3.2, "h1_atr": 0.000523, "t": 1785349800610, "received_utc": "2026-07-29T18:30:09.809122+00:00"}
