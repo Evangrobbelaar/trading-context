@@ -3673,3 +3673,16 @@ Snapshot updated: balance re-confirmed unchanged, h4_verdicts.XAUUSD refreshed (
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged from tick168 (no fills this tick).
 No new flag opened. FLAG-001/002/003/005/006/007 untouched this tick.
 Watch: XAUUSD -- unchanged from tick166 -- needs either a CLOSED M15/H1 bar breaking the 4046.57/4047.02 shelf, or a pullback that rebuilds distance-to-entry without breaking the reclaim structure, before this clears both trigger and R:R.
+
+---
+## AUTO TICK 170 — 2026-07-29T07:31:27Z (mode=learn, TIER2, escalated on M15 trigger met + fresh resistance break)
+XAUUSD HL_RECLAIM 4046.11 (level 4044.845, extreme 4020.655, range_pos 0.953). Account verified 41829612, balance R7659.59 live (unchanged, book flat).
+Fresh H1/H4/M15 pull: the 4046.57/4047.02 shelf tick169 was watching is now BROKEN -- fresh session high 4047.78, live bid/ask 4045.70/4045.89. H1 higher-low staircase extended cleanly (4010.25->4023.13->4023.17->4020.74->4026.72->4032.96 07:00 CLOSED). Rule3 counter-trend-long exception MET (confirmed higher lows + broke prior H4 swing highs). M15 07:15 last-closed bar ~78% bull body, clears Change5's 60%+ trigger.
+Rule17: range_pos ~0.95, top-15pct band -- WARN-only in learn mode. Enforcer run with --learn: WARN then PASS, exit 0 (risk R376.60 < 5pct cap).
+BLOCKED INSTEAD ON SIZING FLOOR (new finding, not learn-mode-downgradable by design intent): get_trading_instrument XAUUSD confirms minLotSize=0.01 (R15.58/pt). Rule2's own gold min SL (15-25pts) at that lot floors risk at R233.70-R389.50 -- 6-10x the learn-mode R15-R40 target, with no room to shrink (can't go below minLotSize; can't tighten SL below Rule2's floor without violating the hard structural-stop rule). Same class of problem FLAG-007 found for XAGUSD, now confirmed for XAUUSD.
+Would-be ticket recorded (advise-style record, mode=learn so nothing placed regardless of sizing): BUY 0.01L XAUUSD @ ask 4045.89, SL 4021.72 (H1 06:00 swing low 4026.72 - 5pt buffer), risk ~24.2pt = R376.60.
+News: WebSearch confirmed FOMC decision today ~14:00 ET/~20:00 SAST (~10.5h out, outside 2h window). Attested news_clear.
+NO_ACTION. Opened FLAG-008 (XAUUSD sizing floor, mirrors FLAG-007). No other flags touched.
+Snapshot updated: balance re-confirmed, h4_verdicts.XAUUSD refreshed (trend/swings/note), session_ranges.XAUUSD extended to 4010.25-4047.78, watch_levels.XAUUSD appended. tick_counter -> 170.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
+Watch: Evan's decision on FLAG-007/FLAG-008 (exclude Gold+Silver from learn-mode, or widen the target band) gates whether this exact setup becomes tradeable.
