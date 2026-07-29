@@ -1022,3 +1022,4 @@
 {"event": "HL_RECLAIM", "symbol": "EURUSD", "tf": "30", "price": 1.14224, "level": 1.14005, "extreme": 1.13768, "range_pos": 0.854, "vol_mult": 4.89, "h1_atr": 0.001178, "t": 1785349800506, "received_utc": "2026-07-29T18:30:07.505328+00:00"}
 {"event": "SWEEP_LOW", "symbol": "EURGBP", "tf": "30", "price": 0.8568, "level": 0.8562, "extreme": 0.85596, "range_pos": 0.587, "vol_mult": 3.2, "h1_atr": 0.000523, "t": 1785349800610, "received_utc": "2026-07-29T18:30:09.809122+00:00"}
 {"event": "HL_RECLAIM", "symbol": "EURJPY", "tf": "30", "price": 186.812, "level": 186.71, "extreme": 186.442, "range_pos": 0.885, "vol_mult": 2.34, "h1_atr": 0.162788, "t": 1785349800647, "received_utc": "2026-07-29T18:30:11.882602+00:00"}
+{"event": "HL_RECLAIM", "symbol": "NFLX", "tf": "30", "price": 73.59, "level": 73.58, "extreme": 71.77, "range_pos": 0.978, "vol_mult": 0.83, "h1_atr": 0.773534, "t": 1785349800368, "received_utc": "2026-07-29T18:30:13.873950+00:00"}
