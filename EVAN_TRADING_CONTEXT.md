@@ -3910,3 +3910,14 @@ Snapshot updated: balance re-confirmed, 2 watch_levels entries added (USDJPY 4-t
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
 No new flags opened; none resolved — routine Rule11 block, consistent with tick180/182/183/184/185/186/187/188. FLAG-001/002/003/006/007/008/009 untouched this tick.
 Watch: do not re-evaluate USDJPY/AUDJPY for entry until after the ~18:05 UTC FOMC print clears, then require a fresh H4/H1/M15 pull for each — USDJPY's 4-touch top-of-range shelf and AUDJPY's 4-touch defended-low shelf are both worth a genuine Sprung Ladder Phase-1 candidacy check (still Evan-only deployment) post-news.
+
+### AUTO TICK 190 — 2026-07-29T18:00:05Z (LDN, mode=learn, TIER2)
+Signal: SPRING_SHORT USDJPY 163.8 (level 163.888, extreme 163.898, range_pos 0.829, vol_mult 0.9) @18:00:04Z — fires literally AT the FOMC statement release (14:00 ET/18:00 UTC), ~2sec before read time, not merely inside the 2h pre-event window like ticks180-189.
+Account 41829612 verified (clean switch from the usual 41750592 revert, zero warnings). Balance/equity live-queried R7659.59/R7659.59, unchanged from tick189. Book flat, no open positions — position guard trivial.
+Fresh price check: bid/ask 163.501/163.524, vs tick189's 163.845/163.898 sweep-high area ~28min prior — price has already dropped ~34-40pips, consistent with the statement print landing and driving a real directional spike right now.
+News: FOMC statement 14:00 ET/18:00 UTC — read time 18:00:05 UTC is AT the event, not approaching it. Not re-run via WebSearch (same confirmed same-session event blocking every tick since 180, now live). BLOCKED ON NEWS (hard, not learn-mode-downgradable) — if anything a stronger block than the pre-event ticks: this is disorderly, event-driven tape mid-print, textbook Rule12 chase-the-spike risk rather than a structural spring setup. No H4/H1/M15 refresh attempted (moot, blocked pre-enforcer on news).
+Decision: NO_ACTION. Nothing placed/would-placed. No enforcer run (blocked pre-enforcer on news).
+Snapshot updated: balance re-confirmed, 1 watch_levels entry added (USDJPY — flags live post-print spike, Rule12 compression required before re-evaluating, supersedes tick189's pre-event USDJPY watch note). tick_counter -> 190.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
+No new flags opened; none resolved — routine Rule11 block, consistent with tick180/182/183/184/185/186/187/188/189. FLAG-001/002/003/006/007/008/009 untouched this tick.
+Watch: do not re-evaluate USDJPY for entry until M15 shows genuine post-print compression (Rule12) — the raw spike itself is not a tradeable spring/sweep pattern. Once compression forms, require a fresh H4/H1/M15 pull (on-file H4 BULLISH-reversal label from tick179 will be ~5.5h stale by then) before treating the 163.888 shelf or the fresh post-print low as actionable.

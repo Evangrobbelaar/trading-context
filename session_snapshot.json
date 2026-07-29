@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-29T17:32:17Z",
-  "updated_by": "auto_tick_189",
+  "updated_utc": "2026-07-29T18:00:20Z",
+  "updated_by": "auto_tick_190",
   "balance": {
     "value": 7659.59,
     "equity": 7659.59,
-    "queried_utc": "2026-07-29T17:32:17Z",
-    "note": "live-queried tick189, unchanged, book flat, no fills this tick (NO_ACTION -- FOMC statement 18:00 UTC, ~28min out, still inside 2h blackout window, same event blocking ticks 180/182/183/184/185/186/187/188)."
+    "queried_utc": "2026-07-29T18:00:20Z",
+    "note": "live-queried tick190, unchanged, book flat, no fills this tick (NO_ACTION -- FOMC statement release itself, read time 18:00:05 UTC is AT the print, not just approaching it; price already sharply moving, 163.845 sweep-high area -> 163.501 bid in <30min, classic event-driven whipsaw)."
   },
   "session_start_balance": 7394.99,
   "open_positions": [],
@@ -247,6 +247,11 @@
   },
   "armed_tickets": [],
   "watch_levels": [
+    {
+      "symbol": "USDJPY",
+      "note": "tick190: SPRING_SHORT 163.8 (level 163.888, extreme 163.898), range_pos 0.829 @18:00:04Z, ~2sec after read time 18:00:05Z -- fires literally AT the FOMC statement release moment (14:00 ET/18:00 UTC), not just inside the 2h pre-event window like ticks180-189. Live re-quote shows price has already dropped hard, bid 163.501 vs the 163.845/163.898 sweep-high area from tick189 (~28min prior) -- ~34-40pip move, consistent with the statement print landing and driving a real directional spike. BLOCKED ON NEWS (hard, not learn-mode-downgradable) -- if anything a stronger block than the pre-event ticks: this is now live, disorderly, event-driven tape, textbook Rule12 chase-the-spike risk, not a structural setup. No H4/H1/M15 refresh attempted (moot). Re-check only after M15 compression per Rule12 -- do not evaluate the raw post-print spike as a spring/sweep pattern.",
+      "set_utc": "2026-07-29T18:00:20Z"
+    },
     {
       "symbol": "USDJPY",
       "note": "tick189: SWEEP_HIGH 163.845 (level 163.888, extreme 163.898), range_pos 0.9 -- top of range (top_15pct_cutoff 163.8068), 4th touch of the ~163.888/163.9 shelf this session -- Sprung Ladder Phase-1 shelf-signature per spawn prompt. H4 on-file is BULLISH intraday reversal (tick179), so this SWEEP_HIGH would be counter-trend if traded short. NO_ACTION regardless -- FOMC 18:00 UTC blackout, ~28min out at read time. Scout deployment is Evan-only regardless of mode (standing rule since FLAG-007/008 era). Re-check post-~18:05 UTC: fresh H4/H1, and whether the shelf is a genuine 2-sided Sprung candidate or just repeat top-of-range rejection.",
