@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-29T17:30:08Z",
-  "updated_by": "auto_tick_188",
+  "updated_utc": "2026-07-29T17:32:17Z",
+  "updated_by": "auto_tick_189",
   "balance": {
     "value": 7659.59,
     "equity": 7659.59,
-    "queried_utc": "2026-07-29T17:30:08Z",
-    "note": "live-queried tick188, unchanged, book flat, no fills this tick (NO_ACTION -- FOMC statement 18:00 UTC, ~30min out, inside 2h blackout window, same event blocking ticks 180/182/183/184/185/186/187)."
+    "queried_utc": "2026-07-29T17:32:17Z",
+    "note": "live-queried tick189, unchanged, book flat, no fills this tick (NO_ACTION -- FOMC statement 18:00 UTC, ~28min out, still inside 2h blackout window, same event blocking ticks 180/182/183/184/185/186/187/188)."
   },
   "session_start_balance": 7394.99,
   "open_positions": [],
@@ -247,6 +247,16 @@
   },
   "armed_tickets": [],
   "watch_levels": [
+    {
+      "symbol": "USDJPY",
+      "note": "tick189: SWEEP_HIGH 163.845 (level 163.888, extreme 163.898), range_pos 0.9 -- top of range (top_15pct_cutoff 163.8068), 4th touch of the ~163.888/163.9 shelf this session -- Sprung Ladder Phase-1 shelf-signature per spawn prompt. H4 on-file is BULLISH intraday reversal (tick179), so this SWEEP_HIGH would be counter-trend if traded short. NO_ACTION regardless -- FOMC 18:00 UTC blackout, ~28min out at read time. Scout deployment is Evan-only regardless of mode (standing rule since FLAG-007/008 era). Re-check post-~18:05 UTC: fresh H4/H1, and whether the shelf is a genuine 2-sided Sprung candidate or just repeat top-of-range rejection.",
+      "set_utc": "2026-07-29T17:32:17Z"
+    },
+    {
+      "symbol": "AUDJPY",
+      "note": "tick189: SPRING_LONG 113.575 (level 113.52, extreme 113.46), range_pos 0.159 -- 4th touch of the ~113.52/113.46 shelf within ~2h (shelf-signature). On-file H4 (07-26) still stale/superseded, intraday reversal per tick187/188 notes unresolved. NO_ACTION -- FOMC blackout, ~28min out. Duplicate of tick188's identical SPRING_LONG print (same t=1785346201018, re-fired 13s later) -- treated as one signal, not two.",
+      "set_utc": "2026-07-29T17:32:17Z"
+    },
     {
       "symbol": "AUDJPY",
       "note": "tick188: SPRING_LONG shelf-signature now 3x (~113.52/113.46) within ~90min, NO_ACTION on FOMC news blackout (~30min out at read time, tighter than tick187). On-file BULL H4 (07-26) still stale/superseded. Re-check post-~18:05 UTC: fresh H4/H1 read, and whether 113.44-113.60 holds as a genuine 2-sided Sprung Ladder shelf or a spring-long re-entry is clean.",
