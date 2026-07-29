@@ -3795,3 +3795,15 @@ Snapshot updated: balance re-confirmed, h4_verdicts.USDJPY reclassified BULL (su
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
 No new flags opened; none resolved. FLAG-001/002 re-measured (updated, not new). FLAG-003/005/006/007/008 untouched this tick.
 Watch: BRENT/WTI re-evaluate broker-native structure after ~13:30 UTC EIA clears; USDJPY needs a pullback or the 163.877 high to clear with room behind it; EURUSD needs the range to extend below 1.13742; all USD-pairs need re-evaluation after the FOMC 2h blackout begins ~16:00 UTC and clears post-14:30 ET press conference; XAGUSD sizing wall unchanged, needs Evan's FLAG-007 decision to unblock.
+
+---
+### AUTO TICK 180 — 2026-07-29T13:00:49Z (LDN, mode=learn, TIER2)
+Signal: PULLBACK_TAG_LONG USDJPY 163.8 (level 163.752, extreme 163.506, range_pos 0.856, vol_mult 0.91) @13:00:02Z.
+Account 41829612 verified (clean switch, zero warnings). Balance/equity live-queried R7659.59/R7659.59, unchanged from tick179. Book flat, no open positions.
+News: WebSearch this tick confirmed JOLTS Job Openings + Conference Board Consumer Confidence, both 10:00 ET/14:00 UTC today, ~59min out at read time — INSIDE the 2h blackout window. BLOCKED ON NEWS (hard, not learn-mode-downgradable). USDJPY is a USD-quoted pair and directly exposed to this release, same as EURUSD was in tick176. tick179's USDJPY news_clear attestation 30min ago only checked FOMC and missed this — no harm resulted there (R:R also failed independently) but the attestation itself was wrong; opened FLAG-009 on the process gap.
+Independently (would also block post-window): M15 trigger not met — last CLOSED bar (12:45) only ~19% bull body, short of Change5's 60%+ threshold. R:R also fails — structural SL below the 12:15 low (163.628, buffer to ~163.588) is ~22pips from ask 163.808, but only ~6.9pips of reward remain to the session high 163.877 — R:R ~0.31:1, worse than tick179's 0.71:1 on the same wall. Rule17 top-band (range_pos ~0.86-0.89) WARN-only in learn mode, moot regardless.
+Decision: NO_ACTION. Nothing placed/would-placed. No enforcer run (blocked pre-enforcer on news).
+Snapshot updated: balance re-confirmed, session_ranges.USDJPY refreshed to live broker data (was 2 days stale from tick163), h4_verdicts.USDJPY note appended. tick_counter -> 180.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
+New flag opened: FLAG-009 (medium, process) — news gate checked per-instrument, not per shared-currency exposure; tick179 missed JOLTS/Consumer Confidence for USDJPY despite tick176 already finding it blocking for EURUSD 26min earlier same session. No financial harm this instance. FLAG-001/002/003/005/006/007/008 untouched this tick.
+Watch: re-evaluate USDJPY news-clear only after ~14:05 UTC (JOLTS/Consumer Confidence), and again once clear of the FOMC 2h blackout (~16:00 UTC onward, post-14:30 ET press conference). Structural watch unchanged from tick179 — needs range extension above 163.877 with room behind it, or a genuine pullback rebuilding distance to entry.
