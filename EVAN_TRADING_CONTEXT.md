@@ -3635,3 +3635,15 @@ Snapshot updated: balance re-confirmed unchanged, h4_verdicts.XAUUSD refreshed (
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged from tick165 (no fills this tick).
 No new flag opened. FLAG-001/002/003/005/006 untouched this tick.
 Watch: XAUUSD -- a pullback that rebuilds distance-to-entry against the 4046-4055 resistance shelf, or that shelf giving way on a closed H1/M15 bar, would reopen this as a cleaner Rule3 long.
+
+## AUTO TICK 167 -- 2026-07-29T06:36Z (mode=learn, TIER2)
+Signal: EURGBP SPRING_SHORT 0.85691 (30m tf, level 0.85724, extreme 0.85726, range_pos 0.262, vol_mult 1.42) @06:30:07Z.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612. Balance/equity live-queried R7659.59/R7659.59, unchanged from tick166, book flat (zero open positions).
+Same 0.85724-0.85734 shelf as tick165's SWEEP_HIGH, ~30min later, price now a few pips lower (bid/ask 0.85676/0.85695). Fresh M15 pull: last CLOSED bar (06:15) ~77% bear body, clears Change5's 60%+ trigger. H4 verdict still fresh (asof 06:04, ~32min old): BULL confirmed accelerating -- SHORT remains COUNTER-TREND, Rule3 exception not met, WARN-only in learn mode, not independently blocking. Day range unchanged 0.85586-0.85734 (has not extended since tick165/166). Rule17 moot (range_pos ~0.61, clear of both bands).
+BLOCKED ON R:R (hard, not learn-mode-downgradable): structural SL widened to Rule2's 20pip forex floor (~0.85876-0.85896); best-case reward to day low 0.85586 only ~8-9pips -- R:R ~0.45:1, fails Rule9's 1.2:1 floor. No new information vs tick165 -- EURGBP's ~15pip day range still can't support a 20pip SL floor against any reachable target.
+News: carried forward from tick165/166's WebSearch (~30min prior, same instrument/session) -- FOMC 14:00 ET/~20:00 SAST ~11.5h out, no other high-impact EUR/GBP item in the forward 2h window, BoE Thu outside window. Attested news_clear.
+No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION.
+Snapshot updated: balance re-confirmed unchanged, h4_verdicts.EURGBP note appended (tick167), session_ranges.EURGBP asof refreshed (range unchanged). tick_counter -> 167.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged from tick166 (no fills this tick).
+No new flag opened. FLAG-001/002/003/005/006 untouched this tick.
+Watch: EURGBP -- unchanged from tick165, needs the range to extend (fresh low below 0.8558 or the high extending further) before this clears R:R.
