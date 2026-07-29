@@ -3866,3 +3866,14 @@ Snapshot updated: balance re-confirmed, notes field summarizes the batch, 1 watc
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
 No new flags opened; none resolved — routine Rule11 block, consistent with tick180/182/183/184. FLAG-001/002/003/006/007/008/009 untouched this tick.
 Watch: do not re-evaluate any of the 5 fired symbols for entry until after the ~18:05 UTC FOMC print clears, then require a fresh H4/H1/M15 pull for each (XAUUSD/XAGUSD ~4h stale, TSLA ~5 days stale by then) before treating any shelf-signature as actionable. GBPJPY 217.7515 and SPX500 7389-7393 shelves are the levels already established as watch points from tick182/183.
+
+### AUTO TICK 186 — 2026-07-29T17:00:47Z (LDN, mode=learn, TIER2)
+Signal: SPRING_LONG XAGUSD 57.6965 (level 56.8595, extreme 56.804, range_pos 0.637, vol_mult 0.99) @17:00:03Z. Price has run well above both the print and the 56.8595 tag level already.
+Account 41829612 verified (clean switch from the usual 41750592 revert, zero warnings). Balance/equity live-queried R7659.59/R7659.59, unchanged from tick185. Book flat, no open positions — position guard trivial.
+News: FOMC statement 14:00 ET/18:00 UTC today, read time 17:00:47 UTC = ~59min out — squarely INSIDE the 2h blackout window, same event that blocked XAUUSD/XAGUSD/GBPJPY/SPX500/TSLA at tick185 (25min prior) and USDJPY at tick184. Not re-run via WebSearch this tick — carried forward from tick183's confirmed FOMC time and tick185's same-session same-event block, now even closer to the print. BLOCKED ON NEWS (hard, not learn-mode-downgradable).
+Did not refresh full H4/H1/M15 (on-file XAGUSD verdict ~4.5h stale) since the news block makes any entry decision moot this tick. Independently, this would very likely also have hit the standing FLAG-007 sizing wall (0.01L min lot = R779/pt; recent XAGUSD structural SL room has run 0.3-0.7pt = R234-540, above the learn-mode R15-40 band) — not evaluated since news blocked first, same pattern as tick182/185.
+Decision: NO_ACTION. Nothing placed/would-placed. No enforcer run (blocked pre-enforcer on news).
+Snapshot updated: balance re-confirmed, h4_verdicts.XAGUSD note appended (tick186), 1 watch_levels entry added (XAGUSD — post-FOMC re-check + FLAG-007 sizing gate reminder). tick_counter -> 186.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
+No new flags opened; none resolved — routine Rule11 block, consistent with tick180/182/183/184/185. FLAG-001/002/003/006/007/008/009 untouched this tick.
+Watch: do not re-evaluate XAGUSD for entry until after the ~18:05 UTC FOMC print clears, then require a fresh H4/H1/M15 pull AND a FLAG-007 sizing check (structural SL vs R779/pt min-lot cost) before treating this spring as actionable.
