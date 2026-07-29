@@ -930,3 +930,4 @@
 {"event": "SWEEP_HIGH", "symbol": "XAGUSD", "tf": "30", "price": 57.80885, "level": 58.008, "extreme": 58.1078, "range_pos": 0.689, "vol_mult": 0.71, "h1_atr": 0.378151, "t": 1785313800546, "received_utc": "2026-07-29T08:30:05.896812+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "XAUUSD", "tf": "30", "price": 4037.64, "level": 4038.08, "extreme": 4040.225, "range_pos": 0.727, "vol_mult": 0.56, "h1_atr": 12.011565, "t": 1785315600259, "received_utc": "2026-07-29T09:00:04.574962+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "EURGBP", "tf": "30", "price": 0.8565, "level": 0.85659, "extreme": 0.85708, "range_pos": 0.101, "vol_mult": 0.93, "h1_atr": 0.000431, "t": 1785315601314, "received_utc": "2026-07-29T09:00:16.663771+00:00"}
+{"event": "SWEEP_HIGH", "symbol": "XAUUSD", "tf": "30", "price": 4033.915, "level": 4038.08, "extreme": 4038.38, "range_pos": 0.627, "vol_mult": 0.76, "h1_atr": 11.498596, "t": 1785317400276, "received_utc": "2026-07-29T09:30:01.925132+00:00"}
