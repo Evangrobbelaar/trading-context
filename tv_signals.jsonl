@@ -874,3 +874,4 @@
 {"event": "PULLBACK_TAG_LONG", "symbol": "SPX500", "tf": "30", "price": 7458.8, "level": 7452, "extreme": 7423.2, "range_pos": 0.877, "vol_mult": 1.55, "h1_atr": 19.985252, "t": 1785285002076, "received_utc": "2026-07-29T00:30:09.756698+00:00"}
 {"event": "SWEEP_LOW", "symbol": "AUDJPY", "tf": "30", "price": 114.104, "level": 114.1, "extreme": 114.089, "range_pos": 0.06, "vol_mult": 1.71, "h1_atr": 0.1078, "t": 1785286800372, "received_utc": "2026-07-29T01:00:03.648671+00:00"}
 {"event": "LL_BREAKDOWN", "symbol": "AUDJPY", "tf": "30", "price": 114.104, "level": 114.124, "extreme": 114.34, "range_pos": 0.06, "vol_mult": 1.71, "h1_atr": 0.1078, "t": 1785286800372, "received_utc": "2026-07-29T01:00:05.367383+00:00"}
+{"event": "LL_BREAKDOWN", "symbol": "GBPJPY", "tf": "30", "price": 217.6085, "level": 217.613, "extreme": 217.8165, "range_pos": 0.224, "vol_mult": 1, "h1_atr": 0.149718, "t": 1785286800831, "received_utc": "2026-07-29T01:00:07.177627+00:00"}
