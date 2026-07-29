@@ -3712,3 +3712,18 @@ Snapshot updated: balance re-confirmed unchanged, h4_verdicts.XAUUSD refreshed (
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
 No new flag opened/resolved. FLAG-001/002/003/005/006/007/008 untouched this tick.
 Watch: XAUUSD -- unchanged from tick169/170 -- needs a CLOSED M15 bar with a 60%+ bull body reclaiming back above ~4046-4047 to confirm the pullback held; a close back below the 4032.96-4033 higher-low would instead threaten the reclaim structure.
+
+## AUTO TICK 173 — 2026-07-29T08:30:03Z (mode=learn, TIER2)
+Signal: XAUUSD SWEEP_HIGH 4037.235 (30m tf, level 4038.08, extreme 4044.555, range_pos 0.716, vol_mult 0.62) @08:30:03Z. Tier1 escalated on "shelf-signature 2 sweeps 240min + fresh with-trend H4 bullish reclaim + pullback setup = Sprung Phase-1 candidate."
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612 with zero warnings. Balance/equity live-queried R7659.59/R7659.59, unchanged from tick172, book flat (zero open positions, get_open_positions confirmed).
+Fresh H1/M15 pull: price swept above the 4038.08 intraday shelf to 4044.555 then rejected back below it. H1 08:00 CLOSED 4043.88 (O4041.27 H4047.78 L4041.14), matching the 4047.78 high already logged tick170/172 -- no new extension. M15 rolled over hard: 07:45 CLOSED 4046.09 (near-flat), 08:00 CLOSED 4043.88 (~50% bear), 08:15 LAST CLOSED 4039.21 (O4043.82 H4044.5 L4039.1, ~85% bear body). 08:30 forming bar continued lower (L4035.73, live bid/ask 4037.43/4037.62), still above the 4032.96 (07:00 CLOSED) H1 higher-low -- staircase dented, not broken.
+BLOCKED ON M15 TRIGGER, both directions (hard, not learn-mode-downgradable): no bullish reclaim bar for long continuation (last closed bar is the opposite, ~85% bear), and no CLOSE below the 4032.96 higher-low to confirm a reversal short. Genuinely unresolved sweep-and-reject at a minor intraday shelf.
+Sprung Ladder shelf-signature (2 touches of ~4038.08 in <240min) noted per tier1's flag but NOT deployed -- AUTO_TICK_PROTOCOL absolute #4: scout decisions stay with Evan regardless of tier/mode. Treated as a watch item only, no scout limits placed.
+Rule17: range_pos ~0.72 on unchanged live range 4010.25-4047.78 -- clear of both bands, moot regardless.
+News: WebSearch confirms FOMC decision 2026-07-29 14:00 ET/~18:00 UTC/~20:00 SAST still ~9.5h out, outside the 2h window; no other high-impact USD/gold item in the forward 2h window (GDP/jobless claims 7/30, Chicago PMI 7/31). Attested news_clear.
+No enforcer run (blocked pre-enforcer on trigger, both directions). Nothing placed/would-placed. NO_ACTION.
+Note: even a confirmed short trigger would hit FLAG-008's sizing floor identically to the long side (direction-agnostic minLotSize/Rule2-SL math) -- still OPEN/unresolved, unchanged since tick170.
+Snapshot updated: balance re-confirmed unchanged, h4_verdicts.XAUUSD refreshed (trend/asof/note appended), session_ranges.XAUUSD asof refreshed (range unchanged). tick_counter -> 173.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
+No new flag opened/resolved. FLAG-001/002/003/005/006/007/008 untouched this tick.
+Watch: a CLOSED M15 bar below ~4032.5-4033 would confirm a genuine reversal-short thesis; a CLOSED M15 bar back above ~4044-4046 with a bull body would instead confirm the sweep was a shakeout and the uptrend continuation resumes.
