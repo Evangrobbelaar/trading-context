@@ -1,53 +1,42 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-27T12:01:00Z",
-  "updated_by": "auto_tick_163",
+  "updated_utc": "2026-07-29T06:04:00Z",
+  "updated_by": "auto_tick_165",
   "balance": {
-    "value": 6675.29,
-    "equity": 6685.999075199999,
-    "queried_utc": "2026-07-27T12:00:42Z",
-    "note": "live-queried tick163. No closes this tick (NO_ACTION on the fired signal). Equity reflects EURUSD +R10.71 correctly displayed; GBPJPY pl still reads 0 in get_open_positions despite live bid (217.886) sitting essentially AT entry (217.885) -- FLAG-005 persists, though real economics here are genuinely close to flat/breakeven right now so the display gap is small this specific tick."
+    "value": 7659.59,
+    "equity": 7659.59,
+    "queried_utc": "2026-07-29T06:04:00Z",
+    "note": "live-queried tick165. RECONCILED after a ~42h audit-trail gap (last committed auto tick=163 2026-07-27T12:00Z; tick164 ran and wrote files locally but was never committed/pushed -- see FLAG-006). Reconciliation vs get_close_positions confirms the full +R989.52 delta from tick164's snapshot balance (R6670.07): EURUSD 109849631 (tick162 [LEARN] short) hit its TP normally at 2026-07-27T15:12:52Z for +R42.54, plus 5 separate non-[LEARN] trades (WTI 5L, NAS100 0.05L, XAUUSD 1u, USDJPY 0.2L, UNILEVER 0.05L, opened/closed 2026-07-28 07:15-13:39 UTC, net +R946.98) that auto-tick (mode=learn, max_lot=0.01 per auto_mode.json) did not place -- almost certainly Evan trading demo 41829612 directly during the gap. Sum matches live balance to the cent (6670.07+42.539742+119.78652+138.74401+284.49433+299.43741+104.51746=7659.59). Book is flat: get_open_positions confirms zero open trades, zero pending orders."
   },
   "session_start_balance": 7394.99,
-  "open_positions": [
-    {
-      "symbol": "GBPJPY",
-      "side": "Sell",
-      "units": 1000,
-      "orderId": "109849475",
-      "orderIdStopLoss": "909884632",
-      "orderIdTakeProfit": "909884631",
-      "entry": 217.885,
-      "stopLoss": 218.2,
-      "takeProfit": 217.46,
-      "tag": "[LEARN]",
-      "opened_tick": 160,
-      "opened_utc": "2026-07-27T11:03:27Z",
-      "note": "tick160: LL_BREAKDOWN re-entry after tick158's Rule5 cut. H4 bearish resumed post-cut (M5 chopped 217.97-218.15 for ~2h then broke decisively on the 11:00 bar, 79-85% bear body). SL above extreme 218.1585+buffer, TP beyond the 217.85 fresh low toward open air (~1.4:1 R:R). Rule17 bottom-band WARN override logged (range_pos ~0.04-0.06). | tick161 guard: only ~2min old at read time (opened 11:03:27Z), M5 shows price holding just below entry (217.861-217.923 range on the forming 11:05 bar) after the breakdown -- no reversal, too fresh for a Rule5/13/14 call. HOLD, deferred to next tick. | tick162 guard: M5 continued lower -- fresh session low 217.764 printed (bid), no reversal; the 11:15 bullish-looking reversal bar stalled out and price resumed down. Structure NOT reversed against trade. P&L display still stuck at 0 (FLAG-005, same bug), live bid/ask cross-check shows real float modestly positive (~30pips favorable). HOLD -- with-trend continuation, no Rule5/13/14 trigger. | tick163 guard: M5 (11:15-12:00) shows the post-breakdown sweep low (217.764 @11:35) based/consolidated 217.821-217.849 for 20min, and the 12:00 bar is now testing back UP to 217.886 -- exactly the entry level. Lows since the sweep are flat (217.826/217.824/217.821/217.825, not a clean bullish staircase) but closes have drifted up 5 bars running (217.827->217.844->217.848->217.849->217.875). Real P&L essentially flat/breakeven (bid 217.886 vs entry 217.885) -- too ambiguous to call a confirmed Rule5/13 reversal (no clean higher-high M5 sequence yet, could be a stop-hunt-and-continue retest rather than genuine reversal). HOLD, watch closely next tick -- if price closes decisively above ~217.90-217.93 (above the 11:20/11:35 highs) that would confirm reversal against the trade."
-    },
+  "open_positions": [],
+  "closed_since_last_snapshot": [
     {
       "symbol": "EURUSD",
       "side": "Sell",
       "units": 1000,
       "orderId": "109849631",
-      "orderIdStopLoss": "909884706",
-      "orderIdTakeProfit": "909884705",
       "entry": 1.13947,
-      "stopLoss": 1.14073,
-      "takeProfit": 1.13693,
-      "tag": "[LEARN]",
+      "closePrice": 1.13693,
       "opened_tick": 162,
+      "closed_tick": null,
       "opened_utc": "2026-07-27T11:36:59Z",
-      "note": "tick162: LL_BREAKDOWN with-trend short. Fresh H4/H1 pull today: rally to session high 1.14178 (07:00) reversed hard, fresh lows through 08:00-11:00, M15 trigger MET on last closed 11:15 bar (~80% bear body). Rule17 checked against live day range (1.13693-1.14178) -- signal's own range_pos (0.102) computed on a shorter/different window than the day range and was NOT representative; day range_pos at entry ~0.45, mid-range, no Rule17 conflict at all. SL = signal extreme 1.14033 + buffer = 1.14073 (structural, clears Rule2 15pip floor at intended entry; actual fill 1.13947 due to minor slippage tightened SL distance to ~12.6pips but TP distance grew to ~25.4pips, R:R improved to ~2.0:1). News: WebSearch confirmed no high-impact EUR/USD event within 2h (next major = Tue Jul28 Consumer Confidence, Wed FOMC) -- news_clear attested. Enforcer PASS (learn mode). Filled 1.13947 SL1.14073 TP1.13693, orderId 109849631. | tick163 guard: M5 (11:15-12:00) shows a clean with-trend continuation -- lower lows and lower closes over the last 4 bars (1.13913->1.13892->1.13878->1.13862), fresh local low 1.13848 printed on the 12:00 bar. No reversal. P&L +R10.71, only ~29% of the way to TP (1.13947->1.13693) -- below Rule13's 60%+ threshold and Rule14's +R80 trigger. HOLD, with-trend continuation, no management action."
+      "closed_utc": "2026-07-27T15:12:52Z",
+      "realized_pnl": 42.539742,
+      "tag": "[LEARN]",
+      "reason": "TP hit normally (1.13693). Discovered during tick165 reconciliation, not recorded live -- runner gap between tick164 and tick165 meant no tick was running when this filled."
+    },
+    {
+      "symbol": "NON_LEARN_EXTERNAL_BATCH",
+      "note": "5 trades NOT tagged [LEARN], sized above the 0.01L learn-mode max (WTI 5L +R119.79, NAS100 0.05L +R138.74, XAUUSD 1u +R284.49, USDJPY 0.2L +R299.44, UNILEVER 0.05L +R104.52; net +R946.98), opened 2026-07-28 07:15-07:33 UTC and closed same day 08:50-13:39 UTC. Auto-tick did not place these (mode=learn all this period per auto_mode.json). Almost certainly Evan trading demo 41829612 directly. See FLAG-006. Recorded here for balance reconciliation only, not part of the [LEARN] outcome ledger."
     }
   ],
-  "closed_since_last_snapshot": [],
   "h4_verdicts": {
     "EURGBP": {
-      "trend": "BULL -- confirmed continuing, fresh H1 read. Clean higher-highs/higher-lows since 07:00: highs 0.85456(07:00)->0.85486(08:00)->0.85479(09:00)->0.85489(10:00)->0.85556(11:00, forming, fresh session high). Lows 0.85412(07:00)->0.85436(08:00)->0.85442(09:00)->0.8546(10:00)->0.85472(11:00).",
-      "asof": "2026-07-27T11:08:12Z",
-      "swings": "07:00-10:00 steady grind higher, 11:00 bar breaking out to a fresh session high 0.85558 (matches live ask-side high).",
-      "note": "tick161: PULLBACK_TAG_LONG signal (0.85558, range_pos 0.96) is WITH-trend but price is already sitting at the session high with no pullback left to tag. NO_ACTION -- BLOCKED ON M15 TRIGGER (hard): last CLOSED bar (10:45) only ~43% bull body, short of Change5's 60%+ threshold; the strong 76%-body 11:00 bar is unclosed at read time. Rule17 top-15pct-band conflict for this buy (range_pos 0.96) also present, WARN-only in learn mode but moot -- already blocked on trigger. Classic chase-the-spike shape."
+      "trend": "BULL -- confirmed continuing, fresh H4/H1 pull tick165. Clean H4 higher-highs since 7/27: 0.85587->0.85588->0.85594->0.85664->0.85698->0.85698->0.85734 (7/29 04:00 bar, forming, fresh multi-day high). Higher-lows broadly intact (0.85446 7/28 16:00 -> 0.85642 -> 0.85586 -> 0.8567 forming), with 7/29 00:00 bar's dip to 0.85586 the shallowest pullback of the run.",
+      "asof": "2026-07-29T06:04:00Z",
+      "swings": "H4 accelerating since 7/28 12:00: closes 0.85576->0.85648->0.85688->0.85685->0.85714(forming). M15 06:00 bar closed ~83% bear body (O0.85708 H0.85708 L0.85696 C0.85698), rejecting the fresh sweep high 0.85734 (touched 04:30 M15 / matches live day-high field).",
+      "note": "tick161: PULLBACK_TAG_LONG signal (0.85558, range_pos 0.96) is WITH-trend but price is already sitting at the session high with no pullback left to tag. NO_ACTION -- BLOCKED ON M15 TRIGGER (hard): last CLOSED bar (10:45) only ~43% bull body, short of Change5's 60%+ threshold; the strong 76%-body 11:00 bar is unclosed at read time. Rule17 top-15pct-band conflict for this buy (range_pos 0.96) also present, WARN-only in learn mode but moot -- already blocked on trigger. Classic chase-the-spike shape. | tick165 (mode=learn, TIER2, escalated from tier1 shelf-signature flag): 3rd SWEEP_HIGH print at the ~0.85724 shelf within ~240min (05:00:07Z extreme 0.85558-era stale ref superseded; 05:30:11Z extreme 0.85738; 06:00:18Z extreme 0.85726) -- tier1 flagged Sprung Ladder Phase-1 shelf-signature candidate, H4 43h-stale at read time. Fresh H4/H1/M15 pull this tick resolves the staleness: H4 BULL confirmed continuing and accelerating (see trend field), fresh multi-day high 0.85734 swept then rejected. M15 trigger MET clean: last CLOSED bar (06:00) ~83% bear body off the 0.85734/0.85728 local high. This SHORT is COUNTER-TREND vs the fresh, accelerating BULL H4 (no confirmed broken H4 swing low, Rule3 exception NOT met) -- WARN-only override available in learn mode, not independently blocking. SPRUNG LADDER PHASE-1 CHECK: does NOT qualify -- width test fails (live day range 0.85586-0.85734 = ~14.8pips vs required >=1.5x scout SL[4xH1ATR(0.000406)=~16.2pips]=~24.4pips) and only the HIGH side shows repeat touches (3x ~0.85724-0.85738); no confirmed 2-sided LOW-side sweep+reclaim. Not a valid Sprung candidate; moot anyway since scout deployment is Evan-only regardless of mode. BLOCKED ON R:R (hard, not learn-mode-downgradable): structural SL beyond the sweep high (0.85734 + ~4pip buffer = 0.85774) is only ~8.5pips from live bid 0.85689 -- below Rule2's 15-25pip forex floor, so SL widened to 0.85889 (20pips, still clears Rule18 structural-beyond requirement with room). Reward: nearest realistic support is the forming H1 04:00 low 0.8567 (~1.9pips only) or the day low 0.85586 (~10.3pips) -- best-case R:R ~10.3/20 = 0.52:1, fails Rule9's 1.2:1 floor badly, same tight-range wall hit repeatedly this session on JPY-crosses (EURJPY/GBPJPY/USDJPY) and now on this GBP-cross too. Rule17 moot (range_pos ~0.82 on live day range, top-side, does not restrict sells -- Rule17 only blocks sells in the bottom band). News: WebSearch confirmed FOMC statement 2026-07-29 14:00 ET / ~20:00 SAST (~12h out), no other high-impact EUR/GBP item within the forward 2h window (BoE decision is Thu Jul30, outside window). Attested news_clear. No enforcer run (blocked pre-enforcer on R:R). Nothing placed/would-placed. NO_ACTION. Watch: a deeper pullback that rebuilds distance to 0.8567/0.85586, or the range extending further down, would be needed before this clears R:R; otherwise this shelf just isn't tradeable at EURGBP's current ~15pip daily range under Rule2's pip floor."
     },
     "EURJPY": {
       "trend": "The tick152 reversal-in-progress (04:00 H4 higher high 186.632) has now failed hard: price swept further to 186.738 (07:00 bar), crashed ~97% bear body to 186.538, then continued straight through to a fresh intraday low 186.305 in the 07:30 forming bar -- the entire 06:15-06:45 rally is erased and then some. Reads as resumption of the pre-existing bearish sequence (186.659->186.608->186.508->186.403->186.599->186.534->186.435->186.4), not a fresh break. Live bid/ask 186.362/186.377.",
@@ -59,8 +48,8 @@
       "trend": "BEARISH, resumed and re-entered. Prior tick155-158 short (Rule5 cut at 218.105 on a bullish reclaim to 218.128) was followed by ~2h of 217.97-218.15 compression, then a decisive breakdown: 11:00 H1 bar (O217.999 H218.092 L217.848 C217.874) closed near its low with the multi-day 217.958-217.999 support shelf (tested Jul23 16:00, Jul24 08:00/12:00, Jul27 00:00 reopen) now broken clean, fresh session low 217.848.",
       "asof": "2026-07-27T11:03:00Z",
       "swings": "H1 07:00 support break (218.281 close) -> 08:00-10:00 chop 217.97-218.15 (the compression that caught out tick155's short via tick158's Rule5 cut) -> 11:00 decisive break of 217.958-217.999 shelf to fresh low 217.848, M15 11:00 bar 85% bear body confirms trigger.",
-      "note": "tick160: [LEARN] SHORT re-entered on this breakdown, orderId 109849475, entry 217.885, SL 218.20, TP 217.46. Rule17 bottom-band WARN override (range_pos ~0.04-0.06). Rule19 momentum-entry logic applies (clean H1 structure break, no retest required). See open_positions/watch_levels for management levels. | tick162: PULLBACK_TAG_SHORT re-fire at 217.875, same shelf/direction as the already-open tick160 short (109849475). NO_ACTION -- Rule20 correlation (no stacking the same directional theme on the same instrument/position already open). Position guard handled separately (HOLD, structure intact).",
-      "position_status": "SHORT open since tick160 (109849475) -- see open_positions"
+      "note": "tick160: [LEARN] SHORT re-entered on this breakdown, orderId 109849475, entry 217.885, SL 218.20, TP 217.46. Rule17 bottom-band WARN override (range_pos ~0.04-0.06). Rule19 momentum-entry logic applies (clean H1 structure break, no retest required). See open_positions/watch_levels for management levels. | tick162: PULLBACK_TAG_SHORT re-fire at 217.875, same shelf/direction as the already-open tick160 short (109849475). NO_ACTION -- Rule20 correlation (no stacking the same directional theme on the same instrument/position already open). Position guard handled separately (HOLD, structure intact). | tick163: guard HOLD, ambiguous retest of entry level, watch for a closed bar above ~217.90-217.93. | tick164: watch condition met -- M5 printed 6 consecutive rising closes off the 11:35 sweep low (217.764) through the 12:05 bar (217.903), and live price (bid/ask 217.907/217.926) traded decisively back above the entry and the watch level. Structure reversed against the trade; real P&L modestly negative (display still stuck at 0, FLAG-005). Rule5 cut applied -- closed at market (desiredClosePrice 217.926), realized -R5.22. Fresh PULLBACK_TAG_SHORT fired again same tick (217.875, same shelf) but position was already closed by the time of evaluation and re-entry was not attempted this tick (would need its own fresh gate pass, not auto-chained to a same-tick close) -- treat as a new NO_ACTION/watch candidate next tick if the breakdown resumes.",
+      "position_status": "FLAT -- closed tick164 (109849475), realized -R5.22, Rule5 cut on confirmed M5 reversal"
     },
     "AUDJPY": {
       "trend": "BULL -- reversal now CONFIRMED, refreshed tick122 (supersedes tick107's 'stalling downtrend' read). Fresh H1 pull shows a clean ascending structure since the 22:00 (7/23) base: lows 114.058(22:00)->114.111(23:00)->114.136(00:00)->114.135(01:00)->114.21(02:00)->114.194(03:00, minor dip)->114.191(04:00)->114.205(05:00)->114.225(06:00)->114.23(07:00 forming) -- net higher lows. Highs since the 01:00 breakout: 114.311(01:00)->114.336(06:00)->114.358(07:00 forming), all clearing the prior 114.294-114.3 chop ceiling. Confirmed bullish reversal, not just a stall.",
@@ -141,13 +130,13 @@
   },
   "session_ranges": {
     "EURGBP": {
-      "low": 0.85247,
-      "high": 0.85558,
-      "range": 0.00311,
-      "top_15pct_cutoff": 0.855113,
-      "bottom_15pct_cutoff": 0.852936,
-      "asof": "2026-07-27T11:08:12Z",
-      "source": "get_symbol_price live low/high field, tick161. Range extended on the high side (prior 0.85259-0.85532 at tick131 was stale/superseded). Live price 0.85556 = range_pos ~0.99, top-15pct band -- WARN-only in learn mode, moot (blocked on M15 trigger)."
+      "low": 0.85586,
+      "high": 0.85734,
+      "range": 0.00148,
+      "top_15pct_cutoff": 0.857118,
+      "bottom_15pct_cutoff": 0.856082,
+      "asof": "2026-07-29T06:04:00Z",
+      "source": "get_symbol_price live low/high field, tick165. Range reset overnight (prior 0.85247-0.85558 tick161 stale/superseded, new trading day)."
     },
     "EURJPY": {
       "low": 186.279,
