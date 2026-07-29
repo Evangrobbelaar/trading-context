@@ -3757,3 +3757,14 @@ Snapshot updated: balance re-confirmed unchanged, h4_verdicts.EURUSD refreshed (
 Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
 No new flag opened/resolved. FLAG-001/002/003/005/006/007/008 untouched this tick.
 Watch: re-evaluate once clear of the ~14:05 UTC data window (recheck the calendar fresh, do not assume clear into the FOMC run-up) -- if the breakdown structure still holds, this is a clean with-trend re-entry candidate on the same Rule19 read.
+
+## AUTO TICK 177 -- 2026-07-29T12:07:10Z (LDN, mode=learn, TIER2)
+Signals: SWEEP_HIGH BRENT 90.005 (level 90.423); PULLBACK_TAG_SHORT EURGBP 0.85628 (level 0.8564); SPRING_SHORT WTI 83.267 (level 83.979), all 12:00-12:01Z. Spawn prompt flagged a BRENT shelf-signature (2 sweeps ~90.423 within 240min) as Sprung Ladder Phase-1 candidate.
+Account 41829612 verified (revert-to-41750592 caught and corrected on switch, zero warnings on the follow-up check). Balance/equity live-queried R7659.59/R7659.59, unchanged from tick176. Book flat, no open positions.
+BRENT/WTI: FLAG-001/002 gaps re-measured (BRENT 5.44%, WTI 1.71%), both still inside their standing ranges -- not converging/widening. Shelf-signature moot: built on TV price fields already confirmed decoupled from broker reality, and Sprung scouts are Evan-only regardless of mode. Both NO_ACTION regardless -- blocked on the same EIA weekly crude inventory release (~13:30 UTC, ~1h23m out at read time), the hard news gate that also blocked tick174/175.
+EURGBP: fresh H1/M15 pull confirms a genuine 7h intraday bearish flip since the 05:00 high (clean lower-high/lower-low sequence, fresh low 0.8561), M15 trigger MET (11:45 closed bar ~67% bear body). Counter-trend vs the stale multi-day BULL H4 label -- WARN-only in learn mode, not blocking. BLOCKED ON R:R instead (hard): broker-native range_pos ~0.28 (not bottom-band, TV's own 0.067 field doesn't match broker range), but nearest realistic support (day low 0.85586) is only ~2.7pips below live price vs Rule2's 15-20pip SL floor -- R:R ~0.15:1, same recurring wall as tick161/165/167. No enforcer run (blocked pre-enforcer on all three).
+Decision: NO_ACTION on all three signals. Nothing placed/would-placed.
+Snapshot updated: balance re-confirmed, h4_verdicts.BRENT/WTI/EURGBP refreshed, session_ranges refreshed to live broker data, 3 watch_levels entries added. tick_counter -> 177.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
+No new flags opened. FLAG-001/FLAG-002 updated (not new, re-measured only). FLAG-003/005/006/007/008 untouched this tick.
+Watch: BRENT/WTI re-evaluate after 13:30 UTC EIA print clears the window; EURGBP needs the day range to extend below 0.85586 before the short clears R:R.
