@@ -3746,3 +3746,14 @@ News: WebSearch found Fed rate decision AND EIA weekly crude inventory report bo
 Decision: NO_ACTION on both BRENT and WTI, blocked on news pre-enforcer. Nothing placed, no enforcer run.
 Snapshot updated: balance, BRENT/WTI H4 verdicts + session ranges refreshed to live broker data, notes.
 Watch: re-evaluate both symbols after 13:30 UTC EIA print clears; check whether 11:00 bull bar gets continuation or rejection.
+
+## AUTO TICK 176 -- 2026-07-29T12:04:29Z (LDN, mode=learn, TIER2)
+Signal: LL_BREAKDOWN EURUSD 1.1382 (30m tf, level 1.13834, extreme 1.1401, range_pos 0.073, vol_mult 1.16) @12:00:08Z. Tier1 escalated: H4 verdict on file stale (48.5h), signal aligns directionally, needs fresh H1/M15 + Rule17 cross-check.
+Routing: switch_trading_account caught the usual revert to 41750592, confirmed 41829612 with zero warnings. Balance/equity live-queried R7659.59/R7659.59, unchanged from tick175. Book flat, no open positions.
+Fresh H4/H1/M15 pull resolves the staleness: H4 lower-high sequence since the 7/28 20:00 high (1.14047) -- 3 subsequent H4 bars all failed to clear it. H1 confirms hard: 7 consecutive declining H1 highs since the 05:00 day-high (1.14033 down to 1.1388 forming) -- Rule19 momentum-entry protocol satisfied, no retest required. H1 lows broke decisively at 11:00 and again 12:00 (fresh session low 1.13799). M15 trigger MET: last CLOSED bar (11:45) ~83% bear body. Rule17: live range_pos ~0.08, bottom-15pct band for this SELL -- WARN-only/downgradable in learn mode. Indicative sizing: SL ~1.13968 (above 11:00-11:30 consolidation high + Rule2 15pip floor), TP ~1.13613 (7/28 08:00/16:00 double-tested support shelf) -- R:R ~1.37:1, would have cleared Rule9 and enforcer.
+BLOCKED ON NEWS instead (hard, not learn-mode-downgradable): WebSearch confirms JOLTS Job Openings + Conference Board Consumer Confidence, both standard 14:00 UTC releases, ~1h56m from read time -- inside the 2h window; JOLTS is explicitly named in CLAUDE.md's News Protocol blocking list. Advance Goods Trade Balance/Wholesale Inventories ~12:30 UTC, ~26min out. FOMC itself (~18:00 UTC) is outside the window but is today's dominant catalyst.
+Decision: NO_ACTION. Nothing placed/would-placed. No enforcer run (blocked pre-enforcer on news).
+Snapshot updated: balance re-confirmed unchanged, h4_verdicts.EURUSD refreshed (trend/asof/swings/note), session_ranges.EURUSD refreshed to live broker data, watch_levels.EURUSD entry added. tick_counter -> 176.
+Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged (no fills this tick).
+No new flag opened/resolved. FLAG-001/002/003/005/006/007/008 untouched this tick.
+Watch: re-evaluate once clear of the ~14:05 UTC data window (recheck the calendar fresh, do not assume clear into the FOMC run-up) -- if the breakdown structure still holds, this is a clean with-trend re-entry candidate on the same Rule19 read.

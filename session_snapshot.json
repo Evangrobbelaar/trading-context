@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "updated_utc": "2026-07-29T11:31:30Z",
-  "updated_by": "auto_tick_175",
+  "updated_utc": "2026-07-29T12:04:29Z",
+  "updated_by": "auto_tick_176",
   "balance": {
     "value": 7659.59,
     "equity": 7659.59,
-    "queried_utc": "2026-07-29T11:31:30Z",
-    "note": "live-queried tick175, unchanged from tick170-174 (no fills, book flat)."
+    "queried_utc": "2026-07-29T12:02:00Z",
+    "note": "live-queried tick176, unchanged from tick170-175 (no fills, book flat)."
   },
   "session_start_balance": 7394.99,
   "open_positions": [],
@@ -87,10 +87,10 @@
       "swings": "H1: 56.623(7/28 15:00 low)->57.674(7/28 09:00 high,broken)->56.833(7/28 23:30 HL)->57.528(7/28 17:00 high,broken)->57.319(7/29 04:00 HL)->58.218(7/29 08:00, fresh high, then rejected). Last CLOSED M15 (08:15: O58.076 H58.085 L57.788 C57.809) = ~90% bear body, clears Change5's 60% threshold for a SHORT trigger -- but a short here is counter-trend (no swing low broken, HL structure at 57.319 intact) and, independent of the trend question, fails sizing: nearest structural SL above the swept extreme (58.218 + 0.10-0.15pt buffer = ~58.32-58.37) vs entry ~57.848-57.892 = ~0.43-0.52pt risk = R335-405 at the 0.01L minimum lot (R779/pt, per FLAG-007) -- 8-10x the learn-mode R15-40 band, same wall FLAG-007 already flagged for XAGUSD longs, now confirmed symmetric for shorts."
     },
     "EURUSD": {
-      "trend": "BEARISH -- fresh H1 pull tick162, resumes intact. Today's session: 04:00-07:00 grind up to fresh high 1.14178 (07:00), then sharp reversal: 08:00 broke down to 1.13956 low, brief 09:00 bounce to 1.14018, resumed down 10:00 (1.13942 low) and 11:00 (1.13931 low, close 1.13948). M15 11:15 closed ~80% bear body confirming continuation to a fresh low 1.13911; 11:30 (forming at read time) extended to 1.13909.",
-      "asof": "2026-07-27T11:38:00Z",
-      "swings": "H1 highs declining since 07:00 (1.14178->1.14028->1.14029->1.1401); H1 lows declining since 08:00 (1.13956->1.13944->1.13942->1.13931), M15 fresh low 1.13909 (11:30 forming).",
-      "note": "tick162 (mode=learn, TIER2): LL_BREAKDOWN fired 1.13912, with-trend short. Day range_pos at entry ~0.45 (mid-range) using live day high/low -- signal's own range_pos field (0.102) computed on a narrower window and was NOT used for the Rule17 call, per protocol's cross-check instruction. M15 trigger MET (11:15 closed bar ~80% bear body). No Rule20 correlation conflict (only other open book = GBPJPY, no EUR-correlated exposure). News clear (WebSearch, no high-impact EUR/USD event within 2h). Enforcer PASS. SELL 0.01L filled 1.13947, SL1.14073/TP1.13693, orderId 109849631."
+      "trend": "BEARISH reversal resuming, fresh H4/H1 pull tick176 (resolves tier1's 48.5h-stale flag on the tick162 verdict). H4: 7/28 12:00-20:00 bullish break to fresh high 1.14047 has since stalled -- 3 subsequent H4 bars (7/29 00:00/04:00/08:00, highs 1.13921/1.14003/1.14033) all failed to clear 1.14047, a lower-high sequence. H1 confirms hard: 7 consecutive declining H1 highs since the 05:00 day-high (1.14033->1.14026->1.14004->1.14006->1.14001->1.13965->1.13924->1.13880 forming), Rule19 momentum-entry protocol (3+ consecutive H1 lower highs) satisfied. H1 lows broke decisively at 11:00 (1.1383, prior cluster 1.13896-1.13972) and again 12:00 (fresh session low 1.13799).",
+      "asof": "2026-07-29T12:04:00Z",
+      "swings": "H1 highs: 1.14033(05:00)->1.14026->1.14004->1.14006->1.14001->1.13965->1.13924->1.1388(12:00 forming), clean lower-high staircase. H1 lows: 1.13972(06:00 peak)->1.13896(07:00, break)->1.13899->1.13928->1.13913->1.1383(11:00, break)->1.13799(12:00 forming, fresh session low). Last CLOSED M15 (11:45: O1.13869 H1.13875 L1.13811 C1.13816) ~83% bear body, clears Change5's 60%+ threshold clean.",
+      "note": "tick162 (mode=learn, TIER2): LL_BREAKDOWN fired 1.13912, with-trend short. Day range_pos at entry ~0.45 (mid-range) using live day high/low -- signal's own range_pos field (0.102) computed on a narrower window and was NOT used for the Rule17 call, per protocol's cross-check instruction. M15 trigger MET (11:15 closed bar ~80% bear body). No Rule20 correlation conflict (only other open book = GBPJPY, no EUR-correlated exposure). News clear (WebSearch, no high-impact EUR/USD event within 2h). Enforcer PASS. SELL 0.01L filled 1.13947, SL1.14073/TP1.13693, orderId 109849631. | tick176 (mode=learn, TIER2, escalated from tier1 on stale-H4/needs-fresh-structure): LL_BREAKDOWN fired 1.1382 (30m tf, level 1.13834, extreme 1.1401, range_pos 0.073, vol_mult 1.16) @12:00:08Z. Fresh H4/H1/M15 pull (see trend/swings) confirms a clean WITH-trend short: Rule19's 3+ consecutive-lower-highs momentum-entry protocol satisfied (7 straight declining H1 highs since 05:00), M15 trigger MET (last CLOSED 11:45 bar ~83% bear body). Rule17: live range_pos ~0.08 (bid 1.13818, day range 1.13799-1.14033) -- bottom-15pct band for this SELL, WARN-only/downgradable in learn mode, would have passed with --learn. Indicative sizing (not reached): SL above the 11:00-11:30 consolidation high (~1.1388) widened to Rule2's 15pip forex floor = 1.13968; TP at the 7/28 08:00/16:00 double-tested support shelf 1.13604-1.13613 (~20.5pips reward) -- R:R ~1.37:1, would have cleared Rule9. BLOCKED ON NEWS instead (hard, not learn-mode-downgradable): WebSearch confirms today (2026-07-29) carries JOLTS Job Openings and Conference Board Consumer Confidence, both standard 10:00 ET / 14:00 UTC releases (~1h56m from read time, inside the 2h window), plus Advance Goods Trade Balance/Wholesale Inventories (standard 8:30 ET / 12:30 UTC, ~26min out) -- JOLTS is explicitly named in CLAUDE.md's News Protocol blocking list. FOMC decision itself (14:00 ET/~18:00 UTC/~20:00 SAST) is ~6h out, outside the window, but is the dominant reason today is a wait-and-see day per the search (EUR/USD 'currently flat near 1.1399' per the cited XTB piece -- note that figure is stale/pre-breakdown relative to the live 1.13818 read). Attested news NOT clear. No enforcer run (blocked pre-enforcer on news). Nothing placed/would-placed. NO_ACTION. Watch: this setup (trend/trigger/R:R all otherwise clean) is a strong re-entry candidate once the JOLTS/Consumer-Confidence window passes (~14:05 UTC) and again once clear of the FOMC 2h window (~16:00 UTC onward would still be pre-FOMC-blackout -- recheck the calendar fresh next tick rather than assuming this holds)."
     },
     "BRENT": {
       "trend": "BEARISH sequence intact through 08:00 but now under active challenge: 02:00 85.15 -> 03:00 84.76 -> 04:00 85.178 -> 05:00 84.538 -> 06:00 84.546 -> 07:00 84.511 -> 08:00 84.53 -> 09:00 84.508 -> 10:00 84.807 -> 11:00 SHARP BULL REVERSAL (open 84.802, high 85.857, close 85.76, ~78% bull body), fresh session high, breaking the flat/lower-high chop that had held since 05:00.",
@@ -186,13 +186,13 @@
       "source": "get_symbol_price live low/high, tick174. High extended slightly 58.215->58.218 (07:45/08:00 print). Live bid/ask 57.848/57.892, range_pos ~0.73, mid-range now after the 08:00-08:30 pullback off the fresh high."
     },
     "EURUSD": {
-      "low": 1.13693,
-      "high": 1.14178,
-      "range": 0.00485,
-      "top_15pct_cutoff": 1.140453,
-      "bottom_15pct_cutoff": 1.137657,
-      "asof": "2026-07-27T11:38:00Z",
-      "source": "get_symbol_price live low/high, tick162. Entry 1.13947 range_pos ~0.52, no Rule17 conflict."
+      "low": 1.13799,
+      "high": 1.14033,
+      "range": 0.00234,
+      "top_15pct_cutoff": 1.139979,
+      "bottom_15pct_cutoff": 1.138341,
+      "asof": "2026-07-29T12:02:00Z",
+      "source": "get_symbol_price live low/high, tick176. Bid 1.13818, range_pos ~0.08, bottom-15pct band (Rule17 WARN-only in learn mode, moot -- blocked on news pre-enforcer)."
     },
     "USDJPY": {
       "low": 163.326,
@@ -246,6 +246,11 @@
   },
   "armed_tickets": [],
   "watch_levels": [
+    {
+      "symbol": "EURUSD",
+      "note": "tick176 (mode=learn, TIER2): LL_BREAKDOWN fired 1.1382 @12:00:08Z. Clean with-trend short (Rule19 momentum-entry, 7 consecutive declining H1 highs since 05:00, M15 trigger MET ~83% bear body last closed bar), indicative R:R ~1.37:1 (SL~1.13968 above 11:00-11:30 consolidation high +Rule2 15pip floor, TP~1.13613 at the 7/28 08:00/16:00 double-tested support shelf) -- would have cleared enforcer. BLOCKED ON NEWS instead (hard): JOLTS Job Openings + Conference Board Consumer Confidence both standard 14:00 UTC releases, ~1h56m out at read time, inside the 2h window; Advance Goods Trade Balance/Wholesale Inventories ~12:30 UTC, ~26min out. FOMC itself (~18:00 UTC) is the bigger catalyst but outside the 2h window. NO_ACTION, nothing placed/would-placed. Watch: re-evaluate once clear of the ~14:05 UTC data window (and recheck the calendar fresh, do not assume clear into the FOMC run-up) -- if the breakdown structure still holds (fresh lower low, no bull reclaim above ~1.1388), this is a clean re-entry candidate on the same H1 lower-high/Rule19 read.",
+      "set_utc": "2026-07-29T12:04:00Z"
+    },
     {
       "symbol": "XAGUSD",
       "note": "tick174 (mode=learn, TIER2): SWEEP_HIGH fired 57.80885 @08:30:05Z off the 58.008 shelf (2nd sweep of this level within 2.5h, confirmed real on broker-native data). NO_ACTION -- Sprung Ladder Phase-1 preconditions fail (trending not ranging; one-sided bull regime day), and even if they passed, scouts are never auto-deployed. A counter-trend short off the clean 90%-bear M15 rejection (08:15 CLOSED bar) also fails on sizing -- same R779/pt minimum-lot wall FLAG-007 already flagged for longs, now confirmed symmetric for shorts (~R335-405 risk vs R15-40 learn band). Underlying uptrend intact (57.319 higher low not broken). Watch: a CLOSED M15/H1 bar below 57.319 would break the higher-low and open a genuine trend-reversal read; until then this is pullback noise inside a bull trend, not a spring or a range.",
