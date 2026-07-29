@@ -1016,3 +1016,4 @@
 {"event": "SWEEP_HIGH", "symbol": "GBPJPY", "tf": "30", "price": 217.875, "level": 217.915, "extreme": 217.9765, "range_pos": 0.875, "vol_mult": 1, "h1_atr": 0.182101, "t": 1785348000982, "received_utc": "2026-07-29T18:00:09.912127+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "EURUSD", "tf": "30", "price": 1.13962, "level": 1.1397, "extreme": 1.14, "range_pos": 0.745, "vol_mult": 0.95, "h1_atr": 0.00095, "t": 1785348000899, "received_utc": "2026-07-29T18:00:15.452335+00:00"}
 {"event": "SWEEP_HIGH", "symbol": "XAUUSD", "tf": "30", "price": 4044.285, "level": 4047.88, "extreme": 4048.155, "range_pos": 0.882, "vol_mult": 1.39, "h1_atr": 14.568667, "t": 1785348001329, "received_utc": "2026-07-29T18:00:42.145535+00:00"}
+{"event": "SWEEP_LOW", "symbol": "NVDA", "tf": "30", "price": 193.17, "level": 192.74, "extreme": 192.32, "range_pos": 0.39, "vol_mult": 1.17, "h1_atr": 2.562714, "t": 1785349800291, "received_utc": "2026-07-29T18:30:03.000773+00:00"}
