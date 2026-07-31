@@ -3980,3 +3980,31 @@ Session P&L: R7659.59 - R7394.99 = +R264.60, unchanged.
 No new flags opened; none resolved. FLAG-001/002/003/006/007/008/009 untouched this tick.
 Watch: re-evaluate AUDJPY once the presser is confirmed over AND M15 compresses back under
 ~10-12pip bar ranges (Rule12), with a fresh H1/H4 pull.
+
+## AUTO TICK 195 — 2026-07-31T08:52Z (LDN, mode=learn, INTERACTIVE — operator-invoked, no signal batch)
+Account 41829612 verified (clean switch from the usual 41750592 revert, zero warnings).
+Balance/equity live-queried R6668.41 / R6752.81. Balance fell R304.87 from R6973.28 — three stops filled 08:00–08:27Z.
+CLOSED: [CLAUDE] XAUUSD Buy 1u 4079.10→4066.79 −R203.11 (trail 123p moved SL 4064→4066.79, saved ~R46);
+[EVAN] BRENT Sell 10u 85.12→85.632 −R84.56 (trail 51p); [CLAUDE] BRENT Sell 15u 85.301→85.371 −R17.34
+(trail 6p cut this from ~R170 at the original 86.00 stop — the trailing stops were the only thing that worked today).
+Both Claude tickets lost (−R220.45); both Evan index longs are green. The gold read was wrong: a shelf tested
+four times is not stronger, it is a shelf with four times the resting stops underneath it waiting to be swept.
+OPEN: [EVAN] NAS100 0.05 @28363.70 +R91.00 (33% to TP, Rule4 checkpoint 28520 not reached, SL 28127.71 still
+236pts below entry so R197 remains at risk); [EVAN] GER40 0.1 @25848.65 +R15.78 (SL 25786.50 is 62pts away,
+INSIDE the 30–60pt M15 noise band — Rule 2 says this gets stopped by noise, not by being wrong);
+[EVAN] WTI 10u @81.301 −R18.00.
+FLAGGED — WTI is a risk outlier: SL 76.606 is 4.695pt = R781 = 11.7% of balance on one ticket, more than every
+other position combined, and it is the only position with no trailing stop. 76.606 is not a structural level;
+nothing on the chart is near it. TP 93.006 sits ~14% above spot, above the entire Iran-spike high of 84.31.
+RECOMMENDED (not executed — EVAN_MANUAL, Evan's call): SL → 79.85, below the 79.959 session low. Same thesis,
+R241 instead of R781, stop placed at actual invalidation.
+Rule 20: NAS100 + GER40 + WTI are all risk-on legs now — the whole book is one directional theme. Aggregate
+live risk ≈ R1215 = 18.2% of account.
+News: WebSearch confirmed ECI 12:30Z and Michigan final 14:00Z, both >3h out, outside the 2h blackout.
+news_checked=TRUE, news_clear=TRUE.
+Decision: NO_ACTION on new entries — no signal fired and no independent setup qualifies. MANAGED = advisory only.
+Nothing placed, nothing modified. No enforcer run (no candidate order).
+PIPELINE: runner active since 07:41:13Z, AUTOTRADE_OFF cleared, ntfy latin-1 crash fixed (058b360) and the topic
+verified live. BUT tv_signals.jsonl has had no new entry since 2026-07-29T20:30Z — no TradingView alert has
+fired in 36h. The runner is armed and consuming nothing. Alerts must be recreated on TV before it can act.
+Snapshot updated, tick_counter → 195. Session P&L (realised): −R304.87.

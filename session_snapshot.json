@@ -1,12 +1,12 @@
 {
  "schema": 2,
- "updated_utc": "2026-07-31T06:52:00Z",
- "updated_by": "interactive_evan_2026-07-31_london",
+ "updated_utc": "2026-07-31T08:52:00Z",
+ "updated_by": "interactive_tick_195",
  "balance": {
-  "value": 6973.28,
-  "equity": 6952.78,
-  "queried_utc": "2026-07-31T06:52:00Z",
-  "note": "Live-queried 31 Jul 06:52Z interactive session. Balance R6973.28, down R686.31 from tick194's R7659.59. Delta fully explained by 4 EVAN_MANUAL trades opened 29 Jul 21:39-22:00 UTC (post-FOMC presser) and closed 29-30 Jul: USDJPY Sell 0.10L -R281.18, NAS100 Sell 0.05 -R224.70, WTI Buy 10 -R209.85, XAUUSD Buy 1 +R29.14 = -R686.59 net. All four were Evan's own manual entries, NOT runner fills -- see anomaly_status standing rule. Enforcer suspended by Evan for this interactive session; sizing raised above learn-mode max_lot 0.01 at his explicit instruction."
+  "value": 6668.41,
+  "equity": 6752.81,
+  "queried_utc": "2026-07-31T08:52:00Z",
+  "note": "Live-queried tick195. R6973.28 -> R6668.41 = -R304.87 realised: 3 stops hit 08:00-08:26Z."
  },
  "session_start_balance": 6973.28,
  "open_positions": [
@@ -16,50 +16,83 @@
    "units": 0.05,
    "orderId": "109871306",
    "entry": 28363.7,
-   "stopLoss": 28088.46,
+   "stopLoss": 28127.71,
+   "trailingStopPips": 236,
    "takeProfit": 28676.1,
-   "opened_utc": "2026-07-31T06:42:37Z",
    "origin": "EVAN_MANUAL",
    "tag": "[EVAN]",
-   "risk_zar": 229.0,
-   "reward_zar": 260.0,
-   "note": "Evan's own market fill, placed from the platform 26s after Claude's NAS100 pending. Confirmed by Evan in-session. Not a runner fill, not an integrity anomaly."
+   "pl": 91.0,
+   "note": "33pct to target (103.2 of 312.4pts). Rule4 checkpoint 28520 not reached. SL still 236pts BELOW entry - trail has not caught up, R197 still at risk."
   },
+  {
+   "symbol": "GER40",
+   "side": "Buy",
+   "units": 0.1,
+   "orderId": "109871530",
+   "entry": 25848.65,
+   "stopLoss": 25786.5,
+   "trailingStopPips": 62,
+   "takeProfit": 26065.65,
+   "origin": "EVAN_MANUAL",
+   "tag": "[EVAN]",
+   "pl": 15.78,
+   "note": "Flat vs entry. SL only 62pts below spot - INSIDE the M15 noise band (30-60pt bars this session). Rule2 concern: likely stopped by noise, not by being wrong."
+  },
+  {
+   "symbol": "WTI",
+   "side": "Buy",
+   "units": 10,
+   "orderId": "109871597",
+   "entry": 81.301,
+   "stopLoss": 76.606,
+   "trailingStopPips": 0,
+   "takeProfit": 93.006,
+   "origin": "EVAN_MANUAL",
+   "tag": "[EVAN]",
+   "pl": -18.0,
+   "risk_zar": 781.25,
+   "note": "RISK OUTLIER: SL 76.606 is 4.695pt = R781 = 11.7pct of balance on ONE ticket, more than every other position combined. 76.606 is not a structural level - nothing on the chart is near it. Only open position with no trailing stop. TP 93.006 is ~14pct above spot, above the entire Iran-spike high (84.31 Wed). RECOMMENDED: SL -> 79.85 (below session low 79.959) = R241 risk, same thesis, stop at actual invalidation."
+  }
+ ],
+ "closed_since_last_snapshot": [
   {
    "symbol": "XAUUSD",
    "side": "Buy",
    "units": 1,
    "orderId": "109871321",
    "entry": 4079.1,
-   "stopLoss": 4064,
-   "takeProfit": 4101,
-   "opened_utc": "2026-07-31T06:45:12Z",
+   "closePrice": 4066.79,
+   "realized_pnl": -203.11,
+   "closed_utc": "2026-07-31T08:00:04Z",
    "origin": "CLAUDE_INTERACTIVE",
    "tag": "[CLAUDE]",
-   "risk_zar": 251.0,
-   "reward_zar": 365.0,
-   "note": "Long off the 4072.03/4072.35/4073.46/4072.78 quadruple-bottom shelf. M15 06:15 printed ~78pct bull body off 4072.78 closing 4082.28, 06:30 continued to 4087.41 -- Rule12 compression+reclaim. SL 4064 is ~8pt below shelf low, 15.1pt from entry, inside Rule2's 15-25pt band. NOTE: breaches FLAG-008 learn-mode sizing wall (min 1 unit = R251 risk vs R15-40 band) -- taken with Evan's explicit enforcer suspension."
-  }
- ],
- "closed_since_last_snapshot": [
-  {
-   "symbol": "EURUSD",
-   "side": "Sell",
-   "units": 1000,
-   "orderId": "109849631",
-   "entry": 1.13947,
-   "closePrice": 1.13693,
-   "opened_tick": 162,
-   "closed_tick": null,
-   "opened_utc": "2026-07-27T11:36:59Z",
-   "closed_utc": "2026-07-27T15:12:52Z",
-   "realized_pnl": 42.539742,
-   "tag": "[LEARN]",
-   "reason": "TP hit normally (1.13693). Discovered during tick165 reconciliation, not recorded live -- runner gap between tick164 and tick165 meant no tick was running when this filled."
+   "reason": "Stopped. The 4072.03/4072.35/4073.46/4072.78 quadruple-bottom shelf FAILED on its fifth test. Trailing stop (123p) had tightened SL 4064 -> 4066.79, which cut ~R46 off the loss vs the original stop. Read was wrong: a level tested 4x is not stronger, it is a level with 4x the resting orders waiting to be swept."
   },
   {
-   "symbol": "NON_LEARN_EXTERNAL_BATCH",
-   "note": "5 trades NOT tagged [LEARN], sized above the 0.01L learn-mode max (WTI 5L +R119.79, NAS100 0.05L +R138.74, XAUUSD 1u +R284.49, USDJPY 0.2L +R299.44, UNILEVER 0.05L +R104.52; net +R946.98), opened 2026-07-28 07:15-07:33 UTC and closed same day 08:50-13:39 UTC. Auto-tick did not place these (mode=learn all this period per auto_mode.json). Almost certainly Evan trading demo 41829612 directly. See FLAG-006. Recorded here for balance reconciliation only, not part of the [LEARN] outcome ledger."
+   "symbol": "BRENT",
+   "side": "Sell",
+   "units": 10,
+   "orderId": "109871348",
+   "entry": 85.12,
+   "closePrice": 85.632,
+   "realized_pnl": -84.56,
+   "closed_utc": "2026-07-31T08:26:50Z",
+   "origin": "EVAN_MANUAL",
+   "tag": "[EVAN]",
+   "reason": "Stopped via trail (51p, SL 86.253 -> 85.631)."
+  },
+  {
+   "symbol": "BRENT",
+   "side": "Sell",
+   "units": 15,
+   "orderId": "909895172",
+   "entry": 85.301,
+   "closePrice": 85.371,
+   "realized_pnl": -17.34,
+   "closed_utc": "2026-07-31T08:26:20Z",
+   "origin": "CLAUDE_INTERACTIVE",
+   "tag": "[CLAUDE]",
+   "reason": "Stopped via trail (6p, SL 85.981 -> 85.359). The tight trail CUT this loss from ~R170 at the original 86.00 stop to R17.34. Best outcome of the three."
   }
  ],
  "h4_verdicts": {
@@ -868,7 +901,7 @@
    "set_utc": "2026-07-29T18:33:04Z"
   }
  ],
- "notes": "31 Jul 2026 interactive London session (not an auto tick). Enforcer suspended by Evan for this session; learn-mode max_lot 0.01 waived at his explicit instruction, sizing set to structure with ~R120-250 risk per ticket. Book now attributed by origin -- see book_attribution. Market context: FOMC held 3.50-3.75 on 29 Jul with 3 dissents FOR a hike; 30 Jul saw a violent reversal on MSFT +16pct (Azure 43pct, capex in line) with PHLX semis +7pct; AMZN +9.4pct after-hours on AWS's fastest growth in 18 quarters; AAPL soft on China. Suspected MoF yen intervention 30 Jul (162.80 -> 157 in ~1h); BOJ held at 1pct 31 Jul with Takata dissenting; Ueda presser live ~06:30-07:30Z. ALL JPY PAIRS HARD-BLOCKED today on intervention tape -- stops are non-functional against an intervening MoF. Oil round-tripped the entire Iran risk premium despite US strikes on Iran Tue, WTI 84.31 -> 80.4: bullish news no longer moving price = premium being liquidated. Today: US ECI 12:30Z, Chicago PMI ~13:45Z, Michigan final 14:00Z, month-end London fix 16:00Z (July was a DOWN equity month -> mechanical rebalance BID into the fix). tick185 TIER2 (mode=learn): batch of 5 signals (SWEEP_LOW XAUUSD 4016.595, SWEEP_LOW XAGUSD 57.0675, SWEEP_HIGH GBPJPY 217.72, PULLBACK_TAG_SHORT SPX500 7361.4, SWEEP_LOW TSLA 300.9), all with shelf-signature/Sprung Phase-1 notes except SPX500. NO_ACTION across all five -- hard-blocked by FOMC rate decision 18:00 UTC (confirmed via WebSearch: 14:00 ET decision + 14:30 ET Warsh presser), ~1h25m out at read time (16:35 UTC), inside the 2h window that already blocked USDJPY (tick184), GBPJPY (tick183), SPX500 (tick182) and metals (tick181) earlier this session. GBPJPY and SPX500 have fresh on-file H4 verdicts from tick183/182 respectively (GBPJPY: ambiguous/range-bound, does not qualify Sprung Phase-1; SPX500: bearish breakdown confirmed) -- both moot this tick regardless of quality since news blocks pre-enforcer. XAUUSD/XAGUSD H4 verdicts ~4h stale, TSLA ~5 days stale -- not refreshed since moot. XAGUSD also sits behind standing sizing wall FLAG-007 independently. Book flat, no open positions, balance unchanged R7659.59 (live-queried). No new flags opened -- routine news block matching tick180/182/183/184 precedent, not an anomaly. One watch_levels entry added (TSLA, stale H4). Post-FOMC re-evaluation (~18:05 UTC+) needed across all five with fresh H4/H1 pulls before treating any shelf-signature as actionable.",
+ "notes": "TICK 195 (interactive, operator-invoked, no signal batch). tv_signals.jsonl last entry 2026-07-29T20:30Z -- NO TradingView alerts have fired in 36h, so the runner (up 07:41:13Z, kill switch cleared) currently has nothing to consume. Alerts must be recreated on TV before the pipeline does anything. News: ECI 12:30Z, Michigan final 14:00Z -- both >3h out, OUTSIDE the 2h blackout. news_clear=TRUE. Both CLAUDE_INTERACTIVE tickets from this session are now closed at a loss (-R220.45 combined); both EVAN_MANUAL index longs are green. 31 Jul 2026 interactive London session (not an auto tick). Enforcer suspended by Evan for this session; learn-mode max_lot 0.01 waived at his explicit instruction, sizing set to structure with ~R120-250 risk per ticket. Book now attributed by origin -- see book_attribution. Market context: FOMC held 3.50-3.75 on 29 Jul with 3 dissents FOR a hike; 30 Jul saw a violent reversal on MSFT +16pct (Azure 43pct, capex in line) with PHLX semis +7pct; AMZN +9.4pct after-hours on AWS's fastest growth in 18 quarters; AAPL soft on China. Suspected MoF yen intervention 30 Jul (162.80 -> 157 in ~1h); BOJ held at 1pct 31 Jul with Takata dissenting; Ueda presser live ~06:30-07:30Z. ALL JPY PAIRS HARD-BLOCKED today on intervention tape -- stops are non-functional against an intervening MoF. Oil round-tripped the entire Iran risk premium despite US strikes on Iran Tue, WTI 84.31 -> 80.4: bullish news no longer moving price = premium being liquidated. Today: US ECI 12:30Z, Chicago PMI ~13:45Z, Michigan final 14:00Z, month-end London fix 16:00Z (July was a DOWN equity month -> mechanical rebalance BID into the fix). tick185 TIER2 (mode=learn): batch of 5 signals (SWEEP_LOW XAUUSD 4016.595, SWEEP_LOW XAGUSD 57.0675, SWEEP_HIGH GBPJPY 217.72, PULLBACK_TAG_SHORT SPX500 7361.4, SWEEP_LOW TSLA 300.9), all with shelf-signature/Sprung Phase-1 notes except SPX500. NO_ACTION across all five -- hard-blocked by FOMC rate decision 18:00 UTC (confirmed via WebSearch: 14:00 ET decision + 14:30 ET Warsh presser), ~1h25m out at read time (16:35 UTC), inside the 2h window that already blocked USDJPY (tick184), GBPJPY (tick183), SPX500 (tick182) and metals (tick181) earlier this session. GBPJPY and SPX500 have fresh on-file H4 verdicts from tick183/182 respectively (GBPJPY: ambiguous/range-bound, does not qualify Sprung Phase-1; SPX500: bearish breakdown confirmed) -- both moot this tick regardless of quality since news blocks pre-enforcer. XAUUSD/XAGUSD H4 verdicts ~4h stale, TSLA ~5 days stale -- not refreshed since moot. XAGUSD also sits behind standing sizing wall FLAG-007 independently. Book flat, no open positions, balance unchanged R7659.59 (live-queried). No new flags opened -- routine news block matching tick180/182/183/184 precedent, not an anomaly. One watch_levels entry added (TSLA, stale H4). Post-FOMC re-evaluation (~18:05 UTC+) needed across all five with fresh H4/H1 pulls before treating any shelf-signature as actionable.",
  "anomaly_status": {
   "state": "RESOLVED",
   "resolved_utc": "2026-07-22T11:47:00Z",
@@ -876,42 +909,7 @@
   "standing_rule": "Manual trades placed by Evan on 41829612 are expected and do not constitute an integrity anomaly. Log them as EVAN_MANUAL in the book, include them in Rule 20 correlation and aggregate-risk maths, but do not freeze placement. Only freeze if activity appears that Evan has not accounted for."
  },
  "pending_orders_evan_manual": [],
- "pending_orders_claude": [
-  {
-   "symbol": "BRENT",
-   "side": "Sell",
-   "type": "Limit",
-   "units": 15,
-   "orderId": "909895172",
-   "trigger": 85.45,
-   "stopLoss": 86.0,
-   "takeProfit": 84.25,
-   "placed_utc": "2026-07-31T06:42:05Z",
-   "expiry_utc": "2026-07-31T20:00:00Z",
-   "origin": "CLAUDE_INTERACTIVE",
-   "tag": "[CLAUDE]",
-   "risk_zar": 137.0,
-   "reward_zar": 300.0,
-   "note": "With-trend short. Brent printed 6 consecutive lower H1 highs/lows from 01:00Z (86.416 -> 84.686). 85.40-85.55 was support 03:00-05:00 (85.564/85.553/85.447), broken 05:00, now resistance. Expiry set to kill weekend gap risk -- US/Iran strikes ongoing. FLAG-001 feed decoupling applies to the TV signal feed only; this is a broker-native manual fill so the flag does not gate it."
-  },
-  {
-   "symbol": "NAS100",
-   "side": "Buy",
-   "type": "Limit",
-   "units": 0.06,
-   "orderId": "909895175",
-   "trigger": 28300,
-   "stopLoss": 28180,
-   "takeProfit": 28600,
-   "placed_utc": "2026-07-31T06:42:11Z",
-   "expiry_utc": "2026-07-31T20:00:00Z",
-   "origin": "CLAUDE_INTERACTIVE",
-   "tag": "[CLAUDE]",
-   "risk_zar": 120.0,
-   "reward_zar": 300.0,
-   "note": "Higher-low pullback buy, entry at the 28282.65/28274.9 H1 shelf, SL below the 28192.25 overnight low. WARNING: STACKS with EVAN_MANUAL NAS100 long 109871306 @28363.70. If filled, combined NAS100 exposure = 0.11 units, combined risk R349. Stops ladder (Claude 28180 exits first, Evan 28088.46 holds). Awaiting Evan's decision: cancel / leave / move to ~28220."
-  }
- ],
+ "pending_orders_claude": [],
  "book_attribution": {
   "convention": "Every position and pending order carries origin = EVAN_MANUAL | CLAUDE_INTERACTIVE | RUNNER_AUTOTICK, and a display tag [EVAN] / [CLAUDE] / [LEARN].",
   "established_utc": "2026-07-31T06:52:00Z",
@@ -919,16 +917,15 @@
   "aggregate_risk_rule": "EVAN_MANUAL positions COUNT toward total book risk and toward same-instrument stacking checks, even though Claude did not place them."
  },
  "aggregate_risk": {
-  "queried_utc": "2026-07-31T06:52:00Z",
-  "account_balance": 6973.28,
-  "live_risk_zar": 480.0,
-  "pending_risk_zar": 257.0,
-  "total_if_all_fill_zar": 737.0,
-  "pct_of_account": 10.6,
-  "by_origin": {
-   "EVAN_MANUAL": 229.0,
-   "CLAUDE_INTERACTIVE": 508.0
+  "queried_utc": "2026-07-31T08:52:00Z",
+  "account_balance": 6668.41,
+  "live_risk_zar": 1215.0,
+  "by_ticket": {
+   "NAS100": 197.0,
+   "GER40": "~R118 est",
+   "WTI": 781.25
   },
-  "concentration_warning": "NAS100 held by both origins -- 0.11 units combined if Claude's pending fills."
+  "pct_of_account": 18.2,
+  "concentration_warning": "WTI alone is 11.7pct. Rule20: NAS100 + GER40 are both equity-index longs (corr ~0.75) and WTI long is a third risk-on leg. Whole book is now one directional theme."
  }
 }
