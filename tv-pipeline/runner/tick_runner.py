@@ -86,9 +86,27 @@ def ntfy(topic, title, msg):
     if not topic:
         return
     try:
+        # urllib encodes HTTP headers as latin-1. ANY character outside that set
+        # in the TITLE (em-dash, curly quotes, arrows) raises UnicodeEncodeError
+        # and the WHOLE notification is lost -- including the one that says the
+        # runner has stopped working.
+        #
+        # Observed 2026-07-29 20:30:07 UTC: title "Runner paused <emdash> usage
+        # limit" carried U+2014 at index 14 and threw
+        #   UnicodeEncodeError('latin-1', ..., 14, 15, 'ordinal not in range(256)')
+        # The limit breaker opened, ntfy threw, nothing was sent, and the runner
+        # then sat dark until 21:21 the next day. That is FLAG-006's mechanism:
+        # the alerting path failed exactly when the alert mattered.
+        #
+        # Fold to ASCII HERE rather than at the call site, so every current and
+        # future caller is protected instead of just the one that broke.
+        safe_title = (title or "").encode("ascii", "replace").decode("ascii")[:120]
+        # Slice the string before encoding -- slicing bytes can cut a multi-byte
+        # UTF-8 sequence in half and produce an invalid body.
+        body = (msg or "")[:3800].encode("utf-8")
         req = urllib.request.Request(f"https://ntfy.sh/{topic}",
-                                     data=msg.encode()[:3800],
-                                     headers={"Title": title[:120]})
+                                     data=body,
+                                     headers={"Title": safe_title})
         urllib.request.urlopen(req, timeout=10)
     except Exception as e:
         log(f"ntfy failed: {e!r}")
@@ -379,7 +397,7 @@ def enter_cooldown(reason, c, minutes=None):
         "suppressed": 0,
     }))
     log(f"LIMIT BREAKER OPEN for {mins}min (streak {streak}): {reason[:160]}")
-    ntfy(c["ntfy_topic"], "Runner paused — usage limit",
+    ntfy(c["ntfy_topic"], "Runner paused - usage limit",
          f"Hit a usage/session limit. Pausing spawns for {mins} min "
          f"(attempt {streak}). Signals will be logged and skipped, not queued. "
          f"You will get ONE message when it resumes."
