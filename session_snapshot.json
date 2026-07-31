@@ -1,7 +1,7 @@
 {
  "schema": 2,
- "updated_utc": "2026-07-31T08:52:00Z",
- "updated_by": "interactive_tick_195",
+ "updated_utc": "2026-07-31T09:00:00Z",
+ "updated_by": "interactive_post_tick195_actions",
  "balance": {
   "value": 6668.41,
   "equity": 6752.81,
@@ -44,14 +44,14 @@
    "units": 10,
    "orderId": "109871597",
    "entry": 81.301,
-   "stopLoss": 76.606,
+   "stopLoss": 79.85,
    "trailingStopPips": 0,
    "takeProfit": 93.006,
    "origin": "EVAN_MANUAL",
    "tag": "[EVAN]",
    "pl": -18.0,
-   "risk_zar": 781.25,
-   "note": "RISK OUTLIER: SL 76.606 is 4.695pt = R781 = 11.7pct of balance on ONE ticket, more than every other position combined. 76.606 is not a structural level - nothing on the chart is near it. Only open position with no trailing stop. TP 93.006 is ~14pct above spot, above the entire Iran-spike high (84.31 Wed). RECOMMENDED: SL -> 79.85 (below session low 79.959) = R241 risk, same thesis, stop at actual invalidation."
+   "risk_zar": 241.5,
+   "note": "SL MOVED 76.606 -> 79.85 by Claude at Evan's instruction 09:00Z. Risk R781 -> R241.5. New stop sits just under the 79.959 session low = actual invalidation. Freed ~R540 of budget."
   }
  ],
  "closed_since_last_snapshot": [
@@ -901,7 +901,7 @@
    "set_utc": "2026-07-29T18:33:04Z"
   }
  ],
- "notes": "TICK 195 (interactive, operator-invoked, no signal batch). tv_signals.jsonl last entry 2026-07-29T20:30Z -- NO TradingView alerts have fired in 36h, so the runner (up 07:41:13Z, kill switch cleared) currently has nothing to consume. Alerts must be recreated on TV before the pipeline does anything. News: ECI 12:30Z, Michigan final 14:00Z -- both >3h out, OUTSIDE the 2h blackout. news_clear=TRUE. Both CLAUDE_INTERACTIVE tickets from this session are now closed at a loss (-R220.45 combined); both EVAN_MANUAL index longs are green. 31 Jul 2026 interactive London session (not an auto tick). Enforcer suspended by Evan for this session; learn-mode max_lot 0.01 waived at his explicit instruction, sizing set to structure with ~R120-250 risk per ticket. Book now attributed by origin -- see book_attribution. Market context: FOMC held 3.50-3.75 on 29 Jul with 3 dissents FOR a hike; 30 Jul saw a violent reversal on MSFT +16pct (Azure 43pct, capex in line) with PHLX semis +7pct; AMZN +9.4pct after-hours on AWS's fastest growth in 18 quarters; AAPL soft on China. Suspected MoF yen intervention 30 Jul (162.80 -> 157 in ~1h); BOJ held at 1pct 31 Jul with Takata dissenting; Ueda presser live ~06:30-07:30Z. ALL JPY PAIRS HARD-BLOCKED today on intervention tape -- stops are non-functional against an intervening MoF. Oil round-tripped the entire Iran risk premium despite US strikes on Iran Tue, WTI 84.31 -> 80.4: bullish news no longer moving price = premium being liquidated. Today: US ECI 12:30Z, Chicago PMI ~13:45Z, Michigan final 14:00Z, month-end London fix 16:00Z (July was a DOWN equity month -> mechanical rebalance BID into the fix). tick185 TIER2 (mode=learn): batch of 5 signals (SWEEP_LOW XAUUSD 4016.595, SWEEP_LOW XAGUSD 57.0675, SWEEP_HIGH GBPJPY 217.72, PULLBACK_TAG_SHORT SPX500 7361.4, SWEEP_LOW TSLA 300.9), all with shelf-signature/Sprung Phase-1 notes except SPX500. NO_ACTION across all five -- hard-blocked by FOMC rate decision 18:00 UTC (confirmed via WebSearch: 14:00 ET decision + 14:30 ET Warsh presser), ~1h25m out at read time (16:35 UTC), inside the 2h window that already blocked USDJPY (tick184), GBPJPY (tick183), SPX500 (tick182) and metals (tick181) earlier this session. GBPJPY and SPX500 have fresh on-file H4 verdicts from tick183/182 respectively (GBPJPY: ambiguous/range-bound, does not qualify Sprung Phase-1; SPX500: bearish breakdown confirmed) -- both moot this tick regardless of quality since news blocks pre-enforcer. XAUUSD/XAGUSD H4 verdicts ~4h stale, TSLA ~5 days stale -- not refreshed since moot. XAGUSD also sits behind standing sizing wall FLAG-007 independently. Book flat, no open positions, balance unchanged R7659.59 (live-queried). No new flags opened -- routine news block matching tick180/182/183/184 precedent, not an anomaly. One watch_levels entry added (TSLA, stale H4). Post-FOMC re-evaluation (~18:05 UTC+) needed across all five with fresh H4/H1 pulls before treating any shelf-signature as actionable.",
+ "notes": "SCAN 09:00Z of previously-unchecked instruments (EURGBP, USDCAD, UK100, XPTUSD, USDZAR, US2000): NOTHING new qualifies. EURGBP day range 13.7pips vs 1.9pip spread = spread is 14pct of the range. USDCAD 21pip range, mid-range, no structure. UK100 10979 and US2000 2960 are both within 20pts of session highs = more equity-long, same theme. USDZAR spread 80pts of a 655pt range = 12pct. XPTUSD interesting but it IS the gold trade. MARKET STRUCTURE READ: every equity index checked (NAS100/GER40/UK100/US2000/US30) sits near session highs while the entire precious complex (XAU -53, XPT -27, XAG at lows) is liquidated. Today is ONE rotation - metals into equities. Adding positions now adds size, not diversification. TICK 195 (interactive, operator-invoked, no signal batch). tv_signals.jsonl last entry 2026-07-29T20:30Z -- NO TradingView alerts have fired in 36h, so the runner (up 07:41:13Z, kill switch cleared) currently has nothing to consume. Alerts must be recreated on TV before the pipeline does anything. News: ECI 12:30Z, Michigan final 14:00Z -- both >3h out, OUTSIDE the 2h blackout. news_clear=TRUE. Both CLAUDE_INTERACTIVE tickets from this session are now closed at a loss (-R220.45 combined); both EVAN_MANUAL index longs are green. 31 Jul 2026 interactive London session (not an auto tick). Enforcer suspended by Evan for this session; learn-mode max_lot 0.01 waived at his explicit instruction, sizing set to structure with ~R120-250 risk per ticket. Book now attributed by origin -- see book_attribution. Market context: FOMC held 3.50-3.75 on 29 Jul with 3 dissents FOR a hike; 30 Jul saw a violent reversal on MSFT +16pct (Azure 43pct, capex in line) with PHLX semis +7pct; AMZN +9.4pct after-hours on AWS's fastest growth in 18 quarters; AAPL soft on China. Suspected MoF yen intervention 30 Jul (162.80 -> 157 in ~1h); BOJ held at 1pct 31 Jul with Takata dissenting; Ueda presser live ~06:30-07:30Z. ALL JPY PAIRS HARD-BLOCKED today on intervention tape -- stops are non-functional against an intervening MoF. Oil round-tripped the entire Iran risk premium despite US strikes on Iran Tue, WTI 84.31 -> 80.4: bullish news no longer moving price = premium being liquidated. Today: US ECI 12:30Z, Chicago PMI ~13:45Z, Michigan final 14:00Z, month-end London fix 16:00Z (July was a DOWN equity month -> mechanical rebalance BID into the fix). tick185 TIER2 (mode=learn): batch of 5 signals (SWEEP_LOW XAUUSD 4016.595, SWEEP_LOW XAGUSD 57.0675, SWEEP_HIGH GBPJPY 217.72, PULLBACK_TAG_SHORT SPX500 7361.4, SWEEP_LOW TSLA 300.9), all with shelf-signature/Sprung Phase-1 notes except SPX500. NO_ACTION across all five -- hard-blocked by FOMC rate decision 18:00 UTC (confirmed via WebSearch: 14:00 ET decision + 14:30 ET Warsh presser), ~1h25m out at read time (16:35 UTC), inside the 2h window that already blocked USDJPY (tick184), GBPJPY (tick183), SPX500 (tick182) and metals (tick181) earlier this session. GBPJPY and SPX500 have fresh on-file H4 verdicts from tick183/182 respectively (GBPJPY: ambiguous/range-bound, does not qualify Sprung Phase-1; SPX500: bearish breakdown confirmed) -- both moot this tick regardless of quality since news blocks pre-enforcer. XAUUSD/XAGUSD H4 verdicts ~4h stale, TSLA ~5 days stale -- not refreshed since moot. XAGUSD also sits behind standing sizing wall FLAG-007 independently. Book flat, no open positions, balance unchanged R7659.59 (live-queried). No new flags opened -- routine news block matching tick180/182/183/184 precedent, not an anomaly. One watch_levels entry added (TSLA, stale H4). Post-FOMC re-evaluation (~18:05 UTC+) needed across all five with fresh H4/H1 pulls before treating any shelf-signature as actionable.",
  "anomaly_status": {
   "state": "RESOLVED",
   "resolved_utc": "2026-07-22T11:47:00Z",
@@ -909,7 +909,25 @@
   "standing_rule": "Manual trades placed by Evan on 41829612 are expected and do not constitute an integrity anomaly. Log them as EVAN_MANUAL in the book, include them in Rule 20 correlation and aggregate-risk maths, but do not freeze placement. Only freeze if activity appears that Evan has not accounted for."
  },
  "pending_orders_evan_manual": [],
- "pending_orders_claude": [],
+ "pending_orders_claude": [
+  {
+   "symbol": "XAUUSD",
+   "side": "Sell",
+   "type": "Limit",
+   "units": 1,
+   "orderId": "909895461",
+   "trigger": 4068,
+   "stopLoss": 4078,
+   "takeProfit": 4045,
+   "placed_utc": "2026-07-31T09:00:00Z",
+   "expiry_utc": "2026-07-31T20:00:00Z",
+   "origin": "CLAUDE_INTERACTIVE",
+   "tag": "[CLAUDE]",
+   "risk_zar": 166.5,
+   "reward_zar": 383.0,
+   "note": "Retest short into the broken 4072 shelf. Market entry at 4059 was REJECTED on R:R (0.6:1 - reward to the 4054 low was under R150 vs R260 for a Rule2-compliant stop). The 4068 retest gives 2.3:1 instead. Sector-confirmed: XPTUSD -27 off its high at 1634 near session low, XAGUSD at session lows - the whole precious complex is being liquidated, so this is a sector trade not an idiosyncratic call."
+  }
+ ],
  "book_attribution": {
   "convention": "Every position and pending order carries origin = EVAN_MANUAL | CLAUDE_INTERACTIVE | RUNNER_AUTOTICK, and a display tag [EVAN] / [CLAUDE] / [LEARN].",
   "established_utc": "2026-07-31T06:52:00Z",
@@ -917,15 +935,12 @@
   "aggregate_risk_rule": "EVAN_MANUAL positions COUNT toward total book risk and toward same-instrument stacking checks, even though Claude did not place them."
  },
  "aggregate_risk": {
-  "queried_utc": "2026-07-31T08:52:00Z",
+  "queried_utc": "2026-07-31T09:00:00Z",
   "account_balance": 6668.41,
-  "live_risk_zar": 1215.0,
-  "by_ticket": {
-   "NAS100": 197.0,
-   "GER40": "~R118 est",
-   "WTI": 781.25
-  },
-  "pct_of_account": 18.2,
-  "concentration_warning": "WTI alone is 11.7pct. Rule20: NAS100 + GER40 are both equity-index longs (corr ~0.75) and WTI long is a third risk-on leg. Whole book is now one directional theme."
+  "live_risk_zar": 675.0,
+  "pending_risk_zar": 166.5,
+  "total_if_all_fill_zar": 841.5,
+  "pct_of_account": 12.6,
+  "note": "Down from R1215/18.2pct after the WTI stop move. Rule20: NAS100+GER40+WTI still one risk-on theme; the XAUUSD short is the same rotation seen from the other side, not a hedge."
  }
 }
