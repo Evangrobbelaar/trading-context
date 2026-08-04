@@ -1,42 +1,28 @@
 {
  "schema": 2,
- "updated_utc": "2026-07-31T09:00:00Z",
- "updated_by": "interactive_post_tick195_actions",
+ "updated_utc": "2026-08-04T12:19:25Z",
+ "updated_by": "auto_tick_196_orb_wti",
  "balance": {
-  "value": 6668.41,
-  "equity": 6752.81,
-  "queried_utc": "2026-07-31T08:52:00Z",
-  "note": "Live-queried tick195. R6973.28 -> R6668.41 = -R304.87 realised: 3 stops hit 08:00-08:26Z."
+  "value": 6756.56,
+  "equity": 6756.56,
+  "queried_utc": "2026-08-04T12:19:25Z",
+  "note": "Live-queried tick196. R6668.41 (tick195) -> R6756.56 = +R87.67 net over a 4-day gap (Jul31-Aug4) with no auto-tick activity (tv_signals.jsonl silent) but heavy EVAN_MANUAL trading: tick195's 3 open legs (NAS100 109871306 +R190.23, GER40 109871530 -R73.68, WTI 109871597 +R146.50, closed Jul31 09:33-13:34Z) plus a further Jul31 XAUUSD scalp (+R309.77) and a full Aug3 session (WTI x2 shorts, XAUUSD x2, GER40, US30 -- net -R363.74 that day). Reconciled to the cent via get_close_positions. Book is now FLAT: zero open positions, zero pending orders (the CLAUDE XAUUSD retest limit @4068 expired unfilled at its 2026-07-31T20:00Z expiry)."
  },
  "session_start_balance": 6973.28,
- "open_positions": [
-  {
-   "symbol": "NAS100",
-   "side": "Buy",
-   "units": 0.05,
-   "orderId": "109871306",
-   "entry": 28363.7,
-   "stopLoss": 28127.71,
-   "trailingStopPips": 236,
-   "takeProfit": 28676.1,
-   "origin": "EVAN_MANUAL",
-   "tag": "[EVAN]",
-   "pl": 91.0,
-   "note": "33pct to target (103.2 of 312.4pts). Rule4 checkpoint 28520 not reached. SL still 236pts BELOW entry - trail has not caught up, R197 still at risk."
-  },
+ "open_positions": [],
+ "closed_since_last_snapshot": [
   {
    "symbol": "GER40",
    "side": "Buy",
    "units": 0.1,
    "orderId": "109871530",
    "entry": 25848.65,
-   "stopLoss": 25786.5,
-   "trailingStopPips": 62,
-   "takeProfit": 26065.65,
+   "closePrice": 25809.95,
+   "realized_pnl": -73.68,
+   "closed_utc": "2026-07-31T09:33:33Z",
    "origin": "EVAN_MANUAL",
    "tag": "[EVAN]",
-   "pl": 15.78,
-   "note": "Flat vs entry. SL only 62pts below spot - INSIDE the M15 noise band (30-60pt bars this session). Rule2 concern: likely stopped by noise, not by being wrong."
+   "reason": "Snapshot tick195 open leg, closed same morning -- SL sat inside the M15 noise band per tick195 note."
   },
   {
    "symbol": "WTI",
@@ -44,55 +30,129 @@
    "units": 10,
    "orderId": "109871597",
    "entry": 81.301,
-   "stopLoss": 79.85,
-   "trailingStopPips": 0,
-   "takeProfit": 93.006,
+   "closePrice": 82.186,
+   "realized_pnl": 146.5,
+   "closed_utc": "2026-07-31T09:45:56Z",
    "origin": "EVAN_MANUAL",
    "tag": "[EVAN]",
-   "pl": -18.0,
-   "risk_zar": 241.5,
-   "note": "SL MOVED 76.606 -> 79.85 by Claude at Evan's instruction 09:00Z. Risk R781 -> R241.5. New stop sits just under the 79.959 session low = actual invalidation. Freed ~R540 of budget."
-  }
- ],
- "closed_since_last_snapshot": [
+   "reason": "Snapshot tick195 open leg (the R781->R241 SL-move flagged that tick), closed for a gain."
+  },
+  {
+   "symbol": "XAUUSD",
+   "side": "Sell",
+   "units": 1,
+   "orderId": "109871989",
+   "entry": 4061.19,
+   "closePrice": 4042.5,
+   "realized_pnl": 309.77,
+   "closed_utc": "2026-07-31T12:49:28Z",
+   "origin": "EVAN_MANUAL",
+   "tag": "[EVAN]",
+   "reason": "Opened and closed same session, not previously on snapshot."
+  },
+  {
+   "symbol": "NAS100",
+   "side": "Buy",
+   "units": 0.05,
+   "orderId": "109871306",
+   "entry": 28363.7,
+   "closePrice": 28593.65,
+   "realized_pnl": 190.23,
+   "closed_utc": "2026-07-31T13:34:44Z",
+   "origin": "EVAN_MANUAL",
+   "tag": "[EVAN]",
+   "reason": "Snapshot tick195 open leg, closed for a gain."
+  },
+  {
+   "symbol": "NAS100",
+   "side": "Buy",
+   "units": 0.06,
+   "orderId": "909895175",
+   "entry": 28298.95,
+   "closePrice": 28177.15,
+   "realized_pnl": -121.41,
+   "closed_utc": "2026-07-31T14:01:23Z",
+   "origin": "EVAN_MANUAL",
+   "tag": "[EVAN]",
+   "reason": "New Jul31 leg, not previously on snapshot."
+  },
+  {
+   "symbol": "WTI",
+   "side": "Sell",
+   "units": 20,
+   "orderId": "109880474",
+   "entry": 78.385,
+   "closePrice": 79.032,
+   "realized_pnl": -213.21,
+   "closed_utc": "2026-08-03T07:17:29Z",
+   "origin": "EVAN_MANUAL",
+   "tag": "[EVAN]",
+   "reason": "Aug3 session, quick loss."
+  },
   {
    "symbol": "XAUUSD",
    "side": "Buy",
-   "units": 1,
-   "orderId": "109871321",
-   "entry": 4079.1,
-   "closePrice": 4066.79,
-   "realized_pnl": -203.11,
-   "closed_utc": "2026-07-31T08:00:04Z",
-   "origin": "CLAUDE_INTERACTIVE",
-   "tag": "[CLAUDE]",
-   "reason": "Stopped. The 4072.03/4072.35/4073.46/4072.78 quadruple-bottom shelf FAILED on its fifth test. Trailing stop (123p) had tightened SL 4064 -> 4066.79, which cut ~R46 off the loss vs the original stop. Read was wrong: a level tested 4x is not stronger, it is a level with 4x the resting orders waiting to be swept."
-  },
-  {
-   "symbol": "BRENT",
-   "side": "Sell",
-   "units": 10,
-   "orderId": "109871348",
-   "entry": 85.12,
-   "closePrice": 85.632,
-   "realized_pnl": -84.56,
-   "closed_utc": "2026-07-31T08:26:50Z",
+   "units": 2,
+   "orderId": "109880481",
+   "entry": 4061.8,
+   "closePrice": 4060.58,
+   "realized_pnl": -40.17,
+   "closed_utc": "2026-08-03T08:13:26Z",
    "origin": "EVAN_MANUAL",
    "tag": "[EVAN]",
-   "reason": "Stopped via trail (51p, SL 86.253 -> 85.631)."
+   "reason": "Aug3 session."
   },
   {
-   "symbol": "BRENT",
+   "symbol": "XAUUSD",
    "side": "Sell",
-   "units": 15,
-   "orderId": "909895172",
-   "entry": 85.301,
-   "closePrice": 85.371,
-   "realized_pnl": -17.34,
-   "closed_utc": "2026-07-31T08:26:20Z",
-   "origin": "CLAUDE_INTERACTIVE",
-   "tag": "[CLAUDE]",
-   "reason": "Stopped via trail (6p, SL 85.981 -> 85.359). The tight trail CUT this loss from ~R170 at the original 86.00 stop to R17.34. Best outcome of the three."
+   "units": 3,
+   "orderId": "109880506",
+   "entry": 4054.88,
+   "closePrice": 4060.77,
+   "realized_pnl": -290.91,
+   "closed_utc": "2026-08-03T08:13:26Z",
+   "origin": "EVAN_MANUAL",
+   "tag": "[EVAN]",
+   "reason": "Aug3 session, same minute as the XAUUSD buy close -- both legs of a hedge/flip."
+  },
+  {
+   "symbol": "WTI",
+   "side": "Sell",
+   "units": 20,
+   "orderId": "109880519",
+   "entry": 78.623,
+   "closePrice": 79.337,
+   "realized_pnl": -235.37,
+   "closed_utc": "2026-08-03T08:47:20Z",
+   "origin": "EVAN_MANUAL",
+   "tag": "[EVAN]",
+   "reason": "Aug3 session, second WTI short of the day, also a loss."
+  },
+  {
+   "symbol": "GER40",
+   "side": "Buy",
+   "units": 0.2,
+   "orderId": "109880579",
+   "entry": 25970.15,
+   "closePrice": 26021.45,
+   "realized_pnl": 194.78,
+   "closed_utc": "2026-08-03T08:57:04Z",
+   "origin": "EVAN_MANUAL",
+   "tag": "[EVAN]",
+   "reason": "Aug3 session, gain."
+  },
+  {
+   "symbol": "US30",
+   "side": "Buy",
+   "units": 0.2,
+   "orderId": "109880480",
+   "entry": 52819.15,
+   "closePrice": 52886.25,
+   "realized_pnl": 221.14,
+   "closed_utc": "2026-08-03T08:59:55Z",
+   "origin": "EVAN_MANUAL",
+   "tag": "[EVAN]",
+   "reason": "Aug3 session, gain. Net Aug3 session: -R363.74 across 6 legs."
   }
  ],
  "h4_verdicts": {
@@ -164,10 +224,10 @@
    "note": "tick175: SWEEP_HIGH + PULLBACK_TAG_LONG fired 90.344 (level 90.423) @11:30Z. FLAG-001 re-measured: signal 90.344 vs broker bid 85.576 = ~4.77pt/~5.57%, inside the standing 5.5-6.6% range, not converging/widening. Broker-native range_pos ~0.85 (top of session range) would additionally raise a Rule 17 buy-side concern for a long. Moot -- NO_ACTION this tick, blocked upstream on the EIA crude inventory release (~13:30 UTC, <2h away at read time), a hard news gate not downgradable in learn mode. Nothing placed, no enforcer run (blocked pre-enforcer). Watch: EIA print reaction post-13:30 UTC, and whether the 11:00 bull bar gets continuation or rejection -- H4 read needs a fresh look next tick regardless of news. | tick177 (mode=learn, TIER2): SWEEP_HIGH re-fired 90.005 (level 90.423, extreme 90.528, range_pos 0.602, vol_mult 1.43) @12:00:15Z -- 2nd sweep of the same ~90.423 TV shelf within 240min per spawn-prompt shelf-signature note. Broker-native re-measure: bid 85.364 vs signal 90.005 = ~4.641pt (~5.44%) -- marginally below the previously-stated 5.5-6.6% floor by ~0.06pt, within measurement noise, not a clear convergence/widening trend. FLAG-001 stays OPEN, updated. Shelf-signature evaluated as Sprung Ladder Phase-1 candidate per protocol: moot on two independent grounds -- (1) built on TV signal price/level fields already confirmed decoupled from broker reality (same class as tick150/161/164 findings), (2) Sprung scout deployment is Evan-only regardless of mode (protocol absolute), so not auto-actionable even if genuine. BLOCKED ON NEWS regardless (hard, not learn-mode-downgradable): EIA weekly crude inventory ~13:30 UTC is ~1h23m from read time (12:07Z), inside the 2h window -- same binding constraint as tick174/175. FOMC (~18:00 UTC) outside window, not binding this tick. NO_ACTION, nothing placed/would-placed, no enforcer run (blocked pre-enforcer on news). Watch: unchanged from tick175 -- re-evaluate after 13:30 UTC EIA print clears, check whether the 11:00 bull reversal bar gets continuation or rejection on broker-native data. | tick179 (mode=learn, TIER2): HL_RECLAIM fired 91.88 (level 90.808, extreme 89.007, range_pos 0.977, vol_mult 2.41) @12:30:06Z. FLAG-001 re-measured: signal 91.88 vs broker bid 86.509 = ~5.371pt (~5.85%) gap, inside the standing 5.5-6.6% range -- unresolved, not converging/widening. Broker-native H1 confirms the tick177 bull reversal continuing hard: 11:00 bull reversal bar (84.802->85.857 high, close 85.76) followed by a 12:30 M15 spike to 86.927 high/86.863 close on ~2x normal volume (827800 vs typical 300-450k) -- broker bid now 86.509. BLOCKED ON NEWS (hard, NOT learn-mode-downgradable): EIA weekly crude inventory release ~13:30 UTC is <1h away at read time (12:36 UTC), same gate that blocked tick174/175/177. No enforcer run (blocked pre-enforcer on news). Nothing placed/would-placed. NO_ACTION. Watch: re-evaluate broker-native structure fresh once EIA prints and the 2h window clears (~15:30 UTC)."
   },
   "WTI": {
-   "trend": "BEARISH sequence intact through 09:00 but now under active challenge: 02:00 81.694 -> 03:00 81.276 -> 04:00 81.675 -> 05:00 81.049 -> 06:00 81.145 -> 07:00 81.047 -> 08:00 80.995 -> 09:00 80.892 (fresh session low) -> 10:00 81.184 -> 11:00 SHARP BULL REVERSAL (open 81.137, high 82.219, close 82.123, ~80% bull body), fresh session high, mirroring BRENT's 11:00 breakout.",
-   "asof": "2026-07-29T12:07:10Z",
-   "swings": "02:00-09:00 was a grinding lower-low sequence into a fresh session low 80.892 (09:00); 11:00 broke out hard to a new session high 82.219, closing near the top -- first clean bullish structural break this session, same timing/shape as BRENT.",
-   "note": "tick175: PULLBACK_TAG_LONG/HL_RECLAIM/SWEEP_HIGH fired 83.595-83.827 (level 83.741) @11:00-11:31Z. FLAG-002 re-measured: signal 83.595 vs broker bid 81.977 = ~1.62pt/~1.97%, inside the standing 1.7-2.6% range, not converging/widening. Broker-native range_pos ~0.91 (top of session range) would additionally raise a Rule 17 buy-side concern for a long. Moot -- NO_ACTION this tick, blocked upstream on the EIA crude inventory release (~13:30 UTC, <2h away at read time), a hard news gate not downgradable in learn mode. Nothing placed, no enforcer run (blocked pre-enforcer). Watch: EIA print reaction post-13:30 UTC, and whether the 11:00 bull bar gets continuation or rejection -- H4 read needs a fresh look next tick regardless of news. | tick177 (mode=learn, TIER2): SPRING_SHORT fired 83.267 (level 83.979, extreme 84.029, range_pos 0.735, vol_mult 1.38) @12:01:04Z. Broker-native re-measure: bid 81.87 vs signal 83.267 = ~1.397pt (~1.706%), consistent with the standing 1.7-2.6% range, right at the low end -- not converging/widening. FLAG-002 stays OPEN, updated. BLOCKED ON NEWS (hard, not learn-mode-downgradable): same EIA weekly crude inventory ~13:30 UTC, ~1h23m from read time (12:07Z), inside the 2h window -- unchanged binding constraint from tick174/175. No fresh H1/M15 pull performed this tick (moot given the news block fires first, same handling as tick175). NO_ACTION, nothing placed/would-placed, no enforcer run. Watch: unchanged from tick175 -- re-evaluate after 13:30 UTC EIA print clears. | tick179 (mode=learn, TIER2): HL_RECLAIM fired 85.396 (level 84.029, extreme 82.188, range_pos 0.983, vol_mult 2.41) @12:31:03Z. FLAG-002 re-measured: signal 85.396 vs broker bid 82.92 = ~2.476pt (~2.9%) gap, slightly above the standing 1.7-2.6% range but within noise -- unresolved. Broker-native H1 confirms the same 11:00 bull reversal as BRENT (81.137->82.219 high, close 82.123) continuing into a 12:30 M15 spike to 83.369 high/83.217 close on ~1.8x normal volume (918250 vs typical ~450-530k). BLOCKED ON NEWS (hard, NOT learn-mode-downgradable): same EIA weekly crude inventory release ~13:30 UTC, <1h away at read time -- same gate as BRENT/tick174/175/177. No enforcer run (blocked pre-enforcer on news). Nothing placed/would-placed. NO_ACTION. Watch: re-evaluate broker-native structure fresh once EIA prints and the 2h window clears."
+   "trend": "Not evaluated for the ORB decision -- ORB is a standalone breakout strategy (STRATEGY_ORB.md) that does not gate on H4 per its own rules. Context only: broker-native H1 shows a violent ~5.3pt (79.68->75.68, ~6.9%) intraday round-trip 11:00-12:13Z, confirmed by WebSearch as a real news move (WTI unwinding 'war premium' from prior Hormuz-escalation pricing after Iran denied a Hormuz de-escalation deal reported by Trump), not a feed/data glitch. M5 bars show an orderly grind down (223k->347k volume, ~1.5x normal), not a single teleporting print.",
+   "asof": "2026-08-04T12:19:25Z",
+   "swings": "n/a -- ORB doesn't use swing structure",
+   "note": "H4 BULL label referenced in the tier1 escalation note is stale (asof Jul29) and pre-dates this move; do not treat it as current."
   },
   "GBPUSD": {
    "trend": "CHOP (unconfirmed either way) \u2014 bouncing inside the 1.3365-1.3382 compression zone",
@@ -290,13 +350,13 @@
    "range_pos_at_entry": 0.566
   },
   "WTI": {
-   "low": 79.019,
-   "high": 82.262,
-   "range": 3.243,
-   "top_15pct_cutoff": 81.776,
-   "bottom_15pct_cutoff": 79.505,
-   "asof": "2026-07-29T12:07:10Z",
-   "source": "get_symbol_price live low/high (broker-native), tick177. Unchanged from tick175 -- range has not extended. Live bid 81.87."
+   "low": 75.681,
+   "high": 80.883,
+   "range": 5.202,
+   "top_15pct_cutoff": 80.1027,
+   "bottom_15pct_cutoff": 76.4613,
+   "asof": "2026-08-04T12:19:25Z",
+   "source": "get_symbol_price live low/high (broker-native), tick196. Day range extended sharply vs tick177's stale 79.019-82.262 due to today's selloff."
   },
   "SPX500": {
    "low": 7361.3,
@@ -899,9 +959,14 @@
    "symbol": "XAGUSD",
    "note": "tick191: HL_RECLAIM 58.159 NO_ACTION on FOMC press conference (started 18:30 UTC, live at read time). Day range has blown out to 56.729-58.868 (2.14pt, ~5-7x normal). Re-check only after Rule12 M15 compression forms post-conference -- do not evaluate the raw sweep/reclaim pair as tradeable structure while the tape is this disorderly. Even once it compresses, this still needs a fresh H4 re-verdict (on-file label is ~6h stale) AND clears the standing FLAG-007 sizing wall (0.01L min lot = R779/pt) before any entry.",
    "set_utc": "2026-07-29T18:33:04Z"
+  },
+  {
+   "symbol": "WTI",
+   "note": "tick196: First live ORB signal (OR_COMPLETE+ORB_LONG, London session) since STRATEGY_ORB.md deployment -- entry 76.482/SL 75.756/TP 77.934 (2R), first_bar_dir UP with require_first_dir=true so long-only was correct per spec. OR formed 12:00-12:05Z inside a real news selloff (79.68->75.68, Hormuz war-premium unwind per WebSearch). By the time this tick executed (~12:13-12:16Z) price had already broken the OR high at 12:05Z (M5 high 76.489) and run to 76.792/76.807 bid/ask -- ~0.33pt (45% of the 0.726pt planned risk) past the planned stop-entry. NO_ACTION: placing a resting order now would be immediately marketable near 76.8, cutting R:R from the plan's 2.0 to ~1.07, below both the ORB spec and Rule9's 1.2:1 floor. Did not chase. See FLAG-010. NY session ORB slot for WTI is still available later today (max 2/day, one per session) if a fresh OR_COMPLETE fires at 15:30-15:35 SAST.",
+   "set_utc": "2026-08-04T12:19:25Z"
   }
  ],
- "notes": "SCAN 09:00Z of previously-unchecked instruments (EURGBP, USDCAD, UK100, XPTUSD, USDZAR, US2000): NOTHING new qualifies. EURGBP day range 13.7pips vs 1.9pip spread = spread is 14pct of the range. USDCAD 21pip range, mid-range, no structure. UK100 10979 and US2000 2960 are both within 20pts of session highs = more equity-long, same theme. USDZAR spread 80pts of a 655pt range = 12pct. XPTUSD interesting but it IS the gold trade. MARKET STRUCTURE READ: every equity index checked (NAS100/GER40/UK100/US2000/US30) sits near session highs while the entire precious complex (XAU -53, XPT -27, XAG at lows) is liquidated. Today is ONE rotation - metals into equities. Adding positions now adds size, not diversification. TICK 195 (interactive, operator-invoked, no signal batch). tv_signals.jsonl last entry 2026-07-29T20:30Z -- NO TradingView alerts have fired in 36h, so the runner (up 07:41:13Z, kill switch cleared) currently has nothing to consume. Alerts must be recreated on TV before the pipeline does anything. News: ECI 12:30Z, Michigan final 14:00Z -- both >3h out, OUTSIDE the 2h blackout. news_clear=TRUE. Both CLAUDE_INTERACTIVE tickets from this session are now closed at a loss (-R220.45 combined); both EVAN_MANUAL index longs are green. 31 Jul 2026 interactive London session (not an auto tick). Enforcer suspended by Evan for this session; learn-mode max_lot 0.01 waived at his explicit instruction, sizing set to structure with ~R120-250 risk per ticket. Book now attributed by origin -- see book_attribution. Market context: FOMC held 3.50-3.75 on 29 Jul with 3 dissents FOR a hike; 30 Jul saw a violent reversal on MSFT +16pct (Azure 43pct, capex in line) with PHLX semis +7pct; AMZN +9.4pct after-hours on AWS's fastest growth in 18 quarters; AAPL soft on China. Suspected MoF yen intervention 30 Jul (162.80 -> 157 in ~1h); BOJ held at 1pct 31 Jul with Takata dissenting; Ueda presser live ~06:30-07:30Z. ALL JPY PAIRS HARD-BLOCKED today on intervention tape -- stops are non-functional against an intervening MoF. Oil round-tripped the entire Iran risk premium despite US strikes on Iran Tue, WTI 84.31 -> 80.4: bullish news no longer moving price = premium being liquidated. Today: US ECI 12:30Z, Chicago PMI ~13:45Z, Michigan final 14:00Z, month-end London fix 16:00Z (July was a DOWN equity month -> mechanical rebalance BID into the fix). tick185 TIER2 (mode=learn): batch of 5 signals (SWEEP_LOW XAUUSD 4016.595, SWEEP_LOW XAGUSD 57.0675, SWEEP_HIGH GBPJPY 217.72, PULLBACK_TAG_SHORT SPX500 7361.4, SWEEP_LOW TSLA 300.9), all with shelf-signature/Sprung Phase-1 notes except SPX500. NO_ACTION across all five -- hard-blocked by FOMC rate decision 18:00 UTC (confirmed via WebSearch: 14:00 ET decision + 14:30 ET Warsh presser), ~1h25m out at read time (16:35 UTC), inside the 2h window that already blocked USDJPY (tick184), GBPJPY (tick183), SPX500 (tick182) and metals (tick181) earlier this session. GBPJPY and SPX500 have fresh on-file H4 verdicts from tick183/182 respectively (GBPJPY: ambiguous/range-bound, does not qualify Sprung Phase-1; SPX500: bearish breakdown confirmed) -- both moot this tick regardless of quality since news blocks pre-enforcer. XAUUSD/XAGUSD H4 verdicts ~4h stale, TSLA ~5 days stale -- not refreshed since moot. XAGUSD also sits behind standing sizing wall FLAG-007 independently. Book flat, no open positions, balance unchanged R7659.59 (live-queried). No new flags opened -- routine news block matching tick180/182/183/184 precedent, not an anomaly. One watch_levels entry added (TSLA, stale H4). Post-FOMC re-evaluation (~18:05 UTC+) needed across all five with fresh H4/H1 pulls before treating any shelf-signature as actionable.",
+ "notes": "TICK 196 (auto, mode=learn, TIER2). Account 41829612 verified clean. Balance/equity live-queried R6756.56 (no open positions -- flat). 4-day reconciliation since tick195 done via get_close_positions (11 legs, all EVAN_MANUAL, net +R87.67 over the gap, see closed_since_last_snapshot and balance.note). Signal: OR_COMPLETE+ORB_LONG WTI London ORB (first live ORB signal). Verified plan against live broker quote: breakout had already run ~0.33pt past the planned 76.482 entry by the time this tick could act (runner/alert delivery lag vs a fast, news-driven move -- WTI unwinding Hormuz war premium per WebSearch, confirmed real not a feed glitch). Chasing at current price would cut planned R:R from 2.0 to ~1.07, below Rule9's 1.2:1 floor -- NO_ACTION, did not place. No enforcer run (no candidate order). FLAG-010 opened: ORB resting-order placement needs to happen synchronously at OR_COMPLETE ingestion, not deferred to a Tier2 session, or fast breakouts will keep outrunning the pipeline. NY WTI ORB slot still open today.",
  "anomaly_status": {
   "state": "RESOLVED",
   "resolved_utc": "2026-07-22T11:47:00Z",
@@ -909,25 +974,7 @@
   "standing_rule": "Manual trades placed by Evan on 41829612 are expected and do not constitute an integrity anomaly. Log them as EVAN_MANUAL in the book, include them in Rule 20 correlation and aggregate-risk maths, but do not freeze placement. Only freeze if activity appears that Evan has not accounted for."
  },
  "pending_orders_evan_manual": [],
- "pending_orders_claude": [
-  {
-   "symbol": "XAUUSD",
-   "side": "Sell",
-   "type": "Limit",
-   "units": 1,
-   "orderId": "909895461",
-   "trigger": 4068,
-   "stopLoss": 4078,
-   "takeProfit": 4045,
-   "placed_utc": "2026-07-31T09:00:00Z",
-   "expiry_utc": "2026-07-31T20:00:00Z",
-   "origin": "CLAUDE_INTERACTIVE",
-   "tag": "[CLAUDE]",
-   "risk_zar": 166.5,
-   "reward_zar": 383.0,
-   "note": "Retest short into the broken 4072 shelf. Market entry at 4059 was REJECTED on R:R (0.6:1 - reward to the 4054 low was under R150 vs R260 for a Rule2-compliant stop). The 4068 retest gives 2.3:1 instead. Sector-confirmed: XPTUSD -27 off its high at 1634 near session low, XAGUSD at session lows - the whole precious complex is being liquidated, so this is a sector trade not an idiosyncratic call."
-  }
- ],
+ "pending_orders_claude": [],
  "book_attribution": {
   "convention": "Every position and pending order carries origin = EVAN_MANUAL | CLAUDE_INTERACTIVE | RUNNER_AUTOTICK, and a display tag [EVAN] / [CLAUDE] / [LEARN].",
   "established_utc": "2026-07-31T06:52:00Z",
@@ -935,12 +982,12 @@
   "aggregate_risk_rule": "EVAN_MANUAL positions COUNT toward total book risk and toward same-instrument stacking checks, even though Claude did not place them."
  },
  "aggregate_risk": {
-  "queried_utc": "2026-07-31T09:00:00Z",
-  "account_balance": 6668.41,
-  "live_risk_zar": 675.0,
-  "pending_risk_zar": 166.5,
-  "total_if_all_fill_zar": 841.5,
-  "pct_of_account": 12.6,
-  "note": "Down from R1215/18.2pct after the WTI stop move. Rule20: NAS100+GER40+WTI still one risk-on theme; the XAUUSD short is the same rotation seen from the other side, not a hedge."
+  "queried_utc": "2026-08-04T12:19:25Z",
+  "account_balance": 6756.56,
+  "live_risk_zar": 0.0,
+  "pending_risk_zar": 0.0,
+  "total_if_all_fill_zar": 0.0,
+  "pct_of_account": 0.0,
+  "note": "Book flat -- zero open positions, zero pending orders. WTI ORB signal this tick was NO_ACTION (see watch_levels/FLAG-010), nothing added to the book."
  }
 }

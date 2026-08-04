@@ -4008,3 +4008,33 @@ PIPELINE: runner active since 07:41:13Z, AUTOTRADE_OFF cleared, ntfy latin-1 cra
 verified live. BUT tv_signals.jsonl has had no new entry since 2026-07-29T20:30Z — no TradingView alert has
 fired in 36h. The runner is armed and consuming nothing. Alerts must be recreated on TV before it can act.
 Snapshot updated, tick_counter → 195. Session P&L (realised): −R304.87.
+
+## AUTO TICK 196 — 2026-08-04T12:11Z (LDN, mode=learn, TIER2, ORB)
+Account 41829612 verified clean. Balance/equity live-queried R6756.56, book FLAT (no open positions, no
+pending orders — the CLAUDE XAUUSD retest limit @4068 expired unfilled at its Jul31 20:00Z expiry).
+Reconciled the 4-day gap since tick195 (no auto-tick activity, tv_signals.jsonl silent) via
+get_close_positions: 11 closed legs, all EVAN_MANUAL, net +R87.67 — tick195's 3 open legs (GER40 −R73.68,
+WTI +R146.50, NAS100 +R190.23) plus a Jul31 XAUUSD scalp (+R309.77) and a full Aug3 session (WTI×2 shorts,
+XAUUSD×2, GER40, US30 — net −R363.74). Reconciles to the cent against the balance delta.
+Signal: OR_COMPLETE + ORB_LONG WTI (London ORB) — the FIRST live ORB signal since STRATEGY_ORB.md was
+written. Plan: entry 76.482 / SL 75.756 / TP 77.934 (2R), first_bar_dir UP with require_first_dir=true so
+long-only was the correct read. OR formed 12:00–12:05Z inside a genuine, fast news selloff (WTI 79.68→75.68,
+~6.9%, in ~65min) — WebSearch confirms this is real: WTI unwinding Hormuz "war premium" after Iran denied a
+de-escalation deal Trump had referenced. M5 volume only ~1.5x normal (223k→347k), an orderly grind not a
+teleporting print, so this is not the FLAG-001/002 feed-decoupling pattern (this ORB script pulls THINKMARKETS
+broker-native prices directly).
+DECISION: NO_ACTION — by the time this tick could act (~12:13–12:16Z) broker-native M5 showed the OR high
+already broken intrabar at 12:05Z (bar high 76.489) and price had run to 76.792/76.807 bid/ask, ~0.33pt (45%
+of the plan's 0.726pt risk) past the planned stop-entry. Placing a resting order now would be immediately
+marketable near 76.8, cutting the plan's 2R to ~1.07:1 — below Rule9's 1.2:1 floor. Did not chase, did not
+place. No enforcer run (no candidate order).
+FLAG-010 opened (medium, strategy_timing): ORB's premise ("fires on a clock, latency stops being a variable")
+only holds if the resting order is armed within seconds of OR_COMPLETE; this tick's dispatch-to-execution gap
+lost the fill on a fast/volatile day. Recommend tick_runner.py place the ORB resting order synchronously on
+OR_COMPLETE ingestion rather than deferring to a full Tier2 session. Also flagged: STRATEGY_ORB.md's header
+still reads "Status: PROPOSED — not deployed. Zero forward trades" though this tick processed a live signal
+under the ORB HANDLING procedure — doc should be updated.
+NY session WTI ORB slot (15:30–15:35 SAST) is still available today (max 2/day, one per session).
+Snapshot updated (balance, flat book, WTI h4/session_ranges refreshed, watch_levels entry, aggregate_risk
+zeroed), tick_counter → 196. Session P&L vs stale Jul31 baseline: −R216.72 (mostly the Aug3 EVAN_MANUAL
+session, not auto-tick activity — see reconciliation above).
