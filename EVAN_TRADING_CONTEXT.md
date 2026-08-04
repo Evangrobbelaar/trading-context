@@ -4038,3 +4038,20 @@ NY session WTI ORB slot (15:30–15:35 SAST) is still available today (max 2/day
 Snapshot updated (balance, flat book, WTI h4/session_ranges refreshed, watch_levels entry, aggregate_risk
 zeroed), tick_counter → 196. Session P&L vs stale Jul31 baseline: −R216.72 (mostly the Aug3 EVAN_MANUAL
 session, not auto-tick activity — see reconciliation above).
+
+## AUTO TICK 197 — 2026-08-04T12:20Z (LDN, mode=learn, TIER2, ORB)
+Runner re-delivered the IDENTICAL OR_COMPLETE + ORB_LONG WTI batch from tick196 (same t/received_utc
+fields) — a duplicate spawn, not a new signal. Did not re-run the full analysis; re-verified live instead.
+Account 41829612 verified clean (no 41750592 revert warning this time). Balance/equity live-queried
+R6756.56, book still flat (no open positions, no pending orders).
+WTI live price 76.881/76.896 — even further past the 76.482 planned entry than tick196's read (76.792/
+76.807). Chasing now against SL 75.756/TP 77.934 computes to ~0.91:1, worse than tick196's ~1.07:1 —
+confirms tick196's NO_ACTION more decisively. Did not chase, did not place. No enforcer run (no candidate
+order).
+FLAG-010 (breakout outran pipeline) stands unchanged, not re-opened as a duplicate. Noting for Evan: the
+runner sending the exact same signal batch twice, 10 minutes apart, with no dedup, is an additional symptom
+of the same root cause FLAG-010 already flagged (ORB resting-order placement should happen synchronously on
+OR_COMPLETE ingestion, not deferred to a fresh Tier2 session each time the batch is redelivered).
+NY session WTI ORB slot (15:30–15:35 SAST) still available today.
+Snapshot updated (balance re-queried, watch_levels entry, aggregate_risk timestamp), tick_counter → 197.
+No new realized P&L this tick.

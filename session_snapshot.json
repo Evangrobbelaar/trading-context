@@ -1,11 +1,11 @@
 {
  "schema": 2,
- "updated_utc": "2026-08-04T12:19:25Z",
- "updated_by": "auto_tick_196_orb_wti",
+ "updated_utc": "2026-08-04T12:20:54Z",
+ "updated_by": "auto_tick_197_orb_wti_dupe",
  "balance": {
   "value": 6756.56,
   "equity": 6756.56,
-  "queried_utc": "2026-08-04T12:19:25Z",
+  "queried_utc": "2026-08-04T12:20:54Z",
   "note": "Live-queried tick196. R6668.41 (tick195) -> R6756.56 = +R87.67 net over a 4-day gap (Jul31-Aug4) with no auto-tick activity (tv_signals.jsonl silent) but heavy EVAN_MANUAL trading: tick195's 3 open legs (NAS100 109871306 +R190.23, GER40 109871530 -R73.68, WTI 109871597 +R146.50, closed Jul31 09:33-13:34Z) plus a further Jul31 XAUUSD scalp (+R309.77) and a full Aug3 session (WTI x2 shorts, XAUUSD x2, GER40, US30 -- net -R363.74 that day). Reconciled to the cent via get_close_positions. Book is now FLAT: zero open positions, zero pending orders (the CLAUDE XAUUSD retest limit @4068 expired unfilled at its 2026-07-31T20:00Z expiry)."
  },
  "session_start_balance": 6973.28,
@@ -964,9 +964,14 @@
    "symbol": "WTI",
    "note": "tick196: First live ORB signal (OR_COMPLETE+ORB_LONG, London session) since STRATEGY_ORB.md deployment -- entry 76.482/SL 75.756/TP 77.934 (2R), first_bar_dir UP with require_first_dir=true so long-only was correct per spec. OR formed 12:00-12:05Z inside a real news selloff (79.68->75.68, Hormuz war-premium unwind per WebSearch). By the time this tick executed (~12:13-12:16Z) price had already broken the OR high at 12:05Z (M5 high 76.489) and run to 76.792/76.807 bid/ask -- ~0.33pt (45% of the 0.726pt planned risk) past the planned stop-entry. NO_ACTION: placing a resting order now would be immediately marketable near 76.8, cutting R:R from the plan's 2.0 to ~1.07, below both the ORB spec and Rule9's 1.2:1 floor. Did not chase. See FLAG-010. NY session ORB slot for WTI is still available later today (max 2/day, one per session) if a fresh OR_COMPLETE fires at 15:30-15:35 SAST.",
    "set_utc": "2026-08-04T12:19:25Z"
+  },
+  {
+   "symbol": "WTI",
+   "note": "tick197: runner re-delivered the IDENTICAL tick196 OR_COMPLETE+ORB_LONG batch (same t/received_utc fields) -- a duplicate spawn, not a new signal. Re-verified live rather than re-running full analysis: account clean (no 41750592 revert this time), balance/equity unchanged R6756.56, book still flat. WTI now 76.881/76.896 bid/ask, even further past the 76.482 long_entry than tick196's read -- effective R:R if chased has degraded further (~0.91:1 using SL 75.756/TP 77.934 from current ask). Confirms tick196's NO_ACTION stands, more decisively. No new flag opened -- same root cause FLAG-010 already covers (pipeline dispatch latency); this duplicate-batch-delivery behavior is an additional symptom worth Evan's attention but not a new distinct issue.",
+   "set_utc": "2026-08-04T12:20:54Z"
   }
  ],
- "notes": "TICK 196 (auto, mode=learn, TIER2). Account 41829612 verified clean. Balance/equity live-queried R6756.56 (no open positions -- flat). 4-day reconciliation since tick195 done via get_close_positions (11 legs, all EVAN_MANUAL, net +R87.67 over the gap, see closed_since_last_snapshot and balance.note). Signal: OR_COMPLETE+ORB_LONG WTI London ORB (first live ORB signal). Verified plan against live broker quote: breakout had already run ~0.33pt past the planned 76.482 entry by the time this tick could act (runner/alert delivery lag vs a fast, news-driven move -- WTI unwinding Hormuz war premium per WebSearch, confirmed real not a feed glitch). Chasing at current price would cut planned R:R from 2.0 to ~1.07, below Rule9's 1.2:1 floor -- NO_ACTION, did not place. No enforcer run (no candidate order). FLAG-010 opened: ORB resting-order placement needs to happen synchronously at OR_COMPLETE ingestion, not deferred to a Tier2 session, or fast breakouts will keep outrunning the pipeline. NY WTI ORB slot still open today.",
+ "notes": "TICK 197 (auto, mode=learn, TIER2). Duplicate delivery of tick196's exact OR_COMPLETE+ORB_LONG WTI batch (identical t/received_utc) -- treated as a re-verification, not a fresh signal. Account 41829612 verified clean (no revert warning this time). Balance/equity live-queried R6756.56, book flat (no open positions). WTI live price 76.881/76.896, further past the 76.482 entry than at tick196 -- chase R:R now ~0.91:1, worse than tick196's ~1.07:1. NO_ACTION confirmed, nothing placed. No enforcer run (no candidate order). FLAG-010 stands unchanged; not re-opening a duplicate flag for this batch-redelivery symptom, but noting it for Evan alongside FLAG-010's synchronous-placement recommendation.",
  "anomaly_status": {
   "state": "RESOLVED",
   "resolved_utc": "2026-07-22T11:47:00Z",
@@ -982,12 +987,12 @@
   "aggregate_risk_rule": "EVAN_MANUAL positions COUNT toward total book risk and toward same-instrument stacking checks, even though Claude did not place them."
  },
  "aggregate_risk": {
-  "queried_utc": "2026-08-04T12:19:25Z",
+  "queried_utc": "2026-08-04T12:20:54Z",
   "account_balance": 6756.56,
   "live_risk_zar": 0.0,
   "pending_risk_zar": 0.0,
   "total_if_all_fill_zar": 0.0,
   "pct_of_account": 0.0,
-  "note": "Book flat -- zero open positions, zero pending orders. WTI ORB signal this tick was NO_ACTION (see watch_levels/FLAG-010), nothing added to the book."
+  "note": "Book flat -- zero open positions, zero pending orders. Duplicate WTI ORB batch this tick (see watch_levels tick197) was NO_ACTION, nothing added to the book."
  }
 }
