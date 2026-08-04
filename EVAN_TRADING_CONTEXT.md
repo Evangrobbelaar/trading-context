@@ -4055,3 +4055,22 @@ OR_COMPLETE ingestion, not deferred to a fresh Tier2 session each time the batch
 NY session WTI ORB slot (15:30–15:35 SAST) still available today.
 Snapshot updated (balance re-queried, watch_levels entry, aggregate_risk timestamp), tick_counter → 197.
 No new realized P&L this tick.
+
+## AUTO TICK 198 — 2026-08-04T13:32Z (LDN, mode=learn, TIER2, ORB)
+Signal: ORB_SHORT WTI confirmation, fired 13:30:18Z — NOT a duplicate of tick196/197's batch (different
+t/received_utc), but for the SAME London OR_COMPLETE plan (or_hi 76.48/or_lo 75.756, formed 12:00-12:05Z).
+DECISION: NO_ACTION. The OR_COMPLETE plan carries first_bar_dir=UP with require_first_dir=true, so per
+STRATEGY_ORB.md ORB HANDLING only the LONG side was ever valid for this range — this SHORT confirmation is
+the disqualified opposite side, categorically, independent of price or timing. Also moot on the numbers:
+book flat, zero pending orders confirmed live (get_pending_orders) — no resting short order existed to have
+filled, nothing to hold. No enforcer run (wrong side never reaches the routing procedure).
+Account 41829612 verified clean (no 41750592 revert). Balance/equity live-queried R6756.56 (unchanged).
+WTI now 75.439/75.454 bid/ask — round-tripped back down near the disqualified 75.754 short_entry after the
+long-side spike to ~76.9 seen at tick196/197.
+FLAG-010 (long-side chase R:R degradation, tick196) stands unchanged and is unrelated to this tick's
+disqualification reasoning. No new flag opened — correctly reading require_first_dir is expected strategy
+behavior, not an anomaly.
+Plan expires 15:05Z. London ORB slot for WTI remains formally untaken (tick196 declined to chase the valid
+long side). NY session slot (15:30-15:35 SAST OR) separately still available today.
+Snapshot updated (balance re-queried, watch_levels entry, aggregate_risk timestamp), tick_counter → 198.
+No new realized P&L this tick.
